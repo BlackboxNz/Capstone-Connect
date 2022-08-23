@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Capstone_Connect.Model
 {
-    public class Staff
+    public class Admin
     {
         [Key]
         public int ID { get; set; }
@@ -15,7 +15,7 @@ namespace Capstone_Connect.Model
         [Required]
         public string LastName { get; set; }
         [Required]
-        public string AdminStatus { get; set; }
+        public string Access { get; set; }
         
         
     }
