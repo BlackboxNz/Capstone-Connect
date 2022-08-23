@@ -17,6 +17,7 @@ namespace Capstone_Connect.Model
         [Required]
         public string Description { get; set; }
         
+        public string Tags {get; set; }
         
     }
 }
