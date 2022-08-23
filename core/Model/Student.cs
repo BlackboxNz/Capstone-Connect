@@ -11,6 +11,7 @@ namespace Capstone_Connect.Model
     {
         [Key]
         public int ID { get; set; }
+        public string upi {get; set; }
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
