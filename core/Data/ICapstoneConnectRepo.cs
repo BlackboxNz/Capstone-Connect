@@ -13,7 +13,7 @@ namespace Capstone_Connect.Data
         IEnumerable<Project> GetAllProjects();
         Project GetProjectByID(int id);
 
-        //Staff based functions
+        //Admin based functions
 
         //Student based functions
 

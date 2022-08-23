@@ -29,7 +29,7 @@ namespace Capstone_Connect.Data
             Project project = _dbContext.Projects.FirstOrDefault(e => e.ID == id);
             return project;
         }
-        //Staff functions
+        //Admin functions
 
         //Student functions
 

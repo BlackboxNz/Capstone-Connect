@@ -15,6 +15,7 @@ namespace Capstone_Connect.Model
         [Required]
         public string LastName { get; set; }
         [Required]
+        public string Email { get; set; }
         public string Team { get; set; }
         
         
