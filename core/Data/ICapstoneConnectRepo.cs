@@ -9,7 +9,15 @@ namespace Capstone_Connect.Data
 {
     public interface ICapstoneConnectRepo
     {
+        //Project based functions
         IEnumerable<Project> GetAllProjects();
         Project GetProjectByID(int id);
+
+        //Staff based functions
+
+        //Student based functions
+
+        //Visitor based functions
+
     }
 }
