@@ -1,12 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Globalization;
+using Capstone_Connect.Model;
 
 namespace Capstone_Connect.Data
 {
-    internal interface DBCapstoneConnectRepo
+    public class DBCapstoneConnectRepo: ICapstoneConnectRepo
     {
+        private readonly CapstoneConnectDBContext _dbContext;
+
+        public DBCapstoneConnectRepo(CapstoneConnectDBContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        //Projects
+        public IEnumerable<Project> GetAllProjects()
+        {
+            IEnumerable<Project> projects = _dbContext.Projects.ToList<Project>();
+            return projects;
+        }
+
+        public Project GetProjectByID(int id)
+        {
+            Project project = _dbContext.Projects.FirstOrDefault(e => e.ID == id);
+            return project;
+        }
     }
 }
