@@ -17,7 +17,7 @@ namespace Capstone_Connect.Data
             _dbContext = dbContext;
         }
 
-        //Projects
+        //General functions
         public IEnumerable<Project> GetAllProjects()
         {
             IEnumerable<Project> projects = _dbContext.Projects.ToList<Project>();
@@ -29,6 +29,7 @@ namespace Capstone_Connect.Data
             Project project = _dbContext.Projects.FirstOrDefault(e => e.ID == id);
             return project;
         }
+
         //Staff functions
 
         //Student functions
