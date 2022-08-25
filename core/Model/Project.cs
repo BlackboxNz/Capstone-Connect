@@ -11,13 +11,20 @@ namespace Capstone_Connect.Model
     {
         [Key]
         public int ID { get; set; }
+
+        [Required]
         public string TeamName { get; set; }
+
         [Required]
         public string ProjectName { get; set; }
+
         [Required]
         public string Description { get; set; }
         
-        public string Tags {get; set; }
+        public ICollection<Tag> Tags {get; set; }
+
+        // Users that have liked the project.
+        public ICollection<Users> Users { get; set; }
         
     }
 }

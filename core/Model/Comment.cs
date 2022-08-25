@@ -7,22 +7,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Capstone_Connect.Model
 {
-    public class Visitor : User
+    public class Comment
     {
         [Key]
         public int ID { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string CommentText { get; set; }
 
         [Required]
-        public string Password { get; set; }
-        
-        [Required]
-        public string FirstName { get; set; }
+        public int ProjectID { get; set; }
 
         [Required]
-        public string LastName { get; set; }
-    }
+        public int UserID { get; set; }
     }
 }

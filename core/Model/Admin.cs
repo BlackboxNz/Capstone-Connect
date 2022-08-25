@@ -7,16 +7,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Capstone_Connect.Model
 {
-    public class Admin
+    public class Admin : User
     {
         [Key]
         public int ID { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+        
+        [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
+        
         [Required]
         public string Access { get; set; }
-        
-        
     }
 }
