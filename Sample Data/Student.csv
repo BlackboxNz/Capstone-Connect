@@ -1,0 +1,22 @@
+﻿ID,upi,FirstName,LastName,Email,Team
+12345645,abc123,First,Last,abc123@aucklanduni.ac.nz,1
+12345646,abc124,Person,Name,abc124@aucklanduni.ac.nz,1
+12345644,abc567,Ahmed,Doe,abc567@aucklanduni.ac.nz,1
+123456478,abc345,Alessandro,Smith,abc345@aucklanduni.ac.nz,1
+1234564123,abc346,Alexander,Garcia,abc346@aucklanduni.ac.nz,1
+12345999,abc347,Ali,Miller,abc347@aucklanduni.ac.nz,2
+12345444,abc348,Ambrose,Martinez,abc348@aucklanduni.ac.nz,2
+123453333,abc349,Nozomi,Moore,abc349@aucklanduni.ac.nz,2
+1234545687,abc350,Mateo,Lee,abc350@aucklanduni.ac.nz,2
+1234544,abc351,Kyro,Robinson,abc351@aucklanduni.ac.nz,2
+12344657,abc352,Wei,Walker,abc352@aucklanduni.ac.nz,3
+145687445,abc353,Amahle,Torres,abc353@aucklanduni.ac.nz,3
+145687445,abc354,Amelia,Nguyen,abc354@aucklanduni.ac.nz,3
+145687445,abc355,Ava,Hall,abc355@aucklanduni.ac.nz,3
+145687445,abc356,Emika,Roberts,abc356@aucklanduni.ac.nz,3
+145687445,abc357,Fatmeh,Flores,abc357@aucklanduni.ac.nz,4
+145687445,abc358,Ha Yoon,Gomez,abc358@aucklanduni.ac.nz,4
+145687445,abc359,Jade,Phillips,abc359@aucklanduni.ac.nz,4
+145687445,abc360,Li,Smith,abc360@aucklanduni.ac.nz,4
+145687445,abc361,Saanvi,Miller,abc361@aucklanduni.ac.nz,4
+145687445,abc362,Sophia,Walker,abc362@aucklanduni.ac.nz,4
