@@ -84,18 +84,21 @@ namespace Capstone_Connect.Data
                 {
                     Student student = students.FirstOrDefault(e => e.Email == user.Email);
                     student.LikedProjects.Add(project);
+                    project.LikedBy.Add(student);
                     _dbContext.SaveChanges();
                 }
                 else if (visitors.FirstOrDefault(e => e.Email == user.Email) != null)
                 {
                     Visitor visitor = visitors.FirstOrDefault(e => e.Email == user.Email);
                     visitor.LikedProjects.Add(project);
+                    project.LikedBy.Add(student);
                     _dbContext.SaveChanges();
                 }
                 else if (admins.FirstOrDefault(e => e.Email == user.Email) != null)
                 {
                     Admin admin = admins.FirstOrDefault(e => e.Email == user.Email);
                     admin.LikedProjects.Add(project);
+                    project.LikedBy.Add(student);
                     _dbContext.SaveChanges();
                 }
             }
@@ -103,7 +106,8 @@ namespace Capstone_Connect.Data
 
         public void WriteComment(Comment comment)
         {
-            
+            EntityEntry<Comment> addedComment = _dbContext.Comments.Add(comment);
+            _dbContext.SaveChanges();
         }
 
         //Admin functions
