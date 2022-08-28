@@ -11,4 +11,6 @@ public class Tag
     public string TagId { get; set; }
 
     public ICollection<Projects> Projects { get; set; }
+
+    public bool isAward { get; set; }
 }
