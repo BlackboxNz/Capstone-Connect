@@ -24,7 +24,7 @@ namespace Capstone_Connect.Model
         public ICollection<Tag> Tags {get; set; }
 
         // Users that have liked the project.
-        public ICollection<Users> Users { get; set; }
+        public ICollection<Users> LikedBy { get; set; }
         
     }
 }

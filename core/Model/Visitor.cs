@@ -24,8 +24,4 @@ namespace Capstone_Connect.Model
         [Required]
         public string LastName { get; set; }
     }
-    }
-}et; set; }
-    }
-    }
 }

@@ -21,5 +21,7 @@ namespace Capstone_Connect.Model {
 
     [Required]
     public string LastName { get; set; }
-}
+
+    public ICollection<Project> LikedProjects { get; set; }
+    }
 }
