@@ -23,21 +23,19 @@ namespace Capstone_Connect.Data
         void WriteComment(Comment comment);
 
         //Admin based functions
-        void AwardProject(Project project, Tag tag);
         void ApproveProject(Project project);
         void RejectProject(Project project);
         void DeleteProject(Project project);
 
-        void ApproveAdmin(User user);
-
         void AddTag(Tag tag);
         void DeleteTag(Tag tag);
 
+        void TagProject(Project project, Tag tag);
+
+        void ApproveAdmin(User user);
+
         void DeleteUser(User user);
         void DeleteComment(Comment comment);
-        
-
-        
 
     }
 }
