@@ -105,9 +105,7 @@
         }
 
         .shadow {
-            -moz-box-shadow: 5px 5px 20px black;
-            -webkit-box-shadow: 5px 5px 20px black;
-            box-shadow: 5px 5px 20px black;
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px, rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
         }
 
         a{
@@ -138,10 +136,10 @@
         /* Adds a caption with a partially opaque background to carousel items */
         .carousel-caption {
             color: black;
-            background-color: #A1C9D7;
+            background-color: rgb(255, 210, 48);
             border-radius: 20px;
             bottom: 75px;
-            border: 5px solid #2a2a2a;
+            border: 2px solid #2a2a2a;
             width: 50%;
             height: 15%;
             margin-left: auto;
@@ -150,16 +148,23 @@
         }
 
         .project-title {
+            position: relative;
             font-weight: bold;
             opacity: 100%;
             margin: 0px;
+            bottom: 15px;
             padding: 0px;
+            color: white;
         }
 
         .project-caption {
             margin: 0px;
             padding: 0px;
             opacity: 100%;
+            color: white;
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
     </style>
