@@ -176,8 +176,8 @@
         <ul class="navbar1">
             <li class="navitem" style="margin-left: 44%;">Home</li>
             <li class="navitem">Projects</li>
-            <li class="navitem" style="float:right" onclick="document.getElementById('trigger-modal').style.display='block'">Sign Up</li>
-            <li class="navitem" style="float:right" onclick="document.getElementById('trigger-modal').style.display='block'">Login</li>
+            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
+            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
         </ul>
     </div>
 
@@ -247,6 +247,71 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Next</span>
             </a>
+        </div>
+    </div>
+
+    <!--login modal-->
+    <div id="loginmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <!--modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!--Pills login/signup-->
+                    <ul class="nav nav-pills nav-justified mb-3">
+                        <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
+                        <li><a data-toggle="pill" href="#register">Register</a></li>
+                    </ul>
+                    <!--pills content-->
+                    <div class="tab-content">
+                        <!--login form-->
+                        <div id="login" class="tab-pane fade in active">
+                            <form>
+                                <!--email input-->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
+                                </div>
+                                <!--password input-->
+                                <div class="form-group">
+                                    <label for="pwd">Password</label>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign In</button>
+                            </form>
+                        </div>
+                        <!--signup form-->
+                        <div id="register" class="tab-pane fade">
+                            <form>
+                                <!--name input-->
+                                <div class="form-group">
+                                    <label for="fullname">Name</label>
+                                    <input type="text" class="form-control" id="fullname" />
+                                </div>
+                                <!--email input-->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
+                                </div>
+                                <!--password input-->
+                                <div class="form-group">
+                                    <label for="pwd">Password</label>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
+                                </div>
+                                <!--repeat password-->
+                                <div classs="form-group">
+                                    <label for="pwd">Repeat Password</label>
+                                    <input type="password" class="form-control" id="pwd2" placeholder="Repeat password" name="pwd2" />
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--footer close-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 
