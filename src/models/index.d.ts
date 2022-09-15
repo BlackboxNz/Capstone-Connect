@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 
-type VisitorMetaData = {
+type TeamMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -8,7 +8,7 @@ type StudentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TagMetaData = {
+type UserMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -20,7 +20,7 @@ type CommentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type UserMetaData = {
+type TagMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -28,7 +28,7 @@ type AdminMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type ProjectTagMetaData = {
+type VisitorMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -36,41 +36,49 @@ type UserProjectMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-export declare class Visitor {
+type ProjectTagMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+export declare class Team {
   readonly id: string;
-  readonly Email?: string | null;
-  readonly Password?: string | null;
-  readonly FirstName?: string | null;
-  readonly LastName?: string | null;
+  readonly Students?: (Student | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<Visitor, VisitorMetaData>);
-  static copyOf(source: Visitor, mutator: (draft: MutableModel<Visitor, VisitorMetaData>) => MutableModel<Visitor, VisitorMetaData> | void): Visitor;
+  constructor(init: ModelInit<Team, TeamMetaData>);
+  static copyOf(source: Team, mutator: (draft: MutableModel<Team, TeamMetaData>) => MutableModel<Team, TeamMetaData> | void): Team;
 }
 
 export declare class Student {
   readonly id: string;
-  readonly Email?: string | null;
   readonly UPI?: string | null;
-  readonly Password?: string | null;
-  readonly FirstName?: string | null;
-  readonly LastName?: string | null;
-  readonly Team?: string | null;
   readonly projectID: string;
+  readonly User?: User | null;
+  readonly teamID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Student, StudentMetaData>);
   static copyOf(source: Student, mutator: (draft: MutableModel<Student, StudentMetaData>) => MutableModel<Student, StudentMetaData> | void): Student;
 }
 
-export declare class Tag {
+export declare class User {
   readonly id: string;
-  readonly isAward?: boolean | null;
-  readonly projects?: (ProjectTag | null)[] | null;
+  readonly Email: string;
+  readonly Password: string;
+  readonly FirstName: string;
+  readonly LastName?: string | null;
+  readonly LikedProjects?: (UserProject | null)[] | null;
+  readonly Comments?: (Comment | null)[] | null;
+  readonly Student?: Student | null;
+  readonly Admin?: Admin | null;
+  readonly Visitor?: Visitor | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<Tag, TagMetaData>);
-  static copyOf(source: Tag, mutator: (draft: MutableModel<Tag, TagMetaData>) => MutableModel<Tag, TagMetaData> | void): Tag;
+  readonly userStudentId?: string | null;
+  readonly userAdminId?: string | null;
+  readonly userVisitorId?: string | null;
+  constructor(init: ModelInit<User, UserMetaData>);
+  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
 }
 
 export declare class Project {
@@ -101,52 +109,51 @@ export declare class Comment {
   static copyOf(source: Comment, mutator: (draft: MutableModel<Comment, CommentMetaData>) => MutableModel<Comment, CommentMetaData> | void): Comment;
 }
 
-export declare class User {
+export declare class Tag {
   readonly id: string;
-  readonly Email: string;
-  readonly Password: string;
-  readonly FirstName: string;
-  readonly LastName?: string | null;
-  readonly isStudent: boolean;
-  readonly isVisitor: boolean;
-  readonly isAdmin: boolean;
-  readonly LikedProjects?: (UserProject | null)[] | null;
-  readonly Comments?: (Comment | null)[] | null;
+  readonly isAward?: boolean | null;
+  readonly projects?: (ProjectTag | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<User, UserMetaData>);
-  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+  constructor(init: ModelInit<Tag, TagMetaData>);
+  static copyOf(source: Tag, mutator: (draft: MutableModel<Tag, TagMetaData>) => MutableModel<Tag, TagMetaData> | void): Tag;
 }
 
 export declare class Admin {
   readonly id: string;
-  readonly Email?: string | null;
-  readonly Password?: string | null;
-  readonly FirstName?: string | null;
-  readonly LastName?: string | null;
   readonly Access?: string | null;
+  readonly User?: User | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Admin, AdminMetaData>);
   static copyOf(source: Admin, mutator: (draft: MutableModel<Admin, AdminMetaData>) => MutableModel<Admin, AdminMetaData> | void): Admin;
 }
 
-export declare class ProjectTag {
+export declare class Visitor {
   readonly id: string;
-  readonly tag: Tag;
-  readonly project: Project;
+  readonly User?: User | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<ProjectTag, ProjectTagMetaData>);
-  static copyOf(source: ProjectTag, mutator: (draft: MutableModel<ProjectTag, ProjectTagMetaData>) => MutableModel<ProjectTag, ProjectTagMetaData> | void): ProjectTag;
+  constructor(init: ModelInit<Visitor, VisitorMetaData>);
+  static copyOf(source: Visitor, mutator: (draft: MutableModel<Visitor, VisitorMetaData>) => MutableModel<Visitor, VisitorMetaData> | void): Visitor;
 }
 
 export declare class UserProject {
   readonly id: string;
-  readonly project: Project;
   readonly user: User;
+  readonly project: Project;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<UserProject, UserProjectMetaData>);
   static copyOf(source: UserProject, mutator: (draft: MutableModel<UserProject, UserProjectMetaData>) => MutableModel<UserProject, UserProjectMetaData> | void): UserProject;
+}
+
+export declare class ProjectTag {
+  readonly id: string;
+  readonly project: Project;
+  readonly tag: Tag;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<ProjectTag, ProjectTagMetaData>);
+  static copyOf(source: ProjectTag, mutator: (draft: MutableModel<ProjectTag, ProjectTagMetaData>) => MutableModel<ProjectTag, ProjectTagMetaData> | void): ProjectTag;
 }

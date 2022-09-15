@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Visitor": {
-            "name": "Visitor",
+        "Team": {
+            "name": "Team",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,33 +10,19 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Email": {
-                    "name": "Email",
-                    "isArray": false,
-                    "type": "String",
+                "Students": {
+                    "name": "Students",
+                    "isArray": true,
+                    "type": {
+                        "model": "Student"
+                    },
                     "isRequired": false,
-                    "attributes": []
-                },
-                "Password": {
-                    "name": "Password",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "FirstName": {
-                    "name": "FirstName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "LastName": {
-                    "name": "LastName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "teamID"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -56,7 +42,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Visitors",
+            "pluralName": "Teams",
             "attributes": [
                 {
                     "type": "model",
@@ -90,13 +76,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Email": {
-                    "name": "Email",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "UPI": {
                     "name": "UPI",
                     "isArray": false,
@@ -104,36 +83,28 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "Password": {
-                    "name": "Password",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "FirstName": {
-                    "name": "FirstName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "LastName": {
-                    "name": "LastName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Team": {
-                    "name": "Team",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "projectID": {
                     "name": "projectID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "User": {
+                    "name": "User",
+                    "isArray": false,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "studentUserId"
+                    }
+                },
+                "teamID": {
+                    "name": "teamID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -173,6 +144,15 @@ export const schema = {
                     }
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "byTeam",
+                        "fields": [
+                            "teamID"
+                        ]
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -190,8 +170,8 @@ export const schema = {
                 }
             ]
         },
-        "Tag": {
-            "name": "Tag",
+        "User": {
+            "name": "User",
             "fields": {
                 "id": {
                     "name": "id",
@@ -200,25 +180,102 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "isAward": {
-                    "name": "isAward",
+                "Email": {
+                    "name": "Email",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Password": {
+                    "name": "Password",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "FirstName": {
+                    "name": "FirstName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "LastName": {
+                    "name": "LastName",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "projects": {
-                    "name": "projects",
+                "LikedProjects": {
+                    "name": "LikedProjects",
                     "isArray": true,
                     "type": {
-                        "model": "ProjectTag"
+                        "model": "UserProject"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "tag"
+                        "associatedWith": "user"
+                    }
+                },
+                "Comments": {
+                    "name": "Comments",
+                    "isArray": true,
+                    "type": {
+                        "model": "Comment"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "userID"
+                    }
+                },
+                "Student": {
+                    "name": "Student",
+                    "isArray": false,
+                    "type": {
+                        "model": "Student"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "User",
+                        "targetName": "userStudentId"
+                    }
+                },
+                "Admin": {
+                    "name": "Admin",
+                    "isArray": false,
+                    "type": {
+                        "model": "Admin"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "User",
+                        "targetName": "userAdminId"
+                    }
+                },
+                "Visitor": {
+                    "name": "Visitor",
+                    "isArray": false,
+                    "type": {
+                        "model": "Visitor"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "User",
+                        "targetName": "userVisitorId"
                     }
                 },
                 "createdAt": {
@@ -236,10 +293,31 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
+                },
+                "userStudentId": {
+                    "name": "userStudentId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "userAdminId": {
+                    "name": "userAdminId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "userVisitorId": {
+                    "name": "userVisitorId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "Tags",
+            "pluralName": "Users",
             "attributes": [
                 {
                     "type": "model",
@@ -591,8 +669,8 @@ export const schema = {
                 }
             ]
         },
-        "User": {
-            "name": "User",
+        "Tag": {
+            "name": "Tag",
             "fields": {
                 "id": {
                     "name": "id",
@@ -601,81 +679,25 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Email": {
-                    "name": "Email",
+                "isAward": {
+                    "name": "isAward",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "Password": {
-                    "name": "Password",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "FirstName": {
-                    "name": "FirstName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "LastName": {
-                    "name": "LastName",
-                    "isArray": false,
-                    "type": "String",
+                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
-                "isStudent": {
-                    "name": "isStudent",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "isVisitor": {
-                    "name": "isVisitor",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "isAdmin": {
-                    "name": "isAdmin",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "LikedProjects": {
-                    "name": "LikedProjects",
+                "projects": {
+                    "name": "projects",
                     "isArray": true,
                     "type": {
-                        "model": "UserProject"
+                        "model": "ProjectTag"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "user"
-                    }
-                },
-                "Comments": {
-                    "name": "Comments",
-                    "isArray": true,
-                    "type": {
-                        "model": "Comment"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "userID"
+                        "associatedWith": "tag"
                     }
                 },
                 "createdAt": {
@@ -696,7 +718,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Users",
+            "pluralName": "Tags",
             "attributes": [
                 {
                     "type": "model",
@@ -730,40 +752,25 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Email": {
-                    "name": "Email",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Password": {
-                    "name": "Password",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "FirstName": {
-                    "name": "FirstName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "LastName": {
-                    "name": "LastName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "Access": {
                     "name": "Access",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "User": {
+                    "name": "User",
+                    "isArray": false,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "adminUserId"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -807,8 +814,8 @@ export const schema = {
                 }
             ]
         },
-        "ProjectTag": {
-            "name": "ProjectTag",
+        "Visitor": {
+            "name": "Visitor",
             "fields": {
                 "id": {
                     "name": "id",
@@ -817,30 +824,17 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "tag": {
-                    "name": "tag",
+                "User": {
+                    "name": "User",
                     "isArray": false,
                     "type": {
-                        "model": "Tag"
+                        "model": "User"
                     },
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "tagID"
-                    }
-                },
-                "project": {
-                    "name": "project",
-                    "isArray": false,
-                    "type": {
-                        "model": "Project"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "projectID"
+                        "targetName": "visitorUserId"
                     }
                 },
                 "createdAt": {
@@ -861,27 +855,25 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "ProjectTags",
+            "pluralName": "Visitors",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
                 },
                 {
-                    "type": "key",
+                    "type": "auth",
                     "properties": {
-                        "name": "byTag",
-                        "fields": [
-                            "tagID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byProject",
-                        "fields": [
-                            "projectID"
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
                         ]
                     }
                 }
@@ -897,19 +889,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "project": {
-                    "name": "project",
-                    "isArray": false,
-                    "type": {
-                        "model": "Project"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "projectID"
-                    }
-                },
                 "user": {
                     "name": "user",
                     "isArray": false,
@@ -921,6 +900,19 @@ export const schema = {
                     "association": {
                         "connectionType": "BELONGS_TO",
                         "targetName": "userID"
+                    }
+                },
+                "project": {
+                    "name": "project",
+                    "isArray": false,
+                    "type": {
+                        "model": "Project"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "projectID"
                     }
                 },
                 "createdAt": {
@@ -950,6 +942,86 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
+                        "name": "byUser",
+                        "fields": [
+                            "userID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byProject",
+                        "fields": [
+                            "projectID"
+                        ]
+                    }
+                }
+            ]
+        },
+        "ProjectTag": {
+            "name": "ProjectTag",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "project": {
+                    "name": "project",
+                    "isArray": false,
+                    "type": {
+                        "model": "Project"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "projectID"
+                    }
+                },
+                "tag": {
+                    "name": "tag",
+                    "isArray": false,
+                    "type": {
+                        "model": "Tag"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "tagID"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "ProjectTags",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
                         "name": "byProject",
                         "fields": [
                             "projectID"
@@ -959,9 +1031,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byUser",
+                        "name": "byTag",
                         "fields": [
-                            "userID"
+                            "tagID"
                         ]
                     }
                 }
@@ -970,5 +1042,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "13d5409b94f6ddbf981e0a48a9e1dd50"
+    "version": "c172a1943044526907e7ffa47ec85c75"
 };
