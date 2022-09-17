@@ -1,0 +1,64 @@
+type Team @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Students: [Student] @hasMany(indexName: "byTeam", fields: ["id"])
+}
+
+type Visitor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  User: User @belongsTo
+}
+
+type Student @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  UPI: String
+  projectID: ID! @index(name: "byProject")
+  User: User @belongsTo
+  teamID: ID! @index(name: "byTeam")
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Email: String!
+  Password: String!
+  FirstName: String!
+  LastName: String
+  LikedProjects: [Project] @manyToMany(relationName: "UserProject")
+  Comments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
+  Student: Student @hasOne
+  Admin: Admin @hasOne
+  Visitor: Visitor @hasOne
+}
+
+type Admin @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Access: String
+  User: User @belongsTo
+}
+
+type Comment @model @auth(rules: [{allow: public}, {allow: owner}, {allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Student"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Visitor"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  CommentText: String
+  ProjectID: ID!
+  UserID: ID!
+  userID: ID! @index(name: "byUser")
+  projectID: ID! @index(name: "byProject")
+}
+
+type Project @model @auth(rules: [{allow: public}, {allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Student"], operations: [read, create, update, delete]}, {allow: owner}]) {
+  id: ID!
+  TeamName: String!
+  ProjectName: String!
+  Description: String
+  Students: [Comment] @hasMany(indexName: "byProject", fields: ["id"])
+  Comment: [Comment] @hasMany(indexName: "byProject", fields: ["id"])
+  LikedBy: [User] @manyToMany(relationName: "UserProject")
+  Tags: [Tag] @manyToMany(relationName: "ProjectTag")
+  Brief: String
+}
+
+type Tag @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  isAward: Boolean
+  projects: [Project] @manyToMany(relationName: "ProjectTag")
+}
+ 
