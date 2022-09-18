@@ -94,7 +94,7 @@ async function newStudent(){
         new Student({
             "UPI": "Lorem ipsum dolor sit amet",
             "projectID": "a3f4095e-39de-43d2-baf4-f8c16f0f6f4d",
-            "User": /* Provide a User instance here */,
+            "User": ""/* Provide a User instance here */,
             "teamID": "a3f4095e-39de-43d2-baf4-f8c16f0f6f4d"
         })
     );
