@@ -85,11 +85,12 @@ export declare class Project {
   readonly id: string;
   readonly TeamName: string;
   readonly ProjectName: string;
-  readonly Description: string;
+  readonly Description?: string | null;
   readonly Students?: (Comment | null)[] | null;
   readonly Comment?: (Comment | null)[] | null;
   readonly LikedBy?: (UserProject | null)[] | null;
   readonly Tags?: (ProjectTag | null)[] | null;
+  readonly Brief?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Project, ProjectMetaData>);

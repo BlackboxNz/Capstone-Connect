@@ -369,7 +369,7 @@ export const schema = {
                     "name": "Description",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "Students": {
@@ -427,6 +427,13 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "project"
                     }
+                },
+                "Brief": {
+                    "name": "Brief",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -1042,5 +1049,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "c172a1943044526907e7ffa47ec85c75"
+    "version": "7d855117fc306c07ed4798569afb5ed0"
 };

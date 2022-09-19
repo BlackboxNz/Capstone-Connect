@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3capstoneconnectstoragef5074fa2",
+  "bucketName": "capstone-connect-storage-f5074fa2",
+  "policyUUID": "c9b75ee6",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE",
+    "DELETE"
+  ]
+}
