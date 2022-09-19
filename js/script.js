@@ -105,3 +105,37 @@ async function newVisitor(){
         })
     );
 }
+
+/*Query functions */
+async function queryProject(){
+    const models = await DataStore.query(Project);
+    console.log(models);
+}
+
+async function queryComment(){
+    const models = await DataStore.query(Comment);
+    console.log(models);
+}
+async function queryTeam(){
+    const models = await DataStore.query(Team);
+    console.log(models);
+}
+async function queryUser(){
+    const models = await DataStore.query(User);
+    console.log(models);
+}
+
+async function queryStudent(){
+    const models = await DataStore.query(Admin);
+    console.log(models);
+}
+
+async function queryVisitor(){
+    const models = await DataStore.query(Visitor);
+    console.log(models);
+}
+
+async function queryAdmin(){
+    const models = await DataStore.query(Admin);
+    console.log(models);    
+}
