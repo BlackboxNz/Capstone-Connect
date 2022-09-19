@@ -35,7 +35,7 @@ async function newTeam(){
     );
 }
 
-document.getElementById("newProject").addEventListener("click", newProject);
+document.getElementById("saveChanges").addEventListener("click", newProject);
 async function newProject(){
     await DataStore.save(
         new Project({
