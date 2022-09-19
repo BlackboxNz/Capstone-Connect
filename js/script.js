@@ -139,3 +139,36 @@ async function queryAdmin(){
     const models = await DataStore.query(Admin);
     console.log(models);    
 }
+
+/*Update functions */ 
+/*To add later */
+
+/*Delete functions */
+/*To add later */
+
+
+/*Login/logout functions*/
+async function login(){
+    try {
+        const user = await Auth.signIn(username, password);
+    } catch (error) {
+        console.log('Incorrect username or password', error);
+    }
+}
+
+async function logout(){
+    try {
+        await Auth.signOut();
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+}
+
+async function signup(){
+    try {
+        const { user } = await Auth.signUp({ username, password });
+        console.log(user);
+    } catch (error) {
+        console.log('error signing up:', error);
+    }
+}
