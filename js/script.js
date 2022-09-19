@@ -164,7 +164,7 @@ async function logout(){
     }
 }
 
-async function signup(){
+async function register(){
     try {
         const { user } = await Auth.signUp({ username, password });
         console.log(user);
