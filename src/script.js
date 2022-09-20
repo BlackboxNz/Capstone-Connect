@@ -1,3 +1,7 @@
+import { Amplify, API, graphqlOperation } from "aws-amplify";
+
+import awsconfig from "./aws-exports";
+
 import { DataStore } from '@aws-amplify/datastore';
 import { User } from './models';
 import { Visitor } from './models';
@@ -7,6 +11,8 @@ import { Team } from './models';
 import { Project } from './models';
 import { Tag } from './models';
 import { Comment } from './models';
+
+Amplify.configure(awsconfig);
 
 /*Create new model functions*/
 document.getElementById("newUser").addEventListener("click", newUser);

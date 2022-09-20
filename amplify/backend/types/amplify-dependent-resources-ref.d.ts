@@ -4,11 +4,6 @@ export type AmplifyDependentResourcesAttributes = {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
-        },
-        "ReadAPI": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
         }
     },
     "auth": {
@@ -26,14 +21,6 @@ export type AmplifyDependentResourcesAttributes = {
         "s3capstoneconnectstoragef5074fa2": {
             "BucketName": "string",
             "Region": "string"
-        }
-    },
-    "function": {
-        "findProject": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
         }
     }
 }

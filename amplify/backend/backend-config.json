@@ -34,20 +34,6 @@
           ]
         }
       }
-    },
-    "ReadAPI": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "findProject",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
     }
   },
   "auth": {
@@ -90,13 +76,6 @@
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
-    }
-  },
-  "function": {
-    "findProject": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   }
 }
