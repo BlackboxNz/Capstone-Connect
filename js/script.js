@@ -144,7 +144,45 @@ async function queryAdmin(){
 /*To add later */
 
 /*Delete functions */
-/*To add later */
+async function deleteProject(projectID){
+    const project = await DataStore.query(Project, projectID);
+    await DataStore.delete(project);
+}
+
+async function deleteComment(commentID){
+    const comment = await DataStore.query(Comment, commentID);
+    await DataStore.delete(comment);
+}
+
+async function deleteTeam(teamID){
+    const team = await DataStore.query(Team, teamID);
+    await DataStore.delete(team);
+}
+
+async function deleteTag(tagID){
+    const tag = await DataStore.query(Tag, tagID);
+    await DataStore.delete(tag);
+}
+
+async function deleteUser(userID){
+    const user = await DataStore.query(User, userID);
+    await DataStore.delete(user);
+}
+
+async function deleteStudent(studentID){
+    const student = await DataStore.query(Student, studentID);
+    await DataStore.delete(student);
+}
+
+async function deleteVisitor(visitorID){
+    const visitor = await DataStore.query(Visitor, visitorID);
+    await DataStore.delete(visitor);
+}
+
+async function deleteAdmin(adminID){
+    const admin = await DataStore.query(Admin, adminID);
+    await DataStore.delete(admin);
+}
 
 
 /*Login/logout functions*/
