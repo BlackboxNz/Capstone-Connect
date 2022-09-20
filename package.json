@@ -2,6 +2,7 @@
     "name": "amplify-js-app",
     "version": "1.0.0",
     "description": "Amplify JavaScript Example",
+    "type": "module",
     "dependencies": {
         "aws-amplify": "latest"
     },
