@@ -61,4 +61,10 @@ type Tag @model @auth(rules: [{allow: public}]) {
   isAward: Boolean
   projects: [Project] @manyToMany(relationName: "ProjectTag")
 }
+
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+}
  
