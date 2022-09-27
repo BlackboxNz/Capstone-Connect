@@ -10,6 +10,11 @@
       "StackName": "amplify-capstoneconnect-dev-81231",
       "StackId": "arn:aws:cloudformation:ap-southeast-2:352357687232:stack/amplify-capstoneconnect-dev-81231/2c3c5730-3dcf-11ed-8cf9-0616da4e71f8",
       "AmplifyAppId": "d1xfyneav7qopw"
+    },
+    "categories": {
+      "auth": {
+        "Capstoneconnect": {}
+      }
     }
   }
 }

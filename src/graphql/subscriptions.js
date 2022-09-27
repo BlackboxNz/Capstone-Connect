@@ -1,115 +1,28 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateProject = /* GraphQL */ `
+  subscription OnCreateProject($owner: String) {
+    onCreateProject(owner: $owner) {
       id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
-      id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      TeamName
+      ProjectName
+      Description
+      Brief
+      Tag
+      Image
+      Video
+      Comments {
         items {
           id
           content
+          projectID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
+          owner
         }
         nextToken
         startedAt
@@ -119,38 +32,32 @@ export const onCreatePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
+      owner
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onUpdateProject = /* GraphQL */ `
+  subscription OnUpdateProject($owner: String) {
+    onUpdateProject(owner: $owner) {
       id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      TeamName
+      ProjectName
+      Description
+      Brief
+      Tag
+      Image
+      Video
+      Comments {
         items {
           id
           content
+          projectID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
+          owner
         }
         nextToken
         startedAt
@@ -160,38 +67,32 @@ export const onUpdatePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
+      owner
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onDeleteProject = /* GraphQL */ `
+  subscription OnDeleteProject($owner: String) {
+    onDeleteProject(owner: $owner) {
       id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      TeamName
+      ProjectName
+      Description
+      Brief
+      Tag
+      Image
+      Video
+      Comments {
         items {
           id
           content
+          projectID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
+          owner
         }
         nextToken
         startedAt
@@ -201,118 +102,52 @@ export const onDeletePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
+      owner
     }
   }
 `;
 export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+  subscription OnCreateComment($owner: String) {
+    onCreateComment(owner: $owner) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      projectID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
+      owner
     }
   }
 `;
 export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+  subscription OnUpdateComment($owner: String) {
+    onUpdateComment(owner: $owner) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      projectID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
+      owner
     }
   }
 `;
 export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+  subscription OnDeleteComment($owner: String) {
+    onDeleteComment(owner: $owner) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      projectID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
+      owner
     }
   }
 `;

@@ -1,6 +1,6 @@
 projects:
   Capstoneconnect:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/Capstoneconnect/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

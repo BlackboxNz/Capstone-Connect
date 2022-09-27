@@ -48,14 +48,12 @@ async function newProject(){
             "TeamName": "Lorem ipsum dolor sit amet",
             "ProjectName": "Lorem ipsum dolor sit amet",
             "Description": "Lorem ipsum dolor sit amet",
-            "Students": [],
-            "Comment": [],
-            "LikedBy": [],
-            "Tags": [],
-            "Brief": "Lorem ipsum dolor sit amet"
+            "Brief": "Lorem ipsum dolor sit amet",
+            "Tag": [],
+            "Image": "Lorem ipsum dolor sit amet",
+            "Video": "Lorem ipsum dolor sit amet"
         })
     );
-}
 
 document.getElementById("newTag").addEventListener("click", newTag);
 async function newTag(){

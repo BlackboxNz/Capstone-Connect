@@ -17,6 +17,7 @@ export declare class Project {
   readonly Tag?: (string | null)[] | null;
   readonly Image?: string | null;
   readonly Video?: string | null;
+  readonly Comments?: (Comment | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Project, ProjectMetaData>);
@@ -26,6 +27,7 @@ export declare class Project {
 export declare class Comment {
   readonly id: string;
   readonly content: string;
+  readonly projectID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Comment, CommentMetaData>);

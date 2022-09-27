@@ -2,5 +2,11 @@
   "AppSyncApiName": "Capstoneconnect",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2022-09-27T08:25:50.646Z"
+  "AuthModeLastUpdated": "2022-09-27T08:57:03.392Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authCapstoneconnect",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

@@ -1,4 +1,4 @@
-type Project @model @auth(rules: [{allow: public}]) {
+type Project @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Student"], operations: [read, update]}, {allow: groups, groups: ["Visitor"], operations: [read]}, {allow: owner}]) {
   id: ID!
   TeamName: String!
   ProjectName: String!
@@ -7,10 +7,12 @@ type Project @model @auth(rules: [{allow: public}]) {
   Tag: [String]
   Image: String
   Video: String
+  Comments: [Comment] @hasMany(indexName: "byProject", fields: ["id"])
 }
 
-type Comment @model @auth(rules: [{allow: public}]) {
+type Comment @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   content: String!
+  projectID: ID! @index(name: "byProject")
 }
  

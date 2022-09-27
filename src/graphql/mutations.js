@@ -1,127 +1,31 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createProject = /* GraphQL */ `
+  mutation CreateProject(
+    $input: CreateProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
+    createProject(input: $input, condition: $condition) {
       id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
-  ) {
-    updateBlog(input: $input, condition: $condition) {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
-  ) {
-    deleteBlog(input: $input, condition: $condition) {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
-  ) {
-    createPost(input: $input, condition: $condition) {
-      id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      TeamName
+      ProjectName
+      Description
+      Brief
+      Tag
+      Image
+      Video
+      Comments {
         items {
           id
           content
+          projectID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
+          owner
         }
         nextToken
         startedAt
@@ -131,41 +35,35 @@ export const createPost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
+      owner
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
+export const updateProject = /* GraphQL */ `
+  mutation UpdateProject(
+    $input: UpdateProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    updatePost(input: $input, condition: $condition) {
+    updateProject(input: $input, condition: $condition) {
       id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      TeamName
+      ProjectName
+      Description
+      Brief
+      Tag
+      Image
+      Video
+      Comments {
         items {
           id
           content
+          projectID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
+          owner
         }
         nextToken
         startedAt
@@ -175,41 +73,35 @@ export const updatePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
+      owner
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
+export const deleteProject = /* GraphQL */ `
+  mutation DeleteProject(
+    $input: DeleteProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    deletePost(input: $input, condition: $condition) {
+    deleteProject(input: $input, condition: $condition) {
       id
-      title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      TeamName
+      ProjectName
+      Description
+      Brief
+      Tag
+      Image
+      Video
+      Comments {
         items {
           id
           content
+          projectID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
+          owner
         }
         nextToken
         startedAt
@@ -219,7 +111,7 @@ export const deletePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
+      owner
     }
   }
 `;
@@ -230,36 +122,14 @@ export const createComment = /* GraphQL */ `
   ) {
     createComment(input: $input, condition: $condition) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      projectID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
+      owner
     }
   }
 `;
@@ -270,36 +140,14 @@ export const updateComment = /* GraphQL */ `
   ) {
     updateComment(input: $input, condition: $condition) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      projectID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
+      owner
     }
   }
 `;
@@ -310,36 +158,14 @@ export const deleteComment = /* GraphQL */ `
   ) {
     deleteComment(input: $input, condition: $condition) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      projectID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
+      owner
     }
   }
 `;
