@@ -100,6 +100,7 @@
           padding: 20px;
           font-size: calc(1em);
           font-weight: bold;
+          transition: background 1000ms, color 1000ms;
       }
 
       .navitem:hover {
@@ -199,6 +200,7 @@
           z-index: 1;
           position: absolute;
           color: white;
+          overflow: hidden;
       }
 
       .filter-cont {
@@ -210,6 +212,7 @@
           height: 80px;
           background: #F0E4CE;
           z-index: 2;
+          overflow: hidden;
       }
 
       .project-cont {
@@ -222,6 +225,7 @@
           z-index: 2;
           float: left;
           cursor: pointer;
+          display: none;
       }
 
       .padtest {
@@ -246,8 +250,34 @@
           font-weight: bold;
       }
 
-      .carousel-control {
-      }
+        .btn {
+            position: relative;
+            margin-left: 4px;
+            margin-top: 4px;
+            left: 5%;
+            bottom: 38.5px;
+            color: black;
+            background: white;
+            transition: background 1000ms, color 1000ms;
+        }
+
+        .btn.active{
+            color: white;
+            background: grey;
+        }
+
+        .btn:hover {
+            color: white;
+            background: grey;
+        }
+
+        .carousel-control{
+            transition: 1000ms;
+        }
+
+        .show {
+            display: block;
+        }
 
   </style>
 </head>
@@ -335,16 +365,39 @@
   <div class="filter">
       <div class="filter-cont shadow2">
           <span class="text1">Filter:</span>
+          <div id="myBtnContainer">
+              <button class="btn active" onclick="projectfilter('all')"> Show all</button>
+              <button class="btn" onclick="projectfilter('Proj1')">Project 1</button>
+              <button class="btn" onclick="projectfilter('Proj2')"> Project 2</button>
+              <button class="btn" onclick="projectfilter('Proj3')"> Project 3</button>
+              <button class="btn" onclick="projectfilter('Proj4')"> Project 4</button>
+              <button class="btn" onclick="projectfilter('Proj5')"> Project 5</button>
+              <button class="btn" onclick="projectfilter('Proj6')"> Project 6</button>
+              <button class="btn" onclick="projectfilter('Proj7')"> Project 7</button>
+              <button class="btn" onclick="projectfilter('Proj8')"> Project 8</button>
+              <button class="btn" onclick="projectfilter('Proj9')"> Project 9</button>
+              <button class="btn" onclick="projectfilter('Proj10')"> Project 10</button>
+              <button class="btn" onclick="projectfilter('Proj11')"> Project 11</button>
+              <button class="btn" onclick="projectfilter('Proj12')"> Project 12</button>
+              <button class="btn" onclick="projectfilter('Proj13')"> Project 13</button>
+              <button class="btn" onclick="projectfilter('Proj14')"> Project 14</button>
+              <button class="btn" onclick="projectfilter('Proj15')"> Project 15</button>
+              <button class="btn" onclick="projectfilter('Proj16')"> Project 16</button>
+              <button class="btn" onclick="projectfilter('Proj17')"> Project 17</button>
+              <button class="btn" onclick="projectfilter('Proj18')"> Project 18</button>
+              <button class="btn" onclick="projectfilter('Proj19')"> Project 19</button>
+              <button class="btn" onclick="projectfilter('Proj20')"> Project 20</button>
+          </div>
       </div>
 
-      <div class="project-cont shadow2"><span class="text2">Project 1</span></div>
-      <div class="project-cont shadow2"><span class="text2">Project 2</span></div>
-      <div class="project-cont shadow2"><span class="text2">Project 3</span></div>
-      <div class="project-cont shadow2"><span class="text2">Project 4</span></div>
-      <div class="project-cont shadow2"><span class="text2">Project 5</span></div>
-      <div class="project-cont shadow2"><span class="text2">Project 6</span></div>
-      <div class="project-cont shadow2"><span class="text2">Project 7</span></div>
-      <div class="project-cont shadow2"><span class="text2">Project 8</span></div>
+      <div class="project-cont shadow2 Proj1"><span class="text2">Project 1</span></div>
+      <div class="project-cont shadow2 Proj2"><span class="text2">Project 2</span></div>
+      <div class="project-cont shadow2 Proj3"><span class="text2">Project 3</span></div>
+      <div class="project-cont shadow2 Proj4"><span class="text2">Project 4</span></div>
+      <div class="project-cont shadow2 Proj5"><span class="text2">Project 5</span></div>
+      <div class="project-cont shadow2 Proj6"><span class="text2">Project 6</span></div>
+      <div class="project-cont shadow2 Proj7"><span class="text2">Project 7</span></div>
+      <div class="project-cont shadow2 Proj8"><span class="text2">Project 8</span></div>
 
   </div>
 
@@ -412,6 +465,54 @@
           </div>
       </div>
   </div>
+<script>
+    projectfilter("all")
+    function projectfilter(c) {
+        var x, i;
+        x = document.getElementsByClassName("project-cont");
+        if (c == "all") c = "";
+        // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+        for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+    }
 
+    // Show filtered elements
+    function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) {
+                element.className += " " + arr2[i];
+            }
+        }
+    }
+
+    // Hide elements that are not selected
+    function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+            }
+        }
+        element.className = arr1.join(" ");
+    }
+
+    // Add active class to the current control button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[i].className = current[i].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>
 </body>
 </html>
