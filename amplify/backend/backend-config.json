@@ -1,6 +1,6 @@
 {
   "api": {
-    "capstoneconnect": {
+    "Capstoneconnect": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "capstoneconnect": {
+        "Capstoneconnect": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
