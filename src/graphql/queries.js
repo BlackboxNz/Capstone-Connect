@@ -1,6 +1,93 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getTags = /* GraphQL */ `
+  query GetTags($id: ID!) {
+    getTags(id: $id) {
+      id
+      Name
+      IsAward
+      Projects {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listTags = /* GraphQL */ `
+  query ListTags(
+    $filter: ModelTagsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTags = /* GraphQL */ `
+  query SyncTags(
+    $filter: ModelTagsFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTags(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getTeam = /* GraphQL */ `
   query GetTeam($id: ID!) {
     getTeam(id: $id) {
@@ -246,6 +333,21 @@ export const getProject = /* GraphQL */ `
         nextToken
         startedAt
       }
+      tagss {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -276,6 +378,10 @@ export const listProjects = /* GraphQL */ `
           startedAt
         }
         users {
+          nextToken
+          startedAt
+        }
+        tagss {
           nextToken
           startedAt
         }
@@ -318,6 +424,10 @@ export const syncProjects = /* GraphQL */ `
           startedAt
         }
         users {
+          nextToken
+          startedAt
+        }
+        tagss {
           nextToken
           startedAt
         }
@@ -403,6 +513,167 @@ export const syncComments = /* GraphQL */ `
     }
   }
 `;
+export const getTagsProject = /* GraphQL */ `
+  query GetTagsProject($id: ID!) {
+    getTagsProject(id: $id) {
+      id
+      tagsID
+      projectID
+      tags {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        tagss {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const listTagsProjects = /* GraphQL */ `
+  query ListTagsProjects(
+    $filter: ModelTagsProjectFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTagsProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        tagsID
+        projectID
+        tags {
+          id
+          Name
+          IsAward
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        project {
+          id
+          TeamName
+          ProjectName
+          Description
+          Brief
+          Tag
+          Image
+          Video
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTagsProjects = /* GraphQL */ `
+  query SyncTagsProjects(
+    $filter: ModelTagsProjectFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTagsProjects(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        tagsID
+        projectID
+        tags {
+          id
+          Name
+          IsAward
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        project {
+          id
+          TeamName
+          ProjectName
+          Description
+          Brief
+          Tag
+          Image
+          Video
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getUserProject = /* GraphQL */ `
   query GetUserProject($id: ID!) {
     getUserProject(id: $id) {
@@ -444,6 +715,10 @@ export const getUserProject = /* GraphQL */ `
           startedAt
         }
         users {
+          nextToken
+          startedAt
+        }
+        tagss {
           nextToken
           startedAt
         }

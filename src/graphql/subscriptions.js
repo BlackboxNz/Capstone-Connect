@@ -1,6 +1,93 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateTags = /* GraphQL */ `
+  subscription OnCreateTags {
+    onCreateTags {
+      id
+      Name
+      IsAward
+      Projects {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateTags = /* GraphQL */ `
+  subscription OnUpdateTags {
+    onUpdateTags {
+      id
+      Name
+      IsAward
+      Projects {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteTags = /* GraphQL */ `
+  subscription OnDeleteTags {
+    onDeleteTags {
+      id
+      Name
+      IsAward
+      Projects {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateTeam = /* GraphQL */ `
   subscription OnCreateTeam {
     onCreateTeam {
@@ -274,6 +361,21 @@ export const onCreateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
+      tagss {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -325,6 +427,21 @@ export const onUpdateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
+      tagss {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -365,6 +482,21 @@ export const onDeleteProject = /* GraphQL */ `
         items {
           id
           userID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      tagss {
+        items {
+          id
+          tagsID
           projectID
           createdAt
           updatedAt
@@ -433,6 +565,177 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTagsProject = /* GraphQL */ `
+  subscription OnCreateTagsProject($owner: String) {
+    onCreateTagsProject(owner: $owner) {
+      id
+      tagsID
+      projectID
+      tags {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        tagss {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onUpdateTagsProject = /* GraphQL */ `
+  subscription OnUpdateTagsProject($owner: String) {
+    onUpdateTagsProject(owner: $owner) {
+      id
+      tagsID
+      projectID
+      tags {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        tagss {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onDeleteTagsProject = /* GraphQL */ `
+  subscription OnDeleteTagsProject($owner: String) {
+    onDeleteTagsProject(owner: $owner) {
+      id
+      tagsID
+      projectID
+      tags {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        tagss {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
 export const onCreateUserProject = /* GraphQL */ `
   subscription OnCreateUserProject($owner: String) {
     onCreateUserProject(owner: $owner) {
@@ -474,6 +777,10 @@ export const onCreateUserProject = /* GraphQL */ `
           startedAt
         }
         users {
+          nextToken
+          startedAt
+        }
+        tagss {
           nextToken
           startedAt
         }
@@ -537,6 +844,10 @@ export const onUpdateUserProject = /* GraphQL */ `
           nextToken
           startedAt
         }
+        tagss {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -594,6 +905,10 @@ export const onDeleteUserProject = /* GraphQL */ `
           startedAt
         }
         users {
+          nextToken
+          startedAt
+        }
+        tagss {
           nextToken
           startedAt
         }

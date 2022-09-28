@@ -1,6 +1,102 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createTags = /* GraphQL */ `
+  mutation CreateTags(
+    $input: CreateTagsInput!
+    $condition: ModelTagsConditionInput
+  ) {
+    createTags(input: $input, condition: $condition) {
+      id
+      Name
+      IsAward
+      Projects {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateTags = /* GraphQL */ `
+  mutation UpdateTags(
+    $input: UpdateTagsInput!
+    $condition: ModelTagsConditionInput
+  ) {
+    updateTags(input: $input, condition: $condition) {
+      id
+      Name
+      IsAward
+      Projects {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteTags = /* GraphQL */ `
+  mutation DeleteTags(
+    $input: DeleteTagsInput!
+    $condition: ModelTagsConditionInput
+  ) {
+    deleteTags(input: $input, condition: $condition) {
+      id
+      Name
+      IsAward
+      Projects {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createTeam = /* GraphQL */ `
   mutation CreateTeam(
     $input: CreateTeamInput!
@@ -295,6 +391,21 @@ export const createProject = /* GraphQL */ `
         nextToken
         startedAt
       }
+      tagss {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -349,6 +460,21 @@ export const updateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
+      tagss {
+        items {
+          id
+          tagsID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -392,6 +518,21 @@ export const deleteProject = /* GraphQL */ `
         items {
           id
           userID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      tagss {
+        items {
+          id
+          tagsID
           projectID
           createdAt
           updatedAt
@@ -469,6 +610,186 @@ export const deleteComment = /* GraphQL */ `
     }
   }
 `;
+export const createTagsProject = /* GraphQL */ `
+  mutation CreateTagsProject(
+    $input: CreateTagsProjectInput!
+    $condition: ModelTagsProjectConditionInput
+  ) {
+    createTagsProject(input: $input, condition: $condition) {
+      id
+      tagsID
+      projectID
+      tags {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        tagss {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const updateTagsProject = /* GraphQL */ `
+  mutation UpdateTagsProject(
+    $input: UpdateTagsProjectInput!
+    $condition: ModelTagsProjectConditionInput
+  ) {
+    updateTagsProject(input: $input, condition: $condition) {
+      id
+      tagsID
+      projectID
+      tags {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        tagss {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const deleteTagsProject = /* GraphQL */ `
+  mutation DeleteTagsProject(
+    $input: DeleteTagsProjectInput!
+    $condition: ModelTagsProjectConditionInput
+  ) {
+    deleteTagsProject(input: $input, condition: $condition) {
+      id
+      tagsID
+      projectID
+      tags {
+        id
+        Name
+        IsAward
+        Projects {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        tagss {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
 export const createUserProject = /* GraphQL */ `
   mutation CreateUserProject(
     $input: CreateUserProjectInput!
@@ -513,6 +834,10 @@ export const createUserProject = /* GraphQL */ `
           startedAt
         }
         users {
+          nextToken
+          startedAt
+        }
+        tagss {
           nextToken
           startedAt
         }
@@ -579,6 +904,10 @@ export const updateUserProject = /* GraphQL */ `
           nextToken
           startedAt
         }
+        tagss {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -639,6 +968,10 @@ export const deleteUserProject = /* GraphQL */ `
           startedAt
         }
         users {
+          nextToken
+          startedAt
+        }
+        tagss {
           nextToken
           startedAt
         }

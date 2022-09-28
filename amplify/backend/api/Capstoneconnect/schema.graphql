@@ -1,3 +1,10 @@
+type Tags @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  Name: String
+  IsAward: Boolean
+  Projects: [Project] @manyToMany(relationName: "TagsProject")
+}
+
 type Team @model @auth(rules: [{allow: public}]) {
   id: ID!
   Users: [User] @hasMany(indexName: "byTeam", fields: ["id"])
@@ -25,6 +32,7 @@ type Project @model @auth(rules: [{allow: public, operations: [read]}, {allow: g
   Video: String
   Comments: [Comment] @hasMany(indexName: "byProject", fields: ["id"])
   users: [User] @manyToMany(relationName: "UserProject")
+  tagss: [Tags] @manyToMany(relationName: "TagsProject")
 }
 
 type Comment @model @auth(rules: [{allow: public}, {allow: owner}]) {
