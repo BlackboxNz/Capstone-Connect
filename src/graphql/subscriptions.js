@@ -1,6 +1,237 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateTeam = /* GraphQL */ `
+  subscription OnCreateTeam {
+    onCreateTeam {
+      id
+      Users {
+        items {
+          id
+          Email
+          Password
+          FirstName
+          LastName
+          teamID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateTeam = /* GraphQL */ `
+  subscription OnUpdateTeam {
+    onUpdateTeam {
+      id
+      Users {
+        items {
+          id
+          Email
+          Password
+          FirstName
+          LastName
+          teamID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteTeam = /* GraphQL */ `
+  subscription OnDeleteTeam {
+    onDeleteTeam {
+      id
+      Users {
+        items {
+          id
+          Email
+          Password
+          FirstName
+          LastName
+          teamID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
+      id
+      Email
+      Password
+      FirstName
+      LastName
+      LikedProjects {
+        items {
+          id
+          userID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      Comments {
+        items {
+          id
+          content
+          projectID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      teamID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
+      id
+      Email
+      Password
+      FirstName
+      LastName
+      LikedProjects {
+        items {
+          id
+          userID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      Comments {
+        items {
+          id
+          content
+          projectID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      teamID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
+      id
+      Email
+      Password
+      FirstName
+      LastName
+      LikedProjects {
+        items {
+          id
+          userID
+          projectID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      Comments {
+        items {
+          id
+          content
+          projectID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      teamID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateProject = /* GraphQL */ `
   subscription OnCreateProject($owner: String) {
     onCreateProject(owner: $owner) {
@@ -16,6 +247,22 @@ export const onCreateProject = /* GraphQL */ `
         items {
           id
           content
+          projectID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      users {
+        items {
+          id
+          userID
           projectID
           createdAt
           updatedAt
@@ -52,6 +299,22 @@ export const onUpdateProject = /* GraphQL */ `
           id
           content
           projectID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      users {
+        items {
+          id
+          userID
+          projectID
           createdAt
           updatedAt
           _version
@@ -87,6 +350,22 @@ export const onDeleteProject = /* GraphQL */ `
           id
           content
           projectID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      users {
+        items {
+          id
+          userID
+          projectID
           createdAt
           updatedAt
           _version
@@ -112,6 +391,7 @@ export const onCreateComment = /* GraphQL */ `
       id
       content
       projectID
+      userID
       createdAt
       updatedAt
       _version
@@ -127,6 +407,7 @@ export const onUpdateComment = /* GraphQL */ `
       id
       content
       projectID
+      userID
       createdAt
       updatedAt
       _version
@@ -142,6 +423,187 @@ export const onDeleteComment = /* GraphQL */ `
       id
       content
       projectID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onCreateUserProject = /* GraphQL */ `
+  subscription OnCreateUserProject($owner: String) {
+    onCreateUserProject(owner: $owner) {
+      id
+      userID
+      projectID
+      user {
+        id
+        Email
+        Password
+        FirstName
+        LastName
+        LikedProjects {
+          nextToken
+          startedAt
+        }
+        Comments {
+          nextToken
+          startedAt
+        }
+        teamID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onUpdateUserProject = /* GraphQL */ `
+  subscription OnUpdateUserProject($owner: String) {
+    onUpdateUserProject(owner: $owner) {
+      id
+      userID
+      projectID
+      user {
+        id
+        Email
+        Password
+        FirstName
+        LastName
+        LikedProjects {
+          nextToken
+          startedAt
+        }
+        Comments {
+          nextToken
+          startedAt
+        }
+        teamID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onDeleteUserProject = /* GraphQL */ `
+  subscription OnDeleteUserProject($owner: String) {
+    onDeleteUserProject(owner: $owner) {
+      id
+      userID
+      projectID
+      user {
+        id
+        Email
+        Password
+        FirstName
+        LastName
+        LikedProjects {
+          nextToken
+          startedAt
+        }
+        Comments {
+          nextToken
+          startedAt
+        }
+        teamID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      project {
+        id
+        TeamName
+        ProjectName
+        Description
+        Brief
+        Tag
+        Image
+        Video
+        Comments {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
       createdAt
       updatedAt
       _version
