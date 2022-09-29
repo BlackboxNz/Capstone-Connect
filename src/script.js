@@ -1,7 +1,6 @@
-import { Amplify, API, graphqlOperation } from "aws-amplify";
+import { Amplify, API, graphqlOperation } from '@aws-amplify/api';
 
 import awsconfig from "./aws-exports";
-import { createTodo } from "./graphql/mutations";
 import { DataStore } from '@aws-amplify/datastore';
 import { User } from './models';
 import { Visitor } from './models';
