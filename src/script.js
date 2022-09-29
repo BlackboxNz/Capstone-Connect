@@ -12,24 +12,32 @@ import { Tag } from './models';
 import { Comment } from './models';
 import { createComment } from './graphql/mutations'
 import { createTeam } from './graphql/mutations'
+import { createProject } from './graphql/mutations'
+import { createUser } from './graphql/mutation'
+import { queryComment } from './graphql/queries'
+import { queryProject } from './graphql/queries'
+import { queryUser } from './graphql/queries'
 
 Amplify.configure(awsconfig);
 
 const createTeam = (e) => { 
     e.preventDefault()
 
-    const Team = {
+    const Project = {
         TeamName: document.getElementById('teamName').value,
-        url: document.getElementById('projectName').value 
+        ProjectName: document.getElementById('projectName').value 
 
     }
-    console.log(Team)
+    try{
+        const newProject = await API.graphql(graphqlOperation(createProject, { input: project }))
+    } catch (error)
+    console.log(Project)
 }
 
 const MutationButton = document.getElementById("MutationEventButton");
 const MutationResult = document.getElementById("MutationResult");
 
-document.getElementById('create-form').addEventListener('submit', createComment)
+document.getElementById('create-form').addEventListener('submit', createProject )
 /*Create new model functions*/
 document.getElementById("newUser").addEventListener("click", newUser);
 async function newUser() {
