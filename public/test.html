@@ -22,13 +22,21 @@
     <div class="app">
       <div class="app-body">
         <h1>Mutation Results</h1>
-        <button id="MutationEventButton">Add data</button>
+        <form id="create-form">
+        <div>
+          <input name="teamName" id="teamName" type="text" placeholder="Team Name" />
+      </div>
+      <div>
+        <input name="projectName" id="projectName" type="text" placeholder="Project Name" />
+      </div>
+        <input type="submit" value="Add Data" id="MutationEventButton"> 
+        
         <div id="MutationResult"></div>
         <hr />
-
+      </form>
         <h1>Query Results</h1>
         <div id="QueryResult"></div>
-        <button id="QueryEventButton">View data</button>
+        <input type="submit" value="View Data" id="QueryEventButton"> 
         <hr />
 
         <h1>Subscription Results</h1>
