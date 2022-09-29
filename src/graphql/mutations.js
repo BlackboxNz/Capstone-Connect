@@ -222,9 +222,9 @@ export const createUser = /* GraphQL */ `
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -273,9 +273,9 @@ export const updateUser = /* GraphQL */ `
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -324,9 +324,9 @@ export const deleteUser = /* GraphQL */ `
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -358,14 +358,14 @@ export const createProject = /* GraphQL */ `
       Description
       Brief
       Tag
-      Image
+      Img
       Video
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -376,7 +376,7 @@ export const createProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      users {
+      Users {
         items {
           id
           userID
@@ -391,7 +391,7 @@ export const createProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      tagss {
+      Tags {
         items {
           id
           tagsID
@@ -427,14 +427,14 @@ export const updateProject = /* GraphQL */ `
       Description
       Brief
       Tag
-      Image
+      Img
       Video
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -445,7 +445,7 @@ export const updateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      users {
+      Users {
         items {
           id
           userID
@@ -460,7 +460,7 @@ export const updateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      tagss {
+      Tags {
         items {
           id
           tagsID
@@ -496,14 +496,14 @@ export const deleteProject = /* GraphQL */ `
       Description
       Brief
       Tag
-      Image
+      Img
       Video
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -514,7 +514,7 @@ export const deleteProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      users {
+      Users {
         items {
           id
           userID
@@ -529,7 +529,7 @@ export const deleteProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      tagss {
+      Tags {
         items {
           id
           tagsID
@@ -560,9 +560,9 @@ export const createComment = /* GraphQL */ `
   ) {
     createComment(input: $input, condition: $condition) {
       id
-      content
-      projectID
-      userID
+      Content
+      ProjectID
+      UserID
       createdAt
       updatedAt
       _version
@@ -579,9 +579,9 @@ export const updateComment = /* GraphQL */ `
   ) {
     updateComment(input: $input, condition: $condition) {
       id
-      content
-      projectID
-      userID
+      Content
+      ProjectID
+      UserID
       createdAt
       updatedAt
       _version
@@ -598,9 +598,9 @@ export const deleteComment = /* GraphQL */ `
   ) {
     deleteComment(input: $input, condition: $condition) {
       id
-      content
-      projectID
-      userID
+      Content
+      ProjectID
+      UserID
       createdAt
       updatedAt
       _version
@@ -610,12 +610,12 @@ export const deleteComment = /* GraphQL */ `
     }
   }
 `;
-export const createTagsProject = /* GraphQL */ `
-  mutation CreateTagsProject(
-    $input: CreateTagsProjectInput!
-    $condition: ModelTagsProjectConditionInput
+export const createProjectTags = /* GraphQL */ `
+  mutation CreateProjectTags(
+    $input: CreateProjectTagsInput!
+    $condition: ModelProjectTagsConditionInput
   ) {
-    createTagsProject(input: $input, condition: $condition) {
+    createProjectTags(input: $input, condition: $condition) {
       id
       tagsID
       projectID
@@ -640,17 +640,17 @@ export const createTagsProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -670,12 +670,12 @@ export const createTagsProject = /* GraphQL */ `
     }
   }
 `;
-export const updateTagsProject = /* GraphQL */ `
-  mutation UpdateTagsProject(
-    $input: UpdateTagsProjectInput!
-    $condition: ModelTagsProjectConditionInput
+export const updateProjectTags = /* GraphQL */ `
+  mutation UpdateProjectTags(
+    $input: UpdateProjectTagsInput!
+    $condition: ModelProjectTagsConditionInput
   ) {
-    updateTagsProject(input: $input, condition: $condition) {
+    updateProjectTags(input: $input, condition: $condition) {
       id
       tagsID
       projectID
@@ -700,17 +700,17 @@ export const updateTagsProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -730,12 +730,12 @@ export const updateTagsProject = /* GraphQL */ `
     }
   }
 `;
-export const deleteTagsProject = /* GraphQL */ `
-  mutation DeleteTagsProject(
-    $input: DeleteTagsProjectInput!
-    $condition: ModelTagsProjectConditionInput
+export const deleteProjectTags = /* GraphQL */ `
+  mutation DeleteProjectTags(
+    $input: DeleteProjectTagsInput!
+    $condition: ModelProjectTagsConditionInput
   ) {
-    deleteTagsProject(input: $input, condition: $condition) {
+    deleteProjectTags(input: $input, condition: $condition) {
       id
       tagsID
       projectID
@@ -760,17 +760,17 @@ export const deleteTagsProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -790,12 +790,12 @@ export const deleteTagsProject = /* GraphQL */ `
     }
   }
 `;
-export const createUserProject = /* GraphQL */ `
-  mutation CreateUserProject(
-    $input: CreateUserProjectInput!
-    $condition: ModelUserProjectConditionInput
+export const createProjectUser = /* GraphQL */ `
+  mutation CreateProjectUser(
+    $input: CreateProjectUserInput!
+    $condition: ModelProjectUserConditionInput
   ) {
-    createUserProject(input: $input, condition: $condition) {
+    createProjectUser(input: $input, condition: $condition) {
       id
       userID
       projectID
@@ -827,17 +827,17 @@ export const createUserProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -857,12 +857,12 @@ export const createUserProject = /* GraphQL */ `
     }
   }
 `;
-export const updateUserProject = /* GraphQL */ `
-  mutation UpdateUserProject(
-    $input: UpdateUserProjectInput!
-    $condition: ModelUserProjectConditionInput
+export const updateProjectUser = /* GraphQL */ `
+  mutation UpdateProjectUser(
+    $input: UpdateProjectUserInput!
+    $condition: ModelProjectUserConditionInput
   ) {
-    updateUserProject(input: $input, condition: $condition) {
+    updateProjectUser(input: $input, condition: $condition) {
       id
       userID
       projectID
@@ -894,17 +894,17 @@ export const updateUserProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -924,12 +924,12 @@ export const updateUserProject = /* GraphQL */ `
     }
   }
 `;
-export const deleteUserProject = /* GraphQL */ `
-  mutation DeleteUserProject(
-    $input: DeleteUserProjectInput!
-    $condition: ModelUserProjectConditionInput
+export const deleteProjectUser = /* GraphQL */ `
+  mutation DeleteProjectUser(
+    $input: DeleteProjectUserInput!
+    $condition: ModelProjectUserConditionInput
   ) {
-    deleteUserProject(input: $input, condition: $condition) {
+    deleteProjectUser(input: $input, condition: $condition) {
       id
       userID
       projectID
@@ -961,17 +961,17 @@ export const deleteUserProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }

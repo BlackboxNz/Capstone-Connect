@@ -197,9 +197,9 @@ export const getUser = /* GraphQL */ `
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -300,14 +300,14 @@ export const getProject = /* GraphQL */ `
       Description
       Brief
       Tag
-      Image
+      Img
       Video
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -318,7 +318,7 @@ export const getProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      users {
+      Users {
         items {
           id
           userID
@@ -333,7 +333,7 @@ export const getProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      tagss {
+      Tags {
         items {
           id
           tagsID
@@ -371,17 +371,17 @@ export const listProjects = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -417,17 +417,17 @@ export const syncProjects = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -447,9 +447,9 @@ export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {
       id
-      content
-      projectID
-      userID
+      Content
+      ProjectID
+      UserID
       createdAt
       updatedAt
       _version
@@ -468,9 +468,9 @@ export const listComments = /* GraphQL */ `
     listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        content
-        projectID
-        userID
+        Content
+        ProjectID
+        UserID
         createdAt
         updatedAt
         _version
@@ -498,9 +498,9 @@ export const syncComments = /* GraphQL */ `
     ) {
       items {
         id
-        content
-        projectID
-        userID
+        Content
+        ProjectID
+        UserID
         createdAt
         updatedAt
         _version
@@ -513,9 +513,9 @@ export const syncComments = /* GraphQL */ `
     }
   }
 `;
-export const getTagsProject = /* GraphQL */ `
-  query GetTagsProject($id: ID!) {
-    getTagsProject(id: $id) {
+export const getProjectTags = /* GraphQL */ `
+  query GetProjectTags($id: ID!) {
+    getProjectTags(id: $id) {
       id
       tagsID
       projectID
@@ -540,17 +540,17 @@ export const getTagsProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -570,13 +570,13 @@ export const getTagsProject = /* GraphQL */ `
     }
   }
 `;
-export const listTagsProjects = /* GraphQL */ `
-  query ListTagsProjects(
-    $filter: ModelTagsProjectFilterInput
+export const listProjectTags = /* GraphQL */ `
+  query ListProjectTags(
+    $filter: ModelProjectTagsFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTagsProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProjectTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         tagsID
@@ -598,7 +598,7 @@ export const listTagsProjects = /* GraphQL */ `
           Description
           Brief
           Tag
-          Image
+          Img
           Video
           createdAt
           updatedAt
@@ -619,14 +619,14 @@ export const listTagsProjects = /* GraphQL */ `
     }
   }
 `;
-export const syncTagsProjects = /* GraphQL */ `
-  query SyncTagsProjects(
-    $filter: ModelTagsProjectFilterInput
+export const syncProjectTags = /* GraphQL */ `
+  query SyncProjectTags(
+    $filter: ModelProjectTagsFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncTagsProjects(
+    syncProjectTags(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -653,7 +653,7 @@ export const syncTagsProjects = /* GraphQL */ `
           Description
           Brief
           Tag
-          Image
+          Img
           Video
           createdAt
           updatedAt
@@ -674,9 +674,9 @@ export const syncTagsProjects = /* GraphQL */ `
     }
   }
 `;
-export const getUserProject = /* GraphQL */ `
-  query GetUserProject($id: ID!) {
-    getUserProject(id: $id) {
+export const getProjectUser = /* GraphQL */ `
+  query GetProjectUser($id: ID!) {
+    getProjectUser(id: $id) {
       id
       userID
       projectID
@@ -708,17 +708,17 @@ export const getUserProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -738,13 +738,13 @@ export const getUserProject = /* GraphQL */ `
     }
   }
 `;
-export const listUserProjects = /* GraphQL */ `
-  query ListUserProjects(
-    $filter: ModelUserProjectFilterInput
+export const listProjectUsers = /* GraphQL */ `
+  query ListProjectUsers(
+    $filter: ModelProjectUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listUserProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProjectUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         userID
@@ -769,7 +769,7 @@ export const listUserProjects = /* GraphQL */ `
           Description
           Brief
           Tag
-          Image
+          Img
           Video
           createdAt
           updatedAt
@@ -790,14 +790,14 @@ export const listUserProjects = /* GraphQL */ `
     }
   }
 `;
-export const syncUserProjects = /* GraphQL */ `
-  query SyncUserProjects(
-    $filter: ModelUserProjectFilterInput
+export const syncProjectUsers = /* GraphQL */ `
+  query SyncProjectUsers(
+    $filter: ModelProjectUserFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncUserProjects(
+    syncProjectUsers(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -827,7 +827,7 @@ export const syncUserProjects = /* GraphQL */ `
           Description
           Brief
           Tag
-          Image
+          Img
           Video
           createdAt
           updatedAt

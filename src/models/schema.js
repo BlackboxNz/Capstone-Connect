@@ -28,7 +28,7 @@ export const schema = {
                     "name": "Projects",
                     "isArray": true,
                     "type": {
-                        "model": "TagsProject"
+                        "model": "ProjectTags"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -137,8 +137,8 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "Image": {
-                    "name": "Image",
+                "Img": {
+                    "name": "Img",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -162,14 +162,14 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "projectID"
+                        "associatedWith": "ProjectID"
                     }
                 },
-                "users": {
-                    "name": "users",
+                "Users": {
+                    "name": "Users",
                     "isArray": true,
                     "type": {
-                        "model": "UserProject"
+                        "model": "ProjectUser"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -179,11 +179,11 @@ export const schema = {
                         "associatedWith": "project"
                     }
                 },
-                "tagss": {
-                    "name": "tagss",
+                "Tags": {
+                    "name": "Tags",
                     "isArray": true,
                     "type": {
-                        "model": "TagsProject"
+                        "model": "ProjectTags"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -291,22 +291,22 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "content": {
-                    "name": "content",
+                "Content": {
+                    "name": "Content",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "projectID": {
-                    "name": "projectID",
+                "ProjectID": {
+                    "name": "ProjectID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
-                "userID": {
-                    "name": "userID",
+                "UserID": {
+                    "name": "UserID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -341,7 +341,7 @@ export const schema = {
                     "properties": {
                         "name": "byProject",
                         "fields": [
-                            "projectID"
+                            "ProjectID"
                         ]
                     }
                 },
@@ -350,7 +350,7 @@ export const schema = {
                     "properties": {
                         "name": "byUser",
                         "fields": [
-                            "userID"
+                            "UserID"
                         ]
                     }
                 },
@@ -426,7 +426,7 @@ export const schema = {
                     "name": "LikedProjects",
                     "isArray": true,
                     "type": {
-                        "model": "UserProject"
+                        "model": "ProjectUser"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -447,7 +447,7 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "userID"
+                        "associatedWith": "UserID"
                     }
                 },
                 "teamID": {
@@ -574,8 +574,8 @@ export const schema = {
                 }
             ]
         },
-        "TagsProject": {
-            "name": "TagsProject",
+        "ProjectTags": {
+            "name": "ProjectTags",
             "fields": {
                 "id": {
                     "name": "id",
@@ -628,7 +628,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "TagsProjects",
+            "pluralName": "ProjectTags",
             "attributes": [
                 {
                     "type": "model",
@@ -654,8 +654,8 @@ export const schema = {
                 }
             ]
         },
-        "UserProject": {
-            "name": "UserProject",
+        "ProjectUser": {
+            "name": "ProjectUser",
             "fields": {
                 "id": {
                     "name": "id",
@@ -708,7 +708,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "UserProjects",
+            "pluralName": "ProjectUsers",
             "attributes": [
                 {
                     "type": "model",
@@ -737,5 +737,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4b869c51271eba703efb1bba43defc08"
+    "version": "cd0d45f96183b65764db6fcf0e0c690d"
 };

@@ -201,9 +201,9 @@ export const onCreateUser = /* GraphQL */ `
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -249,9 +249,9 @@ export const onUpdateUser = /* GraphQL */ `
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -297,9 +297,9 @@ export const onDeleteUser = /* GraphQL */ `
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -328,14 +328,14 @@ export const onCreateProject = /* GraphQL */ `
       Description
       Brief
       Tag
-      Image
+      Img
       Video
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -346,7 +346,7 @@ export const onCreateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      users {
+      Users {
         items {
           id
           userID
@@ -361,7 +361,7 @@ export const onCreateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      tagss {
+      Tags {
         items {
           id
           tagsID
@@ -394,14 +394,14 @@ export const onUpdateProject = /* GraphQL */ `
       Description
       Brief
       Tag
-      Image
+      Img
       Video
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -412,7 +412,7 @@ export const onUpdateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      users {
+      Users {
         items {
           id
           userID
@@ -427,7 +427,7 @@ export const onUpdateProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      tagss {
+      Tags {
         items {
           id
           tagsID
@@ -460,14 +460,14 @@ export const onDeleteProject = /* GraphQL */ `
       Description
       Brief
       Tag
-      Image
+      Img
       Video
       Comments {
         items {
           id
-          content
-          projectID
-          userID
+          Content
+          ProjectID
+          UserID
           createdAt
           updatedAt
           _version
@@ -478,7 +478,7 @@ export const onDeleteProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      users {
+      Users {
         items {
           id
           userID
@@ -493,7 +493,7 @@ export const onDeleteProject = /* GraphQL */ `
         nextToken
         startedAt
       }
-      tagss {
+      Tags {
         items {
           id
           tagsID
@@ -521,9 +521,9 @@ export const onCreateComment = /* GraphQL */ `
   subscription OnCreateComment($owner: String) {
     onCreateComment(owner: $owner) {
       id
-      content
-      projectID
-      userID
+      Content
+      ProjectID
+      UserID
       createdAt
       updatedAt
       _version
@@ -537,9 +537,9 @@ export const onUpdateComment = /* GraphQL */ `
   subscription OnUpdateComment($owner: String) {
     onUpdateComment(owner: $owner) {
       id
-      content
-      projectID
-      userID
+      Content
+      ProjectID
+      UserID
       createdAt
       updatedAt
       _version
@@ -553,9 +553,9 @@ export const onDeleteComment = /* GraphQL */ `
   subscription OnDeleteComment($owner: String) {
     onDeleteComment(owner: $owner) {
       id
-      content
-      projectID
-      userID
+      Content
+      ProjectID
+      UserID
       createdAt
       updatedAt
       _version
@@ -565,9 +565,9 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTagsProject = /* GraphQL */ `
-  subscription OnCreateTagsProject($owner: String) {
-    onCreateTagsProject(owner: $owner) {
+export const onCreateProjectTags = /* GraphQL */ `
+  subscription OnCreateProjectTags($owner: String) {
+    onCreateProjectTags(owner: $owner) {
       id
       tagsID
       projectID
@@ -592,17 +592,17 @@ export const onCreateTagsProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -622,9 +622,9 @@ export const onCreateTagsProject = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTagsProject = /* GraphQL */ `
-  subscription OnUpdateTagsProject($owner: String) {
-    onUpdateTagsProject(owner: $owner) {
+export const onUpdateProjectTags = /* GraphQL */ `
+  subscription OnUpdateProjectTags($owner: String) {
+    onUpdateProjectTags(owner: $owner) {
       id
       tagsID
       projectID
@@ -649,17 +649,17 @@ export const onUpdateTagsProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -679,9 +679,9 @@ export const onUpdateTagsProject = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTagsProject = /* GraphQL */ `
-  subscription OnDeleteTagsProject($owner: String) {
-    onDeleteTagsProject(owner: $owner) {
+export const onDeleteProjectTags = /* GraphQL */ `
+  subscription OnDeleteProjectTags($owner: String) {
+    onDeleteProjectTags(owner: $owner) {
       id
       tagsID
       projectID
@@ -706,17 +706,17 @@ export const onDeleteTagsProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -736,9 +736,9 @@ export const onDeleteTagsProject = /* GraphQL */ `
     }
   }
 `;
-export const onCreateUserProject = /* GraphQL */ `
-  subscription OnCreateUserProject($owner: String) {
-    onCreateUserProject(owner: $owner) {
+export const onCreateProjectUser = /* GraphQL */ `
+  subscription OnCreateProjectUser($owner: String) {
+    onCreateProjectUser(owner: $owner) {
       id
       userID
       projectID
@@ -770,17 +770,17 @@ export const onCreateUserProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -800,9 +800,9 @@ export const onCreateUserProject = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUserProject = /* GraphQL */ `
-  subscription OnUpdateUserProject($owner: String) {
-    onUpdateUserProject(owner: $owner) {
+export const onUpdateProjectUser = /* GraphQL */ `
+  subscription OnUpdateProjectUser($owner: String) {
+    onUpdateProjectUser(owner: $owner) {
       id
       userID
       projectID
@@ -834,17 +834,17 @@ export const onUpdateUserProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }
@@ -864,9 +864,9 @@ export const onUpdateUserProject = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUserProject = /* GraphQL */ `
-  subscription OnDeleteUserProject($owner: String) {
-    onDeleteUserProject(owner: $owner) {
+export const onDeleteProjectUser = /* GraphQL */ `
+  subscription OnDeleteProjectUser($owner: String) {
+    onDeleteProjectUser(owner: $owner) {
       id
       userID
       projectID
@@ -898,17 +898,17 @@ export const onDeleteUserProject = /* GraphQL */ `
         Description
         Brief
         Tag
-        Image
+        Img
         Video
         Comments {
           nextToken
           startedAt
         }
-        users {
+        Users {
           nextToken
           startedAt
         }
-        tagss {
+        Tags {
           nextToken
           startedAt
         }

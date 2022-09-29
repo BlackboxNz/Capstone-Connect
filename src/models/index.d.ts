@@ -20,11 +20,11 @@ type TeamMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TagsProjectMetaData = {
+type ProjectTagsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type UserProjectMetaData = {
+type ProjectUserMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -32,7 +32,7 @@ export declare class Tags {
   readonly id: string;
   readonly Name?: string | null;
   readonly IsAward?: boolean | null;
-  readonly Projects?: (TagsProject | null)[] | null;
+  readonly Projects?: (ProjectTags | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Tags, TagsMetaData>);
@@ -46,11 +46,11 @@ export declare class Project {
   readonly Description?: string | null;
   readonly Brief?: string | null;
   readonly Tag?: (string | null)[] | null;
-  readonly Image?: string | null;
+  readonly Img?: string | null;
   readonly Video?: string | null;
   readonly Comments?: (Comment | null)[] | null;
-  readonly users?: (UserProject | null)[] | null;
-  readonly tagss?: (TagsProject | null)[] | null;
+  readonly Users?: (ProjectUser | null)[] | null;
+  readonly Tags?: (ProjectTags | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Project, ProjectMetaData>);
@@ -59,9 +59,9 @@ export declare class Project {
 
 export declare class Comment {
   readonly id: string;
-  readonly content: string;
-  readonly projectID: string;
-  readonly userID: string;
+  readonly Content: string;
+  readonly ProjectID: string;
+  readonly UserID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Comment, CommentMetaData>);
@@ -74,7 +74,7 @@ export declare class User {
   readonly Password?: string | null;
   readonly FirstName?: string | null;
   readonly LastName?: string | null;
-  readonly LikedProjects?: (UserProject | null)[] | null;
+  readonly LikedProjects?: (ProjectUser | null)[] | null;
   readonly Comments?: (Comment | null)[] | null;
   readonly teamID: string;
   readonly createdAt?: string | null;
@@ -92,22 +92,22 @@ export declare class Team {
   static copyOf(source: Team, mutator: (draft: MutableModel<Team, TeamMetaData>) => MutableModel<Team, TeamMetaData> | void): Team;
 }
 
-export declare class TagsProject {
+export declare class ProjectTags {
   readonly id: string;
   readonly tags: Tags;
   readonly project: Project;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<TagsProject, TagsProjectMetaData>);
-  static copyOf(source: TagsProject, mutator: (draft: MutableModel<TagsProject, TagsProjectMetaData>) => MutableModel<TagsProject, TagsProjectMetaData> | void): TagsProject;
+  constructor(init: ModelInit<ProjectTags, ProjectTagsMetaData>);
+  static copyOf(source: ProjectTags, mutator: (draft: MutableModel<ProjectTags, ProjectTagsMetaData>) => MutableModel<ProjectTags, ProjectTagsMetaData> | void): ProjectTags;
 }
 
-export declare class UserProject {
+export declare class ProjectUser {
   readonly id: string;
   readonly project: Project;
   readonly user: User;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<UserProject, UserProjectMetaData>);
-  static copyOf(source: UserProject, mutator: (draft: MutableModel<UserProject, UserProjectMetaData>) => MutableModel<UserProject, UserProjectMetaData> | void): UserProject;
+  constructor(init: ModelInit<ProjectUser, ProjectUserMetaData>);
+  static copyOf(source: ProjectUser, mutator: (draft: MutableModel<ProjectUser, ProjectUserMetaData>) => MutableModel<ProjectUser, ProjectUserMetaData> | void): ProjectUser;
 }

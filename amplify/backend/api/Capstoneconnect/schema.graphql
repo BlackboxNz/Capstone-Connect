@@ -2,7 +2,7 @@ type Tags @model @auth(rules: [{allow: public, operations: [read]}, {allow: grou
   id: ID!
   Name: String
   IsAward: Boolean
-  Projects: [Project] @manyToMany(relationName: "TagsProject")
+  Projects: [Project] @manyToMany(relationName: "ProjectTags")
 }
 
 type Team @model @auth(rules: [{allow: public}]) {
@@ -16,7 +16,7 @@ type User @model @auth(rules: [{allow: public}]) {
   Password: String
   FirstName: String
   LastName: String
-  LikedProjects: [Project] @manyToMany(relationName: "UserProject")
+  LikedProjects: [Project] @manyToMany(relationName: "ProjectUser")
   Comments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
   teamID: ID! @index(name: "byTeam")
 }
@@ -28,17 +28,17 @@ type Project @model @auth(rules: [{allow: public, operations: [read]}, {allow: g
   Description: String
   Brief: String
   Tag: [String]
-  Image: String
+  Img: String
   Video: String
   Comments: [Comment] @hasMany(indexName: "byProject", fields: ["id"])
-  users: [User] @manyToMany(relationName: "UserProject")
-  tagss: [Tags] @manyToMany(relationName: "TagsProject")
+  Users: [User] @manyToMany(relationName: "ProjectUser")
+  Tags: [Tags] @manyToMany(relationName: "ProjectTags")
 }
 
 type Comment @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  content: String!
-  projectID: ID! @index(name: "byProject")
-  userID: ID! @index(name: "byUser")
+  Content: String!
+  ProjectID: ID! @index(name: "byProject")
+  UserID: ID! @index(name: "byUser")
 }
  
