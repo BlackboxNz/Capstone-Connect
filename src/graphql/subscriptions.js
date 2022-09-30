@@ -327,7 +327,6 @@ export const onCreateProject = /* GraphQL */ `
       ProjectName
       Description
       Brief
-      Tag
       Img
       Video
       Comments {
@@ -393,7 +392,6 @@ export const onUpdateProject = /* GraphQL */ `
       ProjectName
       Description
       Brief
-      Tag
       Img
       Video
       Comments {
@@ -459,7 +457,6 @@ export const onDeleteProject = /* GraphQL */ `
       ProjectName
       Description
       Brief
-      Tag
       Img
       Video
       Comments {
@@ -591,7 +588,6 @@ export const onCreateProjectTags = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -648,7 +644,6 @@ export const onUpdateProjectTags = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -705,7 +700,6 @@ export const onDeleteProjectTags = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -769,7 +763,6 @@ export const onCreateProjectUser = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -833,7 +826,6 @@ export const onUpdateProjectUser = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -897,7 +889,6 @@ export const onDeleteProjectUser = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {

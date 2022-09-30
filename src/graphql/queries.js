@@ -299,7 +299,6 @@ export const getProject = /* GraphQL */ `
       ProjectName
       Description
       Brief
-      Tag
       Img
       Video
       Comments {
@@ -370,7 +369,6 @@ export const listProjects = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -416,7 +414,6 @@ export const syncProjects = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -539,7 +536,6 @@ export const getProjectTags = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -597,7 +593,6 @@ export const listProjectTags = /* GraphQL */ `
           ProjectName
           Description
           Brief
-          Tag
           Img
           Video
           createdAt
@@ -652,7 +647,6 @@ export const syncProjectTags = /* GraphQL */ `
           ProjectName
           Description
           Brief
-          Tag
           Img
           Video
           createdAt
@@ -707,7 +701,6 @@ export const getProjectUser = /* GraphQL */ `
         ProjectName
         Description
         Brief
-        Tag
         Img
         Video
         Comments {
@@ -768,7 +761,6 @@ export const listProjectUsers = /* GraphQL */ `
           ProjectName
           Description
           Brief
-          Tag
           Img
           Video
           createdAt
@@ -826,7 +818,6 @@ export const syncProjectUsers = /* GraphQL */ `
           ProjectName
           Description
           Brief
-          Tag
           Img
           Video
           createdAt

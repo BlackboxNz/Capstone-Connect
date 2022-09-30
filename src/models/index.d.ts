@@ -45,7 +45,6 @@ export declare class Project {
   readonly ProjectName: string;
   readonly Description?: string | null;
   readonly Brief?: string | null;
-  readonly Tag?: (string | null)[] | null;
   readonly Img?: string | null;
   readonly Video?: string | null;
   readonly Comments?: (Comment | null)[] | null;

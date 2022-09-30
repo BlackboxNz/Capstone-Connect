@@ -27,7 +27,6 @@ type Project @model @auth(rules: [{allow: public, operations: [read]}, {allow: g
   ProjectName: String!
   Description: String
   Brief: String
-  Tag: [String]
   Img: String
   Video: String
   Comments: [Comment] @hasMany(indexName: "byProject", fields: ["id"])
