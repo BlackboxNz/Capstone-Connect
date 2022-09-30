@@ -14,8 +14,12 @@ import { createProject } from "./graphql/mutations";
 import { listProjects } from './graphql/queries'
 
 Amplify.configure(awsconfig);
-
-const createTeam = (e) => {
+async function testFunction(){
+    var text = "t"
+    console.log(text)
+}
+/*
+const createTeam = async (e) => {
     e.preventDefault()
 
     const Project = {
@@ -25,14 +29,15 @@ const createTeam = (e) => {
     }
     try{
         const newProject = await API.graphql(graphqlOperation(createProject, { input: project }))
-    } catch (error)
-    console.log(Project)
+        console.log(project)
+    } catch (error){}
+    
 }
-
+document.getElementById('create-form').addEventListener('submit', createProject)
 const MutationButton = document.getElementById("MutationEventButton");
 const MutationResult = document.getElementById("MutationResult");
+*/
 
-// document.getElementById('create-form').addEventListener('submit', createComment)
 /*Create new model functions*/
 document.getElementById("newUser").addEventListener("click", newUser);
 async function newUser() {
@@ -60,7 +65,7 @@ async function newTeam() {
     );
 }
 
-document.getElementById("create-form").addEventListener("submit", newProject);
+
 const newProject = async (e) => {
     e.preventDefault()
 
@@ -91,6 +96,7 @@ const newProject = async (e) => {
         console.log('error creating project...', err);
     }
 }
+document.getElementById("create-form").addEventListener("submit", newProject);
 
 document.getElementById("newTag").addEventListener("click", newTag);
 async function newTag() {
