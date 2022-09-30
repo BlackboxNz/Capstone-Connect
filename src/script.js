@@ -1,4 +1,4 @@
-import { Amplify, API, graphqlOperation } from "aws-amplify";
+import { Amplify, API, graphqlOperation } from '@aws-amplify/api';
 
 import awsconfig from "./aws-exports";
 import { DataStore } from '@aws-amplify/datastore';
@@ -18,12 +18,15 @@ Amplify.configure(awsconfig);
 const createTeam = (e) => {
     e.preventDefault()
 
-    const Team = {
+    const Project = {
         TeamName: document.getElementById('teamName').value,
         url: document.getElementById('projectName').value
 
     }
-    console.log(Team)
+    try{
+        const newProject = await API.graphql(graphqlOperation(createProject, { input: project }))
+    } catch (error)
+    console.log(Project)
 }
 
 const MutationButton = document.getElementById("MutationEventButton");
