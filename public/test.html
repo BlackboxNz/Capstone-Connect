@@ -1,50 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Test page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      html, body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; }
-      a { color: #ff9900; }
-      h1 { font-weight: 300; }
-      hr { height: 1px; background: lightgray; border: none; }
-      .app { width: 100%; }
-      .app-header { color: white; text-align: center; background: linear-gradient(30deg, #f90 55%, #ffc300); width: 100%; margin: 0 0 1em 0; padding: 3em 0 3em 0; box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3); }
-      .app-logo { width: 126px; margin: 0 auto; }
-      .app-body { width: 400px; margin: 0 auto; text-align: center; }
-      .app-body button { background-color: #ff9900; font-size: 14px; color: white; text-transform: uppercase; padding: 1em; border: none; }
-      .app-body button:hover { opacity: 0.8; }
-    </style>
-  </head>
 
-  <body>
-    <div class="app">
-      <div class="app-body">
-        <h1>Mutation Results</h1>
-        <form id="create-form">
+<head>
+  <meta charset="utf-8" />
+  <title>Test page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html,body {font-family: "Amazon Ember", "Helvetica", "sans-serif";margin: 0;}
+
+    a {color: #ff9900;}
+
+    h1 {font-weight: 300;}
+
+    hr {height: 1px;background: lightgray;border: none;}
+
+    .app {width: 100%;}
+
+    .app-header {color: white;text-align: center;background: linear-gradient(30deg, #f90 55%, #ffc300);width: 100%;margin: 0 0 1em 0;padding: 3em 0 3em 0;box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);}
+
+    .app-logo {width: 126px;margin: 0 auto;}
+
+    .app-body {width: 400px;margin: 0 auto;text-align: center;}
+
+    .app-body button {background-color: #ff9900;font-size: 14px;color: white;text-transform: uppercase;padding: 1em;border: none;}
+
+    .app-body button:hover {opacity: 0.8;}
+
+    #tag_checkbox input[type="checkbox"] {display: none;}
+
+    #tag_checkbox span {display: inline-block;padding: 10px;text-transform: uppercase;border: 2px solid black;border-radius: 3px;color: black;}
+
+    #tag_checkbox input[type="checkbox"]:checked+span {background-color: black;color: white;}
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="app-body">
+      <h1>Mutation Results</h1>
+      <form id="create-form">
         <div>
           <input name="teamName" id="teamName" type="text" placeholder="Team Name" />
-      </div>
-      <div>
-        <input name="projectName" id="projectName" type="text" placeholder="Project Name" />
-      </div>
-        <input type="submit" value="Add Data" id="MutationEventButton"> 
-        
+        </div>
+        <div>
+          <input name="projectName" id="projectName" type="text" placeholder="Project Name" />
+        </div>
+        <div>
+          <p id="tag_checkbox">
+            <label><input type="checkbox" name="tag" value="HTML"><span>HTML</span></label>
+            <label><input type="checkbox" name="tag" value="CSS"><span>CSS</span></label>
+            <label><input type="checkbox" name="tag" value="JavaScript"><span>JavaScript</span></label>
+            <label><input type="checkbox" name="tag" value="React"><span>React</span></label>
+            <label><input type="checkbox" name="tag" value="Node"><span>Node</span></label>
+            <label><input type="checkbox" name="tag" value="Python"><span>Python</span></label>
+            <label><input type="checkbox" name="tag" value="Java"><span>Java</span></label>
+            <label><input type="checkbox" name="tag" value="C#"><span>C#</span></label>
+            <label><input type="checkbox" name="tag" value="Android"><span>Android</span></label>
+            <label><input type="checkbox" name="tag" value="iOS"><span>iOS</span></label>
+            <label><input type="checkbox" name="tag" value="SQL"><span>SQL</span></label>
+            <label><input type="checkbox" name="tag" value="CSS"><span>Amazon Web Services</span></label>
+          </p>
+        </div>
+        <input type="submit" value="Add Data" id="MutationEventButton">
+
         <div id="MutationResult"></div>
         <hr />
       </form>
-        <h1>Query Results</h1>
-        <div id="QueryResult"></div>
-        <input type="submit" value="View Data" id="QueryEventButton"> 
-        <hr />
 
-        <h1>Subscription Results</h1>
-        <div id="SubscriptionResult"></div>
-      </div>
+
+      
+      <h1>Query Results</h1>
+      <div id="QueryResult"></div>
+      <input type="submit" value="View Data" id="QueryEventButton">
+      <hr />
+
+      <h1>Subscription Results</h1>
+      <div id="SubscriptionResult"></div>
     </div>
-    <script src="../src/script.js"></script>
-    <script src="../src/App.js"></script>
-    <script src="../src/Projects.js"></script>
-  </body>
+  </div>
+  <script type="text/jsx" src="../src/script.js"></script>
+  <script type="text/jsx" src="../src/App.js"></script>
+  <script type="text/jsx" src="../src/Projects.js"></script>
+</body>
+
 </html>

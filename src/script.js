@@ -1,7 +1,6 @@
 import { Amplify, API, graphqlOperation } from "aws-amplify";
 
 import awsconfig from "./aws-exports";
-import { createTodo } from "./graphql/mutations";
 import { DataStore } from '@aws-amplify/datastore';
 import { User } from './models';
 import { Visitor } from './models';
@@ -11,17 +10,17 @@ import { Team } from './models';
 import { Project } from './models';
 import { Tag } from './models';
 import { Comment } from './models';
-import { createComment } from './graphql/mutations'
-import { createTeam } from './graphql/mutations'
+import { createProject } from "./graphql/mutations";
+import { listProjects } from './graphql/queries'
 
 Amplify.configure(awsconfig);
 
-const createTeam = (e) => { 
+const createTeam = (e) => {
     e.preventDefault()
 
     const Team = {
         TeamName: document.getElementById('teamName').value,
-        url: document.getElementById('projectName').value 
+        url: document.getElementById('projectName').value
 
     }
     console.log(Team)
@@ -30,7 +29,7 @@ const createTeam = (e) => {
 const MutationButton = document.getElementById("MutationEventButton");
 const MutationResult = document.getElementById("MutationResult");
 
-document.getElementById('create-form').addEventListener('submit', createComment)
+// document.getElementById('create-form').addEventListener('submit', createComment)
 /*Create new model functions*/
 document.getElementById("newUser").addEventListener("click", newUser);
 async function newUser() {
@@ -58,20 +57,38 @@ async function newTeam() {
     );
 }
 
-document.getElementById("saveChanges").addEventListener("click", newProject);
-async function newProject() {
-    await DataStore.save(
-        new Project({
-            "TeamName": "Lorem ipsum dolor sit amet",
-            "ProjectName": "Lorem ipsum dolor sit amet",
-            "Description": "Lorem ipsum dolor sit amet",
-            "Brief": "Lorem ipsum dolor sit amet",
-            "Tag": [],
-            "Image": "Lorem ipsum dolor sit amet",
-            "Video": "Lorem ipsum dolor sit amet"
-        })
-    );
+document.getElementById("create-form").addEventListener("submit", newProject);
+const newProject = async (e) => {
+    e.preventDefault()
+
+    var checkboxes = document.getElementsByName('tag');
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            projectTags.push(checkboxes[i].value);
+        }
     }
+
+    const project ={
+        TeamName: document.getElementById('teamName').value,
+        ProjectName: document.getElementById('projectName').value,
+        Description: "Project Description",
+        Brief: "Project Brief",
+        Tag: projectTags,
+        Image: "Project Image Filname",
+        Video: "PRoject Video URL",
+    }
+    
+    try {
+        const newProject = await API.graphql(graphqlOperation(createProject, { input: project }));
+        console.log(newProject);
+        document.getElementById('create-form').reset();
+    }
+    catch (err) {
+        console.log('error creating project...', err);
+    }
+}
+
 document.getElementById("newTag").addEventListener("click", newTag);
 async function newTag() {
     await DataStore.save(
@@ -128,35 +145,38 @@ async function newVisitor() {
 }
 
 /*Query functions */
-async function queryProject() {
-    const models = await DataStore.query(Project);
-    console.log(models);
+document.getElementById("queryButton").addEventListener("click", getProjects);
+const getProjects = async () => {
+    const projects = await API.graphql(graphqlOperation(listProjects));
+    projects.data.listProjects.items.forEach((project) => {
+        console.log(project);
+    });
 }
 
-async function queryComment() {
+async function getComment() {
     const models = await DataStore.query(Comment);
     console.log(models);
 }
-async function queryTeam() {
+async function getTeam() {
     const models = await DataStore.query(Team);
     console.log(models);
 }
-async function queryUser() {
+async function getUser() {
     const models = await DataStore.query(User);
     console.log(models);
 }
 
-async function queryStudent() {
+async function getStudent() {
     const models = await DataStore.query(Admin);
     console.log(models);
 }
 
-async function queryVisitor() {
+async function getVisitor() {
     const models = await DataStore.query(Visitor);
     console.log(models);
 }
 
-async function queryAdmin() {
+async function getAdmin() {
     const models = await DataStore.query(Admin);
     console.log(models);
 }
@@ -232,19 +252,3 @@ async function register() {
     }
 }
 
-async function createNewTodo() {
-    const todo = {
-        name: "Use AppSync",
-        description: `Realtime and Offline (${new Date().toLocaleString()})`,
-    };
-
-    return await API.graphql(graphqlOperation(createTodo, { input: todo }));
-}
-
-
-
-MutationButton.addEventListener("click", (evt) => {
-    createComment().then((evt) => {
-        MutationResult.innerHTML += `<p>${evt.data.createComment.name} - ${evt.data.createTodo.description}</p>`;
-    });
-});
