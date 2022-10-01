@@ -1,4 +1,4 @@
-import { Amplify, API, graphqlOperation } from '@aws-amplify/api';
+import { Amplify, API, graphqlOperation } from 'aws-amplify';
 
 import awsconfig from "./aws-exports";
 import { DataStore } from '@aws-amplify/datastore';
