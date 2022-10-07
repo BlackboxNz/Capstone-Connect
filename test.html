@@ -34,7 +34,7 @@
   </style>
 </head>
 
-<body onload="testFunction()">
+<body>
   <div class="app">
     <div class="app-body">
       <h1>Mutation Results</h1>
@@ -61,7 +61,7 @@
             <label><input type="checkbox" name="tag" value="CSS"><span>Amazon Web Services</span></label>
           </p>
         </div>
-        <input type="submit" value="Add Data" id="MutationEventButton">
+        <input type="submit" value="Add Data" id="MutationEventButton" onclick="testFunction()">
 
         <div id="MutationResult"></div>
         <hr />
@@ -78,7 +78,7 @@
       <div id="SubscriptionResult"></div>
     </div>
   </div>
-  <script type="module" src="./src/script.js" charset=“utf-8”></script>
+  <script type="module" src="./src/script.js"></script>
 </body>
 
 </html>

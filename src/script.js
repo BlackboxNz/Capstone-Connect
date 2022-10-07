@@ -1,7 +1,7 @@
-import { Amplify, API, graphqlOperation } from 'aws-amplify';
+import Amplify, { API, graphqlOperation } from "../node_modules/aws-amplify"
 
-import awsconfig from "./aws-exports";
-import { DataStore } from '@aws-amplify/datastore';
+import awsconfig from "./aws-exports.js";
+import { DataStore } from "../node_modules/@aws-amplify/datastore";
 import { User } from './models';
 import { Visitor } from './models';
 import { Student } from './models';
@@ -10,14 +10,15 @@ import { Team } from './models';
 import { Project } from './models';
 import { Tag } from './models';
 import { Comment } from './models';
-import { createProject } from "./graphql/mutations";
-import { listProjects } from './graphql/queries'
+import { createProject } from "../src/graphql";
+import { listProjects } from '../src/graphql'
 
 Amplify.configure(awsconfig);
+
 function testFunction(){
-    var text = "t"
-    console.log(text)
+    console.log("test");
 }
+
 const makeProject = async (e) => {
     e.preventDefault()
 
