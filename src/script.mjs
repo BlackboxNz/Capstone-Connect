@@ -10,8 +10,8 @@ import { Team } from './models';
 import { Project } from './models';
 import { Tag } from './models';
 import { Comment } from './models';
-import { createProject } from "../src/graphql";
-import { listProjects } from '../src/graphql'
+import { createProject } from "../src/graphql/mutations.js";
+import { listProjects } from '../src/graphql/queries.js';
 
 Amplify.configure(awsconfig);
 
