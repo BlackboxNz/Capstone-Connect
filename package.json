@@ -2,7 +2,6 @@
   "name": "capstone-connect",
   "version": "1.0.0",
   "description": "Capstone Connect site",
-
   "dependencies": {
     "aws-amplify": "^4.3.37",
     "localhost": "^0.4.1"
