@@ -5,6 +5,9 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: './src/script.mjs',
+  resolve: {
+    extensions: ['*', '.mjs', '.js', '.json']
+  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'build')
@@ -12,8 +15,9 @@ module.exports = {
   module: {
     rules: [
       { 
-        test: /\.js$/,
-        exclude: /node_modules/
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
       },
     ]
   },
