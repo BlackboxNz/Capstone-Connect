@@ -35,3 +35,4 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ]
 };
+module.exports = config
