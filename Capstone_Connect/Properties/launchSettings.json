@@ -1,0 +1,16 @@
+﻿{
+  "profiles": {
+    "Capstone_Connect": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:8080;http://localhost:8081",
+      "launchBrowser": false,
+      "urls": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+
+
