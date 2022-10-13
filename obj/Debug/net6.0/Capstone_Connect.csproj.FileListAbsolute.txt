@@ -853,3 +853,4 @@ C:\Users\Adrian\Documents\GitHub\Capstone-connect\obj\Debug\net6.0\scopedcss\bun
 C:\Users\Adrian\Documents\GitHub\Capstone-connect\obj\Debug\net6.0\Capstone_Connect.csproj.CopyComplete
 C:\Users\Adrian\Documents\GitHub\Capstone-connect\obj\Debug\net6.0\Capstone_Connect.genruntimeconfig.cache
 C:\Users\Adrian\Documents\GitHub\Capstone-connect\obj\Debug\net6.0\ref\Capstone_Connect.dll
+C:\Users\Adrian\Documents\GitHub\Capstone-connect\bin\Debug\net6.0\web.config
