@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Capstone_Connect.Migrations
 {
     [DbContext(typeof(CapstoneConnectDBContext))]
-    [Migration("20221013092837_createTable")]
+    [Migration("20221013111247_createTable")]
     partial class createTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,23 +48,23 @@ namespace Capstone_Connect.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Brief")
-                        .IsRequired()
+                    b.Property<string>("Approach")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<string>("FinalThoughts")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Img")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Likes")
+                    b.Property<int?>("Likes")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ProjectName")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProjectOverview")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TeamName")
@@ -72,7 +72,6 @@ namespace Capstone_Connect.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Video")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");

@@ -31,7 +31,7 @@ namespace Capstone_Connect.Controllers
         {
             Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName };
             Project addedProject = _repository.AddProject(p);
-            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName, Description = addedProject.Description, Brief = addedProject.Brief, Img = addedProject.Img, Video = addedProject.Video, Tags = addedProject.Tags };
+            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName };
             return CreatedAtAction(nameof(GetProject), new { id = po.ID }, po);
         }
 
@@ -46,8 +46,9 @@ namespace Capstone_Connect.Controllers
             {
                 c.TeamName = project.TeamName;
                 c.ProjectName = project.ProjectName;
-                c.Description = project.Description;
-                c.Brief = project.Brief;
+                c.ProjectOverview = project.ProjectOverview;
+                c.Approach = project.Approach;
+                c.FinalThoughts = project.FinalThoughts;
                 c.Img = project.Img;
                 c.Video = project.Video;
                 c.Tags = project.Tags;  
@@ -63,7 +64,7 @@ namespace Capstone_Connect.Controllers
         public ActionResult<IEnumerable<ProjectOutDto>> GetAllProjects()
         {
             IEnumerable<Project> project = _repository.GetAllProjects();
-            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Description = e.Description, Brief = e.Brief, Img = e.Img, Video = e.Video, Tags = e.Tags});
+            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
             return Ok(c);
         }
         // GET /webapi/GetProject/{ID}
@@ -75,7 +76,7 @@ namespace Capstone_Connect.Controllers
                 return NotFound();
             else
             {
-                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Description = project.Description, Brief = project.Brief, Img = project.Img, Video = project.Video, Tags = project.Tags, Comments = project.Comments };
+                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Tags = project.Tags, Comments = project.Comments };
                 return Ok(c);
             }
 

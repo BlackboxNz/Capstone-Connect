@@ -16,11 +16,12 @@ namespace Capstone_Connect.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     TeamName = table.Column<string>(type: "TEXT", nullable: false),
                     ProjectName = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Brief = table.Column<string>(type: "TEXT", nullable: false),
-                    Img = table.Column<string>(type: "TEXT", nullable: false),
-                    Video = table.Column<string>(type: "TEXT", nullable: false),
-                    Likes = table.Column<int>(type: "INTEGER", nullable: false)
+                    ProjectOverview = table.Column<string>(type: "TEXT", nullable: true),
+                    Approach = table.Column<string>(type: "TEXT", nullable: true),
+                    FinalThoughts = table.Column<string>(type: "TEXT", nullable: true),
+                    Img = table.Column<string>(type: "TEXT", nullable: true),
+                    Video = table.Column<string>(type: "TEXT", nullable: true),
+                    Likes = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
