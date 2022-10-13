@@ -16,12 +16,12 @@ namespace Capstone_Connect.Dtos
         public string Img { get; set; }
         public string Video { get; set; }
 
-        public ICollection<Tags> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
 
         // Team members
         public ICollection<Users> Users { get; set; }
         // Users that have liked the project.
         //public ICollection<User> LikedBy { get; set; }
-        public ICollection<Comments> Comments { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }
