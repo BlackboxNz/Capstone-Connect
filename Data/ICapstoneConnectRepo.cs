@@ -11,81 +11,39 @@ namespace Capstone_Connect.Data
     {
         //General functions
 
-        IEnumerable<Project> GetAllProject();
+        void SaveChanges();
+
+        //Project Functions
+        void AwardProject(Project project, Tag tag);
+        void ApproveProject(Project project);
+        void RejectProject(Project project);
+        IEnumerable<Project> GetAllProjects();
         Project GetProjectByID(int id);
+        void DeleteProject(int id);
+        Project AddProject(Project project);
+        void LikeProject(Project project, User user);
+        void SubmitProject(Project project);
+        //IEnumerable<Comment> GetProjectComments(Project project)
+
+        //User Functions
 
         User RegisterUser(User user);
         User GetUserByEmail(string email);
-
-        //Student based functions
-        void SubmitProject(Project project);
-
-        //Visitor based functions
-        void LikeProject(Project project, User user);
-        Comment WriteComment(Comment comment);
-        //IEnumerable<Comment> GetProjectComments(Project project)
-
-        //Admin based functions
-        void AwardProject(Project project, Tags tag);
-        void ApproveProject(Project project);
-        void RejectProject(Project project);
-
-        void SaveChanges();
-        //Project Functions
-        IEnumerable<Projects> GetAllProjects();
-        Projects GetProjectByID(int id);
-        void SubmitProject(Projects project);
-        void LikeProject(Projects project, Users user);
-        void AwardProject(Projects project, Tags tag);
-        void ApproveProject(Projects project);
-        void RejectProject(Projects project);
-
-        void DeleteProject(int id);
-        Project AddProject(Project project);
-
-        //User Functions
-        Users RegisterUser(Users user);
-        Users GetUserByEmail(string email);
-        void DeleteUser(Users user);
-        public bool ValidLogin(string email, string password);
-
+        void DeleteUser(User user);
+        public bool ValidLogin(string email, string password, string userlevel);
         //Team Functions
-        Teams AddTeam(Teams team);
-        IEnumerable<Teams> GetAllTeams();
-        Teams GetTeamByID(int id);
+        Team AddTeam(Team team);
+        IEnumerable<Team> GetAllTeams();
+        Team GetTeamByID(int id);
         void DeleteTeam(int id);
         //Comment functions
-        Comments WriteComment(Comments comment);
-        void DeleteComment(Comments comment);
+        void DeleteComment(Comment comment);
+        Comment WriteComment(Comment comment);
         //Comment GetProjectComments(Project project)
 
-
         //Tag functions
-        void AddTag(Tags tag);
-        void DeleteTag(Tags tag);
-
-        void TagProject(Project project, Tags tag);
-
-        void DeleteUser(User user);
-        void DeleteComment(Comment comment);
-
-        public bool ValidLogin(string email, string password);
-        void SaveChanges();
-
-
-
-
-
-        
-
-
-
-
-
-
-<<<<<<< HEAD
->>>>>>> 03ea6af6ee4682b2d62766675212bd89af0b58b2:Data/ICapstoneConnectRepo.cs
-=======
->>>>>>> 03ea6af6ee4682b2d62766675212bd89af0b58b2
+        void AddTag(Tag tag);
+        void DeleteTag(Tag tag);
+        void TagProject(Project project, Tag tag);
     }
 }

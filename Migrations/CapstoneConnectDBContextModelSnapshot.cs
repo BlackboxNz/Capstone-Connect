@@ -37,7 +37,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasIndex("ProjectID");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Project", b =>
@@ -58,6 +58,9 @@ namespace Capstone_Connect.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Likes")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ProjectName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -72,7 +75,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Project");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Tag", b =>
@@ -89,7 +92,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasKey("TagId");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Team", b =>
@@ -104,7 +107,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Team");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.User", b =>
@@ -140,7 +143,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasIndex("TeamID");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("ProjectTag", b =>
@@ -163,12 +166,12 @@ namespace Capstone_Connect.Migrations
                     b.Property<int>("LikedProjectsID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UsersID")
+                    b.Property<int>("TeamsID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("LikedProjectsID", "UsersID");
+                    b.HasKey("LikedProjectsID", "TeamsID");
 
-                    b.HasIndex("UsersID");
+                    b.HasIndex("TeamsID");
 
                     b.ToTable("ProjectUser");
                 });
@@ -185,7 +188,7 @@ namespace Capstone_Connect.Migrations
             modelBuilder.Entity("Capstone_Connect.Model.User", b =>
                 {
                     b.HasOne("Capstone_Connect.Model.Team", null)
-                        .WithMany("Users")
+                        .WithMany("Members")
                         .HasForeignKey("TeamID");
                 });
 
@@ -214,7 +217,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasOne("Capstone_Connect.Model.User", null)
                         .WithMany()
-                        .HasForeignKey("UsersID")
+                        .HasForeignKey("TeamsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -226,7 +229,7 @@ namespace Capstone_Connect.Migrations
 
             modelBuilder.Entity("Capstone_Connect.Model.Team", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }

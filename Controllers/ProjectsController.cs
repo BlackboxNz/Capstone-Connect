@@ -29,8 +29,8 @@ namespace Capstone_Connect.Controllers
         [HttpPost("AddProject")]
         public ActionResult<ProjectOutDto> AddProject(ProjectInDto project)
         {
-            Projects p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName };
-            Projects addedProject = _repository.AddProject(p);
+            Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName };
+            Project addedProject = _repository.AddProject(p);
             ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName, Description = addedProject.Description, Brief = addedProject.Brief, Img = addedProject.Img, Video = addedProject.Video, Tags = addedProject.Tags };
             return CreatedAtAction(nameof(GetProject), new { id = po.ID }, po);
         }
@@ -39,7 +39,7 @@ namespace Capstone_Connect.Controllers
         [HttpPut("UpdateProject/{id}")]
         public ActionResult UpdateProject(int id, ProjectInDto project)
         {
-            Projects c = _repository.GetProjectByID(id);
+            Project c = _repository.GetProjectByID(id);
             if (c == null)
                 return NotFound();
             else
@@ -62,20 +62,20 @@ namespace Capstone_Connect.Controllers
         [HttpGet("GetAllProjects")]
         public ActionResult<IEnumerable<ProjectOutDto>> GetAllProjects()
         {
-            IEnumerable<Projects> project = _repository.GetAllProjects();
-            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Description = e.Description, Brief = e.Brief, Img = e.Img, Video = e.Video, Tags = e.Tags, Users = e.Users });
+            IEnumerable<Project> project = _repository.GetAllProjects();
+            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Description = e.Description, Brief = e.Brief, Img = e.Img, Video = e.Video, Tags = e.Tags});
             return Ok(c);
         }
         // GET /webapi/GetProject/{ID}
         [HttpGet("GetProject/{ID}")]
         public ActionResult<ProjectOutDto> GetProject(int id)
         {
-            Projects project = _repository.GetProjectByID(id);
+            Project project = _repository.GetProjectByID(id);
             if (project == null)
                 return NotFound();
             else
             {
-                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Description = project.Description, Brief = project.Brief, Img = project.Img, Video = project.Video, Tags = project.Tags, Users = project.Users, Comments = project.Comments };
+                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Description = project.Description, Brief = project.Brief, Img = project.Img, Video = project.Video, Tags = project.Tags, Comments = project.Comments };
                 return Ok(c);
             }
 
@@ -84,7 +84,7 @@ namespace Capstone_Connect.Controllers
         [HttpDelete("DeleteProject/{id}")]
         public ActionResult DeleteProject(int id)
         {
-            Projects c = _repository.GetProjectByID(id);
+            Project c = _repository.GetProjectByID(id);
             if (c == null)
                 return NotFound();
             else

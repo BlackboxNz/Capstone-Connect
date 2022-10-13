@@ -22,21 +22,21 @@ namespace Capstone_Connect.Controllers
         }
 
         [HttpPost("Register")]
-        public ActionResult Register(UsersInDto user)
+        public ActionResult Register(UserInDto user)
         {
             if (user.Email == "")
             {
                 return Ok("Invalid Email");
             }
-            Users t = _repository.GetUserByEmail(user.Email);
+            User t = _repository.GetUserByEmail(user.Email);
             if (t != null)
             {
                 return Ok("Email not available.");
             }
             else
             {
-                Users c = new Users { Email = user.Email, Password = user.Password };
-                Users addedUser = _repository.RegisterUser(c);
+                User c = new User { Email = user.Email, Password = user.Password };
+                User addedUser = _repository.RegisterUser(c);
                 return Ok("User successfully registered");
             }
 

@@ -37,9 +37,7 @@ namespace Capstone_Connect
             services.AddAuthentication().
             AddScheme<AuthenticationSchemeOptions, AuthHandler>
             ("MyAuthentication", null).
-            AddScheme<AuthenticationSchemeOptions, AdminHandler>
-            ("AdminAuthentication", null);
-            services.AddAuthorization(options =>
+            Services.AddAuthorization(options =>
             {
                 options.AddPolicy("UserOnly", policy => policy.RequireClaim("Email"));
             });

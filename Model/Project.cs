@@ -25,6 +25,7 @@ namespace Capstone_Connect.Model
     public ICollection<User> Teams { get; set; }
     // Users that have liked the project.
     //public ICollection<User> LikedBy { get; set; }
+    public int Likes { get; set; }
     public ICollection<Comment> Comments { get; set; }
 
     }

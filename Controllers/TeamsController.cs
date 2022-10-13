@@ -29,8 +29,8 @@ namespace Capstone_Connect.Controllers
         [HttpPost("AddTeam")]
         public ActionResult<ProjectOutDto> AddTeam(TeamInDto team)
         {
-            Teams c = new() { TeamName = team.TeamName, Members = team.Members };
-            Teams addedTeam = _repository.AddTeam(c);
+            Team c = new() { TeamName = team.TeamName, Members = team.Members };
+            Team addedTeam = _repository.AddTeam(c);
             TeamOutDto co = new TeamOutDto { ID = addedTeam.ID, TeamName = addedTeam.TeamName, Members = addedTeam.Members };
             return CreatedAtAction(nameof(GetTeam), new { id = co.ID }, co);
         }
@@ -39,7 +39,7 @@ namespace Capstone_Connect.Controllers
         [HttpPut("UpdateTeam/{id}")]
         public ActionResult UpdateTeam(int id, TeamInDto team)
         {
-            Teams c = _repository.GetTeamByID(id);
+            Team c = _repository.GetTeamByID(id);
             if (c == null)
                 return NotFound();
             else
@@ -57,7 +57,7 @@ namespace Capstone_Connect.Controllers
         [HttpGet("GetAllTeams")]
         public ActionResult<IEnumerable<TeamOutDto>> GetAllTeams()
         {
-            IEnumerable<Teams> team = _repository.GetAllTeams();
+            IEnumerable<Team> team = _repository.GetAllTeams();
             IEnumerable<TeamOutDto> c = team.Select(e => new TeamOutDto { ID = e.ID, TeamName = e.TeamName, Members = e.Members });
             return Ok(c);
         }
@@ -65,7 +65,7 @@ namespace Capstone_Connect.Controllers
         [HttpGet("GetTeam/{ID}")]
         public ActionResult<TeamOutDto> GetTeam(int id)
         {
-            Teams team = _repository.GetTeamByID(id);
+            Team team = _repository.GetTeamByID(id);
             if (team == null)
                 return NotFound();
             else
@@ -79,7 +79,7 @@ namespace Capstone_Connect.Controllers
         [HttpDelete("DeleteTeam/{id}")]
         public ActionResult DeleteTeam(int id)
         {
-            Teams c = _repository.GetTeamByID(id);
+            Team c = _repository.GetTeamByID(id);
             if (c == null)
                 return NotFound();
             else

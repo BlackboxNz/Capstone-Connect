@@ -9,7 +9,7 @@ namespace Capstone_Connect.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Projects",
+                name: "Project",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
@@ -19,15 +19,16 @@ namespace Capstone_Connect.Migrations
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     Brief = table.Column<string>(type: "TEXT", nullable: false),
                     Img = table.Column<string>(type: "TEXT", nullable: false),
-                    Video = table.Column<string>(type: "TEXT", nullable: false)
+                    Video = table.Column<string>(type: "TEXT", nullable: false),
+                    Likes = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.ID);
+                    table.PrimaryKey("PK_Project", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "Tag",
                 columns: table => new
                 {
                     TagId = table.Column<string>(type: "TEXT", nullable: false),
@@ -36,11 +37,11 @@ namespace Capstone_Connect.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.TagId);
+                    table.PrimaryKey("PK_Tag", x => x.TagId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teams",
+                name: "Team",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
@@ -49,11 +50,11 @@ namespace Capstone_Connect.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teams", x => x.ID);
+                    table.PrimaryKey("PK_Team", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
+                name: "Comment",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
@@ -64,11 +65,11 @@ namespace Capstone_Connect.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => x.ID);
+                    table.PrimaryKey("PK_Comment", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Comments_Projects_ProjectID",
+                        name: "FK_Comment_Project_ProjectID",
                         column: x => x.ProjectID,
-                        principalTable: "Projects",
+                        principalTable: "Project",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -84,21 +85,21 @@ namespace Capstone_Connect.Migrations
                 {
                     table.PrimaryKey("PK_ProjectTag", x => new { x.ProjectsID, x.TagsTagId });
                     table.ForeignKey(
-                        name: "FK_ProjectTag_Projects_ProjectsID",
+                        name: "FK_ProjectTag_Project_ProjectsID",
                         column: x => x.ProjectsID,
-                        principalTable: "Projects",
+                        principalTable: "Project",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectTag_Tags_TagsTagId",
+                        name: "FK_ProjectTag_Tag_TagsTagId",
                         column: x => x.TagsTagId,
-                        principalTable: "Tags",
+                        principalTable: "Tag",
                         principalColumn: "TagId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
@@ -112,11 +113,11 @@ namespace Capstone_Connect.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.ID);
+                    table.PrimaryKey("PK_User", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Users_Teams_TeamID",
+                        name: "FK_User_Team_TeamID",
                         column: x => x.TeamID,
-                        principalTable: "Teams",
+                        principalTable: "Team",
                         principalColumn: "ID");
                 });
 
@@ -125,28 +126,28 @@ namespace Capstone_Connect.Migrations
                 columns: table => new
                 {
                     LikedProjectsID = table.Column<int>(type: "INTEGER", nullable: false),
-                    UsersID = table.Column<int>(type: "INTEGER", nullable: false)
+                    TeamsID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectUser", x => new { x.LikedProjectsID, x.UsersID });
+                    table.PrimaryKey("PK_ProjectUser", x => new { x.LikedProjectsID, x.TeamsID });
                     table.ForeignKey(
-                        name: "FK_ProjectUser_Projects_LikedProjectsID",
+                        name: "FK_ProjectUser_Project_LikedProjectsID",
                         column: x => x.LikedProjectsID,
-                        principalTable: "Projects",
+                        principalTable: "Project",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectUser_Users_UsersID",
-                        column: x => x.UsersID,
-                        principalTable: "Users",
+                        name: "FK_ProjectUser_User_TeamsID",
+                        column: x => x.TeamsID,
+                        principalTable: "User",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ProjectID",
-                table: "Comments",
+                name: "IX_Comment_ProjectID",
+                table: "Comment",
                 column: "ProjectID");
 
             migrationBuilder.CreateIndex(
@@ -155,20 +156,20 @@ namespace Capstone_Connect.Migrations
                 column: "TagsTagId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectUser_UsersID",
+                name: "IX_ProjectUser_TeamsID",
                 table: "ProjectUser",
-                column: "UsersID");
+                column: "TeamsID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_TeamID",
-                table: "Users",
+                name: "IX_User_TeamID",
+                table: "User",
                 column: "TeamID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "Comment");
 
             migrationBuilder.DropTable(
                 name: "ProjectTag");
@@ -177,16 +178,16 @@ namespace Capstone_Connect.Migrations
                 name: "ProjectUser");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Tag");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "Project");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
 
             migrationBuilder.DropTable(
-                name: "Teams");
+                name: "Team");
         }
     }
 }

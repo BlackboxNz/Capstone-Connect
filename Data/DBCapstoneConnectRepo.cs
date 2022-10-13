@@ -18,44 +18,8 @@ namespace Capstone_Connect.Data
         {
             _dbContext = dbContext;
         }
-
-        public bool ValidLogin(string email, string password, string userlevel)
-        {
-            Users user = _dbContext.Users.Where(u => u.email == email && u.Password == password && u.UserLevel == userlevel).FirstOrDefault();
-            if (user == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        
-        public User GetUserByEmail(string email)
-        {
-            User user = _dbContext.User.FirstOrDefault(e => e.email == email);
-            return user;
-        }
-
-        public User Register(User user)
-        {
-            IEnumerable<User> users = _dbContext.User.ToList();
-            if (users.FirstOrDefault(e => e.UserName == user.UserName) != null)
-            {
-                return null;
-            }
-            else
-            {
-                EntityEntry<User> e = _dbContext.User.Add(user);
-                User u = e.Entity;
-                _dbContext.SaveChanges();
-                return u;
-            }
-        }
-
         //General functions
-        public IEnumerable<Project> GetAllProject()
+        public IEnumerable<Project> GetAllProjects()
         {
             IEnumerable<Project> project = _dbContext.Project.ToList<Project>();
             return project;
@@ -84,16 +48,8 @@ namespace Capstone_Connect.Data
         {
         }
 
-        public Comment WriteComment(Comment comment)
-        {
-            EntityEntry<Comment> e = _dbContext.Comment.Add(comment);
-            Comment c = e.Entity;
-            _dbContext.SaveChanges();
-            return c;
-        }
-
         //Admin based project functions
-        public void AwardProject(Project project, Tags tag)
+        public void AwardProject(Project project, Tag tag)
         {
 
         }
@@ -121,187 +77,119 @@ namespace Capstone_Connect.Data
         }
 
         //User Functions
-        public bool ValidLogin(string Email, string password)
+        public bool ValidLogin(string email, string password, string userlevel)
         {
-            Users c = _dbContext.Users.FirstOrDefault(e => e.Email == Email && e.Password == password);
-            if (c == null)
+            User user = _dbContext.User.Where(u => u.Email == email && u.Password == password && u.UserLevel == userlevel).FirstOrDefault();
+            if (user == null)
+            {
                 return false;
+            }
             else
+            {
                 return true;
+            }
         }
-        public Users GetUserByEmail(string Email)
+        public User GetUserByEmail(string email)
         {
-            Users user = _dbContext.Users.FirstOrDefault(e => e.Email == Email);
+            User user = _dbContext.User.FirstOrDefault(e => e.Email == email);
             return user;
         }
-        public Users RegisterUser(Users user)
+        public User RegisterUser(User user)
         {
-            EntityEntry<Users> e = _dbContext.Users.Add(user);
-            Users c = e.Entity;
+            EntityEntry<User> e = _dbContext.User.Add(user);
+            User c = e.Entity;
             _dbContext.SaveChanges();
             return c;
         }
-        public void DeleteUser(Users user)
+        public void DeleteUser(User user)
         {
             // Get all comments
-            IEnumerable<Users> users = _dbContext.Users.ToList<Users>();
+            IEnumerable<User> users = _dbContext.User.ToList<User>();
 
             // Check if comment exists
             if (users.FirstOrDefault(e => e.Email == user.Email) != null)
             {
                 // Delete comment
-                Users userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
-                _dbContext.Users.Remove(userToDelete);
+                User userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
+                _dbContext.User.Remove(userToDelete);
                 _dbContext.SaveChanges();
             }
         }
 
 
         //Team Functions
-        public Teams AddTeam(Teams team)
+        public Team AddTeam(Team team)
         {
-            EntityEntry<Teams> e = _dbContext.Teams.Add(team);
-            Teams c = e.Entity;
+            EntityEntry<Team> e = _dbContext.Team.Add(team);
+            Team c = e.Entity;
             _dbContext.SaveChanges();
             return c;
         }
-        public IEnumerable<Teams> GetAllTeams()
+        public IEnumerable<Team> GetAllTeams()
         {
-            IEnumerable<Teams> team = _dbContext.Teams.ToList<Teams>();
+            IEnumerable<Team> team = _dbContext.Team.ToList<Team>();
             return team;
         }
-        public Teams GetTeamByID(int id)
+        public Team GetTeamByID(int id)
         {
-            Teams team = _dbContext.Teams.FirstOrDefault(e => e.ID == id);
+            Team team = _dbContext.Team.FirstOrDefault(e => e.ID == id);
             return team;
         }
         public void DeleteTeam(int id)
         {
             // Get existing teams
-            IEnumerable<Teams> teams = _dbContext.Teams.ToList<Teams>();
+            IEnumerable<Team> teams = _dbContext.Team.ToList<Team>();
 
             // Check if team exists
-            Teams team = teams.FirstOrDefault(e => e.ID == id);
+            Team team = teams.FirstOrDefault(e => e.ID == id);
             if (team != null)
             {
                 // Delete team
-                _dbContext.Teams.Remove(team);
+                _dbContext.Team.Remove(team);
                 _dbContext.SaveChanges();
             }
         }
 
-        //User Functions
-        public bool ValidLogin(string Email, string password)
-        {
-            Users c = _dbContext.Users.FirstOrDefault(e => e.Email == Email && e.Password == password);
-            if (c == null)
-                return false;
-            else
-                return true;
-        }
-        public Users GetUserByEmail(string Email)
-        {
-            Users user = _dbContext.Users.FirstOrDefault(e => e.Email == Email);
-            return user;
-        }
-        public Users RegisterUser(Users user)
-        {
-            EntityEntry<Users> e = _dbContext.Users.Add(user);
-            Users c = e.Entity;
-            _dbContext.SaveChanges();
-            return c;
-        }
-        public void DeleteUser(Users user)
-        {
-            // Get all users
-            IEnumerable<Users> users = _dbContext.Users.ToList<Users>();
-
-            // Check if user exists
-            if (users.FirstOrDefault(e => e.Email == user.Email) != null)
-            {
-                // Delete user
-                Users userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
-                _dbContext.Users.Remove(userToDelete);
-                _dbContext.SaveChanges();
-            }
-        }
-
-
-        //Team Functions
-        public Teams AddTeam(Teams team)
-        {
-            EntityEntry<Teams> e = _dbContext.Teams.Add(team);
-            Teams c = e.Entity;
-            _dbContext.SaveChanges();
-            return c;
-        }
-        public IEnumerable<Teams> GetAllTeams()
-        {
-            IEnumerable<Teams> team = _dbContext.Teams.ToList<Teams>();
-            return team;
-        }
-        public Teams GetTeamByID(int id)
-        {
-            Teams team = _dbContext.Teams.FirstOrDefault(e => e.ID == id);
-            return team;
-        }
-        public void DeleteTeam(int id)
-        {
-            // Get existing teams
-            IEnumerable<Teams> teams = _dbContext.Teams.ToList<Teams>();
-
-            // Check if team exists
-            Teams team = teams.FirstOrDefault(e => e.ID == id);
-            if (team != null)
-            {
-                // Delete team
-                _dbContext.Teams.Remove(team);
-                _dbContext.SaveChanges();
-            }
-        }
-
-        public void AddTag(Tags tag)
+        public void AddTag(Tag tag)
         {
             // Get existing tags
-            IEnumerable<Tags> tags = _dbContext.Tags.ToList<Tags>();
+            IEnumerable<Tag> tags = _dbContext.Tag.ToList<Tag>();
 
             // Check if tag already exists
             if (tags.FirstOrDefault(e => e.TagId == tag.TagId) == null)
             {
-                _dbContext.Tags.Add(tag);
+                _dbContext.Tag.Add(tag);
                 _dbContext.SaveChanges();
             }
         }
 
-        public void DeleteTag(Tags tag)
+        public void DeleteTag(Tag tag)
         {
             // Get existing tags
-            IEnumerable<Tags> tags = _dbContext.Tags.ToList<Tags>();
+            IEnumerable<Tag> tags = _dbContext.Tag.ToList<Tag>();
 
             // Check if tag exists
             if (tags.FirstOrDefault(e => e.TagId == tag.TagId) != null)
             {
                 // Delete tag
-                _dbContext.Tags.Remove(tag);
+                _dbContext.Tag.Remove(tag);
                 _dbContext.SaveChanges();
             }
         }
 
-        public void TagProject(Project project, Tags tag)
+        public void TagProject(Project project, Tag tag)
         {
             // Get existing projects and tags
             IEnumerable<Project> projects = _dbContext.Project.ToList<Project>();
-            IEnumerable<Tags> tags = _dbContext.Tags.ToList<Tags>();
+            IEnumerable<Tag> tags = _dbContext.Tag.ToList<Tag>();
 
         }
 
-
-
         //Comment functions
-        public Comments WriteComment(Comments comment)
+        public Comment WriteComment(Comment comment)
         {
-            EntityEntry<Comments> e = _dbContext.Comments.Add(comment);
-            Comments c = e.Entity;
+            EntityEntry<Comment> e = _dbContext.Comment.Add(comment);
+            Comment c = e.Entity;
             _dbContext.SaveChanges();
             return c;
         }
