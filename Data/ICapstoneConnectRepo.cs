@@ -10,35 +10,47 @@ namespace Capstone_Connect.Data
     public interface ICapstoneConnectRepo
     {
         //General functions
+        void SaveChanges();
+        //Project Functions
         IEnumerable<Projects> GetAllProjects();
         Projects GetProjectByID(int id);
-
-        Users RegisterUser(Users user);
-        Users GetUserByEmail(string email);
-        //Student based functions
         void SubmitProject(Projects project);
-        //Visitor based functions
         void LikeProject(Projects project, Users user);
-        Comments WriteComment(Comments comment);
-        //Comment GetProjectComments(Project project)
-        //Admin based functions
         void AwardProject(Projects project, Tags tag);
         void ApproveProject(Projects project);
         void RejectProject(Projects project);
         void DeleteProject(int id);
         Projects AddProject(Projects project);
 
+
+        //User Functions
+        Users RegisterUser(Users user);
+        Users GetUserByEmail(string email);
+        void DeleteUser(Users user);
+        public bool ValidLogin(string email, string password);
+
+        //Team Functions
+        Teams AddTeam(Teams team);
+        IEnumerable<Teams> GetAllTeams();
+        Teams GetTeamByID(int id);
+        void DeleteTeam(int id);
+        //Comment functions
+        Comments WriteComment(Comments comment);
+        void DeleteComment(Comments comment);
+        //Comment GetProjectComments(Project project)
+
+
+        //Tag functions
         void AddTag(Tags tag);
         void DeleteTag(Tags tag);
-
         void TagProject(Projects project, Tags tag);
 
-        void DeleteUser(Users user);
-        void DeleteComment(Comments comment);
+
+
 
         
-        public bool ValidLogin(string email, string password);
-        void SaveChanges();
+
+
 
 
 

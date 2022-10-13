@@ -45,7 +45,7 @@ namespace Capstone_Connect.Controllers
             else
             {
                 c.TeamName = team.TeamName;
-                c.Members = team.Members
+                c.Members = team.Members;
 
 
                 _repository.SaveChanges();

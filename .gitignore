@@ -2,6 +2,7 @@
 *.obj/
 obj/
 .vscode/
+.vscode
 .obj/
 .bin/
 bin/

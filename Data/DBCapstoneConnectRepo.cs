@@ -19,27 +19,8 @@ namespace Capstone_Connect.Data
             _dbContext = dbContext;
         }
 
-        public bool ValidLogin(string Email, string password)
-        {
-            Users c = _dbContext.Users.FirstOrDefault(e => e.Email == Email && e.Password == password);
-            if (c == null)
-                return false;
-            else
-                return true;
-        }
-        public Users GetUserByEmail(string Email)
-        {
-            Users user = _dbContext.Users.FirstOrDefault(e => e.Email == Email);
-            return user;
-        }
-        public Users RegisterUser(Users user)
-        {
-            EntityEntry<Users> e = _dbContext.Users.Add(user);
-            Users c = e.Entity;
-            _dbContext.SaveChanges();
-            return c;
-        }
-        //General functions
+
+        //Project functions
         public IEnumerable<Projects> GetAllProjects()
         {
             IEnumerable<Projects> project = _dbContext.Projects.ToList<Projects>();
@@ -58,25 +39,18 @@ namespace Capstone_Connect.Data
             return c;
         }
 
-        //Student based functions
+        //Student based project functions
         public void SubmitProject(Projects project)
         {
 
         }
-        //Visitor based functions
+        //Visitor based project functions
         public void LikeProject(Projects project, Users user)
         {
         }
 
-        public Comments WriteComment(Comments comment)
-        {
-            EntityEntry<Comments> e = _dbContext.Comments.Add(comment);
-            Comments c = e.Entity;
-            _dbContext.SaveChanges();
-            return c;
-        }
 
-        //Admin based functions
+        //Admin based project functions
         public void AwardProject(Projects project, Tags tag)
         {
 
@@ -100,6 +74,76 @@ namespace Capstone_Connect.Data
             {
                 // Delete project
                 _dbContext.Projects.Remove(project);
+                _dbContext.SaveChanges();
+            }
+        }
+
+        //User Functions
+        public bool ValidLogin(string Email, string password)
+        {
+            Users c = _dbContext.Users.FirstOrDefault(e => e.Email == Email && e.Password == password);
+            if (c == null)
+                return false;
+            else
+                return true;
+        }
+        public Users GetUserByEmail(string Email)
+        {
+            Users user = _dbContext.Users.FirstOrDefault(e => e.Email == Email);
+            return user;
+        }
+        public Users RegisterUser(Users user)
+        {
+            EntityEntry<Users> e = _dbContext.Users.Add(user);
+            Users c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
+        public void DeleteUser(Users user)
+        {
+            // Get all comments
+            IEnumerable<Users> users = _dbContext.Users.ToList<Users>();
+
+            // Check if comment exists
+            if (users.FirstOrDefault(e => e.Email == user.Email) != null)
+            {
+                // Delete comment
+                Users userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
+                _dbContext.Users.Remove(userToDelete);
+                _dbContext.SaveChanges();
+            }
+        }
+
+
+        //Team Functions
+        public Teams AddTeam(Teams team)
+        {
+            EntityEntry<Teams> e = _dbContext.Teams.Add(team);
+            Teams c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
+        public IEnumerable<Teams> GetAllTeams()
+        {
+            IEnumerable<Teams> team = _dbContext.Teams.ToList<Teams>();
+            return team;
+        }
+        public Teams GetTeamByID(int id)
+        {
+            Teams team = _dbContext.Teams.FirstOrDefault(e => e.ID == id);
+            return team;
+        }
+        public void DeleteTeam(int id)
+        {
+            // Get existing teams
+            IEnumerable<Teams> teams = _dbContext.Teams.ToList<Teams>();
+
+            // Check if team exists
+            Teams team = teams.FirstOrDefault(e => e.ID == id);
+            if (team != null)
+            {
+                // Delete team
+                _dbContext.Teams.Remove(team);
                 _dbContext.SaveChanges();
             }
         }
@@ -142,19 +186,15 @@ namespace Capstone_Connect.Data
 
         }
 
-        public void DeleteUser(Users user)
-        {
-            // Get all comments
-            IEnumerable<Users> users = _dbContext.Users.ToList<Users>();
 
-            // Check if comment exists
-            if (users.FirstOrDefault(e => e.Email == user.Email) != null)
-            {
-                // Delete comment
-                Users userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
-                _dbContext.Users.Remove(userToDelete);
-                _dbContext.SaveChanges();
-            }
+
+        //Comment functions
+        public Comments WriteComment(Comments comment)
+        {
+            EntityEntry<Comments> e = _dbContext.Comments.Add(comment);
+            Comments c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
         }
         public void DeleteComment(Comments comment)
         {
