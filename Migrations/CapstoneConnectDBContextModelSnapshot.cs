@@ -65,6 +65,10 @@ namespace Capstone_Connect.Migrations
                     b.Property<string>("ProjectOverview")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Semester")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("TeamName")
                         .IsRequired()
                         .HasColumnType("TEXT");

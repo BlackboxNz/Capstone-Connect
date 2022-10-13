@@ -64,7 +64,7 @@ namespace Capstone_Connect.Controllers
         public ActionResult<IEnumerable<ProjectOutDto>> GetAllProjects()
         {
             IEnumerable<Project> project = _repository.GetAllProjects();
-            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
+            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
             return Ok(c);
         }
         // GET /webapi/GetProject/{ID}
@@ -76,7 +76,7 @@ namespace Capstone_Connect.Controllers
                 return NotFound();
             else
             {
-                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Tags = project.Tags, Comments = project.Comments };
+                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Semester = project.Semester, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Tags = project.Tags, Comments = project.Comments };
                 return Ok(c);
             }
 
