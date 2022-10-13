@@ -44,19 +44,34 @@ namespace Capstone_Connect.Handler
                 var email = credentials[0];
                 var password = credentials[1];
 
-                if (_repository.ValidLogin(email, password))
+                if (_repository.ValidLogin(email, password, "admin"))
                 {
-                    var claims = new[] { new Claim("email", email) };
-
+                    var claims = new[] { new Claim("admin", email) };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
-
+                    return AuthenticateResult.Success(ticket);
+                }
+                else if (_repository.ValidLogin(email, password, "student"))
+                {
+                    var claims = new[] { new Claim("student", email) };
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                    AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
+                    return AuthenticateResult.Success(ticket);
+                }
+                else if (_repository.ValidLogin(email, password, "visitor"))
+                {
+                    var claims = new[] { new Claim("visitor", email) };
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                    AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
                     return AuthenticateResult.Success(ticket);
                 }
                 else
-                    return AuthenticateResult.Fail("Email and password do not match");
+                {
+                    return AuthenticateResult.Fail("Invalid email or password.");
+                }
             }
         }
     }

@@ -19,61 +19,103 @@ namespace Capstone_Connect.Data
             _dbContext = dbContext;
         }
 
+        public bool ValidLogin(string email, string password, string userlevel)
+        {
+            Users user = _dbContext.Users.Where(u => u.email == email && u.Password == password && u.UserLevel == userlevel).FirstOrDefault();
+            if (user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        
+        public User GetUserByEmail(string email)
+        {
+            User user = _dbContext.User.FirstOrDefault(e => e.email == email);
+            return user;
+        }
 
-        //Project functions
-        public IEnumerable<Projects> GetAllProjects()
+        public User Register(User user)
         {
-            IEnumerable<Projects> project = _dbContext.Projects.ToList<Projects>();
+            IEnumerable<User> users = _dbContext.User.ToList();
+            if (users.FirstOrDefault(e => e.UserName == user.UserName) != null)
+            {
+                return null;
+            }
+            else
+            {
+                EntityEntry<User> e = _dbContext.User.Add(user);
+                User u = e.Entity;
+                _dbContext.SaveChanges();
+                return u;
+            }
+        }
+
+        //General functions
+        public IEnumerable<Project> GetAllProject()
+        {
+            IEnumerable<Project> project = _dbContext.Project.ToList<Project>();
             return project;
         }
-        public Projects GetProjectByID(int id)
+        public Project GetProjectByID(int id)
         {
-            Projects project = _dbContext.Projects.FirstOrDefault(e => e.ID == id);
+            Project project = _dbContext.Project.FirstOrDefault(e => e.ID == id);
             return project;
         }
-        public Projects AddProject(Projects project)
+        public Project AddProject(Project project)
         {
-            EntityEntry<Projects> e = _dbContext.Projects.Add(project);
-            Projects c = e.Entity;
+            EntityEntry<Project> e = _dbContext.Project.Add(project);
+            Project c = e.Entity;
             _dbContext.SaveChanges();
             return c;
         }
 
         //Student based project functions
-        public void SubmitProject(Projects project)
+        public void SubmitProject(Project project)
         {
 
         }
+        
         //Visitor based project functions
-        public void LikeProject(Projects project, Users user)
+        public void LikeProject(Project project, User user)
         {
         }
 
+        public Comment WriteComment(Comment comment)
+        {
+            EntityEntry<Comment> e = _dbContext.Comment.Add(comment);
+            Comment c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
 
         //Admin based project functions
-        public void AwardProject(Projects project, Tags tag)
+        public void AwardProject(Project project, Tags tag)
         {
 
         }
-        public void ApproveProject(Projects project)
+        public void ApproveProject(Project project)
         {
 
         }
-        public void RejectProject(Projects project)
+        public void RejectProject(Project project)
         {
 
         }
         public void DeleteProject(int id)
         {
             // Get existing projects
-            IEnumerable<Projects> projects = _dbContext.Projects.ToList<Projects>();
+            IEnumerable<Project> projects = _dbContext.Project.ToList<Project>();
 
             // Check if project exists
-            Projects project = projects.FirstOrDefault(e => e.ID == id);
+            Project project = projects.FirstOrDefault(e => e.ID == id);
             if (project != null)
             {
                 // Delete project
-                _dbContext.Projects.Remove(project);
+                _dbContext.Project.Remove(project);
                 _dbContext.SaveChanges();
             }
         }
@@ -148,6 +190,76 @@ namespace Capstone_Connect.Data
             }
         }
 
+        //User Functions
+        public bool ValidLogin(string Email, string password)
+        {
+            Users c = _dbContext.Users.FirstOrDefault(e => e.Email == Email && e.Password == password);
+            if (c == null)
+                return false;
+            else
+                return true;
+        }
+        public Users GetUserByEmail(string Email)
+        {
+            Users user = _dbContext.Users.FirstOrDefault(e => e.Email == Email);
+            return user;
+        }
+        public Users RegisterUser(Users user)
+        {
+            EntityEntry<Users> e = _dbContext.Users.Add(user);
+            Users c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
+        public void DeleteUser(Users user)
+        {
+            // Get all users
+            IEnumerable<Users> users = _dbContext.Users.ToList<Users>();
+
+            // Check if user exists
+            if (users.FirstOrDefault(e => e.Email == user.Email) != null)
+            {
+                // Delete user
+                Users userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
+                _dbContext.Users.Remove(userToDelete);
+                _dbContext.SaveChanges();
+            }
+        }
+
+
+        //Team Functions
+        public Teams AddTeam(Teams team)
+        {
+            EntityEntry<Teams> e = _dbContext.Teams.Add(team);
+            Teams c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
+        public IEnumerable<Teams> GetAllTeams()
+        {
+            IEnumerable<Teams> team = _dbContext.Teams.ToList<Teams>();
+            return team;
+        }
+        public Teams GetTeamByID(int id)
+        {
+            Teams team = _dbContext.Teams.FirstOrDefault(e => e.ID == id);
+            return team;
+        }
+        public void DeleteTeam(int id)
+        {
+            // Get existing teams
+            IEnumerable<Teams> teams = _dbContext.Teams.ToList<Teams>();
+
+            // Check if team exists
+            Teams team = teams.FirstOrDefault(e => e.ID == id);
+            if (team != null)
+            {
+                // Delete team
+                _dbContext.Teams.Remove(team);
+                _dbContext.SaveChanges();
+            }
+        }
+
         public void AddTag(Tags tag)
         {
             // Get existing tags
@@ -159,11 +271,8 @@ namespace Capstone_Connect.Data
                 _dbContext.Tags.Add(tag);
                 _dbContext.SaveChanges();
             }
-            else
-            {
-                
-            }
         }
+
         public void DeleteTag(Tags tag)
         {
             // Get existing tags
@@ -178,10 +287,10 @@ namespace Capstone_Connect.Data
             }
         }
 
-        public void TagProject(Projects project, Tags tag)
+        public void TagProject(Project project, Tags tag)
         {
             // Get existing projects and tags
-            IEnumerable<Projects> projects = _dbContext.Projects.ToList<Projects>();
+            IEnumerable<Project> projects = _dbContext.Project.ToList<Project>();
             IEnumerable<Tags> tags = _dbContext.Tags.ToList<Tags>();
 
         }
@@ -196,17 +305,17 @@ namespace Capstone_Connect.Data
             _dbContext.SaveChanges();
             return c;
         }
-        public void DeleteComment(Comments comment)
+        public void DeleteComment(Comment comment)
         {
             // Get all comments
-            IEnumerable<Comments> comments = _dbContext.Comments.ToList<Comments>();
+            IEnumerable<Comment> comments = _dbContext.Comment.ToList<Comment>();
 
             // Check if comment exists
             if (comments.FirstOrDefault(e => e.ID == comment.ID) != null)
             {
                 // Delete comment
-                Comments commentToDelete = comments.FirstOrDefault(e => e.ID == comment.ID);
-                _dbContext.Comments.Remove(commentToDelete);
+                Comment commentToDelete = comments.FirstOrDefault(e => e.ID == comment.ID);
+                _dbContext.Comment.Remove(commentToDelete);
                 _dbContext.SaveChanges();
             }
         }
