@@ -10,6 +10,6 @@ namespace Capstone_Connect.Dtos
     public class TeamInDto
     {
         public string TeamName { get; set; }
-        public ICollection<Users> Members { get; set; }
+        public ICollection<User> Members { get; set; }
     }
 }

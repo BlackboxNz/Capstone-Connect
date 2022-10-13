@@ -16,6 +16,6 @@ namespace Capstone_Connect.Dtos
         public string Img { get; set; }
         public string Video { get; set; }
 
-        public ICollection<Tags> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 }
