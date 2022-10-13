@@ -24,7 +24,8 @@ namespace Capstone_Connect.Model
     // Team members
     public ICollection<Users> Users { get; set; }
     // Users that have liked the project.
-    //public ICollection<User> LikedBy { get; set; }
+    // Should we change this to number of likes? Then keep the liked projects on the user side?
+    // public ICollection<Users> LikedBy { get; set; }
     public ICollection<Comments> Comments { get; set; }
 
 }

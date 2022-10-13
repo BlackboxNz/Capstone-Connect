@@ -12,6 +12,6 @@ namespace Capstone_Connect.Model
         [Key]
         public int ID { get; set; }
         public string TeamName { get; set; }
-        public ICollection<Users> Users { get; set; }
+        public ICollection<Users> Members { get; set; }
     }
 }

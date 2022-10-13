@@ -16,12 +16,77 @@ using System.Collections;
 
 namespace Capstone_Connect.Controllers
 {
+    [Route("webapi")]
+    [ApiController]
     public class TeamssController : Controller
     {
         private readonly ICapstoneConnectRepo _repository;
         public TeamssController(ICapstoneConnectRepo repository)
         {
             _repository = repository;
+        }
+        // POST /webapi/AddTeam
+        [HttpPost("AddTeam")]
+        public ActionResult<ProjectOutDto> AddTeam(TeamInDto team)
+        {
+            Teams c = new() { TeamName = team.TeamName, Members = team.Members };
+            Teams addedTeam = _repository.AddTeam(c);
+            TeamOutDto co = new TeamOutDto { ID = addedTeam.ID, TeamName = addedTeam.TeamName, Members = addedTeam.Members };
+            return CreatedAtAction(nameof(GetTeam), new { id = co.ID }, co);
+        }
+
+        // PUT /webapi/UpdateProject/{id}
+        [HttpPut("UpdateTeam/{id}")]
+        public ActionResult UpdateTeam(int id, TeamInDto team)
+        {
+            Teams c = _repository.GetTeamByID(id);
+            if (c == null)
+                return NotFound();
+            else
+            {
+                c.TeamName = team.TeamName;
+                c.Members = team.Members
+
+
+                _repository.SaveChanges();
+                return NoContent();
+            }
+        }
+
+        // GET /webapi/GetAllTeams
+        [HttpGet("GetAllTeams")]
+        public ActionResult<IEnumerable<TeamOutDto>> GetAllTeams()
+        {
+            IEnumerable<Teams> team = _repository.GetAllTeams();
+            IEnumerable<TeamOutDto> c = team.Select(e => new TeamOutDto { ID = e.ID, TeamName = e.TeamName, Members = e.Members });
+            return Ok(c);
+        }
+        // GET /webapi/GetTeam/{ID}
+        [HttpGet("GetTeam/{ID}")]
+        public ActionResult<TeamOutDto> GetTeam(int id)
+        {
+            Teams team = _repository.GetTeamByID(id);
+            if (team == null)
+                return NotFound();
+            else
+            {
+                TeamOutDto c = new() { ID = team.ID, TeamName = team.TeamName, Members = team.Members };
+                return Ok(c);
+            }
+
+        }
+        // DELETE /webapi/DeleteTeam/{id}
+        [HttpDelete("DeleteTeam/{id}")]
+        public ActionResult DeleteTeam(int id)
+        {
+            Teams c = _repository.GetTeamByID(id);
+            if (c == null)
+                return NotFound();
+            else
+            {
+                _repository.DeleteTeam(id);
+                return NoContent();
+            }
         }
     }
 }
