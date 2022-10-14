@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Capstone_Connect.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Capstone_Connect.Data;
 using Capstone_Connect.Dtos;
 using Capstone_Connect.Model;
 
@@ -13,10 +13,10 @@ namespace Capstone_Connect.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class UsersController : Controller
+    public class UserController : Controller
     {
         private readonly ICapstoneConnectRepo _repository;
-        public UsersController(ICapstoneConnectRepo repository)
+        public UserController(ICapstoneConnectRepo repository)
         {
             _repository = repository;
         }
@@ -39,7 +39,6 @@ namespace Capstone_Connect.Controllers
                 User addedUser = _repository.RegisterUser(c);
                 return Ok("User successfully registered");
             }
-
         }
     }
 }
