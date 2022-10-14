@@ -13,6 +13,7 @@ using System.Drawing;
 using Capstone_Connect.Helper;
 using System.Drawing.Imaging;
 using System.Collections;
+using Microsoft.AspNetCore.Cors;
 
 namespace Capstone_Connect.Controllers
 {
@@ -25,6 +26,7 @@ namespace Capstone_Connect.Controllers
         {
             _repository = repository;
         }
+
         // POST /webapi/AddProject
         [HttpPost("AddProject")]
         public ActionResult<ProjectOutDto> AddProject(ProjectInDto project)
@@ -60,6 +62,7 @@ namespace Capstone_Connect.Controllers
         }
 
         // GET /webapi/GetAllProjects
+        [DisableCors]
         [HttpGet("GetAllProjects")]
         public ActionResult<IEnumerable<ProjectOutDto>> GetAllProjects()
         {
@@ -67,6 +70,7 @@ namespace Capstone_Connect.Controllers
             IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
             return Ok(c);
         }
+
         // GET /webapi/GetProject/{ID}
         [HttpGet("GetProject/{ID}")]
         public ActionResult<ProjectOutDto> GetProject(int id)
