@@ -18,10 +18,10 @@ namespace Capstone_Connect.Controllers
 {
     [Route("webapi")]
     [ApiController]
-    public class TeamssController : Controller
+    public class TeamController : Controller
     {
         private readonly ICapstoneConnectRepo _repository;
-        public TeamssController(ICapstoneConnectRepo repository)
+        public TeamController(ICapstoneConnectRepo repository)
         {
             _repository = repository;
         }
@@ -53,9 +53,9 @@ namespace Capstone_Connect.Controllers
             }
         }
 
-        // GET /webapi/GetAllTeams
-        [HttpGet("GetAllTeams")]
-        public ActionResult<IEnumerable<TeamOutDto>> GetAllTeams()
+        // GET /webapi/GetAllTeam
+        [HttpGet("GetAllTeam")]
+        public ActionResult<IEnumerable<TeamOutDto>> GetAllTeam()
         {
             IEnumerable<Team> team = _repository.GetAllTeams();
             IEnumerable<TeamOutDto> c = team.Select(e => new TeamOutDto { ID = e.ID, TeamName = e.TeamName, Members = e.Members });

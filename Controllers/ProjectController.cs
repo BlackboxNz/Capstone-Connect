@@ -18,10 +18,10 @@ namespace Capstone_Connect.Controllers
 {
     [Route("webapi")]
     [ApiController]
-    public class ProjectsController : Controller
+    public class ProjectController : Controller
     {
         private readonly ICapstoneConnectRepo _repository;
-        public ProjectsController(ICapstoneConnectRepo repository)
+        public ProjectController(ICapstoneConnectRepo repository)
         {
             _repository = repository;
         }
