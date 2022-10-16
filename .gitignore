@@ -1,11 +1,13 @@
 .vs/
 *.obj/
 .obj/
+obj/
+bin/
+.bin/
 .vscode/
 .vscode
 .obj/
-.bin/
-bin/
+
 .Debug/
 .debug/
 .node_modules/
