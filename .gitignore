@@ -1,6 +1,6 @@
 .vs/
 *.obj/
-obj/
+.obj/
 .vscode/
 .vscode
 .obj/
