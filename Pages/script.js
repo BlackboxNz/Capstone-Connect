@@ -48,6 +48,7 @@ const getAllProjects = () => {
             headers: {
                 "Accept": "*/*",
             },
+            
         }
     );
     const streamPromise = fetchPromise.then((response) => response.json());
