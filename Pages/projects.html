@@ -29,70 +29,74 @@
             <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
         </ul>
     </div>
-<div id="project" class="row">
-    <h1 class="row" style="text-align: center">Projects</h1>
-    <div id="projects"></div>
-    <div style="height: 100px; width: 100%; clear: both"></div>
-  </div>
+    <div id="project" class="row">
+        <h1 class="row" style="text-align: center">Projects</h1>
+        <div id="projects"></div>
+        <div style="height: 100px; width: 100%; clear: both"></div>
+    </div>
 
-        <!--login modal-->
-        <div id="loginmodal" class="modal fade" role="dialog">
-            <div class="modal-dialog" role="document">
-                <!--modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!--Pills login/signup-->
-                        <ul class="nav nav-pills nav-justified mb-3">
-                            <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
-                            <li><a data-toggle="pill" href="#register">Register</a></li>
-                        </ul>
-                        <!--pills content-->
-                        <div class="tab-content">
-                            <!--login form-->
-                            <div id="login" class="tab-pane fade in active padtest">
-                                <form>
-                                    <!--email input-->
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
-                                    </div>
-                                    <!--password input-->
-                                    <div class="form-group">
-                                        <label for="pwd">Password</label>
-                                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Sign In</button>
-                                </form>
-                            </div>
-                            <!--signup form-->
-                            <div id="register" class="tab-pane fade padtest">
-                                <form>
-                                    <!--name input-->
-                                    <div class="form-group">
-                                        <label for="fullname">Name</label>
-                                        <input type="text" class="form-control" id="fullname" placeholder="Enter name" name="nme" />
-                                    </div>
-                                    <!--email input-->
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
-                                    </div>
-                                    <!--password input-->
-                                    <div class="form-group">
-                                        <label for="pwd">Password</label>
-                                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
-                                    </div>
-                                    <!--repeat password-->
-                                    <div classs="form-group">
-                                        <label for="pwd">Repeat Password</label>
-                                        <input type="password" class="form-control" id="pwd2" placeholder="Repeat password" name="pwd2" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;">Sign Up</button>
-                                </form>
-                            </div>
+    <!--login modal-->
+    <div id="loginmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <!--modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!--Pills login/signup-->
+                    <ul class="nav nav-pills nav-justified mb-3">
+                        <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
+                        <li><a data-toggle="pill" href="#register">Register</a></li>
+                    </ul>
+                    <!--pills content-->
+                    <div class="tab-content">
+                        <!--login form-->
+                        <div id="login" class="tab-pane fade in active padtest">
+                            <form>
+                                <!--email input-->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
+                                </div>
+                                <!--password input-->
+                                <div class="form-group">
+                                    <label for="pwd">Password</label>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Sign In</button>
+                            </form>
+                        </div>
+                        <!--signup form-->
+                        <div id="register" class="tab-pane fade padtest">
+                            <form>
+                                <!--name input-->
+                                <div class="form-group">
+                                    <label for="fullname">Name</label>
+                                    <input type="text" class="form-control" id="fullname" placeholder="Enter name" name="nme" />
+                                </div>
+                                <!--email input-->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
+                                </div>
+                                <!--password input-->
+                                <div class="form-group">
+                                    <label for="pwd">Password</label>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
+                                </div>
+                                <!--repeat password-->
+                                <div classs="form-group">
+                                    <label for="pwd">Repeat Password</label>
+                                    <input type="password" class="form-control" id="pwd2" placeholder="Repeat password" name="pwd2" />
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;">Sign Up</button>
+                            </form>
                         </div>
                     </div>
-<script src="./script.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>
 
