@@ -11,7 +11,7 @@ using Capstone_Connect.Model;
 
 namespace Capstone_Connect.Controllers
 {
-    [Route("api")]
+    [Route("webapi")]
     [ApiController]
     public class UserController : Controller
     {
