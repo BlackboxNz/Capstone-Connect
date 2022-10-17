@@ -23,13 +23,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CapstoneConnectDBContext>(options => options.UseSqlite(builder.Configuration["Capstone_ConnectConnection"]));
 builder.Services.AddScoped<ICapstoneConnectRepo, DBCapstoneConnectRepo>();
-
 
 var app = builder.Build();
 
@@ -42,8 +40,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
- 
-app.UseRouting();
+ app.UseRouting();
+
 app.UseCors(builder =>
 {
     builder.AllowAnyOrigin()
@@ -52,7 +50,6 @@ app.UseCors(builder =>
 });
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
