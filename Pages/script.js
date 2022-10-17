@@ -46,7 +46,7 @@ const getAllProjects = () => {
     const fetchPromise = fetch(`http://localhost:5001/webapi/GetAllProjects`,
         {
             headers: {
-                "Accept": "application/json",
+                "Accept": "*/*",
             },
         }
     );
