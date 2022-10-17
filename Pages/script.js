@@ -47,6 +47,7 @@ const getAllProjects = () => {
         {
             headers: {
                 "Accept": "*/*",
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetAllProjects"
             },
         }
     );
@@ -58,7 +59,7 @@ const showAllProjects = (projects) => {
     // Loops through each product to create a project card
     products.map(function (project) {
         // Fetch the corresponding image
-        fetch(`http://localhost:5001/webapi/ProjectImage/${project.id}`)
+        fetch(`https://localhost:5000/webapi/ProjectImage/${project.id}`)
             .then((response) => response.blob())
             .then((imageBlob) => {
                 // Create the card with a div element

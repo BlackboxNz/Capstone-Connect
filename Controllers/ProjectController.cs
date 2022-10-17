@@ -62,7 +62,6 @@ namespace Capstone_Connect.Controllers
         }
 
         // GET /webapi/GetAllProjects
-        [DisableCors]
         [HttpGet("GetAllProjects")]
         public ActionResult<IEnumerable<ProjectOutDto>> GetAllProjects()
         {
