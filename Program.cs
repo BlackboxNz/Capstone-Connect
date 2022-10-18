@@ -20,9 +20,10 @@ using Capstone_Connect.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors();
+
 
 // Add services to the container.
+//builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -42,12 +43,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
  app.UseRouting();
 
-app.UseCors(builder =>
-{
-    builder.AllowAnyOrigin()
-           .AllowAnyMethod()
-           .AllowAnyHeader();
-});
+//app.UseCors(builder =>
+//{
+//    builder.AllowAnyOrigin()
+//           .AllowAnyMethod()
+//           .AllowAnyHeader();
+//});
 
 app.UseAuthorization();
 app.MapControllers();

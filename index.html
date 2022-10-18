@@ -174,7 +174,7 @@
             text-shadow: 2px 5px 5px black;
         }
 
-        .filter {
+        .tag {
             background: #2a2a2a;
             width: 100%;
             height: 1050px;
@@ -185,7 +185,7 @@
             overflow: hidden;
         }
 
-        .filter-cont {
+        .tag-cont {
             top: 50px;
             position: relative;
             width: 95.5%;
@@ -372,20 +372,22 @@
         </div>
     </div>
 
-    <div class="filter">
-        <div class="filter-cont">
-            <span class="text1">Filter:</span>
+    <div class="tag">
+        <div class="tag-cont">
+            <span class="text1">Tags:</span>
             <div id="myBtnContainer">
-                <button class="btn active" onclick="projectfilter('all')"> Show all</button>
-                <button class="btn" onclick="projectfilter('HTML')">Html</button>
-                <button class="btn" onclick="projectfilter('CSS')">CSS</button>
-                <button class="btn" onclick="projectfilter('Python')">Python</button>
-                <button class="btn" onclick="projectfilter('Javascript')">Javascript</button>
-                <button class="btn" onclick="projectfilter('Node')">Node.js</button>
-                <button class="btn" onclick="projectfilter('Java')">Java</button>
-                <button class="btn" onclick="projectfilter('Docker')">Docker</button>
-                <button class="btn" onclick="projectfilter('Liked')">Most Liked</button>
-                <button class="btn" onclick="projectfilter('Viewed')">Most Viewed</button>
+                <button class="btn active" onclick="projecttag('all')"> Show all</button>
+                <button class="btn" onclick="projecttag('HTML')">Html</button>
+                <button class="btn" onclick="projecttag('CSS')">CSS</button>
+                <button class="btn" onclick="projecttag('Python')">Python</button>
+                <button class="btn" onclick="projecttag('Javascript')">Javascript</button>
+                <button class="btn" onclick="projecttag('Node')">Node.js</button>
+                <button class="btn" onclick="projecttag('Java')">Java</button>
+                <button class="btn" onclick="projecttag('Docker')">Docker</button>
+                
+                <!-- Sort settings should have it's own division -->
+                <!--<button class="btn" onclick="projectfilter('Liked')">Most Liked</button>
+                <button class="btn" onclick="projectfilter('Viewed')">Most Viewed</button>-->
             </div>
         </div>
 
@@ -408,7 +410,7 @@
         </div>
 <!--
         <div data-aos="fade-up">
-            <div class="filter-cont" style="width: 10%; float: left; top: 900px; left: 50px; height: 35px; margin-top: 20px; cursor: pointer; background: #fffafa; position: absolute;">
+            <div class="tag-cont" style="width: 10%; float: left; top: 900px; left: 50px; height: 35px; margin-top: 20px; cursor: pointer; background: #fffafa; position: absolute;">
                 <span class="text1" style="font-size: 15pt; left: 15px; top: 2px; position: absolute;">View all projects</span>
             </div>
         </div>
@@ -449,8 +451,12 @@
                                 <form>
                                     <!--name input-->
                                     <div class="form-group">
-                                        <label for="fullname">Name</label>
-                                        <input type="text" class="form-control" id="fullname" placeholder="Enter name" name="nme" />
+                                        <label for="firstname">First Name</label>
+                                        <input type="text" class="form-control" id="firstname" placeholder="Enter first name" name="nme" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="text" class="form-control" id="lastname" placeholder="Enter last name" name="nme" />
                                     </div>
                                     <!--email input-->
                                     <div class="form-group">
@@ -459,12 +465,12 @@
                                     </div>
                                     <!--password input-->
                                     <div class="form-group">
-                                        <label for="pwd">Password</label>
+                                        <label for="reg-pwd">Password</label>
                                         <input type="password" class="form-control" id="reg-pwd" placeholder="Enter password" name="pwd" />
                                     </div>
                                     <!--repeat password-->
                                     <div classs="form-group">
-                                        <label for="pwd">Repeat Password</label>
+                                        <label for="repeat-pwd">Repeat Password</label>
                                         <input type="password" class="form-control" id="repeat-pwd" placeholder="Repeat password" name="pwd2" />
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register()">Sign Up</button>
@@ -500,7 +506,7 @@
 
             
         </script>
-        <script src="./Pages/script.js" charset=“utf-8”></script>
+        <script src="Pages/script.js" charset=“utf-8”></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
             AOS.init();

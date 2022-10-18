@@ -99,23 +99,25 @@ const showAllProjects = (projects) => {
 function register() {
     const emailText = document.getElementById("reg-email").value;
     const passwordText = document.getElementById("reg-pwd").value;
-    const fullnameText = document.getElementById("fullname").value;
+    const firstnameText = document.getElementById("firstname").value;
+    const lastnameText = document.getElementById("lastname").value;
     const userJSON = {
-        username: emailText,
-        password: passwordText,
-        fullname: fullnameText,
-        userlevel: "visitor"
+        Email: emailText,
+        Password: passwordText,
+        FirstName: firstnameText,
+        LastName: lastnameText,
     }
 
-    fetch("http://localhost:5000/api/Register", {
+    fetch("https://localhost:5000/webapi/Register", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "https://localhost:5000/webapi/Register"
         },
         body: JSON.stringify(userJSON)
     })
-        .then(response => response.text())
-    // .then(data => document.getElementById("registration-response").innerHTML = data);
+    .then(response => response.text())
+    .then(data => alert(data))
 }
 
 function login() {
