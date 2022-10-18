@@ -12,3 +12,5 @@ bin/
 .debug/
 .node_modules/
 node_modules/
+
+Capstone_Connect.csproj
