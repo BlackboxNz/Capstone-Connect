@@ -71,17 +71,17 @@ const showAllProjects = (projects) => {
                 const image = document.createElement("img");
                 const imageObjectURL = URL.createObjectURL(imageBlob);
                 image.src = imageObjectURL;
-                image.alt = `Image of ${project.ProjectName}`;
+                image.alt = `Image of ${project.projectName}`;
                 image.height = 150;
                 // Create the title
                 const title = document.createElement("h3");
                 title.classList = "line-clamp-1";
-                title.innerHTML = project.ProjectName;
+                title.innerHTML = project.projectName;
 
                 // Create the description text
                 const projectOverview = document.createElement("p");
                 projectOverview.classList = `line-clamp-3 justify ${project.ID}-desc`;
-                projectOverview.innerHTML = project.ProjectOverview;
+                projectOverview.innerHTML = project.projectOverview;
                 //button
                 const button = document.createElement("button");
                 button.classList = "btn";
