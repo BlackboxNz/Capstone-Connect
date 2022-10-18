@@ -44,26 +44,26 @@ namespace Capstone_Connect.Handler
                 var email = credentials[0];
                 var password = credentials[1];
 
-                if (_repository.ValidLogin(email, password, "admin"))
+                if (_repository.Login(email, password, "admin"))
                 {
                     var claims = new[] { new Claim("admin", email) };
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, "admin");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
                     return AuthenticateResult.Success(ticket);
                 }
-                else if (_repository.ValidLogin(email, password, "student"))
+                else if (_repository.Login(email, password, "student"))
                 {
                     var claims = new[] { new Claim("student", email) };
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, "student");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
                     return AuthenticateResult.Success(ticket);
                 }
-                else if (_repository.ValidLogin(email, password, "visitor"))
+                else if (_repository.Login(email, password, "visitor"))
                 {
                     var claims = new[] { new Claim("visitor", email) };
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, "visitor");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
                     return AuthenticateResult.Success(ticket);

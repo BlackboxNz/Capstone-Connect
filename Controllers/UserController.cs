@@ -40,5 +40,15 @@ namespace Capstone_Connect.Controllers
                 return Ok("User successfully registered");
             }
         }
+
+        [Authorize(AuthenticationSchemes = "AuthenticationScheme")]
+        [Authorize(Policy = "VisitorOnly")]
+        [HttpGet("Login")]
+        public ActionResult<string> Login(UserInDto user)
+        {
+            return Ok(_repository.Login(user.Email, user.Password, "visitor"));
+        }
+
+
     }
 }

@@ -122,5 +122,26 @@ function register() {
 }
 
 function login() {
+    let email = document.getElementById("login-email").value;
+    let password = document.getElementById("login-pwd").value;
 
+    fetch("https://localhost:5000/webapi/Login", {
+        headers: {
+            "Content-Type": "application/html",
+            "Authorization": "Basic " + btoa(`${email}:${password}`),
+            "Accept": "application/xml",
+            "Allow-Control-Allow-Origin": "https://localhost:5000/webapi/Login"
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                localStorage.setItem("auth", "true");
+                alert(response.text())
+                //showHome();
+                //document.getElementById("logout").style.display = "inline";
+            }
+            else {
+                //document.getElementById("login-response").innerHTML = "Login Unsuccessful"
+            }
+        });
 }

@@ -77,18 +77,6 @@ namespace Capstone_Connect.Data
         }
 
         //User Functions
-        public bool ValidLogin(string email, string password, string userlevel)
-        {
-            User user = _dbContext.User.Where(u => u.Email == email && u.Password == password && u.UserLevel == userlevel).FirstOrDefault();
-            if (user == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
         public User GetUserByEmail(string email)
         {
             User user = _dbContext.User.FirstOrDefault(e => e.Email == email);
@@ -100,6 +88,18 @@ namespace Capstone_Connect.Data
             User c = e.Entity;
             _dbContext.SaveChanges();
             return c;
+        }
+        public bool Login(string email, string password, string userlevel)
+        {
+            User user = _dbContext.User.Where(u => u.Email == email && u.Password == password && u.UserLevel == userlevel).FirstOrDefault();
+            if (user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public void DeleteUser(User user)
         {

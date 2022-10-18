@@ -30,7 +30,7 @@ namespace Capstone_Connect.Data
         User RegisterUser(User user);
         User GetUserByEmail(string email);
         void DeleteUser(User user);
-        public bool ValidLogin(string email, string password, string userlevel);
+        bool Login(string email, string password, string userlevel);
         //Team Functions
         Team AddTeam(Team team);
         IEnumerable<Team> GetAllTeams();
