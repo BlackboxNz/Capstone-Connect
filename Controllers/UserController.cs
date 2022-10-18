@@ -35,7 +35,7 @@ namespace Capstone_Connect.Controllers
             }
             else
             {
-                User c = new User { Email = user.Email, Password = user.Password };
+                User c = new User { Email = user.Email, Password = user.Password, FirstName = user.FirstName, LastName = user.LastName, UserLevel = "visitor"};
                 User addedUser = _repository.RegisterUser(c);
                 return Ok("User successfully registered");
             }

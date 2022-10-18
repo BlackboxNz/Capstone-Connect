@@ -9,12 +9,9 @@ namespace Capstone_Connect.Dtos
 {
     public class UserOutDto
     {
-        public int ID { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string UserLevel { get; set; }
         public ICollection<Project> LikedProjects { get; set; }
     }
 }

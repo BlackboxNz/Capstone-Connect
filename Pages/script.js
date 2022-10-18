@@ -43,10 +43,11 @@ const projectsContainer = document.getElementById("projects");
 
 // Fetches all projects from api
 const getAllProjects = () => {
-    const fetchPromise = fetch(`http://localhost:5001/webapi/GetAllProjects`,
+    const fetchPromise = fetch(`https://localhost:5000/webapi/GetAllProjects`,
         {
             headers: {
                 "Accept": "*/*",
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetAllProjects"
             },
             
         }
@@ -56,16 +57,16 @@ const getAllProjects = () => {
 }
 
 const showAllProjects = (projects) => {
-    // Loops through each product to create a project card
-    products.map(function (project) {
+    // Loops through each project to create a project card
+    projects.map(function (project) {
         // Fetch the corresponding image
-        fetch(`http://localhost:5001/webapi/ProjectImage/${project.id}`)
+        fetch(`https://localhost:5000/webapi/ProjectImage/${project.id}`)
             .then((response) => response.blob())
             .then((imageBlob) => {
                 // Create the card with a div element
                 const card = document.createElement("div");
                 card.classList = "card col-3";
-                card.id = product.id;
+                card.id = project.id;
                 // Create an image element
                 const image = document.createElement("img");
                 const imageObjectURL = URL.createObjectURL(imageBlob);
@@ -99,23 +100,25 @@ const showAllProjects = (projects) => {
 function register() {
     const emailText = document.getElementById("reg-email").value;
     const passwordText = document.getElementById("reg-pwd").value;
-    const fullnameText = document.getElementById("fullname").value;
+    const firstnameText = document.getElementById("firstname").value;
+    const lastnameText = document.getElementById("lastname").value;
     const userJSON = {
-        username: emailText,
-        password: passwordText,
-        fullname: fullnameText,
-        userlevel: "visitor"
+        Email: emailText,
+        Password: passwordText,
+        FirstName: firstnameText,
+        LastName: lastnameText,
     }
 
-    fetch("http://localhost:5000/api/Register", {
+    fetch("https://localhost:5000/webapi/Register", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "https://localhost:5000/webapi/Register"
         },
         body: JSON.stringify(userJSON)
     })
-        .then(response => response.text())
-    // .then(data => document.getElementById("registration-response").innerHTML = data);
+    .then(response => response.text())
+    .then(data => alert(data))
 }
 
 function login() {

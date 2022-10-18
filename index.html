@@ -174,7 +174,7 @@
             text-shadow: 2px 5px 5px black;
         }
 
-        .filter {
+        .tag {
             background: #2a2a2a;
             width: 100%;
             height: 1050px;
@@ -185,7 +185,7 @@
             overflow: hidden;
         }
 
-        .filter-cont {
+        .tag-cont {
             top: 50px;
             position: relative;
             width: 95.5%;
@@ -204,7 +204,7 @@
             margin-left: 7.5%;
             height: 300px;
             width: 300px;
-            background-color: #fffafa;
+            background: #fffafa;
             z-index: 2;
             float: left;
             cursor: pointer;
@@ -232,11 +232,12 @@
             left: 30%;
             font-size: 20pt;
             font-weight: bold;
+            text-shadow: 2px 5px 8px #2a2a2a;
         }
 
         .btn {
             position: relative;
-            margin-left: 8px;
+            margin-left: 0.5%;
             margin-top: 4px;
             left: 5%;
             bottom: 20px;
@@ -259,6 +260,26 @@
 
         .show {
             display: block;
+        }
+
+        .circlel {
+            position: relative;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            opacity: 50%;
+            float: right;
+            top: 5%;
+            right: 5%;
+            background: url("https://i.ibb.co/n0QQ2jN/image.png");
+            background-position: center;
+            background-size: 70%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        .liked {
+            opacity: 1;
         }
     </style>
 </head>
@@ -351,43 +372,45 @@
         </div>
     </div>
 
-    <div class="filter">
-        <div class="filter-cont">
-            <span class="text1">Filter:</span>
+    <div class="tag">
+        <div class="tag-cont">
+            <span class="text1">Tags:</span>
             <div id="myBtnContainer">
-                <button class="btn active" onclick="projectfilter('all')"> Show all</button>
-                <button class="btn" onclick="projectfilter('Proj1')">Html</button>
-                <button class="btn" onclick="projectfilter('Proj2')">CSS</button>
-                <button class="btn" onclick="projectfilter('Proj3')">Python</button>
-                <button class="btn" onclick="projectfilter('Proj4')">Javascript</button>
-                <button class="btn" onclick="projectfilter('Proj5')">Node.js</button>
-                <button class="btn" onclick="projectfilter('Proj6')">Java</button>
-                <button class="btn" onclick="projectfilter('Proj7')">Docker</button>
-                <button class="btn" onclick="projectfilter('Proj8')">Project 8</button>
-                <button class="btn" onclick="projectfilter('Proj9')">Project 9</button>
+                <button class="btn active" onclick="projecttag('all')"> Show all</button>
+                <button class="btn" onclick="projecttag('HTML')">Html</button>
+                <button class="btn" onclick="projecttag('CSS')">CSS</button>
+                <button class="btn" onclick="projecttag('Python')">Python</button>
+                <button class="btn" onclick="projecttag('Javascript')">Javascript</button>
+                <button class="btn" onclick="projecttag('Node')">Node.js</button>
+                <button class="btn" onclick="projecttag('Java')">Java</button>
+                <button class="btn" onclick="projecttag('Docker')">Docker</button>
+                
+                <!-- Sort settings should have it's own division -->
+                <!--<button class="btn" onclick="projectfilter('Liked')">Most Liked</button>
+                <button class="btn" onclick="projectfilter('Viewed')">Most Viewed</button>-->
             </div>
         </div>
 
         <div data-aos="fade-up">
-            <div class="project-cont Proj1"><a href="/Pages/template.html"><img style="height: 300px; width: 300px;" src="./img/Projects/Sem1 2022/Team 15 Showcase Poster.png" alt="Project 1"/><p class="text2">Project 1</p></a></div>
+            <div class="project-cont HTML Liked" style="background: url('https://i.ibb.co/pwyhDsT/image.png'); background-size: cover;"><span class="circlel" id="1"onclick="addClass('1')"></span><a href="/Pages/template.html"><span class="text2">Project 1</span></a></div>
 
-            <div class="project-cont Proj2"><span class="text2">Project 2</span></div>
+            <div class="project-cont CSS"><span class="circlel" id="2" onclick="addClass('2')"></span><span class="text2">Project 2</span></div>
 
-            <div class="project-cont Proj3"><span class="text2">Project 3</span></div>
+            <div class="project-cont CSS Python"><span class="circlel" id="3" onclick="addClass('3')"></span><span class="text2">Project 3</span></div>
 
-            <div class="project-cont Proj4"><span class="text2">Project 4</span></div>
+            <div class="project-cont Python Java"><span class="circlel" id="4" onclick="addClass('4')"></span><span class="text2">Project 4</span></div>
 
-            <div class="project-cont Proj5"><span class="text2">Project 5</span></div>
+            <div class="project-cont Javascript HTML"><span class="circlel" id="5" onclick="addClass('5')"></span><span class="text2">Project 5</span></div>
 
-            <div class="project-cont Proj6"><span class="text2">Project 6</span></div>
+            <div class="project-cont Node Viewed"><span class="circlel" id="6" onclick="addClass('6')"></span><span class="text2">Project 6</span></div>
 
-            <div class="project-cont Proj7"><span class="text2">Project 7</span></div>
+            <div class="project-cont Docker Java"><span class="circlel" id="7" onclick="addClass('7')"></span><span class="text2">Project 7</span></div>
 
-            <div class="project-cont Proj8"><span class="text2">Project 8</span></div>
+            <div class="project-cont CSS Node Docker"><span class="circlel" id="8" onclick="addClass('8')"></span><span class="text2">Project 8</span></div>
         </div>
 <!--
         <div data-aos="fade-up">
-            <div class="filter-cont" style="width: 10%; float: left; top: 900px; left: 50px; height: 35px; margin-top: 20px; cursor: pointer; background: #fffafa; position: absolute;">
+            <div class="tag-cont" style="width: 10%; float: left; top: 900px; left: 50px; height: 35px; margin-top: 20px; cursor: pointer; background: #fffafa; position: absolute;">
                 <span class="text1" style="font-size: 15pt; left: 15px; top: 2px; position: absolute;">View all projects</span>
             </div>
         </div>
@@ -428,8 +451,12 @@
                                 <form>
                                     <!--name input-->
                                     <div class="form-group">
-                                        <label for="fullname">Name</label>
-                                        <input type="text" class="form-control" id="fullname" placeholder="Enter name" name="nme" />
+                                        <label for="firstname">First Name</label>
+                                        <input type="text" class="form-control" id="firstname" placeholder="Enter first name" name="nme" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="text" class="form-control" id="lastname" placeholder="Enter last name" name="nme" />
                                     </div>
                                     <!--email input-->
                                     <div class="form-group">
@@ -438,12 +465,12 @@
                                     </div>
                                     <!--password input-->
                                     <div class="form-group">
-                                        <label for="pwd">Password</label>
+                                        <label for="reg-pwd">Password</label>
                                         <input type="password" class="form-control" id="reg-pwd" placeholder="Enter password" name="pwd" />
                                     </div>
                                     <!--repeat password-->
                                     <div classs="form-group">
-                                        <label for="pwd">Repeat Password</label>
+                                        <label for="repeat-pwd">Repeat Password</label>
                                         <input type="password" class="form-control" id="repeat-pwd" placeholder="Repeat password" name="pwd2" />
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register()">Sign Up</button>
@@ -459,6 +486,12 @@
             </div>
         </div>
         <script>
+            function addClass(id) {
+                var element = document.getElementById(id);
+                element.classList.toggle("liked");
+            }
+        </script>
+        <script>
             // Add active class to the current control button (highlight it)
             var btnContainer = document.getElementById("myBtnContainer");
             var btns = btnContainer.getElementsByClassName("btn");
@@ -473,7 +506,7 @@
 
             
         </script>
-        <script src="./Pages/script.js" charset=“utf-8”></script>
+        <script src="Pages/script.js" charset=“utf-8”></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
             AOS.init();
