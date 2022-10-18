@@ -60,7 +60,7 @@ const showAllProjects = (projects) => {
     // Loops through each project to create a project card
     projects.map(function (project) {
         // Fetch the corresponding image
-        fetch(`https://localhost:5000/webapi/ProjectImage/${project.id}`)
+        fetch(`https://localhost:5000/webapi/GetProjectImage/${project.id}`)
             .then((response) => response.blob())
             .then((imageBlob) => {
                 // Create the card with a div element
