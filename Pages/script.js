@@ -49,6 +49,7 @@ const getAllProjects = () => {
                 "Accept": "*/*",
                 "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetAllProjects"
             },
+            
         }
     );
     const streamPromise = fetchPromise.then((response) => response.json());
