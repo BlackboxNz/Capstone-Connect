@@ -39,7 +39,7 @@ namespace Capstone_Connect.Controllers
             else
             {
                 respHeader = "image/png";
-                fileName = Path.Combine(imgDir, "default.png"); ;
+                fileName = Path.Combine(imgDir, "default.png");
             }
 
 
