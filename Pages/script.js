@@ -43,7 +43,7 @@ const projectsContainer = document.getElementById("projects");
 
 // Fetches all projects from api
 const getAllProjects = () => {
-    const fetchPromise = fetch(`http://localhost:5001/webapi/GetAllProjects`,
+    const fetchPromise = fetch(`https://localhost:5000/webapi/GetAllProjects`,
         {
             headers: {
                 "Accept": "*/*",
@@ -56,8 +56,8 @@ const getAllProjects = () => {
 }
 
 const showAllProjects = (projects) => {
-    // Loops through each product to create a project card
-    products.map(function (project) {
+    // Loops through each project to create a project card
+    projects.map(function (project) {
         // Fetch the corresponding image
         fetch(`https://localhost:5000/webapi/ProjectImage/${project.id}`)
             .then((response) => response.blob())
@@ -65,7 +65,7 @@ const showAllProjects = (projects) => {
                 // Create the card with a div element
                 const card = document.createElement("div");
                 card.classList = "card col-3";
-                card.id = product.id;
+                card.id = project.id;
                 // Create an image element
                 const image = document.createElement("img");
                 const imageObjectURL = URL.createObjectURL(imageBlob);
