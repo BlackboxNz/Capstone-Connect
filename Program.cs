@@ -23,12 +23,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
-//builder.Services.AddCors();
+builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CapstoneConnectDBContext>(options => options.UseSqlite(builder.Configuration["Capstone_ConnectConnection"]));
 builder.Services.AddScoped<ICapstoneConnectRepo, DBCapstoneConnectRepo>();
+builder.Services.AddAuthentication()
+.AddScheme<AuthenticationSchemeOptions, AuthHandler>
+("AuthenticationScheme", null).
+Services.AddAuthorization(options =>
+{
+    options.AddPolicy("VisitorOnly", policy => policy.RequireClaim("visitor"));
+    options.AddPolicy("UserOnly", policy => policy.RequireClaim("user"));
+    options.AddPolicy("AdminOnly", policy => policy.RequireClaim("admin"));
+});
 
 var app = builder.Build();
 
@@ -41,14 +50,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
- app.UseRouting();
+app.UseRouting();
 
-//app.UseCors(builder =>
-//{
-//    builder.AllowAnyOrigin()
-//           .AllowAnyMethod()
-//           .AllowAnyHeader();
-//});
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 
 app.UseAuthorization();
 app.MapControllers();
