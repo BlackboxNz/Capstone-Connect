@@ -14,7 +14,7 @@ namespace Capstone_Connect.Data
     {
         public CapstoneConnectDBContext(DbContextOptions<CapstoneConnectDBContext> options) : base(options) { }
         public DbSet<Project> Project { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Visitor> User { get; set; }
         public DbSet<Tag> Tag { get; set; }
         public DbSet<Team> Team { get; set; }
         public DbSet<Comment> Comment { get; set; }

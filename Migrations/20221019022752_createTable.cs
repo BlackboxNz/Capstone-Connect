@@ -110,7 +110,6 @@ namespace Capstone_Connect.Migrations
                     Password = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
-                    UserLevel = table.Column<string>(type: "TEXT", nullable: false),
                     TeamID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -124,7 +123,7 @@ namespace Capstone_Connect.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectUser",
+                name: "ProjectVisitor",
                 columns: table => new
                 {
                     LikedProjectsID = table.Column<int>(type: "INTEGER", nullable: false),
@@ -132,15 +131,15 @@ namespace Capstone_Connect.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectUser", x => new { x.LikedProjectsID, x.TeamsID });
+                    table.PrimaryKey("PK_ProjectVisitor", x => new { x.LikedProjectsID, x.TeamsID });
                     table.ForeignKey(
-                        name: "FK_ProjectUser_Project_LikedProjectsID",
+                        name: "FK_ProjectVisitor_Project_LikedProjectsID",
                         column: x => x.LikedProjectsID,
                         principalTable: "Project",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectUser_User_TeamsID",
+                        name: "FK_ProjectVisitor_User_TeamsID",
                         column: x => x.TeamsID,
                         principalTable: "User",
                         principalColumn: "ID",
@@ -158,8 +157,8 @@ namespace Capstone_Connect.Migrations
                 column: "TagsTagId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectUser_TeamsID",
-                table: "ProjectUser",
+                name: "IX_ProjectVisitor_TeamsID",
+                table: "ProjectVisitor",
                 column: "TeamsID");
 
             migrationBuilder.CreateIndex(
@@ -177,7 +176,7 @@ namespace Capstone_Connect.Migrations
                 name: "ProjectTag");
 
             migrationBuilder.DropTable(
-                name: "ProjectUser");
+                name: "ProjectVisitor");
 
             migrationBuilder.DropTable(
                 name: "Tag");

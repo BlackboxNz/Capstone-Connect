@@ -126,12 +126,13 @@ function login() {
     let email = document.getElementById("login-email").value;
     let password = document.getElementById("login-pwd").value;
 
-    fetch("https://localhost:5000/webapi/Login", {
+    fetch("https://localhost:5000/webapi/GetAuth", {
+        method: "GET",
         headers: {
             "Content-Type": "application/html",
             "Authorization": "Basic " + btoa(`${email}:${password}`),
             "Accept": "application/xml",
-            "Allow-Control-Allow-Origin": "https://localhost:5000/webapi/Login"
+            "Allow-Control-Allow-Origin": "https://localhost:5000/webapi/GetAuth"
         }
     })
         .then(response => {

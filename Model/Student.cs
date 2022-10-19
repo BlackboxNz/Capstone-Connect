@@ -7,11 +7,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Capstone_Connect.Model
 {
-    public class User
+    public class Student
     {
         [Key]
         public int ID { get; set; }
-        
+
         [Required]
         public string Email { get; set; }
 
@@ -24,11 +24,8 @@ namespace Capstone_Connect.Model
         [Required]
         public string LastName { get; set; }
 
-        [Required]
-        public string UserLevel { get; set; }
-
         public ICollection<Project> LikedProjects { get; set; }
-        
-        
-}
+
+
+    }
 }
