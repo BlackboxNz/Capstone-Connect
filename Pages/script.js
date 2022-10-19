@@ -135,7 +135,6 @@ function login() {
             if (response.ok) {
                 localStorage.setItem("auth", "true");
                 alert(response.text())
-                //showHome();
                 //document.getElementById("logout").style.display = "inline";
             }
             else {
