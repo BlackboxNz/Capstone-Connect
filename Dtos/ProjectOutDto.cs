@@ -21,7 +21,7 @@ namespace Capstone_Connect.Dtos
         public ICollection<Tag>? Tags { get; set; }
 
         // Team members
-        public ICollection<Visitor>? Users { get; set; }
+        public ICollection<Student>? Users { get; set; }
         // Users that have liked the project.
         //public ICollection<User> LikedBy { get; set; }
         public ICollection<Comment>? Comments { get; set; }
