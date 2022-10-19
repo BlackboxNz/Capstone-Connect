@@ -74,7 +74,7 @@ const showAllProjects = (projects) => {
                 image.alt = `Image of ${project.projectName}`;
                 image.height = 150;
                 // Create the title
-                const title = document.createElement("h3");
+                const title = document.createElement("h4");
                 title.classList = "line-clamp-1";
                 title.innerHTML = project.projectName;
 

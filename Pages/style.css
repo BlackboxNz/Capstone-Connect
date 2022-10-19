@@ -14,14 +14,7 @@ body {
     color: rgb(0, 0, 0);
 }
 
-.card {
-    color: #f1f1f1;
-    border: solid;
-    border-color: #f1f1f1;
-    border-width: 1px;
-    border-radius: 3px;
-    margin: 3px;
-}
+
 
 .container_main {
     position: absolute;
@@ -123,15 +116,15 @@ body {
     padding-right: 150px;
 }
 
-    .flex-container > div {
-        background-color: #444444;
-        color: white;
-        margin: auto;
-        padding-left: 50px;
-        padding-right: 50px;
-        padding-top: 25px;
-        border-color: #5e5e5e;
-    }
+.flex-container > div {
+    background-color: #444444;
+    color: white;
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 25px;
+    border-color: #5e5e5e;
+}
 
 .overview {
     padding: 10px;
@@ -149,9 +142,9 @@ body {
     transition: 0.3s;
 }
 
-    #showcaseimg:hover {
-        opacity: 0.7;
-    }
+#showcaseimg:hover {
+    opacity: 0.7;
+}
 
 /*poster image modal background*/
 .postermodal {
@@ -217,7 +210,7 @@ body {
     justify-content: center;
 }
 
-
+/*Projects card style*/
 #projects {
 padding: 50px 100px 0px 100px;
 }
@@ -227,6 +220,7 @@ padding: 50px 100px 0px 100px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: #f1f1f1;
 }
 
 .line-clamp-3 {
@@ -234,11 +228,20 @@ padding: 50px 100px 0px 100px;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: #f1f1f1;
 }
 
 .card {
     padding: 10px;
     text-align: center;
+    background-color: #636363;
+    margin: 3px;
+    /*
+    border: solid;
+    border-color: #f1f1f1;
+    border-width: 1px;
+    border-radius: 3px;*/
+    
 }
 
 .card:hover {
