@@ -7,6 +7,25 @@ body {
     margin: 0;
     font-family: 'Poppins';
     scroll-behavior: smooth;
+    background: #525252;
+}
+
+.btn {
+    color: rgb(0, 0, 0);
+}
+
+.card {
+    color: #f1f1f1;
+    border: solid;
+    border-color: #f1f1f1;
+    border-width: 1px;
+    border-radius: 3px;
+    margin: 3px;
+}
+
+.container_main {
+    position: absolute;
+    top: 8%;
     background: #2a2a2a;
 }
 
@@ -59,10 +78,10 @@ body {
     transition: background 1000ms, color 1000ms;
 }
 .navitem:link{
-    color: fffafa;
+    color: #fffafa;
 }
 .navitem:visited{
-    color: fffafa;
+    color: #fffafa;
 }
 
 .navitem:hover {
@@ -202,6 +221,7 @@ body {
 #projects {
 padding: 50px 100px 0px 100px;
 }
+
 .line-clamp-1 {
     display: -webkit-box;
     -webkit-line-clamp: 1;
