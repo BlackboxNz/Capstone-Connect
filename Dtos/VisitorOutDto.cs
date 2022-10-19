@@ -7,10 +7,10 @@ using Capstone_Connect.Model;
 
 namespace Capstone_Connect.Dtos
 {
-    public class TeamOutDto
+    public class VisitorOutDto
     {
-        public int ID { get; set; }
-        public string TeamName { get; set; }
-        public ICollection<Student> Members { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public ICollection<Project> LikedProjects { get; set; }
     }
 }

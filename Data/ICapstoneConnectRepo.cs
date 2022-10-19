@@ -20,12 +20,12 @@ namespace Capstone_Connect.Data
         public Project GetProjectByID(int id);
         public void DeleteProject(int id);
         public Project AddProject(Project project);
-        public void LikeProject(Project project, Visitor user);
+        public void LikeProject(Project project, Visitor visitor);
         public void SubmitProject(Project project);
 
-        //User Functions
-        public Visitor RegisterUser(Visitor user);
-        public Visitor GetUserByEmail(string email);
+        //Student Functions
+        //public Student RegisterStudent(Student student);
+        //public Student GetStudentByEmail(string email);
         public void DeleteUser(Visitor user);
         //bool Login(string email, string password, string userlevel);
         public string GetAuth();
@@ -34,6 +34,9 @@ namespace Capstone_Connect.Data
         public bool AdminLogin(string email, string password);
 
 
+        // Visitor 
+        public Visitor RegisterVisitor(Visitor visitor);
+        public Visitor GetVisitorByEmail(string email);
 
         //Team Functions
         public Team AddTeam(Team team);
