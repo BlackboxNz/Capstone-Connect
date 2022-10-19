@@ -85,13 +85,11 @@ const showAllProjects = (projects) => {
                 //button
                 const button = document.createElement("button");
                 button.classList = "btn";
-                button.addEventListener("click", function () {
-                    buyItem(project.ID);
-                });
+                button.setAttribute("onclick", `location.href='template.html'`);
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
-                card.setAttribute("onclick", `location.href='template.html'`);
+                
                 projectsContainer.append(card);
             });
     });
