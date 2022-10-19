@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="./admin.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./student.css">
+    
     <style>
         div {
             color: #fff;
@@ -33,7 +34,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Update Project</h2>
+                <h2>Add Project</h2>
                 <form id="project-form">
                     <div class="form-group">
                         <label for="project_name">Project Name</label>
@@ -57,13 +58,14 @@
                     </div>
                     <div class="form-group">
                         <label for="project_image">Project Image</label>
-                        <input type="text" class="form-control" name="project_image" id="project_image"
-                            placeholder="Project Image">
+                        <input type="text" class="form-control" name="project_video" id="project_video"
+                            placeholder="Paste img URL here">
+                        <!--<input id="student-submit" type="submit" value="Upload Image" onclick="return UploadFile();" /> -->
                     </div>
                     <div class="form-group">
                         <label for="project_video">Project Video</label>
                         <input type="text" class="form-control" name="project_video" id="project_video"
-                            placeholder="Project Video">
+                            placeholder="Paste video URL here">
                     </div>
                     <div class="form-group">
                         <label for="project_team">Project Team</label>
@@ -78,11 +80,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a class="btn btn-primary btn-block" type="button" onClick="editProject()">Update Project</a>
+                <a class="btn btn-primary btn-block" type="button" onClick="createProject()">Create Project</a>
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="../script.js"></script>
+    <script src="./studentScript.js"></script>
 </body>
 
 </html>

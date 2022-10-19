@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="./admin/admin.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./students/student.css">
 
 </head>
 
@@ -25,32 +25,24 @@
             <li class="navitem"><a href="projects.html">Projects</a></li>
             <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
             <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
-            <li class="navitem" style="float:right">Admin</li>
+            <li class="navitem" style="float:right">My Account</li>
         </ul>
     </div>
 
-    <div class="admincont">
+    <div class="studentcont">
         <div class="titlecont">
-            <span class="admintitle">Administration</span>
+            <span class="studenttitle">Manage Account</span>
         </div>
 
 
-        <div class="adminbox">
-            <span class="admintitle2">Project</span> <br />
-            <button id="newProject" type="button"><a href="./admin/add_project.html">add project</a></button> <br />
-            <button id="editProject" type="button"><a href="./admin/edit_project.html">edit project</a></button> <br />
-            <button id="deleteProject" type="button"><a href="./admin/delete_project.html">delete project</a></button> <br />
+        <div class="studentbox">
+            <span class="studenttitle2">Project</span> <br />
+            <button id="newProject" type="button"><a href="./students/add_project.html">add project</a></button> <br />
+            <button id="editProject" type="button"><a href="./students/edit_project.html">edit project</a></button> <br />
         </div>
-        <div class="adminbox">
-            <span class="admintitle2">Student</span> <br />
-            <button id="newStudent" type="button"> <a href="./admin/add_student.html">add student</a></button> <br />
-            <button id="deleteStudent" type="button"><a href="./admin/delete_student.html">delete student</a></button> <br />
-        </div>
-        <div class="adminbox">
-            <span class="admintitle2">Team</span> <br />
-            <button id="newTeam" type="button"><a href="./admin/add_team.html">add team</a></button> <br />
-            <button id="editTeam" type="button"><a href="./admin/edit_team.html">edit team</a></button> <br />
-            <button id="deleteTeam" type="button"><a href="./admin/delete_team.html">delete team</a></button> <br />
+        <div class="studentbox">
+            <span class="studentitle2">Team</span> <br />
+            <button id="joinTeam" type="button"><a href="./students/join_team.html">Join team</a></button> <br />
         </div>
 
     </div>

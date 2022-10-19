@@ -80,11 +80,11 @@ const showAllProjects = (projects) => {
 
                 // Create the description text
                 const projectOverview = document.createElement("p");
-                projectOverview.classList = `line-clamp-3 justify ${project.ID}-desc`;
+                projectOverview.classList = `line-clamp-3 justify ${project.id}-desc`;
                 projectOverview.innerHTML = project.projectOverview;
                 //button
                 const button = document.createElement("button");
-                button.classList = "btn";
+                button.classList = `proj-btn ${project.id}-btn`;
                 button.setAttribute("onclick", `location.href='template.html'`);
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
@@ -95,6 +95,9 @@ const showAllProjects = (projects) => {
     });
 };
 
+
+
+//Login and register functions. 
 function register() {
     const fullnameText = document.getElementById("fullname").value;
     const emailText = document.getElementById("reg-email").value;
