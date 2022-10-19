@@ -21,34 +21,35 @@ namespace Capstone_Connect.Controllers
             _repository = repository;
         }
 
-        [HttpPost("Register")]
-        public ActionResult Register(UserInDto user)
-        {
-            if (user.Email == "")
-            {
-                return Ok("Invalid Email");
-            }
-            Visitor t = _repository.GetUserByEmail(user.Email);
-            if (t != null)
-            {
-                return Ok("Email not available.");
-            }
-            else
-            {
-                Visitor c = new Visitor { Email = user.Email, Password = user.Password, FirstName = user.FirstName, LastName = user.LastName};
-                Visitor addedUser = _repository.RegisterUser(c);
-                return Ok("User successfully registered");
-            }
-        }
+        //    [HttpPost("Register")]
+        //    public ActionResult Register(UserInDto user)
+        //    {
+        //        if (user.Email == "")
+        //        {
+        //            return Ok("Invalid Email");
+        //        }
+        //        Visitor t = _repository.GetUserByEmail(user.Email);
+        //        if (t != null)
+        //        {
+        //            return Ok("Email not available.");
+        //        }
+        //        else
+        //        {
+        //            Visitor c = new Visitor { Email = user.Email, Password = user.Password, FullName = user.FullName};
+        //            Visitor addedUser = _repository.RegisterUser(c);
+        //            return Ok("User successfully registered");
+        //        }
+        //    }
 
-        [Authorize(AuthenticationSchemes = "AuthenticationScheme")]
-        [Authorize(Policy = "VisitorOnly")]
-        [HttpGet("VisitorLogin")]
-        public ActionResult<string> GetAuth()
-        {
-            return Ok(_repository.GetAuth());
-        }
+        //    [Authorize(AuthenticationSchemes = "AuthenticationScheme")]
+        //    [Authorize(Policy = "VisitorOnly")]
+        //    [HttpGet("VisitorLogin")]
+        //    public ActionResult<string> GetAuth()
+        //    {
+        //        return Ok(_repository.GetAuth());
+        //    }
 
 
+        //}
     }
 }
