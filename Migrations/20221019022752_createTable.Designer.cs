@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Capstone_Connect.Migrations
 {
     [DbContext(typeof(CapstoneConnectDBContext))]
-    [Migration("20221017030808_createTable")]
+    [Migration("20221019022752_createTable")]
     partial class createTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,7 +115,7 @@ namespace Capstone_Connect.Migrations
                     b.ToTable("Team");
                 });
 
-            modelBuilder.Entity("Capstone_Connect.Model.User", b =>
+            modelBuilder.Entity("Capstone_Connect.Model.Visitor", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -140,10 +140,6 @@ namespace Capstone_Connect.Migrations
                     b.Property<int?>("TeamID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("UserLevel")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("ID");
 
                     b.HasIndex("TeamID");
@@ -166,7 +162,7 @@ namespace Capstone_Connect.Migrations
                     b.ToTable("ProjectTag");
                 });
 
-            modelBuilder.Entity("ProjectUser", b =>
+            modelBuilder.Entity("ProjectVisitor", b =>
                 {
                     b.Property<int>("LikedProjectsID")
                         .HasColumnType("INTEGER");
@@ -178,7 +174,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasIndex("TeamsID");
 
-                    b.ToTable("ProjectUser");
+                    b.ToTable("ProjectVisitor");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Comment", b =>
@@ -190,7 +186,7 @@ namespace Capstone_Connect.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Capstone_Connect.Model.User", b =>
+            modelBuilder.Entity("Capstone_Connect.Model.Visitor", b =>
                 {
                     b.HasOne("Capstone_Connect.Model.Team", null)
                         .WithMany("Members")
@@ -212,7 +208,7 @@ namespace Capstone_Connect.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectUser", b =>
+            modelBuilder.Entity("ProjectVisitor", b =>
                 {
                     b.HasOne("Capstone_Connect.Model.Project", null)
                         .WithMany()
@@ -220,7 +216,7 @@ namespace Capstone_Connect.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Capstone_Connect.Model.User", null)
+                    b.HasOne("Capstone_Connect.Model.Visitor", null)
                         .WithMany()
                         .HasForeignKey("TeamsID")
                         .OnDelete(DeleteBehavior.Cascade)

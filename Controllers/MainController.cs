@@ -13,10 +13,10 @@ namespace Capstone_Connect.Controllers
 {
     [Route("webapi")]
     [ApiController]
-    public class UserController : Controller
+    public class MainController : Controller
     {
         private readonly ICapstoneConnectRepo _repository;
-        public UserController(ICapstoneConnectRepo repository)
+        public MainController(ICapstoneConnectRepo repository)
         {
             _repository = repository;
         }
@@ -28,25 +28,25 @@ namespace Capstone_Connect.Controllers
             {
                 return Ok("Invalid Email");
             }
-            User t = _repository.GetUserByEmail(user.Email);
+            Visitor t = _repository.GetUserByEmail(user.Email);
             if (t != null)
             {
                 return Ok("Email not available.");
             }
             else
             {
-                User c = new User { Email = user.Email, Password = user.Password, FirstName = user.FirstName, LastName = user.LastName, UserLevel = "visitor"};
-                User addedUser = _repository.RegisterUser(c);
+                Visitor c = new Visitor { Email = user.Email, Password = user.Password, FirstName = user.FirstName, LastName = user.LastName};
+                Visitor addedUser = _repository.RegisterUser(c);
                 return Ok("User successfully registered");
             }
         }
 
         [Authorize(AuthenticationSchemes = "AuthenticationScheme")]
         [Authorize(Policy = "VisitorOnly")]
-        [HttpGet("Login")]
-        public ActionResult<string> Login(UserInDto user)
+        [HttpGet("VisitorLogin")]
+        public ActionResult<string> GetAuth()
         {
-            return Ok(_repository.Login(user.Email, user.Password, "visitor"));
+            return Ok(_repository.GetAuth());
         }
 
 

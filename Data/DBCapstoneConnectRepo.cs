@@ -44,7 +44,7 @@ namespace Capstone_Connect.Data
         }
         
         //Visitor based project functions
-        public void LikeProject(Project project, User user)
+        public void LikeProject(Project project, Visitor user)
         {
         }
 
@@ -77,21 +77,21 @@ namespace Capstone_Connect.Data
         }
 
         //User Functions
-        public User GetUserByEmail(string email)
+        public Visitor GetUserByEmail(string email)
         {
-            User user = _dbContext.User.FirstOrDefault(e => e.Email == email);
+            Visitor user = _dbContext.User.FirstOrDefault(e => e.Email == email);
             return user;
         }
-        public User RegisterUser(User user)
+        public Visitor RegisterUser(Visitor user)
         {
-            EntityEntry<User> e = _dbContext.User.Add(user);
-            User c = e.Entity;
+            EntityEntry<Visitor> e = _dbContext.User.Add(user);
+            Visitor c = e.Entity;
             _dbContext.SaveChanges();
             return c;
         }
-        public bool Login(string email, string password, string userlevel)
+        public bool VisitorLogin(string email, string password)
         {
-            User user = _dbContext.User.Where(u => u.Email == email && u.Password == password && u.UserLevel == userlevel).FirstOrDefault();
+            Visitor user = _dbContext.User.Where(u => u.Email == email && u.Password == password).FirstOrDefault();
             if (user == null)
             {
                 return false;
@@ -101,16 +101,45 @@ namespace Capstone_Connect.Data
                 return true;
             }
         }
-        public void DeleteUser(User user)
+        public bool StudentLogin(string email, string password)
+        {
+            Visitor user = _dbContext.User.Where(u => u.Email == email && u.Password == password).FirstOrDefault();
+            if (user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool AdminLogin(string email, string password)
+        {
+            Visitor user = _dbContext.User.Where(u => u.Email == email && u.Password == password).FirstOrDefault();
+            if (user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public string GetAuth()
+        {
+            return "Authorised";
+        }
+        public void DeleteUser(Visitor user)
         {
             // Get all comments
-            IEnumerable<User> users = _dbContext.User.ToList<User>();
+            IEnumerable<Visitor> users = _dbContext.User.ToList<Visitor>();
 
             // Check if comment exists
             if (users.FirstOrDefault(e => e.Email == user.Email) != null)
             {
                 // Delete comment
-                User userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
+                Visitor userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
                 _dbContext.User.Remove(userToDelete);
                 _dbContext.SaveChanges();
             }
@@ -207,6 +236,7 @@ namespace Capstone_Connect.Data
                 _dbContext.SaveChanges();
             }
         }
+
         //Save
         public void SaveChanges()
         {

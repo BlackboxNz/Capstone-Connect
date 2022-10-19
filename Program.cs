@@ -29,10 +29,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CapstoneConnectDBContext>(options => options.UseSqlite(builder.Configuration["Capstone_ConnectConnection"]));
 builder.Services.AddScoped<ICapstoneConnectRepo, DBCapstoneConnectRepo>();
-builder.Services.AddAuthentication()
-.AddScheme<AuthenticationSchemeOptions, AuthHandler>
-("AuthenticationScheme", null).
-Services.AddAuthorization(options =>
+builder.Services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, AuthHandler>("Authentication", null);
+
+builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("VisitorOnly", policy => policy.RequireClaim("visitor"));
     options.AddPolicy("UserOnly", policy => policy.RequireClaim("user"));
@@ -58,7 +57,7 @@ app.UseCors(builder =>
            .AllowAnyMethod()
            .AllowAnyHeader();
 });
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
