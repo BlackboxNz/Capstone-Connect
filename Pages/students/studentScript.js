@@ -9,7 +9,7 @@ const createProject = () => {
       }, 5000);
     } else {
       // Create json of user comment info from input fields
-      const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Approach: , FinalThoughts: final_thoughts.value, Img: project_image.value, Video: project_video.value };
+      const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Approach: approach.value, FinalThoughts: final_thoughts.value, Img: project_image.value, Video: project_video.value };
       const fetchAddComment = fetch(
         "http://localhost:5000/webapi/AddProject",
         {
@@ -18,3 +18,5 @@ const createProject = () => {
           body: JSON.stringify(json),
         }
       );
+    }
+}
