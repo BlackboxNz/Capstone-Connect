@@ -60,7 +60,7 @@ const showAllProjects = (projects) => {
     // Loops through each project to create a project card
     projects.map(function (project) {
         // Fetch the corresponding image
-        fetch(`https://localhost:5000/webapi/ProjectImage/${project.id}`)
+        fetch(`https://localhost:5000/webapi/GetProjectImage/${project.id}`)
             .then((response) => response.blob())
             .then((imageBlob) => {
                 // Create the card with a div element
@@ -71,27 +71,25 @@ const showAllProjects = (projects) => {
                 const image = document.createElement("img");
                 const imageObjectURL = URL.createObjectURL(imageBlob);
                 image.src = imageObjectURL;
-                image.alt = `Image of ${project.ProjectName}`;
+                image.alt = `Image of ${project.projectName}`;
                 image.height = 150;
                 // Create the title
-                const title = document.createElement("h3");
+                const title = document.createElement("h4");
                 title.classList = "line-clamp-1";
-                title.innerHTML = project.ProjectName;
+                title.innerHTML = project.projectName;
 
                 // Create the description text
                 const projectOverview = document.createElement("p");
                 projectOverview.classList = `line-clamp-3 justify ${project.ID}-desc`;
-                projectOverview.innerHTML = project.ProjectOverview;
+                projectOverview.innerHTML = project.projectOverview;
                 //button
                 const button = document.createElement("button");
                 button.classList = "btn";
-                button.addEventListener("click", function () {
-                    buyItem(project.ID);
-                });
+                button.setAttribute("onclick", `location.href='template.html'`);
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
-                card.setAttribute("onclick", `location.href='template.html'`);
+                
                 projectsContainer.append(card);
             });
     });
