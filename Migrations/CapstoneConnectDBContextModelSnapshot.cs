@@ -17,6 +17,29 @@ namespace Capstone_Connect.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
 
+            modelBuilder.Entity("Capstone_Connect.Model.Admin", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("Capstone_Connect.Model.Comment", b =>
                 {
                     b.Property<int>("ID")
@@ -37,13 +60,16 @@ namespace Capstone_Connect.Migrations
 
                     b.HasIndex("ProjectID");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Project", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AdminID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Approach")
@@ -76,9 +102,44 @@ namespace Capstone_Connect.Migrations
                     b.Property<string>("Video")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("VisitorID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ID");
 
-                    b.ToTable("Project");
+                    b.HasIndex("AdminID");
+
+                    b.HasIndex("VisitorID");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("Capstone_Connect.Model.Student", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("TeamID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TeamID");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Tag", b =>
@@ -95,7 +156,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasKey("TagId");
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Team", b =>
@@ -110,7 +171,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Team");
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Visitor", b =>
@@ -123,11 +184,7 @@ namespace Capstone_Connect.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -135,14 +192,24 @@ namespace Capstone_Connect.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("TeamID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("TeamID");
+                    b.ToTable("Visitors");
+                });
 
-                    b.ToTable("User");
+            modelBuilder.Entity("ProjectStudent", b =>
+                {
+                    b.Property<int>("LikedProjectsID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TeamsID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("LikedProjectsID", "TeamsID");
+
+                    b.HasIndex("TeamsID");
+
+                    b.ToTable("ProjectStudent");
                 });
 
             modelBuilder.Entity("ProjectTag", b =>
@@ -160,21 +227,6 @@ namespace Capstone_Connect.Migrations
                     b.ToTable("ProjectTag");
                 });
 
-            modelBuilder.Entity("ProjectVisitor", b =>
-                {
-                    b.Property<int>("LikedProjectsID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TeamsID")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("LikedProjectsID", "TeamsID");
-
-                    b.HasIndex("TeamsID");
-
-                    b.ToTable("ProjectVisitor");
-                });
-
             modelBuilder.Entity("Capstone_Connect.Model.Comment", b =>
                 {
                     b.HasOne("Capstone_Connect.Model.Project", null)
@@ -184,11 +236,37 @@ namespace Capstone_Connect.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Capstone_Connect.Model.Visitor", b =>
+            modelBuilder.Entity("Capstone_Connect.Model.Project", b =>
+                {
+                    b.HasOne("Capstone_Connect.Model.Admin", null)
+                        .WithMany("LikedProjects")
+                        .HasForeignKey("AdminID");
+
+                    b.HasOne("Capstone_Connect.Model.Visitor", null)
+                        .WithMany("LikedProjects")
+                        .HasForeignKey("VisitorID");
+                });
+
+            modelBuilder.Entity("Capstone_Connect.Model.Student", b =>
                 {
                     b.HasOne("Capstone_Connect.Model.Team", null)
                         .WithMany("Members")
                         .HasForeignKey("TeamID");
+                });
+
+            modelBuilder.Entity("ProjectStudent", b =>
+                {
+                    b.HasOne("Capstone_Connect.Model.Project", null)
+                        .WithMany()
+                        .HasForeignKey("LikedProjectsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Capstone_Connect.Model.Student", null)
+                        .WithMany()
+                        .HasForeignKey("TeamsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectTag", b =>
@@ -206,19 +284,9 @@ namespace Capstone_Connect.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectVisitor", b =>
+            modelBuilder.Entity("Capstone_Connect.Model.Admin", b =>
                 {
-                    b.HasOne("Capstone_Connect.Model.Project", null)
-                        .WithMany()
-                        .HasForeignKey("LikedProjectsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Capstone_Connect.Model.Visitor", null)
-                        .WithMany()
-                        .HasForeignKey("TeamsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("LikedProjects");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Project", b =>
@@ -229,6 +297,11 @@ namespace Capstone_Connect.Migrations
             modelBuilder.Entity("Capstone_Connect.Model.Team", b =>
                 {
                     b.Navigation("Members");
+                });
+
+            modelBuilder.Entity("Capstone_Connect.Model.Visitor", b =>
+                {
+                    b.Navigation("LikedProjects");
                 });
 #pragma warning restore 612, 618
         }

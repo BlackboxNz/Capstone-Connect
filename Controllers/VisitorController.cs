@@ -13,37 +13,37 @@ namespace Capstone_Connect.Controllers
 {
     [Route("webapi")]
     [ApiController]
-    public class MainController : Controller
+    public class VisitorController : Controller
     {
         private readonly ICapstoneConnectRepo _repository;
-        public MainController(ICapstoneConnectRepo repository)
+        public VisitorController(ICapstoneConnectRepo repository)
         {
             _repository = repository;
         }
 
-        [HttpPost("Register")]
-        public ActionResult Register(UserInDto user)
+        [HttpPost("RegisterVisitor")]
+        public ActionResult RegisterVisitor(VisitorInDto visitor)
         {
-            if (user.Email == "")
+            if (visitor.Email == "")
             {
                 return Ok("Invalid Email");
             }
-            Visitor t = _repository.GetUserByEmail(user.Email);
-            if (t != null)
+            Visitor v = _repository.GetVisitorByEmail(visitor.Email);
+            if (v != null)
             {
                 return Ok("Email not available.");
             }
             else
             {
-                Visitor c = new Visitor { Email = user.Email, Password = user.Password, FirstName = user.FirstName, LastName = user.LastName};
-                Visitor addedUser = _repository.RegisterUser(c);
+                Visitor c = new Visitor { Email = visitor.Email, Password = visitor.Password, FullName = visitor.FullName};
+                Visitor addedUser = _repository.RegisterVisitor(c);
                 return Ok("User successfully registered");
             }
         }
 
-        [Authorize(AuthenticationSchemes = "AuthenticationScheme")]
+        [Authorize(AuthenticationSchemes = "VisitorScheme")]
         [Authorize(Policy = "VisitorOnly")]
-        [HttpGet("VisitorLogin")]
+        [HttpGet("GetAuth")]
         public ActionResult<string> GetAuth()
         {
             return Ok(_repository.GetAuth());

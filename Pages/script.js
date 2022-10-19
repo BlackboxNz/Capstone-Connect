@@ -96,22 +96,19 @@ const showAllProjects = (projects) => {
 };
 
 function register() {
+    const fullnameText = document.getElementById("fullname").value;
     const emailText = document.getElementById("reg-email").value;
-    const passwordText = document.getElementById("reg-pwd").value;
-    const firstnameText = document.getElementById("firstname").value;
-    const lastnameText = document.getElementById("lastname").value;
+    const passwordText = document.getElementById("reg-pwd").value
     const userJSON = {
+        FullName: fullnameText,
         Email: emailText,
-        Password: passwordText,
-        FirstName: firstnameText,
-        LastName: lastnameText,
+        Password: passwordText
     }
-
-    fetch("https://localhost:5000/webapi/Register", {
+    fetch("https://localhost:5000/webapi/RegisterVisitor", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "https://localhost:5000/webapi/Register"
+            "Access-Control-Allow-Origin": "https://localhost:5000/webapi/RegisterVisitor"
         },
         body: JSON.stringify(userJSON)
     })
@@ -128,8 +125,7 @@ function login() {
         headers: {
             "Content-Type": "application/html",
             "Authorization": "Basic " + btoa(`${email}:${password}`),
-            "Accept": "application/xml",
-            "Allow-Control-Allow-Origin": "https://localhost:5000/webapi/GetAuth"
+            "Accept": "application/xml"
         }
     })
         .then(response => {
@@ -140,6 +136,7 @@ function login() {
                 //document.getElementById("logout").style.display = "inline";
             }
             else {
+                //alert(response.text())
                 //document.getElementById("login-response").innerHTML = "Login Unsuccessful"
             }
         });

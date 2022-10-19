@@ -14,11 +14,11 @@ using System.Security.Claims;
 
 namespace Capstone_Connect.Handler
 {
-    public class AuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+    public class VisitorHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly ICapstoneConnectRepo _repository;
 
-        public AuthHandler(
+        public VisitorHandler(
             ICapstoneConnectRepo repository,
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,
@@ -44,25 +44,9 @@ namespace Capstone_Connect.Handler
                 var email = credentials[0];
                 var password = credentials[1];
 
-                if (_repository.AdminLogin(email, password))
+                if (_repository.VisitorLogin(email, password))
                 {
-                    var claims = new[] { new Claim("admin", email) };
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
-                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                    AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
-                    return AuthenticateResult.Success(ticket);
-                }
-                else if (_repository.StudentLogin(email, password))
-                {
-                    var claims = new[] { new Claim("student", email) };
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
-                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                    AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
-                    return AuthenticateResult.Success(ticket);
-                }
-                else if (_repository.VisitorLogin(email, password))
-                {
-                    var claims = new[] { new Claim("visitor", email) };
+                    var claims = new[] { new Claim("Visitor", email) };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);

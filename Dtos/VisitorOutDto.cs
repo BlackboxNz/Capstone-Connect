@@ -7,11 +7,10 @@ using Capstone_Connect.Model;
 
 namespace Capstone_Connect.Dtos
 {
-    public class UserOutDto
+    public class VisitorOutDto
     {
+        public string FullName { get; set; }
         public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public ICollection<Project> LikedProjects { get; set; }
     }
 }
