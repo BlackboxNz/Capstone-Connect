@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Capstone_Connect.Migrations
 {
     [DbContext(typeof(CapstoneConnectDBContext))]
-    [Migration("20221019121939_createTable")]
+    [Migration("20221019122237_createTable")]
     partial class createTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
