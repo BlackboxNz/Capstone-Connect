@@ -24,6 +24,14 @@ namespace Capstone_Connect.Data
             IEnumerable<Project> project = _dbContext.Projects.ToList<Project>();
             return project;
         }
+        public IEnumerable<Project> GetAllItems(String name)
+        {
+
+            IEnumerable<Project> products = _dbContext.Projects.ToList<Project>();
+            IEnumerable<Project> items = _dbContext.Projects.Where(e => e.TeamName.ToLower().Contains(name));
+
+            return items;
+        }
         public Project GetProjectByID(int id)
         {
             Project project = _dbContext.Projects.FirstOrDefault(e => e.ID == id);
