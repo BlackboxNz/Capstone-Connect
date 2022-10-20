@@ -11,14 +11,13 @@ namespace Capstone_Connect.Model
     {
         [Key]
         public int ID { get; set; }
-
-        [Required]
-        public string CommentText { get; set; }
-
         [Required]
         public int ProjectID { get; set; }
 
         [Required]
         public int UserID { get; set; }
+
+        [Required]
+        public string CommentText { get; set; }
     }
 }
