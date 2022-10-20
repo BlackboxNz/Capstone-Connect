@@ -22,6 +22,7 @@ namespace Capstone_Connect.Data
         public Project AddProject(Project project);
         public void LikeProject(Project project, Visitor visitor);
         public void SubmitProject(Project project);
+        public IEnumerable<Project> GetAllItems(String name);
 
         //Student Functions
         //public Student RegisterStudent(Student student);
