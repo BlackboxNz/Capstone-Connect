@@ -14,7 +14,7 @@ namespace Capstone_Connect.Model
     [Required]
     public string TeamName { get; set; }
     public string ProjectName { get; set; }
-    public string Semester { get; set; }
+    public string? Semester { get; set; }
     public string? ProjectOverview { get; set; }
     public string? Approach { get; set; }
     public string? FinalThoughts { get; set; }

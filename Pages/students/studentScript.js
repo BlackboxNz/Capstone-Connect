@@ -1,40 +1,31 @@
-//Uploading image
-$("body").on("click", "#btnUpload", function () {
-    $.ajax({
-        url: 'Handler.ashx',
-        type: 'POST',
-        data: new FormData($('form')[0]),
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (file) {
+const toast = document.getElementById("toast");
+const createProject = () => {
+    console.log(project_name.value);
+    if (project_name.value == "") {
+      // Inform user their comment is empty
+      toast.innerHTML = "No Project Name";
+      toast.className = "show";
+      setTimeout(function () {
+        toast.className = toast.className.replace("show", "");
+      }, 5000);
+    } else {
+      // Create json of user comment info from input fields
+      const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Approach: approach.value, FinalThoughts: final_thoughts.value, Img: project_image.value, Video: project_video.value };
+      const fetchAddProject = fetch(
+        "https://localhost:5000/webapi/AddProject",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", 
+          "Access-Control-Allow-Origin": "https://localhost:5000/webapi/AddProject"},
+          body: JSON.stringify(json),
+        }).then((data) => {
+            // Inform user through toast of the successful purchase
+            toast.innerHTML = `Project ${data.ProjectName} created`;
+            toast.className = "show";
             setTimeout(function () {
-                $(".progress").hide();
-                $("#lblMessage").html("<b>" + file.name + "</b> has been uploaded.");
-            }, 1000);
-        },
-        error: function (a) {
-            $("#lblMessage").html(a.responseText);
-        },
-        failure: function (a) {
-            $("#lblMessage").html(a.responseText);
-        },
-        xhr: function () {
-            var fileXhr = $.ajaxSettings.xhr();
-            if (fileXhr.upload) {
-                $(".progress").show();
-                fileXhr.upload.addEventListener("progress", function (e) {
-                    if (e.lengthComputable) {
-                        var percentage = Math.ceil(((e.loaded / e.total) * 100));
-                        $('.progress-bar').text(percentage + '%');
-                        $('.progress-bar').width(percentage + '%');
-                        if (percentage == 100) {
-                            $('.progress-bar').text('100%');
-                        }
-                    }
-                }, false);
-            }
-            return fileXhr;
-        }
-    });
-});
+                toast.className = toast.className.replace("show", "");
+              }, 50000);
+          })
+
+    }
+}

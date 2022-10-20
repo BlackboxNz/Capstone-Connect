@@ -93,7 +93,7 @@ namespace Capstone_Connect.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     TeamName = table.Column<string>(type: "TEXT", nullable: false),
                     ProjectName = table.Column<string>(type: "TEXT", nullable: false),
-                    Semester = table.Column<string>(type: "TEXT", nullable: false),
+                    Semester = table.Column<string>(type: "TEXT", nullable: true),
                     ProjectOverview = table.Column<string>(type: "TEXT", nullable: true),
                     Approach = table.Column<string>(type: "TEXT", nullable: true),
                     FinalThoughts = table.Column<string>(type: "TEXT", nullable: true),

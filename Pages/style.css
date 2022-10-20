@@ -7,19 +7,42 @@ body {
     margin: 0;
     font-family: 'Poppins';
     scroll-behavior: smooth;
-    background: #181818;
+    background: #171716;
+}
+
+.bottom {
+    position: fixed;
+    bottom: 0%;
+    height: 10px;
+    width: 100%;
+    background: rgb(0,0,0);
 }
 
 .btn {
     color: rgb(0, 0, 0);
 }
 
-
-
 .container_main {
+    color: #fffafa;
     position: absolute;
-    top: 8%;
-    background: #2a2a2a;
+    top: 7%;
+    height: 93%;
+    margin-right: 3.5%;
+    margin-left: 3.5%;
+    margin-top: 2%;
+    background: #171716;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.footer-text{
+    color: dimgrey;
+    font-size: 8px;
+    text-align: center;
+}
+
+.navbutton {
+    color: white;
 }
 
 .nav2 {
@@ -30,6 +53,7 @@ body {
     top: 0px;
     margin: 0px;
     z-index: 3;
+    color: white;
 }
 
 /* Centred sample logo on nav bar, will update to proper logo later */
@@ -80,6 +104,15 @@ body {
 .navitem:hover {
     color: #2a2a2a;
     background-color: #fffafa;
+}
+
+/*Projects card style*/
+#project {
+    position: relative;
+}
+
+.row {
+    position: relative;
 }
 
 .carouselcont {
@@ -210,11 +243,6 @@ body {
     justify-content: center;
 }
 
-/*Projects card style*/
-#projects {
-padding: 50px 100px 0px 100px;
-}
-
 .line-clamp-1 {
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -235,13 +263,14 @@ padding: 50px 100px 0px 100px;
     padding: 10px;
     text-align: center;
     background-color: #2a2a2a;
-    margin: 3px;
+    margin: 8px;
+    border-style: solid;
+    border-color: #2a2a2aaf;
     /*
     border: solid;
     border-color: #f1f1f1;
     border-width: 1px;
     border-radius: 3px;*/
-    
 }
 
 
@@ -261,7 +290,11 @@ padding: 50px 100px 0px 100px;
 }
 
 .col-3 {
-    width: 25%;
+    color: black;
+    width: 100%;
+    height: 400px;
+    margin: 1.6%;
+    border-radius: 5px;
 }
 
 .col-4 {
@@ -310,3 +343,30 @@ padding: 50px 100px 0px 100px;
     float: left;
     padding: 15px;
 }
+
+
+/*Toast Elements*/
+#toast {
+    visibility: hidden;
+    width: 300px;
+    margin-left: -150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    z-index: 1;
+    position: fixed;
+    left: 50%;
+    bottom: 100px;
+  }
+  
+  #toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  }
+  
+  .hide {
+    display: none;
+  }

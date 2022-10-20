@@ -31,9 +31,9 @@ namespace Capstone_Connect.Controllers
         [HttpPost("AddProject")]
         public ActionResult<ProjectOutDto> AddProject(ProjectInDto project)
         {
-            Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName };
+            Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Likes = 0};
             Project addedProject = _repository.AddProject(p);
-            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName };
+            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName, ProjectOverview = addedProject.ProjectOverview, Approach = addedProject.Approach, FinalThoughts = addedProject.FinalThoughts, Img = addedProject.Img, Video = addedProject.Video };
             return CreatedAtAction(nameof(GetProject), new { id = po.ID }, po);
         }
 
@@ -100,37 +100,43 @@ namespace Capstone_Connect.Controllers
         }
 
         [HttpGet("GetProjectImage/{id}")]
-        public ActionResult GetItemPhoto(string id)
+        public ActionResult GetItemPhoto(int id)
         {
-            string path = Directory.GetCurrentDirectory();
-            string imgDir = Path.Combine(path, "img/Projects");
-            string fileName1 = Path.Combine(imgDir, id + ".png");
-            string fileName2 = Path.Combine(imgDir, id + ".jpg");
-            string fileName3 = Path.Combine(imgDir, id + ".gif");
-            string respHeader = "";
-            string fileName = "";
-            if (System.IO.File.Exists(fileName1))
-            {
-                respHeader = "image/png";
-                fileName = fileName1;
-            }
-            else if (System.IO.File.Exists(fileName2))
-            {
-                respHeader = "image/jpeg";
-                fileName = fileName2;
-            }
-            else if (System.IO.File.Exists(fileName3))
-            {
-                respHeader = "image/gif";
-                fileName = fileName3;
-            }
-            else
-            {
-                respHeader = "image/png";
-                fileName = Path.Combine(imgDir, "default.png");
-            }
+            //string path = Directory.GetCurrentDirectory();
+            //string imgDir = Path.Combine(path, "img/Projects");
+            //string fileName1 = Path.Combine(imgDir, id + ".png");
+            //string fileName2 = Path.Combine(imgDir, id + ".jpg");
+            //string fileName3 = Path.Combine(imgDir, id + ".gif");
+            Project project = _repository.GetProjectByID(id);
+            if (project == null)
+                return NotFound();
+            else {
+                string url = project.Img;
+                string respHeader = "";
+                string fileName = "";
+                if (System.IO.File.Exists(url))
+                {
+                    respHeader = "image/*";
+                    fileName = url;
+                }
+                //else if (System.IO.File.Exists(fileName2))
+                //{
+                //    respHeader = "image/jpeg";
+                //    fileName = fileName2;
+                //}
+                //else if (System.IO.File.Exists(fileName3))
+                //{
+                //    respHeader = "image/gif";
+                //    fileName = fileName3;
+                //}
+                else
+                {
+                    respHeader = "image/*";
+                    fileName = "https://www.publicdomainpictures.net/pictures/100000/velka/tree-1408915417NIZ.jpg";
+                }
 
-            return PhysicalFile(fileName, respHeader);
+                return PhysicalFile(fileName, respHeader);
+            }
         }
     }
 }
