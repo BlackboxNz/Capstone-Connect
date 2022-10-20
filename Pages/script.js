@@ -115,14 +115,15 @@ const showProject = (project) => {
     document.getElementById("projectModal").style.display = "block";
     document.getElementById(
     "modal-text"
-    ).innerHTML = `<div>
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close">&times</button>
-    </div>
+    ).innerHTML = `
         <div class="modal-fs" role="document">
             <div class="modal-content2">
                 <div class="modal-body">
                     <!--header-->
                     <div class="header" style="border-radius: 15px;">
+                        <div>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
+                        </div>
                         <div style="text-align: center;">
                             <h1 style="font-weight: bold; font-size: 6em; ">${project.teamName}</h1>
                             <p style="padding: 15px;">By</p>
