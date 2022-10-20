@@ -106,8 +106,7 @@ body {
     padding: 0.8%;
     position: static;
     float: left;
-    color: rgba(0, 0, 0, 0.9);
-    background-color: #ff914d;
+    color: #fffafa;
     text-decoration: none;
     cursor: pointer;
     padding: 20px;
@@ -116,10 +115,10 @@ body {
     transition: 300ms;
 }
 
-    .SignUp:hover {
-        color: #fffafa;
-        background-color: #ff7824;
-    }
+.SignUp:hover {
+    
+    background-color: #ff7824;
+}
 
 /*Projects card style*/
 #project {
