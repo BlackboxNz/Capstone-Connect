@@ -20,6 +20,9 @@ const createProject = () => {
           body: JSON.stringify(json),
         }).then((data) => {
             // Inform user through toast of the successful purchase
+            // potential for alert
+            //document.getElementById('shopAlert').innerHTML = `<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>` + "Item " + itemId + " bought!";
+            //document.getElementById('shopAlert').style.display = "block";
             toast.innerHTML = `Project ${data.ProjectName} created`;
             toast.className = "show";
             setTimeout(function () {
