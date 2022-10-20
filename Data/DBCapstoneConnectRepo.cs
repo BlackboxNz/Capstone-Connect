@@ -186,7 +186,7 @@ namespace Capstone_Connect.Data
             IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
 
             // Check if tag already exists
-            if (tags.FirstOrDefault(e => e.TagId == tag.TagId) == null)
+            if (tags.FirstOrDefault(e => e.ID == tag.ID) == null)
             {
                 _dbContext.Tags.Add(tag);
                 _dbContext.SaveChanges();
@@ -199,7 +199,7 @@ namespace Capstone_Connect.Data
             IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
 
             // Check if tag exists
-            if (tags.FirstOrDefault(e => e.TagId == tag.TagId) != null)
+            if (tags.FirstOrDefault(e => e.ID == tag.ID) != null)
             {
                 // Delete tag
                 _dbContext.Tags.Remove(tag);

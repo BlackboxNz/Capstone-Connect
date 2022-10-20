@@ -38,7 +38,7 @@ namespace Capstone_Connect.Controllers
         }
 
         // PUT /webapi/UpdateProject/{id}
-        [HttpPut("UpdateProject/{id}")]
+        [HttpPut("UpdateProject/{id}")] 
         public ActionResult UpdateProject(int id, ProjectInDto project)
         {
             Project c = _repository.GetProjectByID(id);

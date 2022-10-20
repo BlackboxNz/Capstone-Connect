@@ -149,7 +149,7 @@ function like(id) {
     element.classList.toggle("liked");
 
     fetch(`https://localhost:5000/webapi/VisitorLike`, {
-        method: "GET",
+        method: "POST",
         headers: {
             "Accept": "application/json",
             "Access-Control-Allow-Origin": "https://localhost:5000/webapi/VisitorLike"
