@@ -364,8 +364,9 @@
         <ul class="navbar1">
             <li class="navitem" style="margin-left: 44%;"><a href="index.html">Home</a></li>
             <li class="navitem"><a href="./Pages/projects.html">Projects</a></li>
-            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
-            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
+            <li id="sign-up" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
+            <li id="login" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
+            <li id="logout" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal" onclick="logout()">Logout</li>
         </ul>
     </div>
 
@@ -584,7 +585,7 @@
                     <!--pills content-->
                     <div class="tab-content">
                         <!--login form-->
-                        <div id="login" class="tab-pane fade in active padtest">
+                        <div id="login-form" class="tab-pane fade in active padtest">
                             <form>
                                 <!--email input-->
                                 <div class="form-group">

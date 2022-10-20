@@ -234,6 +234,9 @@ function login() {
         if (response.ok) {
             localStorage.setItem("auth", "true");
             localStorage.email = email;
+            document.getElementById("login").style.display = "none";
+            document.getElementById("sign-up").style.display = "none";
+            document.getElementById("logout").style.display = "inline";
             alert("Login Successful");
         }
         else {
@@ -244,6 +247,7 @@ function login() {
 
 function logout() {
     localStorage.setItem("auth", "false");
+    document.getElementById("logout").style.display = "none";
     localStorage.removeItem("ID");
 }
 
