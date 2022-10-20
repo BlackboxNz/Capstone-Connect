@@ -25,5 +25,7 @@ namespace Capstone_Connect.Dtos
         // Users that have liked the project.
         //public ICollection<User> LikedBy { get; set; }
         public ICollection<Comment>? Comments { get; set; }
+        public int? Likes { get; set; }
+        public ICollection<Student>? Teams { get; set; }
     }
 }

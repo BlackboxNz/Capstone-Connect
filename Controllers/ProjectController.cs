@@ -31,9 +31,9 @@ namespace Capstone_Connect.Controllers
         [HttpPost("AddProject")]
         public ActionResult<ProjectOutDto> AddProject(ProjectInDto project)
         {
-            Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video };
+            Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Likes=0 };
             Project addedProject = _repository.AddProject(p);
-            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName, ProjectOverview = addedProject.ProjectOverview, Approach = addedProject.Approach, FinalThoughts = addedProject.FinalThoughts, Img = addedProject.Img, Video = addedProject.Video };
+            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName, ProjectOverview = addedProject.ProjectOverview, Approach = addedProject.Approach, FinalThoughts = addedProject.FinalThoughts, Img = addedProject.Img, Video = addedProject.Video, Likes = addedProject.Likes };
             return CreatedAtAction(nameof(GetProject), new { id = po.ID }, po);
         }
 
