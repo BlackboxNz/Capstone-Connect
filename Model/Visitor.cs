@@ -24,5 +24,5 @@ namespace Capstone_Connect.Model
         public ICollection<Project> LikedProjects { get; set; }
         
         
-}
+    }
 }

@@ -14,54 +14,13 @@ namespace Capstone_Connect.Migrations
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    FullName = table.Column<string>(type: "TEXT", nullable: false)
+                    Password = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Admins", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
-                {
-                    TagId = table.Column<string>(type: "TEXT", nullable: false),
-                    TagName = table.Column<string>(type: "TEXT", nullable: false),
-                    isAward = table.Column<bool>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.TagId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Teams",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    TeamName = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teams", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Visitors",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    FullName = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Visitors", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,19 +29,41 @@ namespace Capstone_Connect.Migrations
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     FullName = table.Column<string>(type: "TEXT", nullable: false),
-                    TeamID = table.Column<int>(type: "INTEGER", nullable: true)
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Students_Teams_TeamID",
-                        column: x => x.TeamID,
-                        principalTable: "Teams",
-                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "TEXT", nullable: false),
+                    TagName = table.Column<string>(type: "TEXT", nullable: false),
+                    isAward = table.Column<bool>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Visitors",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Visitors", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,9 +105,9 @@ namespace Capstone_Connect.Migrations
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CommentText = table.Column<string>(type: "TEXT", nullable: false),
                     ProjectID = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserID = table.Column<int>(type: "INTEGER", nullable: false)
+                    UserID = table.Column<int>(type: "INTEGER", nullable: false),
+                    CommentText = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -144,11 +125,11 @@ namespace Capstone_Connect.Migrations
                 columns: table => new
                 {
                     LikedProjectsID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TeamsID = table.Column<int>(type: "INTEGER", nullable: false)
+                    TeamID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectStudent", x => new { x.LikedProjectsID, x.TeamsID });
+                    table.PrimaryKey("PK_ProjectStudent", x => new { x.LikedProjectsID, x.TeamID });
                     table.ForeignKey(
                         name: "FK_ProjectStudent_Projects_LikedProjectsID",
                         column: x => x.LikedProjectsID,
@@ -156,8 +137,8 @@ namespace Capstone_Connect.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectStudent_Students_TeamsID",
-                        column: x => x.TeamsID,
+                        name: "FK_ProjectStudent_Students_TeamID",
+                        column: x => x.TeamID,
                         principalTable: "Students",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -168,11 +149,11 @@ namespace Capstone_Connect.Migrations
                 columns: table => new
                 {
                     ProjectsID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TagsTagId = table.Column<string>(type: "TEXT", nullable: false)
+                    TagsID = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectTag", x => new { x.ProjectsID, x.TagsTagId });
+                    table.PrimaryKey("PK_ProjectTag", x => new { x.ProjectsID, x.TagsID });
                     table.ForeignKey(
                         name: "FK_ProjectTag_Projects_ProjectsID",
                         column: x => x.ProjectsID,
@@ -180,10 +161,10 @@ namespace Capstone_Connect.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectTag_Tags_TagsTagId",
-                        column: x => x.TagsTagId,
+                        name: "FK_ProjectTag_Tags_TagsID",
+                        column: x => x.TagsID,
                         principalTable: "Tags",
-                        principalColumn: "TagId",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -203,19 +184,14 @@ namespace Capstone_Connect.Migrations
                 column: "VisitorID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectStudent_TeamsID",
+                name: "IX_ProjectStudent_TeamID",
                 table: "ProjectStudent",
-                column: "TeamsID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectTag_TagsTagId",
-                table: "ProjectTag",
-                column: "TagsTagId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_TeamID",
-                table: "Students",
                 column: "TeamID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectTag_TagsID",
+                table: "ProjectTag",
+                column: "TagsID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -237,9 +213,6 @@ namespace Capstone_Connect.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tags");
-
-            migrationBuilder.DropTable(
-                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "Admins");
