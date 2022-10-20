@@ -112,25 +112,18 @@ const loadIndividualProject = (id) => {
 
 const showProject = (project) => {
     console.log(project);
-    fetch(`https://localhost:5000/webapi/GetProjectImage/${project.id}`)
-            .then((response) => response.blob())
-            .then((imageBlob) => {
-        const image = document.createElement("img");
-        const imageObjectURL = URL.createObjectURL(imageBlob);
-        image.src = imageObjectURL;
-        image.alt = `Image of ${project.projectName}`;
-        
-        document.getElementById("projectModal").style.display = "block";
-        document.getElementById(
-        "modal-text"
-        ).innerHTML = `<div>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close">&times</button>
-    </div>
+    document.getElementById("projectModal").style.display = "block";
+    document.getElementById(
+    "modal-text"
+    ).innerHTML = `
         <div class="modal-fs" role="document">
             <div class="modal-content2">
                 <div class="modal-body">
                     <!--header-->
                     <div class="header" style="border-radius: 15px;">
+                        <div>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
+                        </div>
                         <div style="text-align: center;">
                             <h1 style="font-weight: bold; font-size: 6em; ">${project.teamName}</h1>
                             <p style="padding: 15px;">By</p>
@@ -166,7 +159,7 @@ const showProject = (project) => {
 
                             <div class="overview" style="padding:50px;">
                                 <div style="text-align: center;">
-                                    ${image}
+                                    <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
 
@@ -201,7 +194,6 @@ const showProject = (project) => {
             </div>
         </div>
                     `;
-    });
 }
 
 //Login and register functions. 
