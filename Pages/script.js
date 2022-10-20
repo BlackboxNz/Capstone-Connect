@@ -84,7 +84,9 @@ const showAllProjects = (projects) => {
                 //button
                 const button = document.createElement("button");
                 button.classList = `proj-btn ${project.id}-btn`;
-                button.setAttribute("onclick", `location.href='template.html'`);
+                button.addEventListener("click", function () {
+                    loadIndividualProject(project.id);
+                  });
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
@@ -94,7 +96,82 @@ const showAllProjects = (projects) => {
     });
 };
 
+const loadIndividualProject = (id) => {
+    const fetchPromise = fetch(`https://localhost:5000/webapi/GetProject/` + id,
+        {
+            headers: {
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProject/"+id
+            },
+            
+        }
+    );
+    const streamPromise = fetchPromise.then((response) => response.json());
+    streamPromise.then((data) => showProject(data));
+}
 
+const showProject = (project) => {
+    console.log(project);
+    document.getElementById("projectModal").style.display = "block";
+    document.getElementById(
+      "modal-text"
+    ).innerHTML = `<button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close">&times</button>
+    <div class="modal-fs" role="document">
+        <div class="modal-content2">
+            <div class="modal-body">
+                <!--header-->
+                <div class="header" style="border-radius: 15px;">
+                    <div style="text-align: center;">
+                        <h1 style="font-weight: bold; font-size: 6em; ">${project.projectName}</h1>
+                        <p style="padding: 15px;">By</p>
+                        <p></p>
+                        <h4>This is where users will go</h4>
+                    </div>
+                </div>
+
+                <!--body-->
+                <div class="flex-container card">
+                    <div style="padding-left: 150px; padding-right: 150px;">
+                        <div class="overview">
+                            <h1 style="font-size: 3.5em; font-weight: bold;">Blurb</h1>
+                            <p></p>
+                            <p style="font-size: 1.8em;">
+                                ${project.projectOverview}
+                            </p>
+                        </div>
+
+                        <div class="overview">
+                            <div style="text-align: center;padding: 50px;border-color: #d6d2d2;">
+                                <iframe width="1000" height="555" src="${project.video}"></iframe>
+                            </div>
+                        </div>
+
+                        <div class="overview">
+                            <h2 style="font-weight: bold;">Approach</h2>
+                            <p></p>
+                            <p style="font-size: 1.8em;">
+                                ${project.Approach}
+                            </p>
+                        </div>
+
+                        <div class="overview" style="padding:50px;">
+                            <div style="text-align: center;">
+                                <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="${project.img}" alt="Showcase Poster" />
+                            </div>
+                        </div>
+
+                        <div class="overview">
+                            <h2 style="font-weight: bold;">Final Thoughts</h2>
+                            <p></p>
+                            <p style="font-size:1.8em;">
+                                ${project.finalThoughts}
+                            </p>
+                        </div>
+
+                        <hr />
+                    </div>
+                `;
+}
 
 //Login and register functions. 
 function register() {
