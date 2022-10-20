@@ -299,7 +299,7 @@
         }
 
         .header {
-            background-color: #444444;
+            background-color: #2a2a2a;
             color: white;
             padding: 45px;
         }
@@ -324,6 +324,33 @@
         .centered-div {
             text-align: center;
         }
+
+        .commentfields {
+            font-size: 1.8em;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+            .commentfields > input {
+                padding-top: 4px;
+                padding-left: 9px;
+                padding-bottom: 4px;
+                border-radius: 24px;
+                background-color: #e6e6e6;
+                border-color: transparent;
+            }
+
+        .textarea {
+            width: 650px;
+            height: 150px;
+            border-radius: 24px;
+            padding-left: 9px;
+            padding-top:4px;
+            padding-bottom: 4px;
+            background-color: #e6e6e6;
+            border-color: transparent;
+        }
+
 
 
     </style>
@@ -482,7 +509,7 @@
 
                     <!--body-->
                     <div class="flex-container card">
-                        <div style="padding-left: 150px; padding-right: 150px;">
+                        <div style="padding-left: 250px; padding-right: 250px;">
                             <div class="overview">
                                 <h1 style="font-size: 3.5em; font-weight: bold;">Blurb</h1>
                                 <p></p>
@@ -492,8 +519,8 @@
                             </div>
 
                             <div class="overview">
-                                <div style="text-align: center;padding: 50px;border-color: #d6d2d2;">
-                                    <iframe width="1000" height="555" src="https://www.youtube.com/embed/k7vhBLqNpSE"></iframe>
+                                <div style="text-align: center;padding: 50px;border-color: #d6d2d2; border-radius: 15px;">
+                                    <iframe width="1000" height="563" src="https://www.youtube.com/embed/k7vhBLqNpSE"></iframe>
                                 </div>
                             </div>
 
@@ -511,15 +538,26 @@
                                 </div>
                             </div>
 
-                            <div class="overview">
-                                <h2 style="font-weight: bold;">Final Thoughts</h2>
-                                <p></p>
-                                <p style="font-size:1.8em;">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
+                            <div class="overview" id="comment">
+                                <h2 style="font-weight: bold;">Leave a Comment</h2>
+                                <hr />
+                                <form id="commentForm" method="post">
+                                    <div class="commentfields">
+                                        <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
+                                    </div>
+                                    <div class="commentfields">
+                                        <input name="email" id="cemail" class="required" size="30" maxlength="35" type="email" placeholder="Email" />
+                                    </div>
+                                    <div class="commentfields">
+                                        <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
+                                    </div>
+                                    <div style="font-size: 1.8em;">
+                                        <input type="submit" name="submit" size="30" style=" border-radius: 10px;" value="Submit" />
+                                    </div>
+                                </form>
                             </div>
 
-                            <hr />
+                            
                         </div>
                     </div>
 
