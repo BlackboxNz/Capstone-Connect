@@ -199,7 +199,7 @@ function login() {
     let email = document.getElementById("login-email").value;
     let password = document.getElementById("login-pwd").value;
 
-    fetch(`https://localhost:5000/webapi/GetAuth`, {
+    fetch(`https://localhost:5000/webapi/GetAuth/${email}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/html",
@@ -210,13 +210,13 @@ function login() {
     .then(response => {
         if (response.ok) {
             localStorage.setItem("auth", "true");
-            localStorage.ID = ID
-            alert("Login Successful")
+            localStorage.email = email;
+            alert("Login Successful");
         }
         else {
             alert("Login Unsuccessful")
         }
-    });
+    })
 }
 
 function logout() {

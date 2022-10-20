@@ -23,8 +23,8 @@ namespace Capstone_Connect.Controllers
 
         [Authorize(AuthenticationSchemes = "AdminScheme")]
         [Authorize(Policy = "VisitorMinimum")]
-        [HttpGet("GetAuth")]
-        public ActionResult<string> GetAuth() => Ok(_repository.GetAuth());
+        [HttpGet("GetAuth/{email}")]
+        public ActionResult<string> GetAuth(string email) => Ok(_repository.GetAuth(email));
 
         [HttpPost("RegisterVisitor")]
         public ActionResult RegisterVisitor(VisitorInDto visitor)
