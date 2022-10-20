@@ -154,13 +154,7 @@ body {
     cursor: pointer;
 }
 
-.header {
-    background-color: #00AFCE;
-    text-align: center;
-    color: white;
-    padding: 30px;
-    padding-top: 50px;
-}
+
 
 .flex-container {
     display: flex;
@@ -397,7 +391,7 @@ display: none;
 }
 
 /*Modal styles*/
-.project-modal{
+.projectModal{
 background-color: white; top:50px; 
 border-radius: 15px;
 }
@@ -451,3 +445,61 @@ cursor: pointer;
     height: 100%;
     border-radius: 15px;
 }
+
+.overview {
+    justify-content: center;
+}
+
+.header {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 45px;
+}
+
+
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 75px;
+    padding-top: 30px;
+}
+
+.flex-container > div {
+    background-color: white;
+    color: black;
+    margin: auto;
+    border-color: #5e5e5e;
+}
+
+.centered-div {
+    text-align: center;
+}
+
+.commentfields {
+    font-size: 1.8em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.commentfields > input {
+    padding-top: 4px;
+    padding-left: 9px;
+    padding-bottom: 4px;
+    border-radius: 24px;
+    background-color: #e6e6e6;
+    border-color: transparent;
+}
+
+.textarea {
+    width: 650px;
+    height: 150px;
+    border-radius: 24px;
+    padding-left: 9px;
+    padding-top:4px;
+    padding-bottom: 4px;
+    background-color: #e6e6e6;
+    border-color: transparent;
+}
+
