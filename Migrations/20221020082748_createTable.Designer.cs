@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Capstone_Connect.Migrations
 {
     [DbContext(typeof(CapstoneConnectDBContext))]
-    [Migration("20221019122237_createTable")]
+    [Migration("20221020082748_createTable")]
     partial class createTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,19 +133,14 @@ namespace Capstone_Connect.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("TeamID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("TeamID");
 
                     b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Tag", b =>
                 {
-                    b.Property<string>("TagId")
+                    b.Property<string>("ID")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TagName")
@@ -155,24 +150,9 @@ namespace Capstone_Connect.Migrations
                     b.Property<bool>("isAward")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("TagId");
-
-                    b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("Capstone_Connect.Model.Team", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TeamName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("ID");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Visitor", b =>
@@ -203,12 +183,12 @@ namespace Capstone_Connect.Migrations
                     b.Property<int>("LikedProjectsID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TeamsID")
+                    b.Property<int>("TeamID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("LikedProjectsID", "TeamsID");
+                    b.HasKey("LikedProjectsID", "TeamID");
 
-                    b.HasIndex("TeamsID");
+                    b.HasIndex("TeamID");
 
                     b.ToTable("ProjectStudent");
                 });
@@ -218,12 +198,12 @@ namespace Capstone_Connect.Migrations
                     b.Property<int>("ProjectsID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TagsTagId")
+                    b.Property<string>("TagsID")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ProjectsID", "TagsTagId");
+                    b.HasKey("ProjectsID", "TagsID");
 
-                    b.HasIndex("TagsTagId");
+                    b.HasIndex("TagsID");
 
                     b.ToTable("ProjectTag");
                 });
@@ -248,13 +228,6 @@ namespace Capstone_Connect.Migrations
                         .HasForeignKey("VisitorID");
                 });
 
-            modelBuilder.Entity("Capstone_Connect.Model.Student", b =>
-                {
-                    b.HasOne("Capstone_Connect.Model.Team", null)
-                        .WithMany("Members")
-                        .HasForeignKey("TeamID");
-                });
-
             modelBuilder.Entity("ProjectStudent", b =>
                 {
                     b.HasOne("Capstone_Connect.Model.Project", null)
@@ -265,7 +238,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasOne("Capstone_Connect.Model.Student", null)
                         .WithMany()
-                        .HasForeignKey("TeamsID")
+                        .HasForeignKey("TeamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -280,7 +253,7 @@ namespace Capstone_Connect.Migrations
 
                     b.HasOne("Capstone_Connect.Model.Tag", null)
                         .WithMany()
-                        .HasForeignKey("TagsTagId")
+                        .HasForeignKey("TagsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -293,11 +266,6 @@ namespace Capstone_Connect.Migrations
             modelBuilder.Entity("Capstone_Connect.Model.Project", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Capstone_Connect.Model.Team", b =>
-                {
-                    b.Navigation("Members");
                 });
 
             modelBuilder.Entity("Capstone_Connect.Model.Visitor", b =>

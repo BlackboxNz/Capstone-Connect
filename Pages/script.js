@@ -48,8 +48,7 @@ const getAllProjects = () => {
             headers: {
                 "Accept": "application/json",
                 "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetAllProjects"
-            },
-            
+            }
         }
     );
     const streamPromise = fetchPromise.then((response) => response.json());
@@ -134,8 +133,7 @@ function login() {
     .then(response => {
         if (response.ok) {
             localStorage.setItem("auth", "true");
-            localStorage.email = email
-            localStorage.password = password
+            localStorage.ID = ID
             alert("Login Successful")
         }
         else {
@@ -144,9 +142,15 @@ function login() {
     });
 }
 
+function logout() {
+    localStorage.setItem("auth", "false");
+    localStorage.removeItem("ID");
+}
+
 function like(id) {
     var element = document.getElementById(id);
     element.classList.toggle("liked");
+    localStorage.getItem("ID")
 
     fetch(`https://localhost:5000/webapi/VisitorLike`, {
         method: "POST",

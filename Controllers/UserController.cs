@@ -21,8 +21,8 @@ namespace Capstone_Connect.Controllers
             _repository = repository;
         }
 
-        [Authorize(AuthenticationSchemes = "VisitorScheme")]
-        [Authorize(Policy = "VisitorOnly")]
+        [Authorize(AuthenticationSchemes = "AdminScheme")]
+        [Authorize(Policy = "VisitorMinimum")]
         [HttpGet("GetAuth")]
         public ActionResult<string> GetAuth()
         {
@@ -50,9 +50,9 @@ namespace Capstone_Connect.Controllers
         }
 
         [HttpGet("LikeProject")]
-        public ActionResult VisitorLike()
+        public ActionResult VisitorLike(int projectID, int visitorID)
         {
-
+            _repository.VisitorLike(projectID, visitorID);
             return Ok();
         }
     }

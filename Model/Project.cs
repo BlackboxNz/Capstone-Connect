@@ -20,9 +20,9 @@ namespace Capstone_Connect.Model
         public string? FinalThoughts { get; set; }
         public string? Img { get; set; } 
         public string? Video { get; set; }  
+        public ICollection<Tag>? Tags { get; set; }
+        public ICollection<Student>? Team { get; set; }
         public int? Likes { get; set; }
         public ICollection<Comment>? Comments { get; set; }
-        public ICollection<Tag>? Tags { get; set; }
-        public ICollection<Student>? Teams { get; set; }
     }
 }
