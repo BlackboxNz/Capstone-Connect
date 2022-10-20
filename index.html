@@ -281,6 +281,78 @@
         .liked {
             opacity: 1;
         }
+
+        .modal-fs {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .modal-content2 {
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .overview {
+            justify-content: center;
+        }
+
+        .header {
+            background-color: #2a2a2a;
+            color: white;
+            padding: 45px;
+        }
+
+
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 75px;
+            padding-top: 30px;
+        }
+
+            .flex-container > div {
+                background-color: white;
+                color: black;
+                margin: auto;
+                border-color: #5e5e5e;
+            }
+
+        .centered-div {
+            text-align: center;
+        }
+
+        .commentfields {
+            font-size: 1.8em;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+            .commentfields > input {
+                padding-top: 4px;
+                padding-left: 9px;
+                padding-bottom: 4px;
+                border-radius: 24px;
+                background-color: #e6e6e6;
+                border-color: transparent;
+            }
+
+        .textarea {
+            width: 650px;
+            height: 150px;
+            border-radius: 24px;
+            padding-left: 9px;
+            padding-top:4px;
+            padding-bottom: 4px;
+            background-color: #e6e6e6;
+            border-color: transparent;
+        }
+
+
+
     </style>
 </head>
 
@@ -384,7 +456,7 @@
                 <button class="btn" onclick="projecttag('Node')">Node.js</button>
                 <button class="btn" onclick="projecttag('Java')">Java</button>
                 <button class="btn" onclick="projecttag('Docker')">Docker</button>
-                
+
                 <!-- Sort settings should have it's own division -->
                 <!--<button class="btn" onclick="projectfilter('Liked')">Most Liked</button>
                 <button class="btn" onclick="projectfilter('Viewed')">Most Viewed</button>-->
@@ -392,121 +464,209 @@
         </div>
 
         <div data-aos="fade-up">
-            <div class="project-cont HTML Liked" style="background: url('https://i.ibb.co/pwyhDsT/image.png'); background-size: cover;"><span class="circlel" id="1"onclick="addClass('1')"></span><a href="/Pages/template.html"><span class="text2">Project 1</span></a></div>
+            <div class="project-cont HTML" data-toggle="modal" data-target="#projectmodal" style="background: url('https://i.ibb.co/pwyhDsT/image.png'); background-size: cover;"><span class="circlel" id="1" onclick="addClass('1')"></span><a href="/Pages/template.html"><span class="text2">Project 1</span></a></div>
 
-            <div class="project-cont CSS"><span class="circlel" id="2" onclick="addClass('2')"></span><span class="text2">Project 2</span></div>
+            <div class="project-cont CSS"><span class="circlel" id="2" onclick="like('2')"></span><span class="text2">Project 2</span></div>
 
-            <div class="project-cont CSS Python"><span class="circlel" id="3" onclick="addClass('3')"></span><span class="text2">Project 3</span></div>
+            <div class="project-cont CSS Python"><span class="circlel" id="3" onclick="like('3')"></span><span class="text2">Project 3</span></div>
 
-            <div class="project-cont Python Java"><span class="circlel" id="4" onclick="addClass('4')"></span><span class="text2">Project 4</span></div>
+            <div class="project-cont Python Java"><span class="circlel" id="4" onclick="like('4')"></span><span class="text2">Project 4</span></div>
 
-            <div class="project-cont Javascript HTML"><span class="circlel" id="5" onclick="addClass('5')"></span><span class="text2">Project 5</span></div>
+            <div class="project-cont Javascript HTML"><span class="circlel" id="5" onclick="like('5')"></span><span class="text2">Project 5</span></div>
 
-            <div class="project-cont Node Viewed"><span class="circlel" id="6" onclick="addClass('6')"></span><span class="text2">Project 6</span></div>
+            <div class="project-cont Node"><span class="circlel" id="6" onclick="like('6')"></span><span class="text2">Project 6</span></div>
 
-            <div class="project-cont Docker Java"><span class="circlel" id="7" onclick="addClass('7')"></span><span class="text2">Project 7</span></div>
+            <div class="project-cont Docker Java"><span class="circlel" id="7" onclick="like('7')"></span><span class="text2">Project 7</span></div>
 
-            <div class="project-cont CSS Node Docker"><span class="circlel" id="8" onclick="addClass('8')"></span><span class="text2">Project 8</span></div>
+            <div class="project-cont CSS Node Docker"><span class="circlel" id="8" onclick="like('8')"></span><span class="text2">Project 8</span></div>
         </div>
-<!--
-        <div data-aos="fade-up">
+        
+        <!--<div data-aos="fade-up">
             <div class="tag-cont" style="width: 10%; float: left; top: 900px; left: 50px; height: 35px; margin-top: 20px; cursor: pointer; background: #fffafa; position: absolute;">
                 <span class="text1" style="font-size: 15pt; left: 15px; top: 2px; position: absolute;">View all projects</span>
             </div>
-        </div>
--->
-        </div>
+        </div>-->
+        
+    </div>
 
-        <!--login modal-->
-        <div id="loginmodal" class="modal fade" role="dialog">
-            <div class="modal-dialog" role="document">
-                <!--modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!--Pills login/signup-->
-                        <ul class="nav nav-pills nav-justified mb-3">
-                            <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
-                            <li><a data-toggle="pill" href="#register">Register</a></li>
-                        </ul>
-                        <!--pills content-->
-                        <div class="tab-content">
-                            <!--login form-->
-                            <div id="login" class="tab-pane fade in active padtest">
-                                <form>
-                                    <!--email input-->
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="login-email" placeholder="Enter email" name="email" />
-                                    </div>
-                                    <!--password input-->
-                                    <div class="form-group">
-                                        <label for="pwd">Password</label>
-                                        <input type="password" class="form-control" id="login-pwd" placeholder="Enter password" name="pwd" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;" onclick="login()">Sign In</button>
-                                </form>
-                            </div>
-                            <!--signup form-->
-                            <div id="register" class="tab-pane fade padtest">
-                                <form>
-                                    <!--name input-->
-                                    <div class="form-group">
-                                        <label for="fullname">Full Name</label>
-                                        <input type="text" class="form-control" id="fullname" placeholder="Enter full name" name="nme" />
-                                    </div>
-                                    <!--email input-->
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="reg-email" placeholder="Enter email" name="email" />
-                                    </div>
-                                    <!--password input-->
-                                    <div class="form-group">
-                                        <label for="pwd">Password</label>
-                                        <input type="password" class="form-control" id="reg-pwd" placeholder="Enter password" name="pwd" />
-                                    </div>
-                                    <!--repeat password-->
-                                    <div classs="form-group">
-                                        <label for="pwd">Repeat Password</label>
-                                        <input type="password" class="form-control" id="repeat-pwd" placeholder="Repeat password" name="pwd" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register()">Sign Up</button>
-                                </form>
-                            </div>
+    <!--project modal-->
+    <div id="projectmodal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="modallabel" aria-hidden="true" style="background-color: white; top:50px; border-radius: 15px;">
+        <div>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close">&times</button>
+    </div>
+        <div class="modal-fs" role="document">
+            <div class="modal-content2">
+                <div class="modal-body">
+                    <!--header-->
+                    <div class="header" style="border-radius: 15px;">
+                        <div style="text-align: center;">
+                            <h1 style="font-weight: bold; font-size: 6em; ">A Note Taking App</h1>
+                            <p style="padding: 15px;">By</p>
+                            <p></p>
+                            <h4>Shaun Price, Rory Mclean, Su Jen Phea, Xavier Ladores, Keith Chuang</h4>
                         </div>
                     </div>
-                    <!--footer close-->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Close</button>
+
+                    <!--body-->
+                    <div class="flex-container card">
+                        <div style="padding-left: 250px; padding-right: 250px;">
+                            <div class="overview">
+                                <h1 style="font-size: 3.5em; font-weight: bold;">Blurb</h1>
+                                <p></p>
+                                <p style="font-size: 1.8em;">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+
+                            <div class="overview">
+                                <div style="text-align: center;padding: 50px;border-color: #d6d2d2; border-radius: 15px;">
+                                    <iframe width="1000" height="563" src="https://www.youtube.com/embed/k7vhBLqNpSE"></iframe>
+                                </div>
+                            </div>
+
+                            <div class="overview">
+                                <h2 style="font-weight: bold;">Approach</h2>
+                                <p></p>
+                                <p style="font-size: 1.8em;">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+
+                            <div class="overview" style="padding:50px;">
+                                <div style="text-align: center;">
+                                    <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="../img/Projects/1.png" alt="Showcase Poster" />
+                                </div>
+                            </div>
+
+                            <div class="overview" id="comment">
+                                <h2 style="font-weight: bold;">Leave a Comment</h2>
+                                <hr />
+                                <form id="commentForm" method="post">
+                                    <div class="commentfields">
+                                        <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
+                                    </div>
+                                    <div class="commentfields">
+                                        <input name="email" id="cemail" class="required" size="30" maxlength="35" type="email" placeholder="Email" />
+                                    </div>
+                                    <div class="commentfields">
+                                        <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
+                                    </div>
+                                    <div style="font-size: 1.8em;">
+                                        <input type="submit" name="submit" size="30" style=" border-radius: 10px;" value="Submit" />
+                                    </div>
+                                </form>
+                            </div>
+
+                            
+                        </div>
                     </div>
+
+                </div>
+                <!--footer close-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Close</button>
                 </div>
             </div>
         </div>
-        <script>
-            function addClass(id) {
-                var element = document.getElementById(id);
-                element.classList.toggle("liked");
-            }
-        </script>
-        <script>
-            // Add active class to the current control button (highlight it)
-            var btnContainer = document.getElementById("myBtnContainer");
-            var btns = btnContainer.getElementsByClassName("btn");
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].addEventListener("click", function () {
-                    var current = document.getElementsByClassName("active");
-                    current[i].className = current[i].className.replace(" active", "");
-                    this.className += " active";
-                });
-            }
+    </div>
+
+    <!--login modal-->
+    <div id="loginmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <!--modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!--Pills login/signup-->
+                    <ul class="nav nav-pills nav-justified mb-3">
+                        <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
+                        <li><a data-toggle="pill" href="#register">Register</a></li>
+                    </ul>
+                    <!--pills content-->
+                    <div class="tab-content">
+                        <!--login form-->
+                        <div id="login" class="tab-pane fade in active padtest">
+                            <form>
+                                <!--email input-->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="login-email" placeholder="Enter email" name="email" />
+                                </div>
+                                <!--password input-->
+                                <div class="form-group">
+                                    <label for="pwd">Password</label>
+                                    <input type="password" class="form-control" id="login-pwd" placeholder="Enter password" name="pwd" />
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;" onclick="login()">Sign In</button>
+                            </form>
+                        </div>
+                        <!--signup form-->
+                        <div id="register" class="tab-pane fade padtest">
+                            <form>
+                                <!--name input-->
+                                <div class="form-group">
+                                    <label for="fullname">Full Name</label>
+                                    <input type="text" class="form-control" id="fullname" placeholder="Enter full name" name="nme" />
+                                </div>
+                                <!--email input-->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="reg-email" placeholder="Enter email" name="email" />
+                                </div>
+                                <!--password input-->
+                                <div class="form-group">
+                                    <label for="pwd">Password</label>
+                                    <input type="password" class="form-control" id="reg-pwd" placeholder="Enter password" name="pwd" />
+                                </div>
+                                <!--repeat password-->
+                                <div classs="form-group">
+                                    <label for="pwd">Repeat Password</label>
+                                    <input type="password" class="form-control" id="repeat-pwd" placeholder="Repeat password" name="pwd" />
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register()">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--footer close-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addClass(id) {
+            var element = document.getElementById(id);
+            element.classList.toggle("liked");
+        }
+    </script>
+    <script>
+        // Add active class to the current control button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[i].className = current[i].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+
+        // span ele that closes modal
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
 
 
-            
-        </script>
-        <script src="Pages/script.js" charset=“utf-8”></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <footer></footer>
+
+    </script>
+    <script src="Pages/script.js" charset=“utf-8”></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <footer></footer>
 </body>
 </html>

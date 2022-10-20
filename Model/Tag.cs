@@ -10,7 +10,7 @@ namespace Capstone_Connect.Model
     public class Tag
     {
         [Key]
-        public string TagId { get; set; }
+        public string ID { get; set; }
         public string TagName { get; set; }
         public ICollection<Project> Projects { get; set; }
         public bool isAward { get; set; }

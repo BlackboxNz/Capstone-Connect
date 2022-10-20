@@ -343,3 +343,30 @@ body {
     float: left;
     padding: 15px;
 }
+
+
+/*Toast Elements*/
+#toast {
+    visibility: hidden;
+    width: 300px;
+    margin-left: -150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    z-index: 1;
+    position: fixed;
+    left: 50%;
+    bottom: 100px;
+  }
+  
+  #toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  }
+  
+  .hide {
+    display: none;
+  }

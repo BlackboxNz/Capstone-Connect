@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a href="../admin.html" class="btn btn-primary btn-block">Return to Admin Page</a>
+                <a href="../student.html" class="btn btn-primary btn-block">Return to Account Page</a>
             </div>
         </div>
     </div>
@@ -36,6 +36,12 @@
             <div class="col-md-6 col-md-offset-3">
                 <h2>Add Project</h2>
                 <form id="project-form">
+                    <div class="form-group">
+                        <label for="project_team">Team Name</label>
+                        <input type="text" class="form-control" name="team_name" id="team_name"
+                            placeholder="Team Name">
+                    </div>
+
                     <div class="form-group">
                         <label for="project_name">Project Name</label>
                         <input type="text" class="form-control" name="project_name" id="project_name"
@@ -58,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="project_image">Project Image</label>
-                        <input type="text" class="form-control" name="project_video" id="project_video"
+                        <input type="text" class="form-control" name="project_image" id="project_image"
                             placeholder="Paste img URL here">
                         <!--<input id="student-submit" type="submit" value="Upload Image" onclick="return UploadFile();" /> -->
                     </div>
@@ -67,20 +73,23 @@
                         <input type="text" class="form-control" name="project_video" id="project_video"
                             placeholder="Paste video URL here">
                     </div>
-                    <div class="form-group">
-                        <label for="project_team">Project Team</label>
-                        <input type="text" class="form-control" name="project_team" id="project_team"
-                            placeholder="Project Team">
-                    </div>
-
                 </form>
             </div>
         </div>
     </div>
+    <div id="toast" class="toast"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <a class="btn btn-primary btn-block" type="button" onClick="createProject()">Create Project</a>
+            </div>
+        </div>
+    </div>
+    <!-- return button -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="../student.html" class="btn btn-primary btn-block">Return to Account Page</a>
             </div>
         </div>
     </div>

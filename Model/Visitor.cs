@@ -11,15 +11,15 @@ namespace Capstone_Connect.Model
     {
         [Key]
         public int ID { get; set; }
-        
+
+        [Required]
+        public string FullName { get; set; }
+
         [Required]
         public string Email { get; set; }
 
         [Required]
         public string Password { get; set; }
-
-        [Required]
-        public string FullName { get; set; }
 
         public ICollection<Project> LikedProjects { get; set; }
         

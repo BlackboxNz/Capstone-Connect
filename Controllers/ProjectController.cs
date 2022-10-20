@@ -31,14 +31,14 @@ namespace Capstone_Connect.Controllers
         [HttpPost("AddProject")]
         public ActionResult<ProjectOutDto> AddProject(ProjectInDto project)
         {
-            Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName };
+            Project p = new() { TeamName = project.TeamName, ProjectName = project.ProjectName, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Likes=0 };
             Project addedProject = _repository.AddProject(p);
-            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName };
+            ProjectOutDto po = new ProjectOutDto { ID = addedProject.ID, TeamName = addedProject.TeamName, ProjectName = addedProject.ProjectName, ProjectOverview = addedProject.ProjectOverview, Approach = addedProject.Approach, FinalThoughts = addedProject.FinalThoughts, Img = addedProject.Img, Video = addedProject.Video, Likes = addedProject.Likes };
             return CreatedAtAction(nameof(GetProject), new { id = po.ID }, po);
         }
 
         // PUT /webapi/UpdateProject/{id}
-        [HttpPut("UpdateProject/{id}")]
+        [HttpPut("UpdateProject/{id}")] 
         public ActionResult UpdateProject(int id, ProjectInDto project)
         {
             Project c = _repository.GetProjectByID(id);
@@ -53,7 +53,7 @@ namespace Capstone_Connect.Controllers
                 c.FinalThoughts = project.FinalThoughts;
                 c.Img = project.Img;
                 c.Video = project.Video;
-                c.Tags = project.Tags;  
+                c.Tags = project.Tags;
 
 
                 _repository.SaveChanges();
@@ -85,6 +85,27 @@ namespace Capstone_Connect.Controllers
 
         }
 
+        // GET /webapi/GetItems
+        [HttpGet("GetProjects/{name}")]
+        public ActionResult<IEnumerable<ProjectOutDto>> GetProjects(string name)
+        {
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                IEnumerable<Project> projects = _repository.GetAllProjects();
+                IEnumerable<ProjectOutDto> c = projects.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
+                return Ok(c);
+            }
+
+            else
+            {
+                IEnumerable<Project> projects = _repository.GetAllItems(name);
+                IEnumerable<ProjectOutDto> c = projects.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
+                return Ok(c);
+            }
+
+        }
+
         // DELETE /webapi/DeleteProject/{id}
         [HttpDelete("DeleteProject/{id}")]
         public ActionResult DeleteProject(int id)
@@ -100,7 +121,7 @@ namespace Capstone_Connect.Controllers
         }
 
         [HttpGet("GetProjectImage/{id}")]
-        public ActionResult GetItemPhoto(string id)
+        public ActionResult GetItemPhoto(int id)
         {
             string path = Directory.GetCurrentDirectory();
             string imgDir = Path.Combine(path, "img/Projects");
@@ -127,10 +148,10 @@ namespace Capstone_Connect.Controllers
             else
             {
                 respHeader = "image/png";
-                fileName = Path.Combine(imgDir, "default.png");
+                fileName = Path.Combine(imgDir, "default.png"); ;
             }
-
             return PhysicalFile(fileName, respHeader);
         }
     }
 }
+
