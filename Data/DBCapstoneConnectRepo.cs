@@ -85,9 +85,24 @@ namespace Capstone_Connect.Data
         }
 
         // User Functions
-        public string GetAuth()
+        public string GetAuth(string email)
         {
-            return "Authorised";
+            Admin a = _dbContext.Admins.FirstOrDefault(e => e.Email == email);
+            Student s = _dbContext.Students.FirstOrDefault(e => e.Email == email);
+            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
+
+            if (a != null)
+            {
+                return a.ID.ToString();
+            }
+            else if (s != null)
+            {
+                return s.ID.ToString();
+            }
+            else
+            {
+                return v.ID.ToString();
+            }
         }
 
         public Visitor GetVisitorByEmail(string email)

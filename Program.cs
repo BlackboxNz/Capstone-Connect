@@ -34,8 +34,8 @@ builder.Services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, Admi
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Admin"));
-    options.AddPolicy("StudentMinimum", policy => policy.RequireClaim("Student", "Admin"));
-    options.AddPolicy("VisitorMinimum", policy => policy.RequireClaim("Visitor", "Student", "Admin"));
+    options.AddPolicy("StudentOnly", policy => policy.RequireClaim("Student"));
+    options.AddPolicy("VisitorMinimum", policy => policy.RequireClaim("Visitor", "Default", "Student", "Admin"));
 });
 
 var app = builder.Build();

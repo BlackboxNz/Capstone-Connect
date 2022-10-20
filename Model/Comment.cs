@@ -11,6 +11,7 @@ namespace Capstone_Connect.Model
     {
         [Key]
         public int ID { get; set; }
+
         [Required]
         public int ProjectID { get; set; }
 
@@ -18,6 +19,6 @@ namespace Capstone_Connect.Model
         public int UserID { get; set; }
 
         [Required]
-        public string CommentText { get; set; }
+        public string? CommentText { get; set; }
     }
 }

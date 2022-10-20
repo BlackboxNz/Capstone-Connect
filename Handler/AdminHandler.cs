@@ -46,7 +46,7 @@ namespace Capstone_Connect.Handler
 
                 if (_repository.AdminLogin(email, password))
                 {
-                    var claims = new[] { new Claim("Admin", email) };
+                    var claims = new[] { new Claim("Admin", email), new Claim("Visitor", "Admin") };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
@@ -54,7 +54,7 @@ namespace Capstone_Connect.Handler
                 }
                 else if (_repository.StudentLogin(email, password))
                 {
-                    var claims = new[] { new Claim("Student", email) };
+                    var claims = new[] { new Claim("Student", email), new Claim("Visitor", "Student") };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
@@ -62,7 +62,7 @@ namespace Capstone_Connect.Handler
                 }
                 else if (_repository.VisitorLogin(email, password))
                 {
-                    var claims = new[] { new Claim("Visitor", email) };
+                    var claims = new[] { new Claim("Visitor", "Default") };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     AuthenticationTicket ticket = new AuthenticationTicket(principal, Scheme.Name);
