@@ -29,13 +29,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CapstoneConnectDBContext>(options => options.UseSqlite(builder.Configuration["Capstone_ConnectConnection"]));
 builder.Services.AddScoped<ICapstoneConnectRepo, DBCapstoneConnectRepo>();
-builder.Services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, AdminHandler>("AdminAuthentication", null).AddScheme<AuthenticationSchemeOptions, StudentHandler>("StudentScheme", null).AddScheme<AuthenticationSchemeOptions, VisitorHandler>("VisitorScheme", null);
+builder.Services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, AdminHandler>("AdminScheme", null).AddScheme<AuthenticationSchemeOptions, StudentHandler>("StudentScheme", null).AddScheme<AuthenticationSchemeOptions, VisitorHandler>("VisitorScheme", null);
 
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Admin"));
-    options.AddPolicy("UserOnly", policy => policy.RequireClaim("User"));
-    options.AddPolicy("VisitorOnly", policy => policy.RequireClaim("Visitor"));
+    options.AddPolicy("StudentMinimum", policy => policy.RequireClaim("Student", "Admin"));
+    options.AddPolicy("VisitorMinimum", policy => policy.RequireClaim("Visitor", "Student", "Admin"));
 });
 
 var app = builder.Build();

@@ -18,7 +18,6 @@ namespace Capstone_Connect.Data
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Team> Teams { get; set; }
         public DbSet<Comment> Comments { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

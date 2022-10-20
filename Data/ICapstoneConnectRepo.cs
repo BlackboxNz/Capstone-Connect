@@ -33,17 +33,12 @@ namespace Capstone_Connect.Data
         public bool VisitorLogin(string email, string password);
         public bool StudentLogin(string email, string password);
         public bool AdminLogin(string email, string password);
+        public void VisitorLike(int projectID, int visitorID);
 
 
         // Visitor 
         public Visitor RegisterVisitor(Visitor visitor);
         public Visitor GetVisitorByEmail(string email);
-
-        //Team Functions
-        public Team AddTeam(Team team);
-        public IEnumerable<Team> GetAllTeams();
-        public Team GetTeamByID(int id);
-        public void DeleteTeam(int id);
 
         //Comment functions
         public Comment WriteComment(Comment comment);

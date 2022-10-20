@@ -84,11 +84,16 @@ namespace Capstone_Connect.Data
             }
         }
 
-        //Visitor Functions
+        // User Functions
+        public string GetAuth()
+        {
+            return "Authorised";
+        }
+
         public Visitor GetVisitorByEmail(string email)
         {
-            Visitor user = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
-            return user;
+            Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
+            return visitor;
         }
         public Visitor RegisterVisitor(Visitor user)
         {
@@ -111,8 +116,8 @@ namespace Capstone_Connect.Data
         }
         public bool StudentLogin(string email, string password)
         {
-            Visitor user = _dbContext.Visitors.Where(e => e.Email == email && e.Password == password).FirstOrDefault();
-            if (user == null)
+            Student student = _dbContext.Students.FirstOrDefault(e => e.Email == email && e.Password == password);
+            if (student == null)
             {
                 return false;
             }
@@ -123,8 +128,8 @@ namespace Capstone_Connect.Data
         }
         public bool AdminLogin(string email, string password)
         {
-            Visitor user = _dbContext.Visitors.Where(e => e.Email == email && e.Password == password).FirstOrDefault();
-            if (user == null)
+            Admin admin = _dbContext.Admins.FirstOrDefault(e => e.Email == email && e.Password == password);
+            if (admin == null)
             {
                 return false;
             }
@@ -134,10 +139,24 @@ namespace Capstone_Connect.Data
             }
         }
 
-        public string GetAuth()
+        public void VisitorLike(int projectID, int visitorID)
         {
-            return "Authorised";
+            Project p = _dbContext.Projects.FirstOrDefault(e => e.ID == projectID);
+            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.ID == visitorID);
+
+            if (v.LikedProjects.FirstOrDefault(p) == null) {
+                p.Likes++;
+                v.LikedProjects.Add(p);
+            }
+            else
+            {
+                p.Likes--;
+                v.LikedProjects.Remove(p);
+            }
+            
         }
+
+
 
         public void DeleteUser(Visitor user)
         {
@@ -155,39 +174,7 @@ namespace Capstone_Connect.Data
         }
 
 
-        //Team Functions
-        public Team AddTeam(Team team)
-        {
-            EntityEntry<Team> e = _dbContext.Teams.Add(team);
-            Team c = e.Entity;
-            _dbContext.SaveChanges();
-            return c;
-        }
-        public IEnumerable<Team> GetAllTeams()
-        {
-            IEnumerable<Team> team = _dbContext.Teams.ToList<Team>();
-            return team;
-        }
-        public Team GetTeamByID(int id)
-        {
-            Team team = _dbContext.Teams.FirstOrDefault(e => e.ID == id);
-            return team;
-        }
-        public void DeleteTeam(int id)
-        {
-            // Get existing teams
-            IEnumerable<Team> teams = _dbContext.Teams.ToList<Team>();
-
-            // Check if team exists
-            Team team = teams.FirstOrDefault(e => e.ID == id);
-            if (team != null)
-            {
-                // Delete team
-                _dbContext.Teams.Remove(team);
-                _dbContext.SaveChanges();
-            }
-        }
-
+        // Tag functions
         public void AddTag(Tag tag)
         {
             // Get existing tags
@@ -200,7 +187,6 @@ namespace Capstone_Connect.Data
                 _dbContext.SaveChanges();
             }
         }
-
         public void DeleteTag(Tag tag)
         {
             // Get existing tags
