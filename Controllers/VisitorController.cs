@@ -21,6 +21,14 @@ namespace Capstone_Connect.Controllers
             _repository = repository;
         }
 
+        [Authorize(AuthenticationSchemes = "VisitorScheme")]
+        [Authorize(Policy = "VisitorOnly")]
+        [HttpGet("GetAuth")]
+        public ActionResult<string> GetAuth()
+        {
+            return Ok(_repository.GetAuth());
+        }
+
         [HttpPost("RegisterVisitor")]
         public ActionResult RegisterVisitor(VisitorInDto visitor)
         {
@@ -41,14 +49,11 @@ namespace Capstone_Connect.Controllers
             }
         }
 
-        [Authorize(AuthenticationSchemes = "VisitorScheme")]
-        [Authorize(Policy = "VisitorOnly")]
-        [HttpGet("GetAuth")]
-        public ActionResult<string> GetAuth()
+        [HttpGet("LikeProject")]
+        public ActionResult VisitorLike()
         {
-            return Ok(_repository.GetAuth());
+
+            return Ok();
         }
-
-
     }
 }

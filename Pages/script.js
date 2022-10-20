@@ -1,9 +1,8 @@
 async function test() {
     console.log("test");
 }
-
-projectfilter("all")
-function projectfilter(c) {
+projecttag("all")
+function projecttag(c) {
     var x, i;
     x = document.getElementsByClassName("project-cont");
     if (c == "all") c = "";
@@ -47,7 +46,7 @@ const getAllProjects = () => {
     const fetchPromise = fetch(`https://localhost:5000/webapi/GetAllProjects`,
         {
             headers: {
-                "Accept": "*/*",
+                "Accept": "application/json",
                 "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetAllProjects"
             },
             
@@ -108,7 +107,7 @@ function register() {
         Email: emailText,
         Password: passwordText
     }
-    fetch("https://localhost:5000/webapi/RegisterVisitor", {
+    fetch(`https://localhost:5000/webapi/RegisterVisitor`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -124,7 +123,7 @@ function login() {
     let email = document.getElementById("login-email").value;
     let password = document.getElementById("login-pwd").value;
 
-    fetch("https://localhost:5000/webapi/GetAuth", {
+    fetch(`https://localhost:5000/webapi/GetAuth`, {
         method: "GET",
         headers: {
             "Content-Type": "application/html",
@@ -132,15 +131,28 @@ function login() {
             "Accept": "application/xml"
         }
     })
-        .then(response => {
-            if (response.ok) {
-                localStorage.setItem("auth", "true");
-                alert(response.text())
-                //document.getElementById("logout").style.display = "inline";
-            }
-            else {
-                //alert(response.text())
-                //document.getElementById("login-response").innerHTML = "Login Unsuccessful"
-            }
-        });
+    .then(response => {
+        if (response.ok) {
+            localStorage.setItem("auth", "true");
+            localStorage.email = email
+            localStorage.password = password
+            alert("Login Successful")
+        }
+        else {
+            alert("Login Unsuccessful")
+        }
+    });
+}
+
+function like(id) {
+    var element = document.getElementById(id);
+    element.classList.toggle("liked");
+
+    fetch(`https://localhost:5000/webapi/VisitorLike`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "https://localhost:5000/webapi/VisitorLike"
+        }
+    });
 }
