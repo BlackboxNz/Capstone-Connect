@@ -162,18 +162,19 @@ const showProject = (project) => {
                             <div class="flex-container overview" id="comment">
                                 <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
-                                <form id="commentForm" method="post">
+                                <form id="commentForm">
                                     <div class="commentfields">
                                         <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
                                     </div>
+                                    <!--
                                     <div class="commentfields">
                                         <input name="email" id="cemail" class="required" size="30" maxlength="35" type="email" placeholder="Email" />
-                                    </div>
+                                    </div>-->
                                     <div class="commentfields">
                                         <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
                                     </div>
                                     <div style="font-size: 1.5em;">
-                                        <input type="submit" name="submit" size="30" style=" border-radius: 10px;" value="Submit" />
+                                        <button id="commentButton" type="submit" name="submit" size="30" style=" border-radius: 10px;" onclick = "submitComment(${project.id}); showProject(${project.id})">Submit Comment</button>
                                     </div>
                                 </form>
                             </div>    
@@ -274,8 +275,6 @@ const submitComment = (id) => {
     const comment = document.getElementById('ccomment').value;
     
     document.getElementById('comment').value = "";
-    
-
     //FullName = localStorage.getItem("FullName")
     FullName = "Test"
     const commentJSON = {
@@ -283,13 +282,12 @@ const submitComment = (id) => {
         ProjectID: id,
         FullName: FullName
     }
-
     fetch(`https://localhost:5000/webapi/WriteComment`, {
         method: "POST",
         headers: {
-            "Accept": "application/json",
+            "Content-Type": "application/json",
             "Access-Control-Allow-Origin": `https://localhost:5000/webapi/WriteComment`
         },
-        body: JSON.stringify(commentJSON)
+        body: JSON.stringify(commentJSON),
     });
     }
