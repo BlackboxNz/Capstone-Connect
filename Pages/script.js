@@ -315,3 +315,26 @@ const submitComment = (id) => {
         body: JSON.stringify(commentJSON),
     });
 }
+
+const loadProjectComments = (id) => {
+    const fetchPromise = fetch(`https://localhost:5000/webapi/GetProjectComments/` + id,
+        {
+            headers: {
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProjectComments"+id
+            },
+            
+        }
+    );
+    const streamPromise = fetchPromise.then((response) => response.json());
+    streamPromise.then((data) => showProjectComments(data));
+}
+const showProjectComments = (comment) => {
+    console.log(comment);
+    document.getElementById("projectModal").style.display = "block";
+    document.getElementById(
+        "modal-text"
+    ).innerHTML = `
+
+    `;
+}
