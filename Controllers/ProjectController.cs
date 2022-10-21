@@ -54,8 +54,6 @@ namespace Capstone_Connect.Controllers
                 c.Img = project.Img;
                 c.Video = project.Video;
                 c.Tags = project.Tags;
-
-
                 _repository.SaveChanges();
                 return NoContent();
             }
