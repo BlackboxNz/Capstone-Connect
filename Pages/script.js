@@ -133,9 +133,9 @@ const showProject = (project) => {
                     </div>
 
                     <!--body-->
-                    <div class="flex-container card">
-                        <div style="padding-left: 250px; padding-right: 250px;">
-                            <div class="overview">
+                    <div class="flex-container">
+                        <div style="padding-left: 100px; padding-right: 100px;">
+                            <div>
                                 <h1 style="font-size: 3.5em; font-weight: bold;">Blurb</h1>
                                 <p></p>
                                 <p style="font-size: 1.8em;">
@@ -143,13 +143,13 @@ const showProject = (project) => {
                                 </p>
                             </div>
 
-                            <div class="overview">
+                            <div>
                                 <div style="text-align: center;padding: 50px;border-color: #d6d2d2; border-radius: 15px;">
                                     <iframe width="1000" height="563" src="${project.video}"></iframe>
                                 </div>
                             </div>
 
-                            <div class="overview">
+                            <div>
                                 <h2 style="font-weight: bold;">Approach</h2>
                                 <p></p>
                                 <p style="font-size: 1.8em;">
@@ -157,13 +157,13 @@ const showProject = (project) => {
                                 </p>
                             </div>
 
-                            <div class="overview" style="padding:50px;">
+                            <div style="padding:50px;">
                                 <div style="text-align: center;">
                                     <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
 
-                            <div class="overview" id="comment">
+                            <div id="comment">
                                 <h2 style="font-weight: bold;">Leave a Comment</h2>
                                 <hr />
                                 <form id="commentForm" method="post">
@@ -186,10 +186,6 @@ const showProject = (project) => {
                         </div>
                     </div>
 
-                </div>
-                <!--footer close-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Close</button>
                 </div>
             </div>
         </div>

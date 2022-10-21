@@ -492,14 +492,14 @@
 
     <!--project modal-->
     <div id="projectmodal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="modallabel" aria-hidden="true" style="background-color: white; top:50px; border-radius: 15px;">
-        <div>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close">&times</button>
-    </div>
         <div class="modal-fs" role="document">
             <div class="modal-content2">
                 <div class="modal-body">
                     <!--header-->
                     <div class="header" style="border-radius: 15px;">
+                        <div>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
+                        </div>
                         <div style="text-align: center;">
                             <h1 style="font-weight: bold; font-size: 6em; ">A Note Taking App</h1>
                             <p style="padding: 15px;">By</p>
@@ -509,9 +509,9 @@
                     </div>
 
                     <!--body-->
-                    <div class="flex-container card">
+                    <div class="flex-container">
                         <div style="padding-left: 250px; padding-right: 250px;">
-                            <div class="overview">
+                            <div>
                                 <h1 style="font-size: 3.5em; font-weight: bold;">Blurb</h1>
                                 <p></p>
                                 <p style="font-size: 1.8em;">
@@ -519,13 +519,13 @@
                                 </p>
                             </div>
 
-                            <div class="overview">
+                            <div>
                                 <div style="text-align: center;padding: 50px;border-color: #d6d2d2; border-radius: 15px;">
                                     <iframe width="1000" height="563" src="https://www.youtube.com/embed/k7vhBLqNpSE"></iframe>
                                 </div>
                             </div>
 
-                            <div class="overview">
+                            <div>
                                 <h2 style="font-weight: bold;">Approach</h2>
                                 <p></p>
                                 <p style="font-size: 1.8em;">
@@ -533,13 +533,13 @@
                                 </p>
                             </div>
 
-                            <div class="overview" style="padding:50px;">
+                            <div style="padding:50px;">
                                 <div style="text-align: center;">
                                     <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="../img/Projects/1.png" alt="Showcase Poster" />
                                 </div>
                             </div>
 
-                            <div class="overview" id="comment">
+                            <div id="comment">
                                 <h2 style="font-weight: bold;">Leave a Comment</h2>
                                 <hr />
                                 <form id="commentForm" method="post">
