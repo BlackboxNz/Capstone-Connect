@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +29,7 @@ namespace Capstone_Connect.Data
         public bool VisitorLogin(string email, string password);
         public bool StudentLogin(string email, string password);
         public bool AdminLogin(string email, string password);
-        public void LikeProject(int projectID, string userEmail);
+        public void LikeProject(int projectID, int userID);
 
 
         // Visitor 

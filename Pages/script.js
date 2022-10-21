@@ -90,7 +90,6 @@ const showAllProjects = (projects) => {
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
-                
                 projectsContainer.append(card);
             });
     });
@@ -246,10 +245,12 @@ function login() {
             response.text().then(data => {
                 localStorage.ID = data;
             })
+
         }
         else {
             alert("Login Unsuccessful")
         }
+        console.log(localStorage.auth); console.log(localStorage.ID);
     })
 }
 
@@ -261,8 +262,18 @@ function logout() {
     localStorage.removeItem("ID");
 }
 
+function checkUser() {
+    if (localStorage.getItem("auth") == "true") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("sign-up").style.display = "none";
+        document.getElementById("logout").style.display = "inline";
+    }
+}
+
+
+// Likes
 function like(project_id) {
-    user_id = localStorage.getItem("ID");
+    var user_id = localStorage.getItem("ID");
     const likeJSON = {
         ProjectID: project_id,
         UserID: user_id,
@@ -271,14 +282,14 @@ function like(project_id) {
     fetch(`https://localhost:5000/webapi/LikeProject`, {
         method: "POST",
         headers: {
-            "Accept": "application/json",
+            "Content-Type": "application/json",
             "Access-Control-Allow-Origin": `https://localhost:5000/webapi/LikeProject`
         },
         body: JSON.stringify(likeJSON)
     })
     .then(response => {
         if (response.ok) {
-            var element = document.getElementById(id);
+            var element = document.getElementById(project_id);
             element.classList.toggle("liked");
             email = localStorage.getItem("email")
         }
@@ -306,4 +317,4 @@ const submitComment = (id) => {
         },
         body: JSON.stringify(commentJSON),
     });
-    }
+}

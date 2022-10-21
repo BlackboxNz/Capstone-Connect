@@ -60,7 +60,7 @@ namespace Capstone_Connect.Controllers
             }
             else
             {
-                Student c = new Student { Email = student.Email, Password = student.Password, FullName = student.FullName };
+                Student c = new Student { Email = student.Email, Password = student.Password, FullName = student.FullName};
                 Student addedUser = _repository.RegisterStudent(c);
                 return Ok("User successfully registered");
             }
