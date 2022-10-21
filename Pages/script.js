@@ -122,49 +122,44 @@ const showProject = (project) => {
                     <!--header-->
                     <div class="header" style="border-radius: 15px;">
                         <div>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
+                            <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
                         </div>
                         <div style="text-align: center;">
-                            <h1 style="font-weight: bold; font-size: 6em; ">${project.teamName}</h1>
+                            <h1 style="font-weight: bold; font-size: 5em; ">${project.teamName}</h1>
                             <p style="padding: 15px;">By</p>
                             <p></p>
                             <h4>Users go here. </h4>
                         </div>
                     </div>
-
                     <!--body-->
                     <div class="flex-container">
                         <div style="padding-left: 100px; padding-right: 100px;">
                             <div>
-                                <h1 style="font-size: 3.5em; font-weight: bold;">Blurb</h1>
+                                <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
                                 <p></p>
-                                <p style="font-size: 1.8em;">
+                                <p style="font-size: 1.5em;">
                                     ${project.projectOverview}
                                 </p>
                             </div>
-
                             <div>
                                 <div style="text-align: center;padding: 50px;border-color: #d6d2d2; border-radius: 15px;">
                                     <iframe width="1000" height="563" src="${project.video}"></iframe>
                                 </div>
                             </div>
-
                             <div>
-                                <h2 style="font-weight: bold;">Approach</h2>
+                                <h2 style="font-weight: bold; font-size: 2em;">Approach</h2>
                                 <p></p>
-                                <p style="font-size: 1.8em;">
+                                <p style="font-size: 1.5em;">
                                     ${project.approach}
                                 </p>
                             </div>
-
                             <div style="padding:50px;">
                                 <div style="text-align: center;">
                                     <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
-
                             <div id="comment">
-                                <h2 style="font-weight: bold;">Leave a Comment</h2>
+                                <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
                                 <form id="commentForm" method="post">
                                     <div class="commentfields">
@@ -176,16 +171,13 @@ const showProject = (project) => {
                                     <div class="commentfields">
                                         <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
                                     </div>
-                                    <div style="font-size: 1.8em;">
+                                    <div style="font-size: 1.5em;">
                                         <input type="submit" name="submit" size="30" style=" border-radius: 10px;" value="Submit" />
                                     </div>
                                 </form>
-                            </div>
-
-                            
+                            </div>    
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
