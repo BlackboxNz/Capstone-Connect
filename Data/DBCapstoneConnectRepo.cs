@@ -284,10 +284,10 @@ namespace Capstone_Connect.Data
                 _dbContext.SaveChanges();
             }
         }
-        public IEnumerable<Comment> GetAllCommentsByID(int projectID)
+        public IEnumerable<Comment> GetAllCommentsByID(int num)
         {
             IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
-            IEnumerable<Comment> items = comments.Where(e => e.ProjectID != projectID);
+            IEnumerable<Comment> items = comments.Where(e => e.ProjectID == num);
             return items;
         }
         public IEnumerable<Comment> GetComments()
