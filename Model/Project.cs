@@ -22,7 +22,7 @@ namespace Capstone_Connect.Model
         public string? Video { get; set; }  
         public ICollection<Tag>? Tags { get; set; }
         public ICollection<Student>? Team { get; set; }
-        public int? Likes { get; set; }
+        public int Likes { get; set; } = 0;
         public ICollection<Comment>? Comments { get; set; }
     }
 }

@@ -21,10 +21,10 @@ namespace Capstone_Connect.Controllers
             _repository = repository;
         }
 
-        [HttpGet("LikeProject")]
-        public ActionResult LikeProject(int projectID, string visitorEmail)
+        [HttpPost("LikeProject")]
+        public ActionResult LikeProject(LikeInDto like)
         {
-            _repository.LikeProject(projectID, visitorEmail);
+            _repository.LikeProject(like.ProjectID, like.UserID);
             return Ok();
         }
     }
