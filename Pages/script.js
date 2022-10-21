@@ -137,29 +137,43 @@ const showProject = (project) => {
                     <!--body-->
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
-                            <div class="overview">
+                            
+                            <div class="lineup">
                                 <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.projectOverview}
                                 </p>
                             </div>
+
                             <div class="flex-container centered-div" style="min-width: 0; width: 100%;">
                                 <iframe width="1000" height="563" src="${project.video}"></iframe>  
                             </div>
-                            <div class="overview">
+
+                            <div class="lineup">
                                 <h2 style="font-weight: bold; font-size: 2em;">Approach</h2>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.approach}
                                 </p>
                             </div>
+
                             <div style="min-width: 0;"">
                                 <div style="text-align: center;">
                                     <img style=" height: auto; width: 100%;" width="500" height="563" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
-                            <div class="flex-container overview" id="comment">
+
+                            <div class="lineup">
+                                <h2 style="font-weight: bold; font-size: 2em;">Future Plans</h2>
+                                <p></p>
+                                <p style="font-size: 1.5em;">
+                                    ${project.finalThoughts}
+                                </p>
+                            </div>
+                            <hr>
+
+                            <div class="flex-container lineup" id="comment">
                                 <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
                                 <form id="commentForm">
