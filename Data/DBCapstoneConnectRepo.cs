@@ -287,7 +287,7 @@ namespace Capstone_Connect.Data
         public IEnumerable<Comment> GetAllCommentsByID(int projectID)
         {
             IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
-            IEnumerable<Comment> items = _dbContext.Comments.Where(e => e.ProjectID.Equals(projectID));
+            IEnumerable<Comment> items = comments.Where(e => e.ProjectID != projectID);
             return items;
         }
         public IEnumerable<Comment> GetComments()
