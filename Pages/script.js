@@ -268,10 +268,21 @@ function like(project_id) {
 }
 
 function comment(id) {
-    email = localStorage.getItem("email")
+
+}
+//Comments
+const submitComment = (id) => {
+    const comment = document.getElementById('ccomment').value;
+    
+    document.getElementById('comment').value = "";
+    document.getElementById('cname').value = "";
+
+    UserId = localStorage.getItem("ID")
 
     const commentJSON = {
-        FullName
+        CommentText: comment,
+        ProjectID: id,
+        UserID: UserId
     }
 
     fetch(`https://localhost:5000/webapi/WriteComment`, {
@@ -282,4 +293,4 @@ function comment(id) {
         },
         body: JSON.stringify(commentJSON)
     });
-}
+    }
