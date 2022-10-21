@@ -2,6 +2,11 @@ html {
     height: 100%;
 }
 
+div {
+    margin: 0;
+    padding: 0;
+}
+
 /* Background set to red for the sake of seeing any "gaps" */
 body {
     margin: 0;
@@ -131,7 +136,7 @@ body {
     margin-bottom: 3%;
     color: #ff914d;
     font-size: 55px;
-    font-weight: bold;
+    font-weight: 800;
 }
 
 .carouselcont {
@@ -244,7 +249,9 @@ body {
     overflow: hidden;
     color: #ff914d;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 800;
+    margin-top: 5%;
+    margin-bottom: 3%;
 }
 
 .line-clamp-3 {
@@ -254,7 +261,12 @@ body {
     overflow: hidden;
     color: #f1f1f1;
     font-size: 14px;
+    margin-bottom: 25px;
     font-style: italic;
+    font-weight: 700;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
 }
 
 .card {
@@ -263,6 +275,7 @@ body {
     font-size: 15px;
     background-color: #373433;
     margin: 8px;
+    opacity: 0.85;
     /*
     border: solid;
     border-color: #f1f1f1;
@@ -273,11 +286,36 @@ body {
 
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(102, 102, 102, 0.2);
+        border-style: solid;
+        border-color: #ff914d;
+        transition: 0.5s;
+        border-width: 1px;
+        opacity: 1.2;
     }
 
 .justify {
-    text-align: center;
+    align-self: center;
 }
+
+
+.proj-btn {
+    border-style: solid;
+    border-color: white;
+    color: white;
+    background-color: #373433;
+    border-radius: 15px;
+    border-width: 1px;
+    transition: 0.2s;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+    .proj-btn:hover {
+        border-style: solid;
+        color: #ff914d;
+        transition: 0.2s;
+        border-width: 1px;
+    }
 
 .col-1 {
     width: 8.33%;
@@ -288,12 +326,13 @@ body {
 }
 
 .col-3 {
+    transition: 0.3s;
     float: left;
     color: black;
     width: 29%;
     height: 340px;
     margin: 2.16%;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .col-4 {
@@ -375,6 +414,7 @@ body {
     background-color: white;
     top: 50px;
     border-radius: 15px;
+    transition: 0.5s;
 }
 
 .modal-body {

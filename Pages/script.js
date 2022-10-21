@@ -90,7 +90,6 @@ const showAllProjects = (projects) => {
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
-                
                 projectsContainer.append(card);
             });
     });
