@@ -50,10 +50,11 @@ namespace Capstone_Connect.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ProjectID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
