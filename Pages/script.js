@@ -114,11 +114,11 @@ const showProject = (project) => {
     console.log(project);
     document.getElementById("projectModal").style.display = "block";
     document.getElementById(
-    "modal-text"
+        "modal-text"
     ).innerHTML = `
         <div class="modal-fs" role="document">
             <div class="modal-content2">
-                <div class="modal-body">
+                <div class="modal-body" style="padding: 0;">
                     <!--header-->
                     <div class="header" style="border-radius: 15px;">
                         <div>
@@ -130,35 +130,36 @@ const showProject = (project) => {
                             <p></p>
                             <h4>Users go here. </h4>
                         </div>
+                        <div>
+                            <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
+                        </div>
                     </div>
                     <!--body-->
-                    <div class="flex-container">
-                        <div style="padding-left: 100px; padding-right: 100px;">
-                            <div>
+                    <div>
+                        <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
+                            <div class="overview">
                                 <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.projectOverview}
                                 </p>
                             </div>
-                            <div>
-                                <div style="text-align: center;padding: 50px;border-color: #d6d2d2; border-radius: 15px;">
-                                    <iframe width="1000" height="563" src="${project.video}"></iframe>
-                                </div>
+                            <div class="flex-container centered-div" style="min-width: 0; width: 100%;">
+                                <iframe width="1000" height="563" src="${project.video}"></iframe>  
                             </div>
-                            <div>
+                            <div class="overview">
                                 <h2 style="font-weight: bold; font-size: 2em;">Approach</h2>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.approach}
                                 </p>
                             </div>
-                            <div style="padding:50px;">
+                            <div style="min-width: 0;"">
                                 <div style="text-align: center;">
-                                    <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
+                                    <img style=" height: auto; width: 100%;" width="500" height="563" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
-                            <div id="comment">
+                            <div class="flex-container overview" id="comment">
                                 <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
                                 <form id="commentForm" method="post">
