@@ -7,6 +7,9 @@ using System.Globalization;
 using Capstone_Connect.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
+using Capstone_Connect.Dtos;
+using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace Capstone_Connect.Data
 {
@@ -155,52 +158,58 @@ namespace Capstone_Connect.Data
             }
         }
 
-        public void LikeProject(int projectID, string userEmail)
+        public void LikeProject(int projectID, int userID)
         {
             Project p = _dbContext.Projects.FirstOrDefault(e => e.ID == projectID);
-            Admin a = _dbContext.Admins.FirstOrDefault(e => e.Email == userEmail);
-            Student s = _dbContext.Students.FirstOrDefault(e => e.Email == userEmail);
-            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.Email == userEmail);
+            Admin a = _dbContext.Admins.FirstOrDefault(e => e.ID == userID);
+            Student s = _dbContext.Students.FirstOrDefault(e => e.ID == userID);
+            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.ID == userID);
 
-            if (v.LikedProjects.FirstOrDefault(p) == null)
+
+            if (a != null)
             {
-                p.Likes++;
-
-                if (a != null)
+                if (a.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
                 {
                     a.LikedProjects.Add(p);
-                }
-                else if (s != null)
-                {
-                    s.LikedProjects.Add(p);
+                    p.Likes++;
                 }
                 else
                 {
-                    v.LikedProjects.Add(p);
-                }
-
-            }
-            else
-            {
-                p.Likes--;
-
-                if (a != null)
-                {
                     a.LikedProjects.Remove(p);
+                    p.Likes--;
                 }
-                else if (s != null)
+            }
+
+            else if (s != null)
+            {
+                if (s.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
+                {
+                    s.LikedProjects.Add(p);
+                    p.Likes++;
+                }
+                else
                 {
                     s.LikedProjects.Remove(p);
+                    p.Likes--;
+                }
+            }
+
+            else if (v != null)
+            {
+                if (v.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
+                {
+                    v.LikedProjects.Add(p);
+                    p.Likes++;
                 }
                 else
                 {
                     v.LikedProjects.Remove(p);
+                    p.Likes--;
                 }
             }
-            
+
+            _dbContext.SaveChanges();
         }
-
-
 
         public void DeleteUser(Visitor user)
         {
@@ -275,7 +284,17 @@ namespace Capstone_Connect.Data
                 _dbContext.SaveChanges();
             }
         }
-
+        public IEnumerable<Comment> GetAllCommentsByID(int projectID)
+        {
+            IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
+            IEnumerable<Comment> items = _dbContext.Comments.Where(e => e.ProjectID.Equals(projectID));
+            return items;
+        }
+        public IEnumerable<Comment> GetComments()
+        {
+            IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
+            return comments;
+        }
         //Save
         public void SaveChanges()
         {

@@ -24,10 +24,11 @@
             <img src="https://i.ibb.co/fnzBgyC/image.png" class="nav-img" alt="logo">
         </a>
         <ul class="navbar1">
-            <a href="../index.html"><li class="navitem" style="margin-left: 44%;">Home</li></a>
-            <a href="projects.html"><li class="navitem">Projects</li></a>
-            <li class="SignUp" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
-            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
+            <li class="navitem" style="margin-left: 44%;"><a href="../index.html">Home</a></li>
+            <li class="navitem"><a href="./Pages/projects.html">Projects</a></li>
+            <li id="sign-up" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
+            <li id="login" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
+            <li id="logout" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal" onclick="logout()">Logout</li>
         </ul>
     </div>
 
@@ -44,7 +45,7 @@
     </footer>
 
     <!--login modal-->
-    <div id="loginmodal" class="modal fade" role="dialog">
+    <div id="loginmodal" class="modal fade" role="dialog" style="z-index: 1041;">
         <div class="modal-dialog" role="document">
             <!--modal content-->
             <div class="modal-content">
@@ -52,7 +53,7 @@
                     <!--Pills login/signup-->
                     <ul class="nav nav-pills nav-justified mb-3">
                         <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
-                        <li><a data-toggle="pill" href="#register">Register</a></li>
+                        <li><a data-toggle="pill" href="#signup">Sign Up</a></li>
                     </ul>
                     <!--pills content-->
                     <div class="tab-content">
@@ -73,7 +74,7 @@
                             </form>
                         </div>
                         <!--signup form-->
-                        <div id="register" class="tab-pane fade padtest">
+                        <div id="signup" class="tab-pane fade padtest">
                             <form>
                                 <!--name input-->
                                 <div class="form-group">
@@ -100,15 +101,19 @@
                         </div>
                     </div>
                 </div>
+                <!--footer close-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Close</button>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="projectModal" class="modal" role="dialog" tabindex="-1" aria-labelledby="modallabel" aria-hidden="true">
         <div class="modal-content">
-          <div class="modal-body">
-            <p id="modal-text"></p>
-          </div>
+            <div class="modal-body">
+                <p id="modal-text"></p>
+            </div>
         </div>
     </div>
 

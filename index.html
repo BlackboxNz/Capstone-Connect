@@ -356,7 +356,7 @@
     </style>
 </head>
 
-<body>
+<body onload="checkUser()">
     <div class="nav2">
         <a href="#home">
             <img src="https://i.ibb.co/fnzBgyC/image.png" class="nav-img" alt="logo">
@@ -481,14 +481,18 @@
 
             <div class="project-cont CSS Node Docker"><span class="circlel" id="8" onclick="like(this.id)"></span><span class="text2">Project 8</span></div>
         </div>
-        
+
         <!--<div data-aos="fade-up">
             <div class="tag-cont" style="width: 10%; float: left; top: 900px; left: 50px; height: 35px; margin-top: 20px; cursor: pointer; background: #fffafa; position: absolute;">
                 <span class="text1" style="font-size: 15pt; left: 15px; top: 2px; position: absolute;">View all projects</span>
             </div>
         </div>-->
-        
+
     </div>
+
+    <footer class="bottom">
+        <p class="footer-text">© Black Box NZ 2022</p>
+    </footer>
 
     <!--project modal-->
     <div id="projectmodal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="modallabel" aria-hidden="true" style="background-color: white; top:50px; border-radius: 15px;">
@@ -544,7 +548,7 @@
                                 <hr />
                                 <form id="commentForm" method="post">
                                     <div class="commentfields">
-                                        <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
+                                        <input name="name" id="cname" class="required" type="text" size="30" maxlength="23" Placeholder="Your Real Name" />
                                     </div>
                                     <div class="commentfields">
                                         <input name="email" id="cemail" class="required" size="30" maxlength="35" type="email" placeholder="Email" />
@@ -558,7 +562,7 @@
                                 </form>
                             </div>
 
-                            
+
                         </div>
                     </div>
 
@@ -580,50 +584,54 @@
                     <!--Pills login/signup-->
                     <ul class="nav nav-pills nav-justified mb-3">
                         <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
-                        <li><a data-toggle="pill" href="#register">Register</a></li>
+                        <li><a data-toggle="pill" href="#signup">Sign Up</a></li>
                     </ul>
                     <!--pills content-->
                     <div class="tab-content">
                         <!--login form-->
-                        <div id="login-form" class="tab-pane fade in active padtest">
+                        <div id="login" class="tab-pane fade in active padtest">
                             <form>
                                 <!--email input-->
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="login-email" placeholder="Enter email" name="email" />
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
                                 </div>
                                 <!--password input-->
                                 <div class="form-group">
                                     <label for="pwd">Password</label>
-                                    <input type="password" class="form-control" id="login-pwd" placeholder="Enter password" name="pwd" />
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;" onclick="login(); return false">Sign In</button>
+<<<<<<< HEAD
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;" onclick="login();">Sign In</button>
+=======
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Sign In</button>
+>>>>>>> 54eec648ef024b0c3ac9a359cc1a6345f6c35048
                             </form>
                         </div>
                         <!--signup form-->
-                        <div id="register" class="tab-pane fade padtest">
+                        <div id="signup" class="tab-pane fade padtest">
                             <form>
                                 <!--name input-->
                                 <div class="form-group">
-                                    <label for="fullname">Full Name</label>
-                                    <input type="text" class="form-control" id="fullname" placeholder="Enter full name" name="nme" />
+                                    <label for="fullname">Name</label>
+                                    <input type="text" class="form-control" id="fullname" placeholder="Enter name" name="nme" />
                                 </div>
                                 <!--email input-->
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="reg-email" placeholder="Enter email" name="email" />
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
                                 </div>
                                 <!--password input-->
                                 <div class="form-group">
                                     <label for="pwd">Password</label>
-                                    <input type="password" class="form-control" id="reg-pwd" placeholder="Enter password" name="pwd" />
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
                                 </div>
                                 <!--repeat password-->
                                 <div classs="form-group">
                                     <label for="pwd">Repeat Password</label>
-                                    <input type="password" class="form-control" id="repeat-pwd" placeholder="Repeat password" name="pwd" />
+                                    <input type="password" class="form-control" id="pwd2" placeholder="Repeat password" name="pwd2" />
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register()">Sign Up</button>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;">Sign Up</button>
                             </form>
                         </div>
                     </div>
@@ -635,6 +643,7 @@
             </div>
         </div>
     </div>
+
     <script>
         function addClass(id) {
             var element = document.getElementById(id);

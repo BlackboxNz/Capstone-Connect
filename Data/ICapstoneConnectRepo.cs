@@ -1,9 +1,15 @@
+<<<<<<< HEAD
+﻿using Capstone_Connect.Model;
+=======
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Capstone_Connect.Dtos;
 using Capstone_Connect.Model;
+using Microsoft.AspNetCore.Mvc;
+>>>>>>> 54eec648ef024b0c3ac9a359cc1a6345f6c35048
 
 namespace Capstone_Connect.Data
 {
@@ -27,7 +33,7 @@ namespace Capstone_Connect.Data
         public bool VisitorLogin(string email, string password);
         public bool StudentLogin(string email, string password);
         public bool AdminLogin(string email, string password);
-        public void LikeProject(int projectID, string userEmail);
+        public void LikeProject(int projectID, int userID);
 
 
         // Visitor 
@@ -40,6 +46,8 @@ namespace Capstone_Connect.Data
         //Comment functions
         public Comment WriteComment(Comment comment);
         public void DeleteComment(Comment comment);
+        public IEnumerable<Comment> GetAllCommentsByID(int projectID);
+        public IEnumerable<Comment> GetComments();
         //public Comment GetProjectComment(Project project)
         //public IEnumerable<Comment> GetProjectComments(Project project)
 
