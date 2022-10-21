@@ -106,7 +106,7 @@ namespace Capstone_Connect.Migrations
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ProjectID = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserID = table.Column<int>(type: "INTEGER", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
                     CommentText = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
