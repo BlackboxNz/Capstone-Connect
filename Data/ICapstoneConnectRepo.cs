@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Capstone_Connect.Dtos;
 using Capstone_Connect.Model;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone_Connect.Data
 {
@@ -40,6 +42,8 @@ namespace Capstone_Connect.Data
         //Comment functions
         public Comment WriteComment(Comment comment);
         public void DeleteComment(Comment comment);
+        public IEnumerable<Comment> GetAllCommentsByID(int projectID);
+        public IEnumerable<Comment> GetComments();
         //public Comment GetProjectComment(Project project)
         //public IEnumerable<Comment> GetProjectComments(Project project)
 

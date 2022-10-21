@@ -7,6 +7,9 @@ using System.Globalization;
 using Capstone_Connect.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
+using Capstone_Connect.Dtos;
+using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace Capstone_Connect.Data
 {
@@ -275,7 +278,17 @@ namespace Capstone_Connect.Data
                 _dbContext.SaveChanges();
             }
         }
-
+        public IEnumerable<Comment> GetAllCommentsByID(int projectID)
+        {
+            IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
+            IEnumerable<Comment> items = _dbContext.Comments.Where(e => e.ProjectID.Equals(projectID));
+            return items;
+        }
+        public IEnumerable<Comment> GetComments()
+        {
+            IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
+            return comments;
+        }
         //Save
         public void SaveChanges()
         {
