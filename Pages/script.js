@@ -84,7 +84,7 @@ const showAllProjects = (projects) => {
                 //button
                 const button = document.createElement("button");
                 button.classList = `proj-btn ${project.id}-btn`;
-                button.addEventListener("click", function () {
+                card.addEventListener("click", function () {
                     loadIndividualProject(project.id);
                   });
                 button.innerHTML = "View More";
@@ -136,45 +136,62 @@ const showProject = (project) => {
                     <!--body-->
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
-                            <div class="overview">
+                            
+                            <div class="lineup">
                                 <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.projectOverview}
                                 </p>
                             </div>
+
                             <div class="flex-container centered-div" style="min-width: 0; width: 100%;">
                                 <iframe width="1000" height="563" src="${project.video}"></iframe>  
                             </div>
-                            <div class="overview">
+
+                            <div class="lineup">
                                 <h2 style="font-weight: bold; font-size: 2em;">Approach</h2>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.approach}
                                 </p>
                             </div>
+
                             <div style="min-width: 0;"">
                                 <div style="text-align: center;">
                                     <img style=" height: auto; width: 100%;" width="500" height="563" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
-                            <div class="flex-container overview" id="comment">
+
+                            <div class="lineup">
+                                <h2 style="font-weight: bold; font-size: 2em;">Future Plans</h2>
+                                <p></p>
+                                <p style="font-size: 1.5em;">
+                                    ${project.finalThoughts}
+                                </p>
+                            </div>
+                            <hr>
+
+                            <div class="flex-container lineup" id="comment">
                                 <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
-                                <form id="commentForm" method="post">
+                                <form id="commentForm">
                                     <div class="commentfields">
                                         <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
                                     </div>
+                                    <!--
                                     <div class="commentfields">
                                         <input name="email" id="cemail" class="required" size="30" maxlength="35" type="email" placeholder="Email" />
-                                    </div>
+                                    </div>-->
                                     <div class="commentfields">
                                         <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
                                     </div>
                                     <div style="font-size: 1.5em;">
-                                        <input type="submit" name="submit" size="30" style=" border-radius: 10px;" value="Submit" />
+                                        <button id="commentButton" type="submit" name="submit" size="30" style=" border-radius: 10px;" onclick = "submitComment(${project.id}); showProject(${project.id})">Submit Comment</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div>
                             </div>    
                         </div>
                     </div>
@@ -221,17 +238,15 @@ function login() {
     .then(response => {
         if (response.ok) {
             localStorage.setItem("auth", "true");
-            document.getElementById("login").style.display = "none";
-            document.getElementById("sign-up").style.display = "none";
-            document.getElementById("logout").style.display = "inline";
-
             response.text().then(data => {
                 localStorage.ID = data;
             })
+
         }
         else {
             alert("Login Unsuccessful")
         }
+        console.log(localStorage.auth); console.log(localStorage.ID);
     })
 }
 
@@ -243,8 +258,18 @@ function logout() {
     localStorage.removeItem("ID");
 }
 
+function checkUser() {
+    if (localStorage.getItem("auth") == "true") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("sign-up").style.display = "none";
+        document.getElementById("logout").style.display = "inline";
+    }
+}
+
+
+// Likes
 function like(project_id) {
-    user_id = localStorage.getItem("ID");
+    var user_id = localStorage.getItem("ID");
     const likeJSON = {
         ProjectID: project_id,
         UserID: user_id,
@@ -253,14 +278,14 @@ function like(project_id) {
     fetch(`https://localhost:5000/webapi/LikeProject`, {
         method: "POST",
         headers: {
-            "Accept": "application/json",
+            "Content-Type": "application/json",
             "Access-Control-Allow-Origin": `https://localhost:5000/webapi/LikeProject`
         },
         body: JSON.stringify(likeJSON)
     })
     .then(response => {
         if (response.ok) {
-            var element = document.getElementById(id);
+            var element = document.getElementById(project_id);
             element.classList.toggle("liked");
             email = localStorage.getItem("email")
         }
@@ -273,8 +298,6 @@ const submitComment = (id) => {
     const comment = document.getElementById('ccomment').value;
     
     document.getElementById('comment').value = "";
-    
-
     //FullName = localStorage.getItem("FullName")
     FullName = "Test"
     const commentJSON = {
@@ -282,13 +305,12 @@ const submitComment = (id) => {
         ProjectID: id,
         FullName: FullName
     }
-
     fetch(`https://localhost:5000/webapi/WriteComment`, {
         method: "POST",
         headers: {
-            "Accept": "application/json",
+            "Content-Type": "application/json",
             "Access-Control-Allow-Origin": `https://localhost:5000/webapi/WriteComment`
         },
-        body: JSON.stringify(commentJSON)
+        body: JSON.stringify(commentJSON),
     });
-    }
+}

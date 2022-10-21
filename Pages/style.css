@@ -436,7 +436,7 @@ body {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: white;
     margin: 15% auto;
     border: 1px solid #888;
     width: 80%;
@@ -468,9 +468,10 @@ body {
     border-radius: 15px;
 }
 
-.overview {
+.lineup {
     margin-left: 150px;
     margin-right: 150px;
+    padding: 35px;
 }
 
 .header {

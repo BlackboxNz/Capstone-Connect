@@ -26,7 +26,6 @@ namespace Capstone_Connect.Controllers
         public void WriteComment(CommentInDto comment)
         {
             Comment c = new() { ProjectID = comment.ProjectID, CommentText = comment.CommentText, FullName = comment.FullName };
-
             Comment addedComment = _repository.WriteComment(c);
             CommentOutDto co = new() { ProjectID = addedComment.ProjectID, CommentText = addedComment.CommentText, FullName = addedComment.FullName };
             //return
