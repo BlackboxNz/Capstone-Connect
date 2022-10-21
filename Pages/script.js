@@ -84,7 +84,7 @@ const showAllProjects = (projects) => {
                 //button
                 const button = document.createElement("button");
                 button.classList = `proj-btn ${project.id}-btn`;
-                button.addEventListener("click", function () {
+                card.addEventListener("click", function () {
                     loadIndividualProject(project.id);
                   });
                 button.innerHTML = "View More";
@@ -177,6 +177,8 @@ const showProject = (project) => {
                                         <button id="commentButton" type="submit" name="submit" size="30" style=" border-radius: 10px;" onclick = "submitComment(${project.id}); showProject(${project.id})">Submit Comment</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div>
                             </div>    
                         </div>
                     </div>
