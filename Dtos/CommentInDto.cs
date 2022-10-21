@@ -9,7 +9,7 @@ namespace Capstone_Connect.Dtos
     public class CommentInDto
     {
         public int ProjectID { get; set; }
-        public int? UserID { get; set; }
+        public string? FullName { get; set; }
         public string? CommentText { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Capstone_Connect.Model;
 using Capstone_Connect.Data;
 using Capstone_Connect.Dtos;
+using System.Xml.Linq;
 
 
 namespace Capstone_Connect.Controllers
@@ -15,79 +16,20 @@ namespace Capstone_Connect.Controllers
     [ApiController]
     public class CommentController : Controller
     {
-        // GET: CommentController
-        public ActionResult Index()
+        private readonly ICapstoneConnectRepo _repository;
+        public CommentController(ICapstoneConnectRepo repository)
         {
-            return View();
+            _repository = repository;
         }
-
-        // GET: CommentController/Details/5
-        public ActionResult Details(int id)
+        [HttpPost("WriteComment")]
+        //public ActionResult<CommentsOutDto> WriteComment(CommentInDto comment)
+        public void WriteComment(CommentInDto comment)
         {
-            return View();
-        }
+            Comment c = new() { ProjectID = comment.ProjectID, CommentText = comment.CommentText, FullName = comment.FullName };
 
-        // GET: CommentController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CommentController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CommentController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CommentController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CommentController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CommentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            Comment addedComment = _repository.WriteComment(c);
+            CommentOutDto co = new() { ProjectID = addedComment.ProjectID, CommentText = addedComment.CommentText, FullName = addedComment.FullName };
+            //return
         }
     }
 }

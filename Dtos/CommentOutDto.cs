@@ -4,11 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace A1.Dtos
+namespace Capstone_Connect.Dtos
 {
     public class CommentOutDto
     {
-        public string FullName { get; set; }
-        public string Comment { get; set; }
+        public int ID { get; set; }
+        public int ProjectID { get; set; }
+        public int UserID { get; set; }
+        public string? CommentText { get; set; }
     }
 }

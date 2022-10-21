@@ -16,7 +16,7 @@ namespace Capstone_Connect.Model
         public int ProjectID { get; set; }
 
         [Required]
-        public int UserID { get; set; }
+        public int FullName { get; set; }
 
         [Required]
         public string? CommentText { get; set; }

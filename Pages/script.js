@@ -267,22 +267,20 @@ function like(project_id) {
     });
 }
 
-function comment(id) {
 
-}
 //Comments
 const submitComment = (id) => {
     const comment = document.getElementById('ccomment').value;
     
     document.getElementById('comment').value = "";
-    document.getElementById('cname').value = "";
+    
 
-    UserId = localStorage.getItem("ID")
-
+    //FullName = localStorage.getItem("FullName")
+    FullName = "Test"
     const commentJSON = {
         CommentText: comment,
         ProjectID: id,
-        UserID: UserId
+        FullName: FullName
     }
 
     fetch(`https://localhost:5000/webapi/WriteComment`, {
