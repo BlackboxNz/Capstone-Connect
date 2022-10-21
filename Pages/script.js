@@ -202,10 +202,10 @@ const showProject = (project) => {
 }
 
 //Login and register functions. 
-function register() {
+const register = () => {
     const fullnameText = document.getElementById("fullname").value;
-    const emailText = document.getElementById("reg-email").value;
-    const passwordText = document.getElementById("reg-pwd").value
+    const emailText = document.getElementById("email").value;
+    const passwordText = document.getElementById("pwd").value
     const userJSON = {
         FullName: fullnameText,
         Email: emailText,
@@ -223,7 +223,7 @@ function register() {
     .then(data => alert(data))
 }
 
-function login() {
+const login = () => {
     let email = document.getElementById("login-email").value;
     let password = document.getElementById("login-pwd").value;
 
@@ -237,30 +237,31 @@ function login() {
     })
     .then(response => {
         if (response.ok) {
-            localStorage.setItem("auth", "true");
             response.text().then(data => {
+                localStorage.setItem("auth", "true");
                 localStorage.ID = data;
-            })
-
+                location.reload()
+                console.log(localStorage.auth); console.log(localStorage.ID);
+            });
         }
         else {
             alert("Login Unsuccessful")
         }
-        console.log(localStorage.auth); console.log(localStorage.ID);
+        
     })
 }
 
-function logout() {
+const logout = () => {
     localStorage.setItem("auth", "false");
-    document.getElementById("login").style.display = "inline";
+    document.getElementById("nav-login").style.display = "inline";
     document.getElementById("sign-up").style.display = "inline";
     document.getElementById("logout").style.display = "none";
     localStorage.removeItem("ID");
 }
 
-function checkUser() {
+const checkUser = () => {
     if (localStorage.getItem("auth") == "true") {
-        document.getElementById("login").style.display = "none";
+        document.getElementById("nav-login").style.display = "none";
         document.getElementById("sign-up").style.display = "none";
         document.getElementById("logout").style.display = "inline";
     }
@@ -268,7 +269,7 @@ function checkUser() {
 
 
 // Likes
-function like(project_id) {
+const like = (project_id) => {
     var user_id = localStorage.getItem("ID");
     const likeJSON = {
         ProjectID: project_id,
