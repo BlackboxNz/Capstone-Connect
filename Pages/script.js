@@ -171,7 +171,10 @@ const showProject = (project) => {
                                 </p>
                             </div>
                             <hr>
-
+                            <div>
+                                <h2>Comments</h2>
+                                <div id="submitted-comments"></div>
+                            </div>
                             <div class="flex-container lineup" id="comment">
                                 <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
@@ -198,7 +201,8 @@ const showProject = (project) => {
                 </div>
             </div>
         </div>
-                    `;
+        `;
+        loadProjectComments(project.id);
 }
 
 //Login and register functions. 
@@ -331,9 +335,8 @@ const loadProjectComments = (id) => {
 }
 const showProjectComments = (comment) => {
     console.log(comment);
-    document.getElementById("projectModal").style.display = "block";
     document.getElementById(
-        "modal-text"
+        "submitted-comments"
     ).innerHTML = `
 
     `;
