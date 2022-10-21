@@ -90,7 +90,6 @@ const showAllProjects = (projects) => {
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
-                
                 projectsContainer.append(card);
             });
     });
@@ -239,6 +238,10 @@ function login() {
     .then(response => {
         if (response.ok) {
             localStorage.setItem("auth", "true");
+            document.getElementById("nav-login").style.display = "none";
+            document.getElementById("sign-up").style.display = "none";
+            document.getElementById("logout").style.display = "inline";
+
             response.text().then(data => {
                 localStorage.ID = data;
             })
@@ -253,7 +256,7 @@ function login() {
 
 function logout() {
     localStorage.setItem("auth", "false");
-    document.getElementById("login").style.display = "inline";
+    document.getElementById("nav-login").style.display = "inline";
     document.getElementById("sign-up").style.display = "inline";
     document.getElementById("logout").style.display = "none";
     localStorage.removeItem("ID");
