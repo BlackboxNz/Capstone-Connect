@@ -50,22 +50,9 @@ namespace Capstone_Connect.Data
         {
 
         }
-        
-        //Visitor based project functions
-        public void LikeProject(Project project, Visitor user)
-        {
-        }
 
         //Admin based project functions
         public void AwardProject(Project project, Tag tag)
-        {
-
-        }
-        public void ApproveProject(Project project)
-        {
-
-        }
-        public void RejectProject(Project project)
         {
 
         }
@@ -85,24 +72,9 @@ namespace Capstone_Connect.Data
         }
 
         // User Functions
-        public string GetAuth(string email)
+        public string GetAuth()
         {
-            Admin a = _dbContext.Admins.FirstOrDefault(e => e.Email == email);
-            Student s = _dbContext.Students.FirstOrDefault(e => e.Email == email);
-            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
-
-            if (a != null)
-            {
-                return a.ID.ToString();
-            }
-            else if (s != null)
-            {
-                return s.ID.ToString();
-            }
-            else
-            {
-                return v.ID.ToString();
-            }
+            return "Authorised";
         }
 
         public Visitor GetVisitorByEmail(string email)
@@ -110,13 +82,27 @@ namespace Capstone_Connect.Data
             Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
             return visitor;
         }
-        public Visitor RegisterVisitor(Visitor user)
+        public Visitor RegisterVisitor(Visitor visitor)
         {
-            EntityEntry<Visitor> e = _dbContext.Visitors.Add(user);
+            EntityEntry<Visitor> e = _dbContext.Visitors.Add(visitor);
             Visitor c = e.Entity;
             _dbContext.SaveChanges();
             return c;
         }
+
+        public Student GetStudentByEmail(string email)
+        {
+            Student student = _dbContext.Students.FirstOrDefault(e => e.Email == email);
+            return student;
+        }
+        public Student RegisterStudent(Student user)
+        {
+            EntityEntry<Student> e = _dbContext.Students.Add(user);
+            Student c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
+
         public bool VisitorLogin(string email, string password)
         {
             Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email && e.Password == password);
@@ -154,19 +140,47 @@ namespace Capstone_Connect.Data
             }
         }
 
-        public void VisitorLike(int projectID, int visitorID)
+        public void LikeProject(int projectID, string userEmail)
         {
             Project p = _dbContext.Projects.FirstOrDefault(e => e.ID == projectID);
-            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.ID == visitorID);
+            Admin a = _dbContext.Admins.FirstOrDefault(e => e.Email == userEmail);
+            Student s = _dbContext.Students.FirstOrDefault(e => e.Email == userEmail);
+            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.Email == userEmail);
 
-            if (v.LikedProjects.FirstOrDefault(p) == null) {
+            if (v.LikedProjects.FirstOrDefault(p) == null)
+            {
                 p.Likes++;
-                v.LikedProjects.Add(p);
+
+                if (a != null)
+                {
+                    a.LikedProjects.Add(p);
+                }
+                else if (s != null)
+                {
+                    s.LikedProjects.Add(p);
+                }
+                else
+                {
+                    v.LikedProjects.Add(p);
+                }
+
             }
             else
             {
                 p.Likes--;
-                v.LikedProjects.Remove(p);
+
+                if (a != null)
+                {
+                    a.LikedProjects.Remove(p);
+                }
+                else if (s != null)
+                {
+                    s.LikedProjects.Remove(p);
+                }
+                else
+                {
+                    v.LikedProjects.Remove(p);
+                }
             }
             
         }

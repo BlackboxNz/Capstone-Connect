@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Capstone_Connect.Dtos
 {
-    public class VisitorInDto
+    public class UserInDto
     {
         [Required]
         public string FullName { get; set; }

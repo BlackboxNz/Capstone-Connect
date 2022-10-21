@@ -10,9 +10,8 @@ namespace Capstone_Connect.Dtos
     {
         public int ID { get; set; }
         [Required]
-        public string Comment { get; set; }
+        public string FullName { get; set; }
         [Required]
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Comment { get; set; }
     }
 }

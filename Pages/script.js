@@ -218,7 +218,7 @@ function login() {
     let email = document.getElementById("login-email").value;
     let password = document.getElementById("login-pwd").value;
 
-    fetch(`https://localhost:5000/webapi/GetAuth/${email}`, {
+    fetch(`https://localhost:5000/webapi/GetAuth`, {
         method: "GET",
         headers: {
             "Content-Type": "application/html",
@@ -233,7 +233,6 @@ function login() {
             document.getElementById("login").style.display = "none";
             document.getElementById("sign-up").style.display = "none";
             document.getElementById("logout").style.display = "inline";
-            alert("Login Successful");
         }
         else {
             alert("Login Unsuccessful")
@@ -243,6 +242,8 @@ function login() {
 
 function logout() {
     localStorage.setItem("auth", "false");
+    document.getElementById("login").style.display = "inline";
+    document.getElementById("sign-up").style.display = "inline";
     document.getElementById("logout").style.display = "none";
     localStorage.removeItem("ID");
 }
@@ -250,13 +251,29 @@ function logout() {
 function like(id) {
     var element = document.getElementById(id);
     element.classList.toggle("liked");
-    localStorage.getItem("ID")
+    email = localStorage.getItem("email")
 
-    fetch(`https://localhost:5000/webapi/VisitorLike`, {
+    fetch(`https://localhost:5000/webapi/LikeProject_${id}` + `_` + `${email}`, {
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Access-Control-Allow-Origin": "https://localhost:5000/webapi/VisitorLike"
+            "Access-Control-Allow-Origin": `https://localhost:5000/webapi/LikeProject_${id}` + `_` + `${email}`
+        }
+    });
+}
+
+function comment(id) {
+    email = localStorage.getItem("email")
+
+    const commentJSON = {
+        FullName
+    }
+
+    fetch(`https://localhost:5000/webapi/WriteComment`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": `https://localhost:5000/webapi/WriteComment`
         }
     });
 }

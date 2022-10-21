@@ -23,11 +23,11 @@ namespace Capstone_Connect.Controllers
 
         [Authorize(AuthenticationSchemes = "AdminScheme")]
         [Authorize(Policy = "VisitorMinimum")]
-        [HttpGet("GetAuth/{email}")]
-        public ActionResult<string> GetAuth(string email) => Ok(_repository.GetAuth(email));
+        [HttpGet("GetAuth")]
+        public ActionResult<string> GetAuth() => Ok(_repository.GetAuth());
 
         [HttpPost("RegisterVisitor")]
-        public ActionResult RegisterVisitor(VisitorInDto visitor)
+        public ActionResult RegisterVisitor(UserInDto visitor)
         {
             if (visitor.Email == "")
             {
@@ -46,11 +46,24 @@ namespace Capstone_Connect.Controllers
             }
         }
 
-        [HttpGet("LikeProject")]
-        public ActionResult VisitorLike(int projectID, int visitorID)
+        [HttpPost("RegisterStudent")]
+        public ActionResult RegisterStudent(UserInDto student)
         {
-            _repository.VisitorLike(projectID, visitorID);
-            return Ok();
+            if (student.Email == "")
+            {
+                return Ok("Invalid Email");
+            }
+            Student s = _repository.GetStudentByEmail(student.Email);
+            if (s != null)
+            {
+                return Ok("Email not available.");
+            }
+            else
+            {
+                Student c = new Student { Email = student.Email, Password = student.Password, FullName = student.FullName };
+                Student addedUser = _repository.RegisterStudent(c);
+                return Ok("User successfully registered");
+            }
         }
     }
 }

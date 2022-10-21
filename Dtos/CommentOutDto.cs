@@ -8,8 +8,7 @@ namespace A1.Dtos
 {
     public class CommentOutDto
     {
+        public string FullName { get; set; }
         public string Comment { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
     }
 }
