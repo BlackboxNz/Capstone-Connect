@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-﻿using Capstone_Connect.Model;
-=======
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +6,6 @@ using System.Threading.Tasks;
 using Capstone_Connect.Dtos;
 using Capstone_Connect.Model;
 using Microsoft.AspNetCore.Mvc;
->>>>>>> 54eec648ef024b0c3ac9a359cc1a6345f6c35048
 
 namespace Capstone_Connect.Data
 {
