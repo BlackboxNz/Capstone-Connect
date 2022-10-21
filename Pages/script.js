@@ -122,7 +122,7 @@ const showProject = (project) => {
                     <!--header-->
                     <div class="header" style="border-radius: 15px;">
                         <div>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
+                            <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
                         </div>
                         <div style="text-align: center;">
                             <h1 style="font-weight: bold; font-size: 5em; ">${project.teamName}</h1>
@@ -131,7 +131,6 @@ const showProject = (project) => {
                             <h4>Users go here. </h4>
                         </div>
                     </div>
-
                     <!--body-->
                     <div class="flex-container">
                         <div style="padding-left: 100px; padding-right: 100px;">
@@ -142,13 +141,11 @@ const showProject = (project) => {
                                     ${project.projectOverview}
                                 </p>
                             </div>
-
                             <div>
                                 <div style="text-align: center;padding: 50px;border-color: #d6d2d2; border-radius: 15px;">
                                     <iframe width="1000" height="563" src="${project.video}"></iframe>
                                 </div>
                             </div>
-
                             <div>
                                 <h2 style="font-weight: bold; font-size: 2em;">Approach</h2>
                                 <p></p>
@@ -156,13 +153,11 @@ const showProject = (project) => {
                                     ${project.approach}
                                 </p>
                             </div>
-
                             <div style="padding:50px;">
                                 <div style="text-align: center;">
                                     <img style="max-width:1500px; max-height:755px;" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
-
                             <div id="comment">
                                 <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
@@ -180,12 +175,9 @@ const showProject = (project) => {
                                         <input type="submit" name="submit" size="30" style=" border-radius: 10px;" value="Submit" />
                                     </div>
                                 </form>
-                            </div>
-
-                            
+                            </div>    
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
