@@ -239,7 +239,7 @@ function login() {
     .then(response => {
         if (response.ok) {
             localStorage.setItem("auth", "true");
-            document.getElementById("login").style.display = "none";
+            document.getElementById("nav-login").style.display = "none";
             document.getElementById("sign-up").style.display = "none";
             document.getElementById("logout").style.display = "inline";
 
@@ -255,7 +255,7 @@ function login() {
 
 function logout() {
     localStorage.setItem("auth", "false");
-    document.getElementById("login").style.display = "inline";
+    document.getElementById("nav-login").style.display = "inline";
     document.getElementById("sign-up").style.display = "inline";
     document.getElementById("logout").style.display = "none";
     localStorage.removeItem("ID");
