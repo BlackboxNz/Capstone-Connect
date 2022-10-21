@@ -18,13 +18,12 @@ namespace Capstone_Connect.Data
         public Project GetProjectByID(int id);
         public void DeleteProject(int id);
         public Project AddProject(Project project);
-        public void LikeProject(Project project, Visitor visitor);
         public void SubmitProject(Project project);
         public IEnumerable<Project> GetAllItems(String name);
 
         public void DeleteUser(Visitor user);
         //bool Login(string email, string password, string userlevel);
-        public string GetAuth();
+        public string GetAuth(string email);
         public bool VisitorLogin(string email, string password);
         public bool StudentLogin(string email, string password);
         public bool AdminLogin(string email, string password);

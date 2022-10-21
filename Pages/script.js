@@ -210,7 +210,7 @@ function login() {
     let email = document.getElementById("login-email").value;
     let password = document.getElementById("login-pwd").value;
 
-    fetch(`https://localhost:5000/webapi/GetAuth`, {
+    fetch(`https://localhost:5000/webapi/GetAuth/${email}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/html",
@@ -221,10 +221,13 @@ function login() {
     .then(response => {
         if (response.ok) {
             localStorage.setItem("auth", "true");
-            localStorage.email = email;
             document.getElementById("login").style.display = "none";
             document.getElementById("sign-up").style.display = "none";
             document.getElementById("logout").style.display = "inline";
+
+            response.text().then(data => {
+                localStorage.ID = data;
+            })
         }
         else {
             alert("Login Unsuccessful")
@@ -240,16 +243,26 @@ function logout() {
     localStorage.removeItem("ID");
 }
 
-function like(id) {
-    var element = document.getElementById(id);
-    element.classList.toggle("liked");
-    email = localStorage.getItem("email")
+function like(project_id) {
+    user_id = localStorage.getItem("ID");
+    const likeJSON = {
+        ProjectID: project_id,
+        UserID: user_id,
+    }
 
-    fetch(`https://localhost:5000/webapi/LikeProject_${id}` + `_` + `${email}`, {
+    fetch(`https://localhost:5000/webapi/LikeProject`, {
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Access-Control-Allow-Origin": `https://localhost:5000/webapi/LikeProject_${id}` + `_` + `${email}`
+            "Access-Control-Allow-Origin": `https://localhost:5000/webapi/LikeProject`
+        },
+        body: JSON.stringify(likeJSON)
+    })
+    .then(response => {
+        if (response.ok) {
+            var element = document.getElementById(id);
+            element.classList.toggle("liked");
+            email = localStorage.getItem("email")
         }
     });
 }
@@ -266,6 +279,7 @@ function comment(id) {
         headers: {
             "Accept": "application/json",
             "Access-Control-Allow-Origin": `https://localhost:5000/webapi/WriteComment`
-        }
+        },
+        body: JSON.stringify(commentJSON)
     });
 }
