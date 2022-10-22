@@ -1,59 +1,57 @@
 .studentcont {
-    background: #fffafa;
+    background: #171716;
     width: 100%;
-    height: 92%;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 2%;
     position: absolute;
-    top: 6.5%;
-}
-
-.studenttitle {
-    margin-left: auto;
-    margin-right: auto;
-    color: black;
-    font-size: 50pt;
-    font-weight: bold;
-    position: relative;
-    display: block;
-    text-align: center;
+    top: 7%;
 }
 
 .titlecont {
-    width: 100%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    display: table;
+    margin-bottom: 3%;
+}
+
+.studenttitle {
+    display: table;
+    float: left;
+    color: #ff914d;
+    font-size: 40pt;
+    font-weight: bolder;
 }
 
 .studenttitle2 {
-    margin-left: auto;
-    margin-right: auto;
-    color: black;
+    display: table;
+    float: left;
+    color: #ff914d;
     font-size: 20pt;
+    font-style: italic;
     font-weight: bold;
 }
 
+.break{
+    border-top: 2px solid #373433;
+}
+
 .studentbox {
-    float: left;
-    width: 30%;
-    margin-left: 2.5%;
-    height: 500px;
-    border: 5px solid black;
+    width: 100%;
     text-align: center;
     border-radius: 15px;
 }
 
 button {
-    position: relative;
-    margin-top: 1%;
-    width: 95%;
-    height: 140px;
-    font-size: 15pt;
-    font-weight: bold;
-    border: 5px solid black;
+    text-align: center;
+    float: left;
+    width: 20%;
+    height: 200px;
+    font-size: 15px;
+    background-color: #373433;
+    margin: 2px;
     border-radius: 15px;
+    opacity: 0.85;
 }
+
 .submit-button {
     position: relative;
     margin-top: 1%;
