@@ -10,8 +10,11 @@ const createProject = () => {
         toast.className = toast.className.replace("show", "");
       }, 5000);
     } else {
+      var tagArray =  $("input[name='Question1']:checked").map(function(){
+        return this.value;
+    }).get()
       // Create json of user comment info from input fields
-      const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Approach: approach.value, FinalThoughts: final_thoughts.value, Img: project_image.value, Video: project_video.value };
+      const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Tags:tagArray, Approach: approach.value, FinalThoughts: final_thoughts.value, Img: project_image.value, Video: project_video.value };
       const fetchAddProject = fetch(
         "/webapi/AddProject",
         {
