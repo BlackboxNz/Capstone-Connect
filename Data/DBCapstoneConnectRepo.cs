@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Globalization;
@@ -313,22 +313,22 @@ namespace Capstone_Connect.Data
             string imgDir = Path.Combine(path, "img/Projects");
             return imgDir;
         }
-        public async void UploadProjectImage(IFormFile file)
-        {
-            try
-            {
-                var httpClient = new HttpClient();
-                var multipartFormDataContent = new MultipartFormDataContent();
-                httpClient.BaseAddress = new Uri(BASE_URL);
-                var fileContent = new ByteArrayContent(File.ReadAllBytes(fileInfo.FullName));
-                multipartFormDataContent.Add(fileContent, "file", fileInfo.Name);
-                return httpClient.PostAsync("upload", multipartFormDataContent);
-            }
-            catch
-            {
-                return null;
-            }
-        }
+        //public async void UploadProjectImage(IFormFile file)
+        //{
+        //    try
+        //    {
+        //        var httpClient = new HttpClient();
+        //        var multipartFormDataContent = new MultipartFormDataContent();
+        //        httpClient.BaseAddress = new Uri(BASE_URL);
+        //        var fileContent = new ByteArrayContent(File.ReadAllBytes(fileInfo.FullName));
+        //        multipartFormDataContent.Add(fileContent, "file", fileInfo.Name);
+        //        return httpClient.PostAsync("upload", multipartFormDataContent);
+        //    }
+        //    catch
+        //    {
+        //        return null;
+        //    }
+        //}
         //Save
         public void SaveChanges()
         {
