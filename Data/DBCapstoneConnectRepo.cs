@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Globalization;
@@ -10,6 +12,9 @@ using System.Collections;
 using Capstone_Connect.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Capstone_Connect.Data
 {
@@ -21,6 +26,7 @@ namespace Capstone_Connect.Data
         {
             _dbContext = dbContext;
         }
+        private string BASE_URL = "http://localhost:5000/img/Projects/";
         //General functions
         public IEnumerable<Project> GetAllProjects()
         {
@@ -299,6 +305,29 @@ namespace Capstone_Connect.Data
         {
             IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
             return comments;
+        }
+
+        public string GetFilePath(string Filename)
+        {
+            string path = Directory.GetCurrentDirectory();
+            string imgDir = Path.Combine(path, "img/Projects");
+            return imgDir;
+        }
+        public async void UploadProjectImage(IFormFile file)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var multipartFormDataContent = new MultipartFormDataContent();
+                httpClient.BaseAddress = new Uri(BASE_URL);
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(fileInfo.FullName));
+                multipartFormDataContent.Add(fileContent, "file", fileInfo.Name);
+                return httpClient.PostAsync("upload", multipartFormDataContent);
+            }
+            catch
+            {
+                return null;
+            }
         }
         //Save
         public void SaveChanges()

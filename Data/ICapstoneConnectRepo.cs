@@ -22,7 +22,8 @@ namespace Capstone_Connect.Data
         public Project AddProject(Project project);
         public void SubmitProject(Project project);
         public IEnumerable<Project> GetAllItems(String name);
-
+        public string GetFilePath(string Filename);
+        public void UploadProjectImage(IFormFile file);
         public void DeleteUser(Visitor user);
         //bool Login(string email, string password, string userlevel);
         public string GetAuth(string email);

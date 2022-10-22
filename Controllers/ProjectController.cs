@@ -150,6 +150,22 @@ namespace Capstone_Connect.Controllers
             }
             return PhysicalFile(fileName, respHeader);
         }
+        [HttpPost("UploadProjectImage/{id}")]
+
+        public async Task<IActionResult> UploadProjectImage(IFormFile file)
+        {
+            try
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", file.FileName);
+                var stream = new FileStream(path, FileMode.Create);
+                file.CopyToAsync(stream);
+                return Ok(new { length = file.Length, name = file.FileName });
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }
 
