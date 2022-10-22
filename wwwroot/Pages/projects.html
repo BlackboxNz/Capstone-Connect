@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body onload="getAllProjects()">
+<body onload="getAllProjects(); checkUser();">
 
     <div class="nav2">
         <a href="#home">
@@ -29,6 +29,8 @@
             <li id="sign-up" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
             <li id="nav-login" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
             <li id="logout" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal" onclick="logout()">Logout</li>
+            <li id="admin" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal"><a href="./admin.html">Admin</a></li>
+            <li id="student" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal"><a href="./student.html">Student</a></li>
         </ul>
     </div>
 
@@ -63,14 +65,14 @@
                                 <!--email input-->
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
+                                    <input type="email" class="form-control" id="login-email" placeholder="Enter email" name="email" />
                                 </div>
                                 <!--password input-->
                                 <div class="form-group">
                                     <label for="pwd">Password</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
+                                    <input type="password" class="form-control" id="login-pwd" placeholder="Enter password" name="pwd" />
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;">Sign In</button>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 0; left: 0; bottom: 0;" onclick="login();">Sign In</button>
                             </form>
                         </div>
                         <!--signup form-->
@@ -96,7 +98,7 @@
                                     <label for="pwd">Repeat Password</label>
                                     <input type="password" class="form-control" id="pwd2" placeholder="Repeat password" name="pwd2" />
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;">Sign Up</button>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register();">Sign Up</button>
                             </form>
                         </div>
                     </div>

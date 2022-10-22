@@ -40,8 +40,8 @@ namespace Capstone_Connect.Controllers
             }
             else
             {
-                Visitor c = new Visitor { Email = visitor.Email, Password = visitor.Password, FullName = visitor.FullName};
-                Visitor addedUser = _repository.RegisterVisitor(c);
+                Visitor c = new() { Email = visitor.Email, Password = visitor.Password, FullName = visitor.FullName};
+                _repository.RegisterVisitor(c);
                 return Ok("User successfully registered");
             }
         }
@@ -60,8 +60,8 @@ namespace Capstone_Connect.Controllers
             }
             else
             {
-                Student c = new Student { Email = student.Email, Password = student.Password, FullName = student.FullName};
-                Student addedUser = _repository.RegisterStudent(c);
+                Student c = new() { Email = student.Email, Password = student.Password, FullName = student.FullName};
+                _repository.RegisterStudent(c);
                 return Ok("User successfully registered");
             }
         }

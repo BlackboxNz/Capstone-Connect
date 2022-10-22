@@ -259,39 +259,53 @@ const logout = () => {
     localStorage.removeItem("fullname");
     document.getElementById("nav-login").style.display = "inline";
     document.getElementById("sign-up").style.display = "inline";
+    document.getElementById("admin").style.display = "none";
+    document.getElementById("student").style.display = "none";
     document.getElementById("logout").style.display = "none";
 }
 
 const checkUser = () => {
     var auth = localStorage.getItem("auth")
-    if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
+    if ((auth != "false")) {
         document.getElementById("nav-login").style.display = "none";
         document.getElementById("sign-up").style.display = "none";
         document.getElementById("logout").style.display = "inline";
 
-        var user_type = localStorage.getItem("auth");
-        var user_id = localStorage.getItem("id");
-
-        const likeJSON = {
-            ProjectID: 1,
-            UserType: user_type,
-            UserID: user_id,
+        if (auth == "admin") {
+            document.getElementById("admin").style.display = "inline";
+        }
+        else if (auth == "student") {
+            document.getElementById("student").style.display = "inline";
         }
 
-        fetch(`https://localhost:5000/webapi/GetLikedProjects`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetLikedProjects"
-            },
-            body: JSON.stringify(likeJSON)
+        if (localStorage.liked_projects == "undefined") {
 
-        })
+            var user_type = localStorage.getItem("auth");
+            var user_id = localStorage.getItem("id");
+
+            const likeJSON = {
+                ProjectID: 1,
+                UserType: user_type,
+                UserID: user_id,
+            }
+
+            fetch(`https://localhost:5000/webapi/GetLikedProjects`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetLikedProjects"
+                },
+                body: JSON.stringify(likeJSON)
+
+            })
             .then(response => response.text())
             .then(data => {
-                localStorage.liked_projects = data.split(",");
+                var liked_projects = data.split(",")
+                localStorage.liked_projects = liked_projects;
             });
+        }
     }
+
 }
 
 
