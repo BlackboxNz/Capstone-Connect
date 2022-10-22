@@ -17,12 +17,7 @@ namespace Capstone_Connect.Dtos
         public string? FinalThoughts { get; set; }
         public string? Img { get; set; }
         public string? Video { get; set; }
-
-        public ICollection<Tag>? Tags { get; set; }
-
-        // Team members
-        public ICollection<Student>? Users { get; set; }
-        // Users that have liked the project.
+        public ICollection<Student>? TeamMembers { get; set; }
         //public ICollection<User> LikedBy { get; set; }
         public ICollection<Comment>? Comments { get; set; }
         public int? Likes { get; set; }
