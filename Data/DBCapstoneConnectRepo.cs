@@ -234,43 +234,41 @@ namespace Capstone_Connect.Data
         public string GetLikedProjects(string userType, int userID)
         {
             string id_list = "";
-            Admin a = _dbContext.Admins.FirstOrDefault(e => e.ID == userID);
-            Student s = _dbContext.Students.FirstOrDefault(e => e.ID == userID);
-            Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.ID == userID);
+            Admin a = _dbContext.Admins.Include(e => e.LikedProjects).FirstOrDefault(e => e.ID == userID);
+            Student s = _dbContext.Students.Include(e => e.LikedProjects).FirstOrDefault(e => e.ID == userID);
+            Visitor v = _dbContext.Visitors.Include(e => e.LikedProjects).FirstOrDefault(e => e.ID == userID);
 
-            if (userType == "admin")
+            if (userType == "admin" && a != null)
             {
                 if (a.LikedProjects != null)
                 {
-                    for (int i = 0; i < a.LikedProjects.Count(); i++)
+                    for (int i = 0; i < a.LikedProjects.Count; i++)
                     {
-                        id_list = id_list + "," + a.LikedProjects.ElementAt(i).ID.ToString();
+                        id_list = id_list + a.LikedProjects.ElementAt(i).ID.ToString() + ",";
                     }
                 }
-                return id_list;
             }
-            else if (userType == "student")
+            else if (userType == "student" && s != null)
             {
                 if (s.LikedProjects != null)
                 {
-                    for (int i = 0; i < s.LikedProjects.Count(); i++)
+                    for (int i = 0; i < s.LikedProjects.Count; i++)
                     {
-                        id_list = id_list + "," + s.LikedProjects.ElementAt(i).ID.ToString();
+                        id_list = id_list + s.LikedProjects.ElementAt(i).ID.ToString() + ",";
                     }
                 }
-                return id_list;
             }
-            else
+            else if (userType == "visitor" && v != null)
             {
                 if (v.LikedProjects != null)
                 {
-                    for (int i = 0; i < v.LikedProjects.Count(); i++)
+                    for (int i = 0; i < v.LikedProjects.Count; i++)
                     {
-                        id_list = id_list + "," + v.LikedProjects.ElementAt(i).ID.ToString();
+                        id_list = id_list + v.LikedProjects.ElementAt(i).ID.ToString() + ",";
                     }
                 }
-                return id_list;
             }
+            return id_list;
         }
 
         public void DeleteUser(Visitor user)
@@ -319,8 +317,8 @@ namespace Capstone_Connect.Data
         public void TagProject(Project project, Tag tag)
         {
             // Get existing projects and tags
-            IEnumerable<Project> projects = _dbContext.Projects.ToList<Project>();
-            IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
+            //IEnumerable<Project> projects = _dbContext.Projects.ToList<Project>();
+            //IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
 
         }
 

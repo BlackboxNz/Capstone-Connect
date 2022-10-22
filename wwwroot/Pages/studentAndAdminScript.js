@@ -29,9 +29,12 @@ const createProject = () => {
             setTimeout(function () {
                 toast.className = toast.className.replace("show", "");
               }, 50000);
-          })
+          }).then((data) => uploadImage());
 
     }
+}
+const uploadImage = () => {
+  alert(project_image.value)
 }
 
 const deleteProject = (id) => {

@@ -14,6 +14,10 @@ using Capstone_Connect.Helper;
 using System.Drawing.Imaging;
 using System.Collections;
 using Microsoft.AspNetCore.Cors;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
+using static System.Net.WebRequestMethods;
 
 namespace Capstone_Connect.Controllers
 {
@@ -150,7 +154,35 @@ namespace Capstone_Connect.Controllers
             }
             return PhysicalFile(fileName, respHeader);
         }
+        [HttpPost ("UploadImage/{id}")]
+        public async Task<IActionResult> UploadImage(List<IFormFile> file)
+        {
 
+            long size = file.Sum(f => f.Length);
+
+            // full path to file in temp location
+            var filePath = Directory.GetCurrentDirectory();
+            string imgDir = Path.Combine(filePath, "img/Projects");
+
+            foreach (var formFile in file)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                        //formFile.SaveAs(path);
+
+                    }
+                }
+            }
+
+
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return Ok(new { count = file.Count, size, imgDir });
+        }
 
     }
 }
