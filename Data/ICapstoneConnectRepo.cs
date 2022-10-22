@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Capstone_Connect.Dtos;
 using Capstone_Connect.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Capstone_Connect.Data
 {
@@ -44,6 +45,9 @@ namespace Capstone_Connect.Data
 
         public Student GetStudentByEmail(string email);
         public Student RegisterStudent(Student student);
+
+        public Admin GetAdminByEmail(string email);
+        public Admin AddAdmin(Admin user);
 
         //Comment
         public Comment WriteComment(Comment comment);

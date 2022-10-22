@@ -65,5 +65,25 @@ namespace Capstone_Connect.Controllers
                 return Ok("User successfully registered");
             }
         }
+
+        [HttpPost("AddAdmin")]
+        public ActionResult AddAdmin(UserInDto admin)
+        {
+            if (admin.Email == "")
+            {
+                return Ok("Invalid Email");
+            }
+            Admin a = _repository.GetAdminByEmail(admin.Email);
+            if (a != null)
+            {
+                return Ok("Email not available.");
+            }
+            else
+            {
+                Admin c = new() { Email = admin.Email, Password = admin.Password, FullName = admin.FullName };
+                _repository.AddAdmin(c);
+                return Ok("User successfully registered");
+            }
+        }
     }
 }
