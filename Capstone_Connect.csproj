@@ -29,4 +29,8 @@
     <PackageReference Include="WinInsider.System.Net.Http.Formatting" Version="1.0.14" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\index.html" />
+  </ItemGroup>
+
 </Project>
