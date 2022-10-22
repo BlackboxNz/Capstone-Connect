@@ -179,9 +179,10 @@ const showProject = (project) => {
                                 <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
                                 <hr />
                                 <form id="commentForm">
+                                    <!--
                                     <div class="commentfields">
                                         <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
-                                    </div>
+                                    </div> -->
                                     <!--
                                     <div class="commentfields">
                                         <input name="email" id="cemail" class="required" size="30" maxlength="35" type="email" placeholder="Email" />
@@ -334,14 +335,38 @@ const loadProjectComments = (id) => {
     streamPromise.then((data) => showProjectComments(data));
 }
 const showProjectComments = (comment) => {
-    console.log(comment);
+    if (comment.length == 0){
+        document.getElementById(
+            "submitted-comments"
+        ).innerHTML += `<p>No current comments, feel free to leave one below.</p>`;
+    }
+    else{
     comment.forEach(obj => {
-        console.log(obj);
         document.getElementById(
             "submitted-comments"
         ).innerHTML += `<h4 id="comment-title">${obj.fullName}</h4>
-        <p id="comment-body">${obj.commentText}</p>    
+        <p id="comment-body">${obj.commentText}</p>
+        <p>&horbar;&horbar;&horbar;&horbar;&horbar;</p>  
         `;
-    });
+    });}
     
 }
+
+const deleteComment = (id) => {
+    const deleteComment = fetch(
+      "https://localhost:5000/webapi/DeleteComment/" + id,
+      {
+        method: "DELETE",
+        headers: {
+          "Access-Control-Allow-Origin": "https://localhost:5000/webapi/DeleteComment" + id
+        }
+      }
+    ).then(response => {
+      if (response.status == 204){
+        alert("Comment Deleted");
+      }
+      else{
+        alert("Unable to delete comment");
+      }
+    })
+  }

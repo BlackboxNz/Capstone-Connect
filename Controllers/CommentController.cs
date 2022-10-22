@@ -47,6 +47,19 @@ namespace Capstone_Connect.Controllers
             IEnumerable<CommentOutDto> c = comments.Select(e => new CommentOutDto { ID = e.ID, ProjectID = e.ProjectID, CommentText = e.CommentText, FullName = e.FullName });
             return Ok(c);
         }
+        // DELETE /webapi/DeleteComment/{id}
+        [HttpDelete("DeleteComment/{id}")]
+        public ActionResult DeleteComment(int id)
+        {
+            Comment c = _repository.GetCommentByID(id);
+            if (c == null)
+                return NotFound();
+            else
+            {
+                _repository.DeleteComment(c);
+                return NoContent();
+            }
+        }
 
     }
 }

@@ -19,10 +19,10 @@ const createProject = () => {
           "Access-Control-Allow-Origin": "https://localhost:5000/webapi/AddProject"},
           body: JSON.stringify(json),
         }).then((data) => {
-            // Inform user through toast of the successful purchase
-            // potential for alert
-            //document.getElementById('shopAlert').innerHTML = `<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>` + "Item " + itemId + " bought!";
-            //document.getElementById('shopAlert').style.display = "block";
+            // Inform user through toast of the successful creation
+            // potential for alert of innerhtml
+            //document.getElementById('projectAlert').innerHTML = `<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>` + "Item " + itemId + " bought!";
+            //document.getElementById('projectAlert').style.display = "block";
             toast.innerHTML = `Project ${data.ProjectName} created`;
             toast.className = "show";
             setTimeout(function () {
@@ -32,3 +32,24 @@ const createProject = () => {
 
     }
 }
+
+const deleteProject = (id) => {
+  const deleteProject = fetch(
+    "https://localhost:5000/webapi/DeleteProject/" + id,
+    {
+      method: "DELETE",
+      headers: {
+        "Access-Control-Allow-Origin": "https://localhost:5000/webapi/DeleteProject" + id,
+      }
+    }
+  ).then(response => {
+    if (response.status == 204){
+      alert("Project Deleted");
+    }
+    else{
+      alert("Unable to delete project");
+    }
+  })
+}
+
+
