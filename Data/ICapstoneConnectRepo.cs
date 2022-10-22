@@ -44,6 +44,7 @@ namespace Capstone_Connect.Data
         public void DeleteComment(Comment comment);
         public IEnumerable<Comment> GetAllCommentsByID(int projectID);
         public IEnumerable<Comment> GetComments();
+        public Comment GetCommentByID(int id);
         //public Comment GetProjectComment(Project project)
         //public IEnumerable<Comment> GetProjectComments(Project project)
 

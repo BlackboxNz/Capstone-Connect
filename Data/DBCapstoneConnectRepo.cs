@@ -284,6 +284,11 @@ namespace Capstone_Connect.Data
                 _dbContext.SaveChanges();
             }
         }
+        public Comment GetCommentByID(int id)
+        {
+            Comment comment = _dbContext.Comments.FirstOrDefault(e => e.ID == id);
+            return comment;
+        }
         public IEnumerable<Comment> GetAllCommentsByID(int num)
         {
             IEnumerable<Comment> comments = _dbContext.Comments.ToList<Comment>();
