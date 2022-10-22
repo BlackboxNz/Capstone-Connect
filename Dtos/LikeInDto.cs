@@ -9,6 +9,7 @@ namespace Capstone_Connect.Dtos
     public class LikeInDto
     {
         public int ProjectID { get; set; }
+        public string UserType { get; set; }
         public int UserID { get; set; }
     }
 }

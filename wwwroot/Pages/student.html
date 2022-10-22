@@ -12,10 +12,9 @@
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./students/student.css">
-
 </head>
 
-<body>
+<body onload="showStudentProfile()">
     <div class="nav2">
         <a href="#home">
             <img src="https://i.ibb.co/fnzBgyC/image.png" class="nav-img" alt="logo">
@@ -23,29 +22,50 @@
         <ul class="navbar1">
             <li class="navitem" style="margin-left: 44%;"><a href="../index.html">Home</a></li>
             <li class="navitem"><a href="projects.html">Projects</a></li>
-            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
-            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
             <li class="navitem" style="float:right">My Account</li>
         </ul>
     </div>
 
     <div class="studentcont">
-        <div class="titlecont">
-            <span class="studenttitle">Manage Account</span>
-        </div>
 
+        <div class="titlecont" id="title" ></div>
+        
+        <hr class="break">
 
-        <div class="studentbox">
-            <span class="studenttitle2">Project</span> <br />
-            <button id="newProject" type="button"><a href="./students/add_project.html">add project</a></button> <br />
-            <button id="editProject" type="button"><a href="./students/edit_project.html">edit project</a></button> <br />
+        <div class = "studentboxcont">
+            <div class="studentbox">
+                <span class="studenttitle2">Projects</span> 
+                <br><br><hr class="break">
+                <button id="newProject" type="button" 
+                onclick="window.location.href='./students/add_project.html'">
+                    + Add Project
+                </button>
+                <button id="editProject" type="button" 
+                onclick="window.location.href='./students/edit_project.html'">
+                    <img class="icon" src="../../img/editico.png">
+                    Edit Project
+                </button>
+            </div>
         </div>
-        <div class="studentbox">
-            <span class="studentitle2">Team</span> <br />
-            <button id="joinTeam" type="button"><a href="./students/join_team.html">Join team</a></button> <br />
+        
+        <br><br><hr class="break">
+
+        <div class = "studentboxcont">
+            <div class="studentbox">
+                <span class="studenttitle2">Teams</span> 
+                <br><br><hr class="break">
+                <button id="joinTeam" type="button" 
+                onclick="window.location.href='./students/join_team.html'">
+                    Join team</button>
+            </div>
         </div>
+        
 
     </div>
+
+    <footer class="bottom">
+        <p class="footer-text">© Black Box NZ 2022</p>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

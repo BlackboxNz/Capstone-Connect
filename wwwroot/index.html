@@ -77,10 +77,10 @@
             transition: background 1000ms, color 1000ms;
         }
 
-        .navitem:hover {
-            color: #2a2a2a;
-            background-color: #fffafa;
-        }
+            .navitem:hover {
+                color: #2a2a2a;
+                background-color: #fffafa;
+            }
 
         .carouselcont {
             position: absolute;
@@ -249,10 +249,10 @@
             border-radius: 15px;
         }
 
-        .btn:hover {
-            color: #fffafa;
-            background: grey;
-        }
+            .btn:hover {
+                color: #fffafa;
+                background: grey;
+            }
 
         .carousel-control {
             transition: 1000ms;
@@ -314,12 +314,12 @@
             padding-top: 30px;
         }
 
-        .flex-container > div {
-            background-color: white;
-            color: black;
-            margin: auto;
-            border-color: #5e5e5e;
-        }
+            .flex-container > div {
+                background-color: white;
+                color: black;
+                margin: auto;
+                border-color: #5e5e5e;
+            }
 
         .centered-div {
             text-align: center;
@@ -331,28 +331,25 @@
             padding-bottom: 10px;
         }
 
-        .commentfields > input {
-            padding-top: 4px;
-            padding-left: 9px;
-            padding-bottom: 4px;
-            border-radius: 24px;
-            background-color: #e6e6e6;
-            border-color: transparent;
-        }
+            .commentfields > input {
+                padding-top: 4px;
+                padding-left: 9px;
+                padding-bottom: 4px;
+                border-radius: 24px;
+                background-color: #e6e6e6;
+                border-color: transparent;
+            }
 
         .textarea {
             width: 650px;
             height: 150px;
             border-radius: 24px;
             padding-left: 9px;
-            padding-top:4px;
+            padding-top: 4px;
             padding-bottom: 4px;
             background-color: #e6e6e6;
             border-color: transparent;
         }
-
-
-
     </style>
 </head>
 
@@ -367,6 +364,8 @@
             <li id="sign-up" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
             <li id="nav-login" class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
             <li id="logout" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal" onclick="logout()">Logout</li>
+            <li id="admin" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal"><a href="./Pages/admin.html">Admin</a></li>
+            <li id="student" class="navitem" style="float: right; display: none;" data-toggle="modal" data-target="#loginmodal"><a href="./Pages/student.html">Student</a></li>
         </ul>
     </div>
 

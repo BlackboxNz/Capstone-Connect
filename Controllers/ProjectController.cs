@@ -14,6 +14,10 @@ using Capstone_Connect.Helper;
 using System.Drawing.Imaging;
 using System.Collections;
 using Microsoft.AspNetCore.Cors;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
+using static System.Net.WebRequestMethods;
 
 namespace Capstone_Connect.Controllers
 {
@@ -53,7 +57,6 @@ namespace Capstone_Connect.Controllers
                 c.FinalThoughts = project.FinalThoughts;
                 c.Img = project.Img;
                 c.Video = project.Video;
-                c.Tags = project.Tags;
                 _repository.SaveChanges();
                 return NoContent();
             }
@@ -64,7 +67,7 @@ namespace Capstone_Connect.Controllers
         public ActionResult<IEnumerable<ProjectOutDto>> GetAllProjects()
         {
             IEnumerable<Project> project = _repository.GetAllProjects();
-            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
+            IEnumerable<ProjectOutDto> c = project.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video });
             return Ok(c);
         }
 
@@ -77,7 +80,7 @@ namespace Capstone_Connect.Controllers
                 return NotFound();
             else
             {
-                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Semester = project.Semester, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Tags = project.Tags, Comments = project.Comments };
+                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Semester = project.Semester, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Comments = project.Comments };
                 return Ok(c);
             }
 
@@ -91,14 +94,14 @@ namespace Capstone_Connect.Controllers
             if (String.IsNullOrWhiteSpace(name))
             {
                 IEnumerable<Project> projects = _repository.GetAllProjects();
-                IEnumerable<ProjectOutDto> c = projects.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
+                IEnumerable<ProjectOutDto> c = projects.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video});
                 return Ok(c);
             }
 
             else
             {
                 IEnumerable<Project> projects = _repository.GetAllItems(name);
-                IEnumerable<ProjectOutDto> c = projects.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video, Tags = e.Tags });
+                IEnumerable<ProjectOutDto> c = projects.Select(e => new ProjectOutDto { ID = e.ID, TeamName = e.TeamName, ProjectName = e.ProjectName, Semester = e.Semester, ProjectOverview = e.ProjectOverview, Approach = e.Approach, FinalThoughts = e.FinalThoughts, Img = e.Img, Video = e.Video,});
                 return Ok(c);
             }
 
@@ -122,7 +125,7 @@ namespace Capstone_Connect.Controllers
         public ActionResult GetItemPhoto(int id)
         {
             string path = Directory.GetCurrentDirectory();
-            string imgDir = Path.Combine(path, "img/Projects");
+            string imgDir = Path.Combine(path, "img\\Projects");
             string fileName1 = Path.Combine(imgDir, id + ".png");
             string fileName2 = Path.Combine(imgDir, id + ".jpg");
             string fileName3 = Path.Combine(imgDir, id + ".gif");
@@ -150,7 +153,36 @@ namespace Capstone_Connect.Controllers
             }
             return PhysicalFile(fileName, respHeader);
         }
+        [HttpPost ("UploadImage")]
+        public async Task<IActionResult> UploadImage(IList<IFormFile> file)
+        {
 
+            
+
+            // full path to file in temp location
+            var filePath = Directory.GetCurrentDirectory();
+            string imgDir = Path.Combine(filePath, "img\\Projects");
+
+            //foreach (var formFile in file)
+            //{
+            //    if (formFile.Length > 0)
+            //    {
+            //        using (Stream stream = new FileStream(imgDir, FileMode.Create, FileAccess.Write))
+            //        {
+            //            formFile.CopyTo(stream);
+
+            //        }
+            //    }
+                
+            //}
+
+
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+
+            return Ok(new { count = file.Count,  imgDir, file });
+        }
 
     }
 }

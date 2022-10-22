@@ -24,8 +24,14 @@ namespace Capstone_Connect.Controllers
         [HttpPost("LikeProject")]
         public ActionResult LikeProject(LikeInDto like)
         {
-            _repository.LikeProject(like.ProjectID, like.UserID);
+            _repository.LikeProject(like.ProjectID, like.UserType, like.UserID);
             return Ok();
+        }
+
+        [HttpPost("GetLikedProjects")]
+        public ActionResult GetLikedProjects(LikeInDto like)
+        {
+            return Ok(_repository.GetLikedProjects(like.UserType, like.UserID));
         }
     }
 }

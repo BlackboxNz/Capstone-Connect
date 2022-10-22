@@ -127,6 +127,19 @@ namespace Capstone_Connect.Data
             return c;
         }
 
+        public Admin GetAdminByEmail(string email)
+        {
+            Admin admin = _dbContext.Admins.FirstOrDefault(e => e.Email == email);
+            return admin;
+        }
+        public Admin AddAdmin(Admin user)
+        {
+            EntityEntry<Admin> e = _dbContext.Admins.Add(user);
+            Admin c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
+
         public bool VisitorLogin(string email, string password)
         {
             Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email && e.Password == password);
@@ -164,17 +177,21 @@ namespace Capstone_Connect.Data
             }
         }
 
-        public void LikeProject(int projectID, int userID)
+        public void LikeProject(int projectID, string userType, int userID)
         {
             Project p = _dbContext.Projects.FirstOrDefault(e => e.ID == projectID);
             Admin a = _dbContext.Admins.FirstOrDefault(e => e.ID == userID);
             Student s = _dbContext.Students.FirstOrDefault(e => e.ID == userID);
             Visitor v = _dbContext.Visitors.FirstOrDefault(e => e.ID == userID);
 
-
-            if (a != null)
+            if (userType == "admin")
             {
-                if (a.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
+                if (a.LikedProjects == null)
+                {
+                    a.LikedProjects = new List<Project>() { p };
+                    p.Likes++;
+                }
+                else if (a.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
                 {
                     a.LikedProjects.Add(p);
                     p.Likes++;
@@ -186,9 +203,14 @@ namespace Capstone_Connect.Data
                 }
             }
 
-            else if (s != null)
+            else if (userType == "student")
             {
-                if (s.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
+                if (s.LikedProjects == null)
+                {
+                    s.LikedProjects = new List<Project>() { p };
+                    p.Likes++;
+                }
+                else if (s.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
                 {
                     s.LikedProjects.Add(p);
                     p.Likes++;
@@ -200,9 +222,14 @@ namespace Capstone_Connect.Data
                 }
             }
 
-            else if (v != null)
+            else if (userType == "visitor")
             {
-                if (v.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
+                if (v.LikedProjects == null)
+                {
+                    v.LikedProjects = new List<Project>() { p };
+                    p.Likes++;
+                }
+                else if (v.LikedProjects.FirstOrDefault(p => p.ID == projectID) == null)
                 {
                     v.LikedProjects.Add(p);
                     p.Likes++;
@@ -217,15 +244,55 @@ namespace Capstone_Connect.Data
             _dbContext.SaveChanges();
         }
 
+        public string GetLikedProjects(string userType, int userID)
+        {
+            string id_list = "";
+            Admin a = _dbContext.Admins.Include(e => e.LikedProjects).FirstOrDefault(e => e.ID == userID);
+            Student s = _dbContext.Students.Include(e => e.LikedProjects).FirstOrDefault(e => e.ID == userID);
+            Visitor v = _dbContext.Visitors.Include(e => e.LikedProjects).FirstOrDefault(e => e.ID == userID);
+
+            if (userType == "admin" && a != null)
+            {
+                if (a.LikedProjects != null)
+                {
+                    for (int i = 0; i < a.LikedProjects.Count; i++)
+                    {
+                        id_list = id_list + a.LikedProjects.ElementAt(i).ID.ToString() + ",";
+                    }
+                }
+            }
+            else if (userType == "student" && s != null)
+            {
+                if (s.LikedProjects != null)
+                {
+                    for (int i = 0; i < s.LikedProjects.Count; i++)
+                    {
+                        id_list = id_list + s.LikedProjects.ElementAt(i).ID.ToString() + ",";
+                    }
+                }
+            }
+            else if (userType == "visitor" && v != null)
+            {
+                if (v.LikedProjects != null)
+                {
+                    for (int i = 0; i < v.LikedProjects.Count; i++)
+                    {
+                        id_list = id_list + v.LikedProjects.ElementAt(i).ID.ToString() + ",";
+                    }
+                }
+            }
+            return id_list;
+        }
+
         public void DeleteUser(Visitor user)
         {
-            // Get all comments
+            // Get all users
             IEnumerable<Visitor> users = _dbContext.Visitors.ToList<Visitor>();
 
-            // Check if comment exists
+            // Check if user exists
             if (users.FirstOrDefault(e => e.Email == user.Email) != null)
             {
-                // Delete comment
+                // Delete user
                 Visitor userToDelete = users.FirstOrDefault(e => e.Email == user.Email);
                 _dbContext.Visitors.Remove(userToDelete);
                 _dbContext.SaveChanges();
@@ -263,8 +330,8 @@ namespace Capstone_Connect.Data
         public void TagProject(Project project, Tag tag)
         {
             // Get existing projects and tags
-            IEnumerable<Project> projects = _dbContext.Projects.ToList<Project>();
-            IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
+            //IEnumerable<Project> projects = _dbContext.Projects.ToList<Project>();
+            //IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
 
         }
 

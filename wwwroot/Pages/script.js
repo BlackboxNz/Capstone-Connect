@@ -1,7 +1,9 @@
 async function test() {
     console.log("test");
 }
+
 projecttag("all")
+
 function projecttag(c) {
     var x, i;
     x = document.getElementsByClassName("project-cont");
@@ -37,6 +39,15 @@ function w3RemoveClass(element, name) {
     element.className = arr1.join(" ");
 }
 
+//Student Profiles
+const showStudentProfile = () => {
+    
+    const titleContainer = document.getElementById("title");
+    const title = document.createElement("span");
+    title.classList = ("studenttitle");
+    title.innerHTML = "Welcome, " + localStorage.getItem('fullname') + ".";
+    titleContainer.append(title);
+}
 
 //Projects
 const projectsContainer = document.getElementById("projects");
@@ -86,7 +97,7 @@ const showAllProjects = (projects) => {
                 button.classList = `proj-btn ${project.id}-btn`;
                 card.addEventListener("click", function () {
                     loadIndividualProject(project.id);
-                  });
+                });
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
@@ -102,7 +113,7 @@ const loadIndividualProject = (id) => {
                 "Accept": "application/json",
                 "Access-Control-Allow-Origin": "/webapi/GetProject/"+id
             },
-            
+
         }
     );
     const streamPromise = fetchPromise.then((response) => response.json());
@@ -255,24 +266,64 @@ const logout = () => {
     localStorage.removeItem("fullname");
     document.getElementById("nav-login").style.display = "inline";
     document.getElementById("sign-up").style.display = "inline";
+    document.getElementById("admin").style.display = "none";
+    document.getElementById("student").style.display = "none";
     document.getElementById("logout").style.display = "none";
 }
 
 const checkUser = () => {
     var auth = localStorage.getItem("auth")
-    if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
+    if ((auth != "false")) {
         document.getElementById("nav-login").style.display = "none";
         document.getElementById("sign-up").style.display = "none";
         document.getElementById("logout").style.display = "inline";
+
+        if (auth == "admin") {
+            document.getElementById("admin").style.display = "inline";
+        }
+        else if (auth == "student") {
+            document.getElementById("student").style.display = "inline";
+        }
+
+        if (localStorage.liked_projects == "undefined") {
+
+            var user_type = localStorage.getItem("auth");
+            var user_id = localStorage.getItem("id");
+
+            const likeJSON = {
+                ProjectID: 1,
+                UserType: user_type,
+                UserID: user_id,
+            }
+
+            fetch(`https://localhost:5000/webapi/GetLikedProjects`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetLikedProjects"
+                },
+                body: JSON.stringify(likeJSON)
+
+            })
+            .then(response => response.text())
+            .then(data => {
+                var liked_projects = data.split(",")
+                localStorage.liked_projects = liked_projects;
+            });
+        }
     }
+
 }
 
 
 // Likes
 const like = (project_id) => {
+    var user_type = localStorage.getItem("auth");
     var user_id = localStorage.getItem("id");
+    
     const likeJSON = {
         ProjectID: project_id,
+        UserType: user_type,
         UserID: user_id,
     }
 
@@ -285,13 +336,12 @@ const like = (project_id) => {
         body: JSON.stringify(likeJSON)
     })
 
-    .then(response => {
-        if (response.ok) {
-            var element = document.getElementById(project_id);
-            element.classList.toggle("liked");
-            email = localStorage.getItem("email")
-        }
-    });
+        .then(response => {
+            if (response.ok) {
+                var element = document.getElementById(project_id);
+                element.classList.toggle("liked");
+            }
+        });
 }
 
 function change() {
@@ -307,24 +357,28 @@ function change() {
 
 //Comments
 const submitComment = (id) => {
-    const comment = document.getElementById('comment').value;
-    
-    document.getElementById('comment').value = "";
-    FullName = localStorage.getItem("fullname");
-    alert(FullName);
-    const commentJSON = {
-        CommentText: comment,
-        ProjectID: id,
-        FullName: FullName
+    if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
+        const comment = document.getElementById('comment-text').value;
+
+        document.getElementById('comment').value = "";
+        FullName = localStorage.getItem("fullname");
+        const commentJSON = {
+            CommentText: comment,
+            ProjectID: id,
+            FullName: FullName
+        }
+        fetch(`/webapi/WriteComment`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": `/webapi/WriteComment`
+            },
+            body: JSON.stringify(commentJSON),
+        });
     }
-    fetch(`/webapi/WriteComment`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": `/webapi/WriteComment`
-        },
-        body: JSON.stringify(commentJSON),
-    });
+    else {
+        alert("You need to be logged in to comment!")
+    }
 }
 
 const loadProjectComments = (id) => {
@@ -334,14 +388,14 @@ const loadProjectComments = (id) => {
                 "Accept": "application/json",
                 "Access-Control-Allow-Origin": "/webapi/GetProjectComments"+id
             },
-            
+
         }
     );
     const streamPromise = fetchPromise.then((response) => response.json());
     streamPromise.then((data) => showProjectComments(data));
 }
 const showProjectComments = (comment) => {
-    if (comment.length == 0){
+    if (comment.length == 0) {
         document.getElementById(
             "submitted-comments"
         ).innerHTML += `<p>No current comments, feel free to leave one below.</p>`;
@@ -353,8 +407,9 @@ const showProjectComments = (comment) => {
         ).innerHTML += `<h4 style="padding-top: 5px; font-weight: bold;" id="comment-title">${obj.fullName}</h4>
         <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>
         `;
-    });}
-    
+        });
+    }
+
 }
 
 const deleteComment = (id) => {
@@ -367,11 +422,11 @@ const deleteComment = (id) => {
         }
       }
     ).then(response => {
-      if (response.status == 204){
-        alert("Comment Deleted");
-      }
-      else{
-        alert("Unable to delete comment");
-      }
+        if (response.status == 204) {
+            alert("Comment Deleted");
+        }
+        else {
+            alert("Unable to delete comment");
+        }
     })
-  }
+}
