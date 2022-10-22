@@ -190,7 +190,7 @@ const showProject = (project) => {
                                         <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
                                     </div>
                                     <div style="font-size: 1.5em;">
-                                        <button id="commentButton" type="submit" name="submit" size="30" style=" border-radius: 10px;" onclick = "submitComment(${project.id}); showProject(${project.id})">Submit Comment</button>
+                                        <button id="commentButton" type="submit" name="submit" size="30" style=" border-radius: 10px;" onclick = "submitComment(${project.id})">Submit Comment</button>
                                     </div>
                                 </form>
                             </div>
@@ -339,8 +339,8 @@ const showProjectComments = (comment) => {
         console.log(obj);
         document.getElementById(
             "submitted-comments"
-        ).innerHTML += `<h4>${obj.fullName}</h4>
-        <p>${obj.commentText}</p>    
+        ).innerHTML += `<h4 id="comment-title">${obj.fullName}</h4>
+        <p id="comment-body">${obj.commentText}</p>    
         `;
     });
     
