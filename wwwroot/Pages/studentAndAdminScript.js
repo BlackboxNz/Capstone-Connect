@@ -12,11 +12,11 @@ const createProject = () => {
       // Create json of user comment info from input fields
       const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Approach: approach.value, FinalThoughts: final_thoughts.value, Img: project_image.value, Video: project_video.value };
       const fetchAddProject = fetch(
-        "https://localhost:5000/webapi/AddProject",
+        "/webapi/AddProject",
         {
           method: "POST",
           headers: { "Content-Type": "application/json", 
-          "Access-Control-Allow-Origin": "https://localhost:5000/webapi/AddProject"},
+          "Access-Control-Allow-Origin": "/webapi/AddProject"},
           body: JSON.stringify(json),
         }).then((data) => {
             // Inform user through toast of the successful creation
@@ -35,11 +35,11 @@ const createProject = () => {
 
 const deleteProject = (id) => {
   const deleteProject = fetch(
-    "https://localhost:5000/webapi/DeleteProject/" + id,
+    "/webapi/DeleteProject/" + id,
     {
       method: "DELETE",
       headers: {
-        "Access-Control-Allow-Origin": "https://localhost:5000/webapi/DeleteProject" + id,
+        "Access-Control-Allow-Origin": "/webapi/DeleteProject" + id,
       }
     }
   ).then(response => {

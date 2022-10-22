@@ -43,11 +43,11 @@ const projectsContainer = document.getElementById("projects");
 
 // Fetches all projects from api
 const getAllProjects = () => {
-    const fetchPromise = fetch(`https://localhost:5000/webapi/GetAllProjects`,
+    const fetchPromise = fetch(`/webapi/GetAllProjects`,
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetAllProjects"
+                "Access-Control-Allow-Origin": "/webapi/GetAllProjects"
             }
         }
     );
@@ -59,7 +59,7 @@ const showAllProjects = (projects) => {
     // Loops through each project to create a project card
     projects.map(function (project) {
         // Fetch the corresponding image
-        fetch(`https://localhost:5000/webapi/GetProjectImage/${project.id}`)
+        fetch(`/webapi/GetProjectImage/${project.id}`)
             .then((response) => response.blob())
             .then((imageBlob) => {
                 // Create the card with a div element
@@ -96,11 +96,11 @@ const showAllProjects = (projects) => {
 };
 
 const loadIndividualProject = (id) => {
-    const fetchPromise = fetch(`https://localhost:5000/webapi/GetProject/` + id,
+    const fetchPromise = fetch(`/webapi/GetProject/` + id,
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProject/"+id
+                "Access-Control-Allow-Origin": "/webapi/GetProject/"+id
             },
             
         }
@@ -212,11 +212,11 @@ const register = () => {
         Email: emailText,
         Password: passwordText
     }
-    fetch(`https://localhost:5000/webapi/RegisterVisitor`, {
+    fetch(`/webapi/RegisterVisitor`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "https://localhost:5000/webapi/RegisterVisitor"
+            "Access-Control-Allow-Origin": "/webapi/RegisterVisitor"
         },
         body: JSON.stringify(userJSON)
     })
@@ -228,7 +228,7 @@ const login = () => {
     let email = document.getElementById("login-email").value;
     let password = document.getElementById("login-pwd").value;
 
-    fetch(`https://localhost:5000/webapi/GetAuth/${email}`, {
+    fetch(`/webapi/GetAuth/${email}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/html",
@@ -280,11 +280,11 @@ const like = (project_id) => {
         UserID: user_id,
     }
 
-    fetch(`https://localhost:5000/webapi/LikeProject`, {
+    fetch(`/webapi/LikeProject`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": `https://localhost:5000/webapi/LikeProject`
+            "Access-Control-Allow-Origin": `/webapi/LikeProject`
         },
         body: JSON.stringify(likeJSON)
     })
@@ -305,27 +305,28 @@ const submitComment = (id) => {
     
     document.getElementById('comment').value = "";
     FullName = localStorage.getItem("fullname");
+    alert(FullName);
     const commentJSON = {
         CommentText: comment,
         ProjectID: id,
         FullName: FullName
     }
-    fetch(`https://localhost:5000/webapi/WriteComment`, {
+    fetch(`/webapi/WriteComment`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": `https://localhost:5000/webapi/WriteComment`
+            "Access-Control-Allow-Origin": `/webapi/WriteComment`
         },
         body: JSON.stringify(commentJSON),
     });
 }
 
 const loadProjectComments = (id) => {
-    const fetchPromise = fetch(`https://localhost:5000/webapi/GetProjectComments/` + id,
+    const fetchPromise = fetch(`/webapi/GetProjectComments/` + id,
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProjectComments"+id
+                "Access-Control-Allow-Origin": "/webapi/GetProjectComments"+id
             },
             
         }
@@ -353,11 +354,11 @@ const showProjectComments = (comment) => {
 
 const deleteComment = (id) => {
     const deleteComment = fetch(
-      "https://localhost:5000/webapi/DeleteComment/" + id,
+      "/webapi/DeleteComment/" + id,
       {
         method: "DELETE",
         headers: {
-          "Access-Control-Allow-Origin": "https://localhost:5000/webapi/DeleteComment" + id
+          "Access-Control-Allow-Origin": "/webapi/DeleteComment" + id
         }
       }
     ).then(response => {
