@@ -1,0 +1,19 @@
+{
+  "name": "capstone-connect",
+  "version": "1.0.0",
+  "description": "Capstone Connect Website",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackboxNz/Capstone-connect.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlackboxNz/Capstone-connect/issues"
+  },
+  "homepage": "https://github.com/BlackboxNz/Capstone-connect#readme"
+}

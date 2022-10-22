@@ -24,6 +24,8 @@ namespace Capstone_Connect.Data
         public IEnumerable<Project> GetAllItems(String name);
 
         // Delete User
+        public string GetFilePath(string Filename);
+        //public void UploadProjectImage(IFormFile file);
         public void DeleteUser(Visitor user);
 
         // Login

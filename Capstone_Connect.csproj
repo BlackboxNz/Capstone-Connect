@@ -23,7 +23,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+    <PackageReference Include="Sfa.Core.Net.Http.Formatting" Version="4.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Wdc.System.Net.Http.Formatting.NetStandard" Version="1.0.7" />
+    <PackageReference Include="WinInsider.System.Net.Http.Formatting" Version="1.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\index.html" />
   </ItemGroup>
 
 </Project>
