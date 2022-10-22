@@ -119,21 +119,17 @@ const showProject = (project) => {
             <div class="modal-content2">
                 <div class="modal-body" style="padding: 0;">
                     <!--header-->
-                    <div class="header" style="border-radius: 15px;">
-                        <div>
+                    <div class="header" style="border-radius: 15px; text-align: center;">                        
                             <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
-                        </div>
-                        <div style="text-align: center;">
                             <h1 style="font-weight: bold; font-size: 5em; ">${project.teamName}</h1>
                             <p style="padding: 15px;">By</p>
                             <p></p>
                             <h4>Users go here. </h4>
-                        </div>
-                        <div>
-                            <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
-                        </div>
+                        
                     </div>
+
                     <!--body-->
+
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
                             
@@ -163,36 +159,36 @@ const showProject = (project) => {
                                 </div>
                             </div>
 
-                            <div class="lineup">
+                            <div style="border-bottom-color: black;" class="lineup">
                                 <h2 style="font-weight: bold; font-size: 2em;">Future Plans</h2>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.finalThoughts}
                                 </p>
                             </div>
-                            <hr>
-                            <div>
-                                <h2>Comments</h2>
+
+                            <div class="flex-container lineup">
+                                <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
+                                <button id="likebtn" onclick="change()" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i class="fa fa-heart"></i></button>
+                            </div>
+
+                            <!--comments section-->
+                            <div class="flex-container lineup">
+                                <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Comments</h2>
+
+                                <div id="comment">
+                                    <form id="commentForm">
+                                        <div class="commentfields flex-container">
+                                            <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
+                                        </div>
+                                        <div style="font-size: 1.2em;">
+                                            <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <hr style="height: 3px;">
                                 <div id="submitted-comments"></div>
-                            </div>
-                            <div class="flex-container lineup" id="comment">
-                                <h2 style="font-weight: bold; font-size: 2em;">Leave a Comment</h2>
-                                <hr />
-                                <form id="commentForm">
-                                    <!--
-                                    <div class="commentfields">
-                                        <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
-                                    </div> -->
-                                    <div class="commentfields">
-                                        <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
-                                    </div>
-                                    <div style="font-size: 1.5em;">
-                                        <button id="commentButton" type="submit" name="submit" size="30" style=" border-radius: 10px;" onclick = "submitComment(${project.id})">Submit Comment</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div>
-                            </div>    
+                            </div>   
                         </div>
                     </div>
                 </div>
@@ -298,6 +294,16 @@ const like = (project_id) => {
     });
 }
 
+function change() {
+    var btn = document.getElementById("likebtn");
+    if (btn.innerHTML == "Like <i class=\"fa fa - heart\"></i>") {
+        btn.innerHTML = "Liked";
+    }
+    else {
+        btn.innerHTML = "Like <i class=\"fa fa - heart\"></i>";
+    }
+}
+
 
 //Comments
 const submitComment = (id) => {
@@ -344,9 +350,8 @@ const showProjectComments = (comment) => {
     comment.forEach(obj => {
         document.getElementById(
             "submitted-comments"
-        ).innerHTML += `<h4 id="comment-title">${obj.fullName}</h4>
-        <p id="comment-body">${obj.commentText}</p>
-        <p>&horbar;&horbar;&horbar;&horbar;&horbar;</p>  
+        ).innerHTML += `<h4 style="padding-top: 5px; font-weight: bold;" id="comment-title">${obj.fullName}</h4>
+        <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>
         `;
     });}
     
