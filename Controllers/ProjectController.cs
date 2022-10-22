@@ -154,7 +154,7 @@ namespace Capstone_Connect.Controllers
             return PhysicalFile(fileName, respHeader);
         }
         [HttpPost ("UploadImage")]
-        public async Task<IActionResult> UploadImage(IList<IFormFile> file)
+        public async Task<IActionResult> UploadImage(IFormFile file)
         {
 
             
@@ -163,25 +163,22 @@ namespace Capstone_Connect.Controllers
             var filePath = Directory.GetCurrentDirectory();
             string imgDir = Path.Combine(filePath, "img\\Projects");
 
-            //foreach (var formFile in file)
-            //{
-            //    if (formFile.Length > 0)
-            //    {
-            //        using (Stream stream = new FileStream(imgDir, FileMode.Create, FileAccess.Write))
-            //        {
-            //            formFile.CopyTo(stream);
+            if (file.Length > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
 
-            //        }
-            //    }
-                
-            //}
+           //return StatusCode(200);
 
 
             // process uploaded files
             // Don't rely on or trust the FileName property without validation.
 
 
-            return Ok(new { count = file.Count,  imgDir, file });
+            return Ok(new { imgDir, file });
         }
 
     }

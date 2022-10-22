@@ -80,8 +80,13 @@ namespace Capstone_Connect.Migrations
                     FinalThoughts = table.Column<string>(type: "TEXT", nullable: true),
                     Img = table.Column<string>(type: "TEXT", nullable: true),
                     Video = table.Column<string>(type: "TEXT", nullable: true),
-                    Likes = table.Column<int>(type: "INTEGER", nullable: true),
+                    Award1 = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Award2 = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Award3 = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Award4 = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Likes = table.Column<int>(type: "INTEGER", nullable: false),
                     AdminID = table.Column<int>(type: "INTEGER", nullable: true),
+                    TagID = table.Column<string>(type: "TEXT", nullable: true),
                     VisitorID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -91,6 +96,11 @@ namespace Capstone_Connect.Migrations
                         name: "FK_Projects_Admins_AdminID",
                         column: x => x.AdminID,
                         principalTable: "Admins",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Projects_Tags_TagID",
+                        column: x => x.TagID,
+                        principalTable: "Tags",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Projects_Visitors_VisitorID",
@@ -144,30 +154,6 @@ namespace Capstone_Connect.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProjectTag",
-                columns: table => new
-                {
-                    ProjectsID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TagsID = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectTag", x => new { x.ProjectsID, x.TagsID });
-                    table.ForeignKey(
-                        name: "FK_ProjectTag_Projects_ProjectsID",
-                        column: x => x.ProjectsID,
-                        principalTable: "Projects",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProjectTag_Tags_TagsID",
-                        column: x => x.TagsID,
-                        principalTable: "Tags",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ProjectID",
                 table: "Comments",
@@ -179,6 +165,11 @@ namespace Capstone_Connect.Migrations
                 column: "AdminID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Projects_TagID",
+                table: "Projects",
+                column: "TagID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Projects_VisitorID",
                 table: "Projects",
                 column: "VisitorID");
@@ -187,11 +178,6 @@ namespace Capstone_Connect.Migrations
                 name: "IX_ProjectStudent_TeamID",
                 table: "ProjectStudent",
                 column: "TeamID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectTag_TagsID",
-                table: "ProjectTag",
-                column: "TagsID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -203,19 +189,16 @@ namespace Capstone_Connect.Migrations
                 name: "ProjectStudent");
 
             migrationBuilder.DropTable(
-                name: "ProjectTag");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Students");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "Admins");
 
             migrationBuilder.DropTable(
                 name: "Tags");
-
-            migrationBuilder.DropTable(
-                name: "Admins");
 
             migrationBuilder.DropTable(
                 name: "Visitors");
