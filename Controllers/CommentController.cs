@@ -47,10 +47,6 @@ namespace Capstone_Connect.Controllers
             IEnumerable<CommentOutDto> c = comments.Select(e => new CommentOutDto { ID = e.ID, ProjectID = e.ProjectID, CommentText = e.CommentText, FullName = e.FullName });
             return Ok(c);
         }
-            //[HttpGet("GetComments/{ID}")]
-            //public ActionResult<ProjectOutDto> GetComments(int projectID)
-            //{
-            //
-            //}
+
     }
 }

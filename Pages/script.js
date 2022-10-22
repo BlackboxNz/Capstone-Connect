@@ -335,9 +335,13 @@ const loadProjectComments = (id) => {
 }
 const showProjectComments = (comment) => {
     console.log(comment);
-    document.getElementById(
-        "submitted-comments"
-    ).innerHTML = `
-
-    `;
+    comment.forEach(obj => {
+        console.log(obj);
+        document.getElementById(
+            "submitted-comments"
+        ).innerHTML += `<h4>${obj.fullName}</h4>
+        <p>${obj.commentText}</p>    
+        `;
+    });
+    
 }
