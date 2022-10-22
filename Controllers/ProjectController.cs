@@ -126,7 +126,7 @@ namespace Capstone_Connect.Controllers
         public ActionResult GetItemPhoto(int id)
         {
             string path = Directory.GetCurrentDirectory();
-            string imgDir = Path.Combine(path, "img/Projects");
+            string imgDir = Path.Combine(path, "img\\Projects");
             string fileName1 = Path.Combine(imgDir, id + ".png");
             string fileName2 = Path.Combine(imgDir, id + ".jpg");
             string fileName3 = Path.Combine(imgDir, id + ".gif");
@@ -162,16 +162,15 @@ namespace Capstone_Connect.Controllers
 
             // full path to file in temp location
             var filePath = Directory.GetCurrentDirectory();
-            string imgDir = Path.Combine(filePath, "img/Projects");
+            string imgDir = Path.Combine(filePath, "img\\Projects");
 
             foreach (var formFile in file)
             {
                 if (formFile.Length > 0)
                 {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    using (Stream stream = new FileStream(imgDir, FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
-                        //formFile.SaveAs(path);
 
                     }
                 }

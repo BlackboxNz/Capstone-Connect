@@ -19,22 +19,34 @@ const createProject = () => {
           headers: { "Content-Type": "application/json", 
           "Access-Control-Allow-Origin": "/webapi/AddProject"},
           body: JSON.stringify(json),
-        }).then((data) => {
+        }).then((response) => response.json()).then((data) =>{
             // Inform user through toast of the successful creation
             // potential for alert of innerhtml
             //document.getElementById('projectAlert').innerHTML = `<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>` + "Item " + itemId + " bought!";
             //document.getElementById('projectAlert').style.display = "block";
-            toast.innerHTML = `Project ${data.ProjectName} created`;
+            toast.innerHTML = `Project ${project_name.value} created`;
             toast.className = "show";
+            var id = data.id;
             setTimeout(function () {
                 toast.className = toast.className.replace("show", "");
               }, 50000);
-          }).then((data) => uploadImage());
+            uploadImage(id);
+          })
 
     }
 }
-const uploadImage = () => {
-  alert(project_image.value)
+const uploadImage = (id) => {
+  var formData = new FormData();
+  formData.append("file", project_image.files[0]);
+  alert(formData);
+  const fetchUploadImage = fetch(
+    "/webapi/UploadImage/" + id,
+    {
+      method: "POST",
+      headers: { "Content-Type":"multipart/form-data",
+      "Access-Control-Allow-Origin": "/webapi/UploadImage/"+id},
+      body: formData,
+    }).then((data) => {  alert(data.status)})
 }
 
 const deleteProject = (id) => {
