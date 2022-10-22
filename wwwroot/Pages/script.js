@@ -37,6 +37,15 @@ function w3RemoveClass(element, name) {
     element.className = arr1.join(" ");
 }
 
+//Student Profiles
+const showStudentProfile = () => {
+    
+    const titleContainer = document.getElementById("title");
+    const title = document.createElement("span");
+    title.classList = ("studenttitle");
+    title.innerHTML = "Welcome, " + localStorage.getItem('fullname') + ".";
+    titleContainer.append(title);
+}
 
 //Projects
 const projectsContainer = document.getElementById("projects");

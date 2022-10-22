@@ -1,4 +1,5 @@
 const toast = document.getElementById("toast");
+
 const createProject = () => {
     console.log(project_name.value);
     if (project_name.value == "") {
