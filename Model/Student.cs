@@ -21,6 +21,8 @@ namespace Capstone_Connect.Model
         [Required]
         public string Password { get; set; }
 
+        public Project Project { get; set; }
+
         public ICollection<Project> LikedProjects { get; set; }
 
     }

@@ -1,7 +1,9 @@
 async function test() {
     console.log("test");
 }
+
 projecttag("all")
+
 function projecttag(c) {
     var x, i;
     x = document.getElementsByClassName("project-cont");

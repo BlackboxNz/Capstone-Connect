@@ -168,19 +168,21 @@ namespace Capstone_Connect.Controllers
             {
                 if (formFile.Length > 0)
                 {
-                    using (Stream stream = new FileStream(imgDir, FileMode.Create))
+                    using (Stream stream = new FileStream(imgDir, FileMode.Create, FileAccess.Write))
                     {
-                        await formFile.CopyToAsync(stream);
+                        formFile.CopyTo(stream);
 
                     }
                 }
+                
             }
 
 
             // process uploaded files
             // Don't rely on or trust the FileName property without validation.
 
-            return Ok(new { count = file.Count, size, imgDir });
+
+            return Ok(new { count = file.Count, size, imgDir, file });
         }
 
     }

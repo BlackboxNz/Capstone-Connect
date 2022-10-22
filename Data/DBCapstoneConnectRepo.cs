@@ -127,6 +127,19 @@ namespace Capstone_Connect.Data
             return c;
         }
 
+        public Admin GetAdminByEmail(string email)
+        {
+            Admin admin = _dbContext.Admins.FirstOrDefault(e => e.Email == email);
+            return admin;
+        }
+        public Admin AddAdmin(Admin user)
+        {
+            EntityEntry<Admin> e = _dbContext.Admins.Add(user);
+            Admin c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
+        }
+
         public bool VisitorLogin(string email, string password)
         {
             Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email && e.Password == password);
