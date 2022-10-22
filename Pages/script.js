@@ -86,7 +86,7 @@ const showAllProjects = (projects) => {
                 button.classList = `proj-btn ${project.id}-btn`;
                 card.addEventListener("click", function () {
                     loadIndividualProject(project.id);
-                  });
+                });
                 button.innerHTML = "View More";
                 // Place all the elements in the card div
                 card.append(image, title, projectOverview, button);
@@ -100,9 +100,9 @@ const loadIndividualProject = (id) => {
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProject/"+id
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProject/" + id
             },
-            
+
         }
     );
     const streamPromise = fetchPromise.then((response) => response.json());
@@ -184,7 +184,7 @@ const showProject = (project) => {
                                         <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
                                     </div> -->
                                     <div class="commentfields">
-                                        <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
+                                        <textarea id="comment-text" class="required textarea" name="comment" placeholder="Your comment"></textarea>
                                     </div>
                                     <div style="font-size: 1.5em;">
                                         <button id="commentButton" type="submit" name="submit" size="30" style=" border-radius: 10px;" onclick = "submitComment(${project.id})">Submit Comment</button>
@@ -199,7 +199,7 @@ const showProject = (project) => {
             </div>
         </div>
         `;
-        loadProjectComments(project.id);
+    loadProjectComments(project.id);
 }
 
 //Login and register functions. 
@@ -236,21 +236,21 @@ const login = () => {
             "Accept": "application/xml"
         }
     })
-    .then(response => {
-        if (response.ok) {
-            response.text().then(data => {
-                data_array = data.split(" ");
-                localStorage.setItem("auth", data_array[0]);
-                localStorage.id = data_array[1];
-                localStorage.fullname = data_array[2];
-                location.reload()
-                console.log(localStorage.auth); console.log(localStorage.id); console.log(localStorage.name)
-            });
-        }
-        else {
-            alert("Login Unsuccessful")
-        }
-    })
+        .then(response => {
+            if (response.ok) {
+                response.text().then(data => {
+                    data_array = data.split(" ");
+                    localStorage.setItem("auth", data_array[0]);
+                    localStorage.id = data_array[1];
+                    localStorage.fullname = data_array[2];
+                    location.reload()
+                    console.log(localStorage.auth); console.log(localStorage.id); console.log(localStorage.name)
+                });
+            }
+            else {
+                alert("Login Unsuccessful")
+            }
+        })
 }
 
 const logout = () => {
@@ -268,15 +268,41 @@ const checkUser = () => {
         document.getElementById("nav-login").style.display = "none";
         document.getElementById("sign-up").style.display = "none";
         document.getElementById("logout").style.display = "inline";
+
+        var user_type = localStorage.getItem("auth");
+        var user_id = localStorage.getItem("id");
+
+        const likeJSON = {
+            ProjectID: 1,
+            UserType: user_type,
+            UserID: user_id,
+        }
+
+        fetch(`https://localhost:5000/webapi/GetLikedProjects`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetLikedProjects"
+            },
+            body: JSON.stringify(likeJSON)
+
+        })
+            .then(response => response.text())
+            .then(data => {
+                localStorage.liked_projects = data.split(",");
+            });
     }
 }
 
 
 // Likes
 const like = (project_id) => {
+    var user_type = localStorage.getItem("auth");
     var user_id = localStorage.getItem("id");
+    
     const likeJSON = {
         ProjectID: project_id,
+        UserType: user_type,
         UserID: user_id,
     }
 
@@ -289,35 +315,39 @@ const like = (project_id) => {
         body: JSON.stringify(likeJSON)
     })
 
-    .then(response => {
-        if (response.ok) {
-            var element = document.getElementById(project_id);
-            element.classList.toggle("liked");
-            email = localStorage.getItem("email")
-        }
-    });
+        .then(response => {
+            if (response.ok) {
+                var element = document.getElementById(project_id);
+                element.classList.toggle("liked");
+            }
+        });
 }
 
 
 //Comments
 const submitComment = (id) => {
-    const comment = document.getElementById('comment').value;
-    
-    document.getElementById('comment').value = "";
-    FullName = localStorage.getItem("fullname");
-    const commentJSON = {
-        CommentText: comment,
-        ProjectID: id,
-        FullName: FullName
+    if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
+        const comment = document.getElementById('comment-text').value;
+
+        document.getElementById('comment').value = "";
+        FullName = localStorage.getItem("fullname");
+        const commentJSON = {
+            CommentText: comment,
+            ProjectID: id,
+            FullName: FullName
+        }
+        fetch(`https://localhost:5000/webapi/WriteComment`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": `https://localhost:5000/webapi/WriteComment`
+            },
+            body: JSON.stringify(commentJSON),
+        });
     }
-    fetch(`https://localhost:5000/webapi/WriteComment`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": `https://localhost:5000/webapi/WriteComment`
-        },
-        body: JSON.stringify(commentJSON),
-    });
+    else {
+        alert("You need to be logged in to comment!")
+    }
 }
 
 const loadProjectComments = (id) => {
@@ -325,47 +355,48 @@ const loadProjectComments = (id) => {
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProjectComments"+id
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/GetProjectComments" + id
             },
-            
+
         }
     );
     const streamPromise = fetchPromise.then((response) => response.json());
     streamPromise.then((data) => showProjectComments(data));
 }
 const showProjectComments = (comment) => {
-    if (comment.length == 0){
+    if (comment.length == 0) {
         document.getElementById(
             "submitted-comments"
         ).innerHTML += `<p>No current comments, feel free to leave one below.</p>`;
     }
-    else{
-    comment.forEach(obj => {
-        document.getElementById(
-            "submitted-comments"
-        ).innerHTML += `<h4 id="comment-title">${obj.fullName}</h4>
+    else {
+        comment.forEach(obj => {
+            document.getElementById(
+                "submitted-comments"
+            ).innerHTML += `<h4 id="comment-title">${obj.fullName}</h4>
         <p id="comment-body">${obj.commentText}</p>
         <p>&horbar;&horbar;&horbar;&horbar;&horbar;</p>  
         `;
-    });}
-    
+        });
+    }
+
 }
 
 const deleteComment = (id) => {
     const deleteComment = fetch(
-      "https://localhost:5000/webapi/DeleteComment/" + id,
-      {
-        method: "DELETE",
-        headers: {
-          "Access-Control-Allow-Origin": "https://localhost:5000/webapi/DeleteComment" + id
+        "https://localhost:5000/webapi/DeleteComment/" + id,
+        {
+            method: "DELETE",
+            headers: {
+                "Access-Control-Allow-Origin": "https://localhost:5000/webapi/DeleteComment" + id
+            }
         }
-      }
     ).then(response => {
-      if (response.status == 204){
-        alert("Comment Deleted");
-      }
-      else{
-        alert("Unable to delete comment");
-      }
+        if (response.status == 204) {
+            alert("Comment Deleted");
+        }
+        else {
+            alert("Unable to delete comment");
+        }
     })
-  }
+}
