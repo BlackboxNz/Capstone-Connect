@@ -29,21 +29,37 @@
     <div class="studentcont">
 
         <div class="titlecont" id="title" ></div>
+        
         <hr class="break">
-        <div class="studentbox">
-            <span class="studenttitle2">Projects</span> 
-            <br><br><hr class="break">
-            <button id="newProject" type="button"><a href="./students/add_project.html">add project</a></button>
-            <button id="editProject" type="button"><a href="./students/edit_project.html">edit project</a></button>
+
+        <div class = "studentboxcont">
+            <div class="studentbox">
+                <span class="studenttitle2">Projects</span> 
+                <br><br><hr class="break">
+                <button id="newProject" type="button" 
+                onclick="window.location.href='./students/add_project.html'">
+                    + Add Project
+                </button>
+                <button id="editProject" type="button" 
+                onclick="window.location.href='./students/edit_project.html'">
+                    <img class="icon" src="../../img/editico.png">
+                    Edit Project
+                </button>
+            </div>
         </div>
         
         <br><br><hr class="break">
 
-        <div class="studentbox">
-            <span class="studenttitle2">Teams</span> 
-            <br><br><hr class="break">
-            <button id="joinTeam" type="button"><a href="./students/join_team.html">Join team</a></button> <br />
+        <div class = "studentboxcont">
+            <div class="studentbox">
+                <span class="studenttitle2">Teams</span> 
+                <br><br><hr class="break">
+                <button id="joinTeam" type="button" 
+                onclick="window.location.href='./students/join_team.html'">
+                    Join team</button>
+            </div>
         </div>
+        
 
     </div>
 
