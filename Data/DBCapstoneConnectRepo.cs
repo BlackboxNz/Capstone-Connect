@@ -83,15 +83,15 @@ namespace Capstone_Connect.Data
 
             if (a != null)
             {
-                return a.ID.ToString();
+                return "admin " + a.ID.ToString() + " " + a.FullName;
             }
             else if (s != null)
             {
-                return s.ID.ToString();
+                return "student " + s.ID.ToString() + " " + s.FullName;
             }
             else
             {
-                return v.ID.ToString();
+                return "visitor " + v.ID.ToString() + " " + v.FullName;
             }
         }
 

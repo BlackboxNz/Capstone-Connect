@@ -12,7 +12,7 @@ namespace Capstone_Connect.Model
         [Key]
         public string ID { get; set; }
         public string TagName { get; set; }
-        public ICollection<Project> Projects { get; set; }
+        public ICollection<Project> Projects { get; set; } = new List<Project>();
         public bool isAward { get; set; }
     }
 }

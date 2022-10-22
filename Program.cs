@@ -29,7 +29,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CapstoneConnectDBContext>(options => options.UseSqlite(builder.Configuration["Capstone_ConnectConnection"]));
 builder.Services.AddScoped<ICapstoneConnectRepo, DBCapstoneConnectRepo>();
-builder.Services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, AdminHandler>("AdminScheme", null).AddScheme<AuthenticationSchemeOptions, StudentHandler>("StudentScheme", null).AddScheme<AuthenticationSchemeOptions, VisitorHandler>("VisitorScheme", null);
+builder.Services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, AuthHandler>("AuthScheme", null);
 
 builder.Services.AddAuthorization(options =>
 {

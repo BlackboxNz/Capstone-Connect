@@ -21,7 +21,7 @@ namespace Capstone_Connect.Controllers
             _repository = repository;
         }
 
-        [Authorize(AuthenticationSchemes = "AdminScheme")]
+        [Authorize(AuthenticationSchemes = "AuthScheme")]
         [Authorize(Policy = "VisitorMinimum")]
         [HttpGet("GetAuth/{email}")]
         public ActionResult<string> GetAuth(string email) => Ok(_repository.GetAuth(email));

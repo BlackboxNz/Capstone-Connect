@@ -182,10 +182,6 @@ const showProject = (project) => {
                                     <div class="commentfields">
                                         <input name="name" id="cname" class="required" type="text" size = "30" maxlength="23" Placeholder="Your Real Name"/>
                                     </div>
-                                    <!--
-                                    <div class="commentfields">
-                                        <input name="email" id="cemail" class="required" size="30" maxlength="35" type="email" placeholder="Email" />
-                                    </div>-->
                                     <div class="commentfields">
                                         <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
                                     </div>
@@ -242,29 +238,32 @@ const login = () => {
     .then(response => {
         if (response.ok) {
             response.text().then(data => {
-                localStorage.setItem("auth", "true");
-                localStorage.ID = data;
+                data_array = data.split(" ");
+                localStorage.setItem("auth", data_array[0]);
+                localStorage.id = data_array[1];
+                localStorage.fullname = data_array[2];
                 location.reload()
-                console.log(localStorage.auth); console.log(localStorage.ID);
+                console.log(localStorage.auth); console.log(localStorage.id); console.log(localStorage.name)
             });
         }
         else {
             alert("Login Unsuccessful")
         }
-        
     })
 }
 
 const logout = () => {
     localStorage.setItem("auth", "false");
+    localStorage.removeItem("id");
+    localStorage.removeItem("fullname");
     document.getElementById("nav-login").style.display = "inline";
     document.getElementById("sign-up").style.display = "inline";
     document.getElementById("logout").style.display = "none";
-    localStorage.removeItem("ID");
 }
 
 const checkUser = () => {
-    if (localStorage.getItem("auth") == "true") {
+    var auth = localStorage.getItem("auth")
+    if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
         document.getElementById("nav-login").style.display = "none";
         document.getElementById("sign-up").style.display = "none";
         document.getElementById("logout").style.display = "inline";
@@ -274,7 +273,7 @@ const checkUser = () => {
 
 // Likes
 const like = (project_id) => {
-    var user_id = localStorage.getItem("ID");
+    var user_id = localStorage.getItem("id");
     const likeJSON = {
         ProjectID: project_id,
         UserID: user_id,
@@ -288,6 +287,7 @@ const like = (project_id) => {
         },
         body: JSON.stringify(likeJSON)
     })
+
     .then(response => {
         if (response.ok) {
             var element = document.getElementById(project_id);
@@ -300,11 +300,10 @@ const like = (project_id) => {
 
 //Comments
 const submitComment = (id) => {
-    const comment = document.getElementById('ccomment').value;
+    const comment = document.getElementById('comment').value;
     
     document.getElementById('comment').value = "";
-    //FullName = localStorage.getItem("FullName")
-    FullName = "Test"
+    FullName = localStorage.getItem("fullname");
     const commentJSON = {
         CommentText: comment,
         ProjectID: id,
