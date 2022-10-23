@@ -155,8 +155,8 @@ const showProject = (project) => {
                     <div class="header" style="border-radius: 15px; text-align: center;">                        
                             <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
                             <h1 style="font-weight: bold; font-size: 5em; ">${project.projectName}</h1>
-                            <p>By</p>
-                            <h3>${project.teamName}</h3>
+                            <h3>By</h3>
+                            <h2>${project.teamName}</h2>
                     </div>      
                     <div id="client-win" style="display: none">
                         ClientWin
