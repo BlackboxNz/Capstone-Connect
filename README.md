@@ -35,8 +35,9 @@ as well as a Client Nominated winner and runner up. Obviously, there are also lo
 <img src="https://cdn.discordapp.com/attachments/1001296525676261398/1033683166436790363/unknown.png">
 
 
-To run Capstone Connect, run the solution file through Visual Studio and run the server via the play labeled "Capstone_Connect". The server should run locally on port 5000,
-where you can then access the various HTML files and their associated scripts. The URL for the home page will then be: https://localhost:5000/index.html
+To run Capstone Connect, run the solution file (Capstone_Connect.sln) through Visual Studio and run the server via the play labeled "Capstone_Connect". The server should run locally on port 5000,
+where you can then access the various HTML files and their associated scripts. The URL for the home page will then be: https://localhost:5000/index.html.
+Alternatively, open the folder in Visual Studio code and type "dotnet watch" in the terminal.
 
 
 ---
