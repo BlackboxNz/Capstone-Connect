@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,25 +34,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Add Student</h2>
-                <form id="project-form">
-                    <div class="form-group">
-                        <label for="student-name">Student Name</label>
-                        <input type="text" class="form-control" id="student-name" placeholder="Enter Student Name" />
-                    </div>
+                <h2>Delete Project</h2>
+                <form id="project-form">                
 
                     <div class="form-group">
-                        <label for="student-id">Student UID</label>
-                        <input type="text" class="form-control" id="student-id" placeholder="Enter Student UID">
-                    </div>
-                    <div class="form-group">
-                        <label for="student-email">Student Email</label>
-                        <input type="email" class="form-control" id="student-email" placeholder="Enter Student Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="student-password">Student Password</label>
-                        <input type="password" class="form-control" id="student-password"
-                               placeholder="Enter Student Password">
+                        <label for="project_name">Project Name</label>
+                        <input type="text" class="form-control" name="project_name" id="project_name"
+                               placeholder="Project Name">
                     </div>
                 </form>
             </div>
@@ -62,7 +50,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a class="btn btn-primary btn-block" type="button" onClick="addStudent()">Create Student</a>
+                <a class="btn btn-primary btn-block" type="button" onClick="DeleteProject()">Delete Project</a>
             </div>
         </div>
     </div>
