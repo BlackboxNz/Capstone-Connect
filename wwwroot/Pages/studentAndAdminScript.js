@@ -110,3 +110,4 @@ const populateProjects = (projects) =>{
     document.getElementById("project_name_select").innerHTML += `<option value='${obj.id}'>${obj.projectName}</option>`;
   })
 }
+
