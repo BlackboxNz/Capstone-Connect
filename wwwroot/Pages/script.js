@@ -158,14 +158,30 @@ const showProject = (project) => {
                             <p style="padding: 15px;">By</p>
                             <p></p>
                             <h4>Users go here. </h4>
-                        
                     </div>
+
+
+                        
+                    <div id="client-win" style="display: none" onload="checkAward(this.id, ${project.clientWin})"">
+                        ClientWin
+                    </div>
+                    <div id="client-two" style="display: none" onload="checkAward(this.id, ${project.clientTwo})">
+                        ClientTwo
+                    </div>
+                    <div id="people-win" style="display: none" onload="checkAward(this.id, ${project.peopleWin})">
+                        PeopleWin
+                    </div>
+                    <div id="people-two" style="display: none" onload="checkAward(this.id, ${project.peopleTwo})">
+                        PeopleTwo
+                    </div>
+
+
 
                     <!--body-->
 
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
-                            
+
                             <div class="lineup">
                                 <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
                                 <p></p>
@@ -224,6 +240,13 @@ const showProject = (project) => {
         </div>
         `;
     loadProjectComments(project.id);
+}
+
+const checkAward = (element_id, award) => {
+    alert("test");
+    if (award == true) {
+        document.getElementById(element_id).style.display = "inline";
+    }
 }
 
 //Login and register functions. 
