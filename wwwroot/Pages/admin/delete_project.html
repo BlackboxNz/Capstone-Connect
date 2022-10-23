@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,12 +34,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Delete Student</h2>
-                <form id="project-form">
-                    
+                <h2>Delete Project</h2>
+                <form id="project-form">                
+
                     <div class="form-group">
-                        <label for="student-email">Student Email</label>
-                        <input type="email" class="form-control" id="student-email" placeholder="Enter Student Email">
+                        <label for="project_name">Project Name</label>
+                        <input type="text" class="form-control" name="project_name" id="project_name"
+                               placeholder="Project Name">
                     </div>
                 </form>
             </div>
@@ -49,7 +50,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a class="btn btn-primary btn-block" type="button" onClick="deleteStudent()">Create Student</a>
+                <a class="btn btn-primary btn-block" type="button" onClick="DeleteProject()">Delete Project</a>
             </div>
         </div>
     </div>

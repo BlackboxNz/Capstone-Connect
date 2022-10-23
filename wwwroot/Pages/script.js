@@ -437,7 +437,7 @@ const showProjectComments = (comment) => {
 
 }
 
-const deleteComment = (id) => {
+const deleteStudent = (id) => {
     const deleteComment = fetch(
         "/webapi/DeleteComment/" + id,
         {
