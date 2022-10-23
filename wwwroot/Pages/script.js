@@ -192,7 +192,7 @@ const showProject = (project) => {
 
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button id="likebtn" onclick="change()" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i class="fa fa-heart"></i></button>
+                                <button id="likebtn" onclick="like(); toggle_like()" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart"></i></button>
                             </div>
 
                             <!--comments section-->
@@ -351,14 +351,8 @@ const like = (project_id) => {
         });
 }
 
-function change() {
-    var btn = document.getElementById("likebtn");
-    if (btn.innerHTML == "Like <i class=\"fa fa - heart\"></i>") {
-        btn.innerHTML = "Liked";
-    }
-    else {
-        btn.innerHTML = "Like <i class=\"fa fa - heart\"></i>";
-    }
+function toggle_like() {
+    document.getElementById("heart-icon").classList.toggle("fa-heart-o");
 }
 
 
