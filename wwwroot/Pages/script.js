@@ -152,7 +152,7 @@ const showProject = (project) => {
             <div class="modal-content2">
                 <div class="modal-body" style="padding: 0;">
                     <!--header-->
-                    <div class="header" style="border-radius: 15px; text-align: center;">                        
+                    <div class="header" style="border-radius: 15px; text-align: center; margin-bottom: 10px;">                        
                             <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
                             <h1 style="font-weight: bold; font-size: 5em; ">${project.projectName}</h1>
                             <h3>By</h3>
@@ -161,19 +161,19 @@ const showProject = (project) => {
                     </div>
 
                     <div id="people-win" style="display: none; padding: 20px;">
-                        <i class='fas fa-medal' style='font-size:56px;color:orange;'><p style="font-size: 24px; font-family: Poppins">People's Choice</p></i>
+                        <i class='fas fa-medal' style='font-size:56px;color:orange; display: inherit;'><p style="font-size: 24px; font-family: Poppins;  display: inherit; font-style: normal;">People's Choice</p></i>
                     </div>  
 
-                    <div id="people-two" style="display: none">
-                        <i class='fas fa-medal' style='font-size:56px;color:#dc6604;'><p style="font-size: 24px; font-family: Poppins">People's Runner-Up</p></i>
+                    <div id="people-two" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:#dc6604; display: inherit'><p style="font-size: 24px; font-family: Poppins; display: inherit;">People's Runner-Up</p></i>
                     </div>
 
-                    <div id="client-win" style="display: none">
-                        <i class='fas fa-medal' style='font-size:56px;color:#0098C3;'><p style="font-size: 24px; font-family: Poppins">Client's Choice</p></i>
+                    <div id="client-win" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:#0098C3; display: inherit'><p style="font-size: 24px; font-family: Poppins; display: inherit;">Client's Choice</p></i>
                     </div>
 
-                    <div id="client-two" style="display: none">
-                        <i class='fas fa-medal' style='font-size:56px;color:#0039A6;'><p style="font-size: 24px; font-family: Poppins">Client's Runner-Up</p></i>
+                    <div id="client-two" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:#0039A6; display: inherit'><p style="font-size: 24px; font-family: Poppins; display: inherit;">Client's Runner-Up</p></i>
                     </div>
 
                     <!--body-->
