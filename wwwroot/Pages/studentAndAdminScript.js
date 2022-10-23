@@ -152,6 +152,11 @@ const awardProject = () => {
 
 
 const getProjects = () => {
+  var option = document.getElementById("project_option");
+
+  if(option == null){
+
+  
   const fetchPromise = fetch(`/webapi/GetAllProjects`,
       {
           headers: {
@@ -166,7 +171,7 @@ const populateProjects = (projects) =>{
   
   projects.forEach(obj => {
     console.log(obj);
-    document.getElementById("project_name_select").innerHTML += `<option value='${obj.id}'>${obj.projectName}</option>`;
+    document.getElementById("project_name_select").innerHTML += `<option id="project_option" value='${obj.id}'>${obj.projectName}</option>`;
   })
 }
-
+}
