@@ -47,7 +47,8 @@ const uploadImage = (id) => {
     }).then((data) => {  console.log("Image uploaded")})
 }
 
-const deleteProject = (id) => {
+const deleteProject = () => {
+  var id = document.getElementById("project_name_select").value;
   const deleteProject = fetch(
     "/webapi/DeleteProject/" + id,
     {
