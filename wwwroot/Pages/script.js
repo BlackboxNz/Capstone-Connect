@@ -244,7 +244,6 @@ const showProject = (project) => {
 }
 
 const checkAwards = (a,b,c,d) => {
-    alert("test");
     if (a == true) {
         document.getElementById("client-win").style.display = "inline";
     }
@@ -534,3 +533,4 @@ const deleteStudent = (id) => {
         }
     })
 }
+

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Capstone Connect</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sacramento" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../studentAndAdminStyle.css">
+
+    <style>
+        div {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- return button -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="../admin.html" class="btn btn-primary btn-block">Return to Account Page</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- form -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Award Project</h2>
+                <form id="project-form">
+
+                    <div class="form-group">
+                        <label for="project_name">Project Name</label>
+                        <input type="text" class="form-control" name="project_name" id="project_name"
+                               placeholder="Project Name">
+                    </div>
+                    <div>
+                        <label for="awards"> Awards</label>
+                        <p id="award-checkbox">
+                            <label><input type="checkbox" name="tag" id="client-win-box"><span>Client Nominated Winner</span></label>
+                            <label><input type="checkbox" name="tag" id="client-two-box"><span>Client Nominated Runner-Up</span></label>
+                            <label><input type="checkbox" name="tag" id="people-win-box"><span>People's Choice Winner</span></label>
+                            <label><input type="checkbox" name="tag" id="people-two-box"><span>People's Choice Runner-Up</span></label>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="toast" class="toast"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a class="btn btn-primary btn-block" onClick="awardProject()">Award Project</a>
+            </div>
+        </div>
+    </div>
+    <!-- return button -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="../admin.html" class="btn btn-primary btn-block">Return to Account Page</a>
+            </div>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+    <script src="../studentAndAdminScript.js"></script>
+</body>
+
+</html>

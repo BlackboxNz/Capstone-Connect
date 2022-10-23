@@ -16,12 +16,11 @@ namespace Capstone_Connect.Data
         public void SaveChanges();
 
         //Project Functions
-        public void AwardProject(Project project);
+        public int AwardProject(AwardInDto award);
         public void DeleteProject(int id);
         public IEnumerable<Project> GetAllProjects();
         public Project GetProjectByID(int id);
         public Project AddProject(Project project);
-        public void SubmitProject(Project project);
         public IEnumerable<Project> GetAllItems(String name);
 
         // Delete User

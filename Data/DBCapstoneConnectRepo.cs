@@ -54,17 +54,26 @@ namespace Capstone_Connect.Data
             return c;
         }
 
-        //Student based project functions
-        public void SubmitProject(Project project)
-        {
-
-        }
-
         //Admin based project functions
-        public void AwardProject(Project project)
+        public int AwardProject(AwardInDto award)
         {
+            Project p = _dbContext.Projects.FirstOrDefault(e => e.ProjectName == award.ProjectName);
 
+            if (p != null)
+            {
+                p.ClientWin = award.ClientWin;
+                p.ClientTwo = award.ClientTwo;
+                p.PeopleWin = award.PeopleWin;
+                p.PeopleTwo = award.PeopleTwo;
+                _dbContext.SaveChanges();
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
         }
+
         public void DeleteProject(int id)
         {
             // Get existing projects
@@ -125,10 +134,10 @@ namespace Capstone_Connect.Data
 
         public string GetCode()
         {
-            Code code = _dbContext.Code.FirstOrDefault();
+            Code code = _dbContext.Code.FirstOrDefault(e => e.ID == 1);
             if (code == null)
             {
-                code = new Code();
+                code = new Code() { ID = 1 };
                 string src = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                 Random random = new Random();
                 StringBuilder sb = new StringBuilder();
@@ -139,6 +148,7 @@ namespace Capstone_Connect.Data
                 }
 
                 code.SecretCode = sb.ToString();
+                _dbContext.Add(code);
                 _dbContext.SaveChanges();
             }
 
@@ -146,13 +156,19 @@ namespace Capstone_Connect.Data
         }
         public void SetCode(string new_code)
         {
-            Code code = _dbContext.Code.FirstOrDefault();
+            Code code = _dbContext.Code.FirstOrDefault(e => e.ID == 1);
             if (code == null)
             {
                 code = new Code();
+                code.SecretCode = new_code;
+                _dbContext.Add(code);
+                _dbContext.SaveChanges();
             }
-            code.SecretCode = new_code;
-            _dbContext.SaveChanges();
+            else
+            {
+                code.SecretCode = new_code;
+                _dbContext.SaveChanges();
+            }
         }
 
 
