@@ -404,7 +404,7 @@ const loadProjectComments = (id) => {
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "/webapi/GetProjectComments" + id
+                "Access-Control-Allow-Origin": "/webapi/GetProjectComments"+id
             },
 
         }
@@ -418,13 +418,20 @@ const showProjectComments = (comment) => {
             "submitted-comments"
         ).innerHTML += `<p>No current comments, feel free to leave one above.</p>`;
     }
-    else {
-        comment.forEach(obj => {
-            document.getElementById(
-                "submitted-comments"
-            ).innerHTML += `<h4 style="padding-top: 5px; font-weight: bold;" id="comment-title">${obj.fullName}</h4>
-        <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>
-        `;
+    else{
+    comment.forEach(obj => {
+        if (auth == "admin"){
+            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+            <button type="button" class="btn right" name="deleteC" style="border-color: transparent;" onClick="deleteComment(${obj.id})">Delete</button>
+            <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
+        }
+        else{
+            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+        <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
+        }
+        document.getElementById(
+            "submitted-comments"
+        ).innerHTML += commentText;
         });
     }
 

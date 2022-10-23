@@ -66,8 +66,8 @@ namespace Capstone_Connect.Controllers
             }
         }
 
-        [HttpPost("AddAdmin")]
-        public ActionResult AddAdmin(UserInDto admin)
+        [HttpPost("RegisterAdmin")]
+        public ActionResult RegisterAdmin(UserInDto admin)
         {
             if (admin.Email == "")
             {
