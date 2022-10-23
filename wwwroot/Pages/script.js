@@ -1,6 +1,7 @@
 async function test() {
     console.log("test");
 }
+//Checks whether user is authenticated, and what authentication level.
 var auth = localStorage.getItem("auth")
 
 projecttag("all")
@@ -46,6 +47,16 @@ const showStudentProfile = () => {
     const titleContainer = document.getElementById("title");
     const title = document.createElement("span");
     title.classList = ("studenttitle");
+    title.innerHTML = "Welcome, " + localStorage.getItem('fullname') + ".";
+    titleContainer.append(title);
+}
+
+//Admin Profiles
+const showAdminProfile = () => {
+
+    const titleContainer = document.getElementById("title");
+    const title = document.createElement("span");
+    title.classList = ("admintitle");
     title.innerHTML = "Welcome, " + localStorage.getItem('fullname') + ".";
     titleContainer.append(title);
 }
@@ -122,13 +133,12 @@ const loadIndividualProject = (id) => {
 }
 
 const showProject = (project) => {
-    console.log(project);
     if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
         var commentText = `<div class="commentfields flex-container">
         <textarea id="comment-text" class="required textarea" name="comment" placeholder="Your comment"></textarea>
     </div>
     <div style="font-size: 1.2em;">
-        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
+        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id}) runat="server" data-target="#PopUpModal"">Comment</button>
     </div>`
     }
     else {
@@ -410,6 +420,7 @@ const check_like = (project_id) => {
 
 
 //Comments
+
 const submitComment = (id) => {
     if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
         const comment = document.getElementById('comment-text').value;
@@ -427,7 +438,8 @@ const submitComment = (id) => {
                 "Access-Control-Allow-Origin": `/webapi/WriteComment`
             },
             body: JSON.stringify(commentJSON),
-        });
+        }); loadProjectComments(id);
+        return false;
     }
     else {
         alert("You need to be logged in to comment!")

@@ -87,3 +87,4 @@ const registerUser = () => {
         .then(response => response.text())
         .then(data => alert(data))
 }
+
