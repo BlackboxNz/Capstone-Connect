@@ -192,7 +192,7 @@ const showProject = (project) => {
 
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart"></i></button>
+                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
                             </div>
 
                             <!--comments section-->
