@@ -85,5 +85,45 @@ namespace Capstone_Connect.Controllers
                 return Ok("User successfully registered");
             }
         }
+
+        // DELETE /webapi/DeleteAdmin/{email}
+        [HttpDelete("DeleteAdmin/{email}")]
+        public ActionResult DeleteAdmin(string email)
+        {
+            Admin c = _repository.GetAdminByEmail(email);
+            if (c == null)
+                return NotFound();
+            else
+            {
+                _repository.DeleteAdmin(email);
+                return NoContent();
+            }
+        }
+        // DELETE /webapi/DeleteStudent/{email}
+        [HttpDelete("DeleteStudent/{email}")]
+        public ActionResult DeleteStudent(string email)
+        {
+            Student c = _repository.GetStudentByEmail(email);
+            if (c == null)
+                return NotFound();
+            else
+            {
+                _repository.DeleteStudent(email);
+                return NoContent();
+            }
+        }
+        // DELETE /webapi/DeleteVisitor/{email}
+        [HttpDelete("DeleteVisitor/{email}")]
+        public ActionResult DeleteVisitor(string email)
+        {
+            Visitor c = _repository.GetVisitorByEmail(email);
+            if (c == null)
+                return NotFound();
+            else
+            {
+                _repository.DeleteVisitor(email);
+                return NoContent();
+            }
+        }
     }
 }

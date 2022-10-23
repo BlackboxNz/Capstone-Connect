@@ -21,11 +21,10 @@
             <img src="https://i.ibb.co/fnzBgyC/image.png" class="nav-img" alt="logo">
         </a>
         <ul class="navbar1">
-            <li class="navitem" style="margin-left: 44%;"><a href="../index.html">Home</a></li>
-            <li class="navitem"><a href="projects.html">Projects</a></li>
-            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Sign Up</li>
-            <li class="navitem" style="float:right" data-toggle="modal" data-target="#loginmodal">Login</li>
-            <li class="navitem" style="float:right">Admin Page</li>
+            <a href="../index.html"><li class="navitem" style="margin-left: 44%;">Home</li></a>
+            <a href="./projects.html"><li class="navitem">Projects</li></a>
+            <a href="./projects.html"><li class="navitem" style="float:right" onclick="logout()">Logout</li></a>
+            <li id="activeTab" class="navitem" style="float:right">Admin Page</li>
         </ul>
     </div>
 
@@ -37,11 +36,11 @@
 
         <div class="adminbox">
             <span class="admintitle2">Project</span> <br />
-            <a href="./admin/award_project.html"><button id="awardProject" type="button">award project</button></a> <br />
-            <a href="./admin/add_project.html"><button id="newProject" type="button">add project</button></a> <br />
-            <a href="./admin/edit_project.html"><button id="editProject" type="button">edit project</button></a> <br />
-            <a href="./admin/delete_project.html"><button id="deleteProject" type="button">delete project</button></a> <br />
-            <a href="./admin/create_user.html"><button id="newUser" type="button"> create user</button></a> <br />
+            <a href="./admin/award_project.html"><button id="awardProject" type="button">Award Project</button></a> <br />
+            <a href="./admin/add_project.html"><button id="newProject" type="button">Add Project</button></a> <br />
+            <a href="./admin/edit_project.html"><button id="editProject" type="button">Edit Project</button></a> <br />
+            <a href="./admin/delete_project.html"><button id="deleteProject" type="button">Delete Project</button></a> <br />
+            <a href="./admin/create_user.html"><button id="newUser" type="button"> Create User</button></a> <br />
             <a href="./admin/delete_student.html"><button id="deleteStudent" type="button">Delete Student</button></a> <br />
             <button id="deleteVisitor" type="button">Delete Visitor</button>
             <button id="getCode" onclick="getCode()" type="button">Get Code</button>

@@ -138,7 +138,7 @@ const showProject = (project) => {
         <textarea id="comment-text" class="required textarea" name="comment" placeholder="Your comment"></textarea>
     </div>
     <div style="font-size: 1.2em;">
-        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id}) runat="server" data-target="#PopUpModal"">Comment</button>
+        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
     </div>`
     }
     else {
@@ -155,13 +155,7 @@ const showProject = (project) => {
                     <div class="header" style="border-radius: 15px; text-align: center;">                        
                             <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
                             <h1 style="font-weight: bold; font-size: 5em; ">${project.teamName}</h1>
-                            <p style="padding: 15px;">By</p>
-                            <p></p>
-                            <h4>Users go here. </h4>
-                    </div>
-
-
-                        
+                    </div>      
                     <div id="client-win" style="display: none">
                         ClientWin
                     </div>
@@ -174,26 +168,19 @@ const showProject = (project) => {
                     <div id="people-two" style="display: none">
                         PeopleTwo
                     </div>
-
-
-
                     <!--body-->
-
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
-
                             <div class="lineup">
-                                <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
+                                <h1 style="font-size: 2.7em; font-weight: bold;">Brief</h1>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.projectOverview}
                                 </p>
                             </div>
-
                             <div class="flex-container centered-div" style="min-width: 0; width: 100%;">
                                 <iframe width="1000" height="563" src="${project.video}"></iframe>  
                             </div>
-
                             <div class="lineup">
                                 <h2 style="font-weight: bold; font-size: 2em;">Approach</h2>
                                 <p></p>
@@ -242,7 +229,6 @@ const showProject = (project) => {
     checkAwards(project.clientWin, project.clientTwo, project.peopleWin, project.peopleTwo);
     loadProjectComments(project.id);
 }
-
 const checkAwards = (a,b,c,d) => {
     if (a == true) {
         document.getElementById("client-win").style.display = "inline";
@@ -257,7 +243,6 @@ const checkAwards = (a,b,c,d) => {
         document.getElementById("people-two").style.display = "inline";
     }
 }
-
 //Login and register functions. 
 const register = () => {
     const fullnameText = document.getElementById("fullname").value;
@@ -265,7 +250,6 @@ const register = () => {
     const passwordText = document.getElementById("pwd").value;
     const repeatText = document.getElementById("pwd2").value;
     const student_check = document.getElementById("student_check").checked;
-
     if (passwordText == repeatText) {
         const userJSON = {
             FullName: fullnameText,
@@ -285,7 +269,6 @@ const register = () => {
                 .then(response => response.text())
                 .then(data => alert(data))
         }
-
         else {
             entered_code = prompt("Please enter the student code");
             fetch(`/webapi/GetCode`, {
@@ -312,10 +295,7 @@ const register = () => {
                         alert("Incorrect code!");
                     }
                 });
-
-
         }
-
     }
     else {
         alert("Passwords do not match!");
@@ -514,22 +494,71 @@ const showProjectComments = (comment) => {
     }
 
 }
+const deleteUser = () =>{
+    var level = getElementById("user_level_drop").value;
+    var email = getElementById(user-email).value;
+    if(level == "Admin"){
+        deleteAdmin(user-email);
+    }
+    else if(level == "Student"){
+        deleteStudent(user-email);
+    }
+    else{
+        deleteVisitor(user-email);
+    }
+}
 
-const deleteStudent = (id) => {
-    const deleteComment = fetch(
-        "/webapi/DeleteComment/" + id,
+const deleteStudent = (email) => {
+    const deleteStudentAccount = fetch(
+        "/webapi/DeleteStudent/" + email,
         {
             method: "DELETE",
             headers: {
-                "Access-Control-Allow-Origin": "/webapi/DeleteComment" + id
+                "Access-Control-Allow-Origin": "/webapi/DeleteStudent" + email
             }
         }
     ).then(response => {
         if (response.status == 204) {
-            alert("Comment Deleted");
+            alert("Student Deleted");
         }
         else {
-            alert("Unable to delete comment");
+            alert("Unable to delete student");
+        }
+    })
+}
+const deleteAdmin = (email) => {
+    const deleteAdminAccount = fetch(
+        "/webapi/DeleteAdmin/" + email,
+        {
+            method: "DELETE",
+            headers: {
+                "Access-Control-Allow-Origin": "/webapi/DeleteAdmin" + email
+            }
+        }
+    ).then(response => {
+        if (response.status == 204) {
+            alert("Admin Deleted");
+        }
+        else {
+            alert("Unable to delete Admin");
+        }
+    })
+}
+const deleteVisitor = (email) => {
+    const deleteVisitorAccount = fetch(
+        "/webapi/DeleteVisitor/" + email,
+        {
+            method: "DELETE",
+            headers: {
+                "Access-Control-Allow-Origin": "/webapi/DeleteVisitor" + email
+            }
+        }
+    ).then(response => {
+        if (response.status == 204) {
+            alert("Visitor Deleted");
+        }
+        else {
+            alert("Unable to delete Visitor");
         }
     })
 }

@@ -34,25 +34,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Add Student</h2>
+                <h2>Delete Student</h2>
                 <form id="project-form">
+                    <select id="user_level_drop" title="user_level_drop">
+                        <option value="Visitor">Visitor</option>
+                        <option value="Student">Student</option>
+                        <option value="Admin">Admin</option>
+                    </select>
                     <div class="form-group">
-                        <label for="student-name">Student Name</label>
-                        <input type="text" class="form-control" id="student-name" placeholder="Enter Student Name" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="student-id">Student UID</label>
-                        <input type="text" class="form-control" id="student-id" placeholder="Enter Student UID">
-                    </div>
-                    <div class="form-group">
-                        <label for="student-email">Student Email</label>
-                        <input type="email" class="form-control" id="student-email" placeholder="Enter Student Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="student-password">Student Password</label>
-                        <input type="password" class="form-control" id="student-password"
-                               placeholder="Enter Student Password">
+                        <label for="email-address">Email</label>
+                        <input type="email" class="form-control" id="user-email" placeholder="Enter User Email">
                     </div>
                 </form>
             </div>
@@ -62,7 +53,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a class="btn btn-primary btn-block" type="button" onClick="addStudent()">Create Student</a>
+                <a class="btn btn-primary btn-block" type="button" onClick="deleteUser()">Delete Student</a>
             </div>
         </div>
     </div>

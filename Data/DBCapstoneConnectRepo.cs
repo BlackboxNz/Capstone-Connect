@@ -110,6 +110,51 @@ namespace Capstone_Connect.Data
             }
         }
 
+        public void DeleteAdmin(string email)
+        {
+            // Get existing Admins
+            IEnumerable<Admin> admins = _dbContext.Admins.ToList<Admin>();
+
+            // Check if Admin exists
+            Admin admin = _dbContext.Admins.FirstOrDefault(e => e.Email == email);
+            if (admin != null)
+            {
+                // Delete Admin
+                _dbContext.Admins.Remove(admin);
+                _dbContext.SaveChanges();
+            }
+        }
+        public void DeleteStudent(string email)
+        {
+            // Get existing 
+            IEnumerable<Student> students = _dbContext.Students.ToList<Student>();
+
+            // Check if exists
+            Student student = _dbContext.Students.FirstOrDefault(e => e.Email == email);
+            if (student != null)
+            {
+                // Delete 
+                _dbContext.Students.Remove(student);
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public void DeleteVisitor(string email)
+        {
+            // Get existing 
+            IEnumerable<Visitor> visitors = _dbContext.Visitors.ToList<Visitor>();
+
+            // Check if exists
+            Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
+            if (visitor != null)
+            {
+                // Delete 
+                _dbContext.Visitors.Remove(visitor);
+                _dbContext.SaveChanges();
+            }
+        }
+
+
         public Visitor GetVisitorByEmail(string email)
         {
             Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
@@ -389,23 +434,7 @@ namespace Capstone_Connect.Data
             string imgDir = Path.Combine(path, "img/Projects");
             return imgDir;
         }
-        //public async void UploadProjectImage(IFormFile file)
-        //{
-        //    try
-        //    {
-        //        var httpClient = new HttpClient();
-        //        var multipartFormDataContent = new MultipartFormDataContent();
-        //        httpClient.BaseAddress = new Uri(BASE_URL);
-        //        var fileContent = new ByteArrayContent(File.ReadAllBytes(fileInfo.FullName));
-        //        multipartFormDataContent.Add(fileContent, "file", fileInfo.Name);
-        //        return httpClient.PostAsync("upload", multipartFormDataContent);
-        //    }
-        //    catch
-        //    {
-        //        return null;
-        //    }
-        //}
-        //Save
+
         public void SaveChanges()
         {
             _dbContext.SaveChanges();

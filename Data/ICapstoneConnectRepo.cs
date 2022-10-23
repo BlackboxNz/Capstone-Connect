@@ -27,6 +27,9 @@ namespace Capstone_Connect.Data
         public string GetFilePath(string Filename);
         //public void UploadProjectImage(IFormFile file);
         public void DeleteUser(Visitor user);
+        public void DeleteAdmin(string email);
+        public void DeleteStudent(string email);
+        public void DeleteVisitor(string email);
 
         // Login
         public string GetAuth(string email);

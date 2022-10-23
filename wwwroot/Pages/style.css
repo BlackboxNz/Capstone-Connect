@@ -534,3 +534,42 @@ button.right {
     background-color: gold;
     color: #000;
 }
+
+#activeTab{
+    background: #ff914dd7;
+    color: #171716;
+}
+
+.admincont{
+    position: relative;
+    width: 100%;
+    height: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+.titlecont{
+    position: relative;
+    width: 95%;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid white;
+}
+
+.admintitle{
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    font-size: 50pt;
+    color: white;
+    left: 35%;
+    float: left;
+}
+
+.adminbox{
+    margin-left: 15%;
+    float: left;
+    width: 80%;
+}
