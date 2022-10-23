@@ -10,11 +10,8 @@ const createProject = () => {
         toast.className = toast.className.replace("show", "");
       }, 5000);
     } else {
-      var tagArray =  $("input[name='Question1']:checked").map(function(){
-        return this.value;
-    }).get()
       // Create json of user comment info from input fields
-      const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Tags:tagArray, Approach: approach.value, FinalThoughts: final_thoughts.value, Img: project_image.value, Video: project_video.value };
+      const json = { TeamName: team_name.value, ProjectName: project_name.value,ProjectOverview: project_overview.value, Approach: approach.value, FinalThoughts: final_thoughts.value, Video: project_video.value };
       const fetchAddProject = fetch(
         "/webapi/AddProject",
         {
@@ -41,15 +38,13 @@ const createProject = () => {
 const uploadImage = (id) => {
   var formData = new FormData();
   formData.append("file", project_image.files[0]);
-  alert(formData);
   const fetchUploadImage = fetch(
     "/webapi/UploadImage/" + id,
     {
       method: "POST",
-      headers: { "Content-Type":"multipart/form-data",
-      "Access-Control-Allow-Origin": "/webapi/UploadImage/"+id},
+      
       body: formData,
-    }).then((data) => {  alert(data.status)})
+    }).then((data) => {  console.log(data)})
 }
 
 const deleteProject = (id) => {

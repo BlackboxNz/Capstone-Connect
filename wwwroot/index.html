@@ -609,7 +609,14 @@
                                     <label for="pwd">Repeat Password</label>
                                     <input type="password" class="form-control" id="pwd2" placeholder="Repeat password" name="pwd2" />
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register()">Sign Up</button>
+                                <!--student checkbox-->
+                                <div class="form-check" style="padding-top: 15px; padding-left: 10px;">
+                                    <input class="form-check-input" type="checkbox" value="check" id="student_check">
+                                    <label class="form-check-label" for="student_check">
+                                        Are you a student?
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 0; margin-top: 3%; left: 0; bottom: 0;" onclick="register(); return false;">Sign Up</button>
                             </form>
                         </div>
                     </div>
