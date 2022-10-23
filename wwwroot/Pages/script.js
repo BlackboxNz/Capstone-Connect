@@ -158,14 +158,30 @@ const showProject = (project) => {
                             <p style="padding: 15px;">By</p>
                             <p></p>
                             <h4>Users go here. </h4>
-                        
                     </div>
+
+
+                        
+                    <div id="client-win" style="display: none" onload="checkAward(this.id, ${project.clientWin})"">
+                        ClientWin
+                    </div>
+                    <div id="client-two" style="display: none" onload="checkAward(this.id, ${project.clientTwo})">
+                        ClientTwo
+                    </div>
+                    <div id="people-win" style="display: none" onload="checkAward(this.id, ${project.peopleWin})">
+                        PeopleWin
+                    </div>
+                    <div id="people-two" style="display: none" onload="checkAward(this.id, ${project.peopleTwo})">
+                        PeopleTwo
+                    </div>
+
+
 
                     <!--body-->
 
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
-                            
+
                             <div class="lineup">
                                 <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
                                 <p></p>
@@ -202,7 +218,7 @@ const showProject = (project) => {
 
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
+                                <button class="btn" id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
                             </div>
 
                             <!--comments section-->
@@ -224,6 +240,13 @@ const showProject = (project) => {
         </div>
         `;
     loadProjectComments(project.id);
+}
+
+const checkAward = (element_id, award) => {
+    alert("test");
+    if (award == true) {
+        document.getElementById(element_id).style.display = "inline";
+    }
 }
 
 //Login and register functions. 

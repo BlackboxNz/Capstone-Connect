@@ -85,7 +85,9 @@ namespace Capstone_Connect.Migrations
                     Award3 = table.Column<bool>(type: "INTEGER", nullable: false),
                     Award4 = table.Column<bool>(type: "INTEGER", nullable: false),
                     Likes = table.Column<int>(type: "INTEGER", nullable: false),
+                    TeamMembers = table.Column<string>(type: "TEXT", nullable: true),
                     AdminID = table.Column<int>(type: "INTEGER", nullable: true),
+                    StudentID = table.Column<int>(type: "INTEGER", nullable: true),
                     VisitorID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -95,6 +97,11 @@ namespace Capstone_Connect.Migrations
                         name: "FK_Projects_Admins_AdminID",
                         column: x => x.AdminID,
                         principalTable: "Admins",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Projects_Students_StudentID",
+                        column: x => x.StudentID,
+                        principalTable: "Students",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Projects_Visitors_VisitorID",
@@ -124,30 +131,6 @@ namespace Capstone_Connect.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProjectStudent",
-                columns: table => new
-                {
-                    LikedProjectsID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TeamID = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectStudent", x => new { x.LikedProjectsID, x.TeamID });
-                    table.ForeignKey(
-                        name: "FK_ProjectStudent_Projects_LikedProjectsID",
-                        column: x => x.LikedProjectsID,
-                        principalTable: "Projects",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProjectStudent_Students_TeamID",
-                        column: x => x.TeamID,
-                        principalTable: "Students",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ProjectID",
                 table: "Comments",
@@ -159,14 +142,14 @@ namespace Capstone_Connect.Migrations
                 column: "AdminID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Projects_StudentID",
+                table: "Projects",
+                column: "StudentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Projects_VisitorID",
                 table: "Projects",
                 column: "VisitorID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectStudent_TeamID",
-                table: "ProjectStudent",
-                column: "TeamID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -178,16 +161,13 @@ namespace Capstone_Connect.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "ProjectStudent");
-
-            migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "Admins");
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Visitors");
