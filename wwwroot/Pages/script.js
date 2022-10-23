@@ -162,16 +162,16 @@ const showProject = (project) => {
 
 
                         
-                    <div id="client-win" style="display: none" onload="checkAward(this.id, ${project.clientWin})"">
+                    <div id="client-win" style="display: none">
                         ClientWin
                     </div>
-                    <div id="client-two" style="display: none" onload="checkAward(this.id, ${project.clientTwo})">
+                    <div id="client-two" style="display: none">
                         ClientTwo
                     </div>
-                    <div id="people-win" style="display: none" onload="checkAward(this.id, ${project.peopleWin})">
+                    <div id="people-win" style="display: none">
                         PeopleWin
                     </div>
-                    <div id="people-two" style="display: none" onload="checkAward(this.id, ${project.peopleTwo})">
+                    <div id="people-two" style="display: none">
                         PeopleTwo
                     </div>
 
@@ -218,7 +218,7 @@ const showProject = (project) => {
 
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button class="btn" id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
+                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id});" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
                             </div>
 
                             <!--comments section-->
@@ -239,13 +239,23 @@ const showProject = (project) => {
             </div>
         </div>
         `;
+    checkAwards(project.clientWin, project.clientTwo, project.peopleWin, project.peopleTwo);
     loadProjectComments(project.id);
 }
 
-const checkAward = (element_id, award) => {
+const checkAwards = (a,b,c,d) => {
     alert("test");
-    if (award == true) {
-        document.getElementById(element_id).style.display = "inline";
+    if (a == true) {
+        document.getElementById("client-win").style.display = "inline";
+    }
+    if (b == true) {
+        document.getElementById("client-two").style.display = "inline";
+    }
+    if (c == true) {
+        document.getElementById("people-win").style.display = "inline";
+    }
+    if (d == true) {
+        document.getElementById("people-two").style.display = "inline";
     }
 }
 
@@ -421,8 +431,7 @@ const like = (project_id) => {
         })
             .then(response => {
                 if (response.ok) {
-                    var element = document.getElementById(project_id);
-                    element.classList.toggle("liked");
+                    toggle_like();
                 }
             })
     }

@@ -91,16 +91,10 @@ namespace Capstone_Connect.Migrations
                     b.Property<string>("Approach")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Award1")
+                    b.Property<bool>("ClientTwo")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Award2")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Award3")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Award4")
+                    b.Property<bool>("ClientWin")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FinalThoughts")
@@ -110,6 +104,12 @@ namespace Capstone_Connect.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Likes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("PeopleTwo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("PeopleWin")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ProjectName")
