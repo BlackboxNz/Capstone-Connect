@@ -42,7 +42,7 @@ function w3RemoveClass(element, name) {
 
 //Student Profiles
 const showStudentProfile = () => {
-    
+
     const titleContainer = document.getElementById("title");
     const title = document.createElement("span");
     title.classList = ("studenttitle");
@@ -112,7 +112,7 @@ const loadIndividualProject = (id) => {
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "/webapi/GetProject/"+id
+                "Access-Control-Allow-Origin": "/webapi/GetProject/" + id
             },
 
         }
@@ -123,7 +123,7 @@ const loadIndividualProject = (id) => {
 
 const showProject = (project) => {
     console.log(project);
-    if ((auth == "visitor") || (auth == "student") || (auth == "admin")){
+    if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
         var commentText = `<div class="commentfields flex-container">
         <textarea id="comment-text" class="required textarea" name="comment" placeholder="Your comment"></textarea>
     </div>
@@ -131,7 +131,7 @@ const showProject = (project) => {
         <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
     </div>`
     }
-    else{
+    else {
         var commentText = `<h4>Please login to comment</h4>`
     };
     document.getElementById("projectModal").style.display = "block";
@@ -192,7 +192,7 @@ const showProject = (project) => {
 
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button id="likebtn" onclick="like(); toggle_like()" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart"></i></button>
+                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
                             </div>
 
                             <!--comments section-->
@@ -213,29 +213,71 @@ const showProject = (project) => {
             </div>
         </div>
         `;
-        loadProjectComments(project.id);
+    loadProjectComments(project.id);
 }
 
 //Login and register functions. 
 const register = () => {
     const fullnameText = document.getElementById("fullname").value;
     const emailText = document.getElementById("email").value;
-    const passwordText = document.getElementById("pwd").value
-    const userJSON = {
-        FullName: fullnameText,
-        Email: emailText,
-        Password: passwordText
+    const passwordText = document.getElementById("pwd").value;
+    const repeatText = document.getElementById("pwd2").value;
+    const student_check = document.getElementById("student_check").checked;
+
+    if (passwordText == repeatText) {
+        const userJSON = {
+            FullName: fullnameText,
+            Email: emailText,
+            Password: passwordText
+        }
+
+        if (student_check == false) {
+            fetch(`/webapi/RegisterVisitor`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "/webapi/RegisterVisitor"
+                },
+                body: JSON.stringify(userJSON)
+            })
+                .then(response => response.text())
+                .then(data => alert(data))
+        }
+
+        else {
+            entered_code = prompt("Please enter the student code");
+            fetch(`/webapi/GetCode`, {
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": "/webapi/GetCode"
+                }
+            })
+                .then(response => response.text())
+                .then(data => {
+                    if (data == entered_code) {
+                        fetch(`/webapi/RegisterStudent`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Access-Control-Allow-Origin": "/webapi/RegisterStudent"
+                            },
+                            body: JSON.stringify(userJSON)
+                        })
+                            .then(response => response.text())
+                            .then(data => alert(data))
+                    }
+                    else {
+                        alert("Incorrect code!");
+                    }
+                });
+
+
+        }
+
     }
-    fetch(`/webapi/RegisterVisitor`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "/webapi/RegisterVisitor"
-        },
-        body: JSON.stringify(userJSON)
-    })
-    .then(response => response.text())
-    .then(data => alert(data))
+    else {
+        alert("Passwords do not match!");
+    }
 }
 
 const login = () => {
@@ -250,21 +292,21 @@ const login = () => {
             "Accept": "application/xml"
         }
     })
-    .then(response => {
-        if (response.ok) {
-            response.text().then(data => {
-                data_array = data.split(" ");
-                localStorage.setItem("auth", data_array[0]);
-                localStorage.id = data_array[1];
-                localStorage.fullname = data_array[2];
-                location.reload()
-                console.log(localStorage.auth); console.log(localStorage.id); console.log(localStorage.name)
-            });
-        }
-        else {
-            alert("Login Unsuccessful")
-        }
-    })
+        .then(response => {
+            if (response.ok) {
+                response.text().then(data => {
+                    data_array = data.split(" ");
+                    localStorage.setItem("auth", data_array[0]);
+                    localStorage.id = data_array[1];
+                    localStorage.fullname = data_array[2];
+                    location.reload()
+                    console.log(localStorage.auth); console.log(localStorage.id); console.log(localStorage.name)
+                });
+            }
+            else {
+                alert("Login Unsuccessful")
+            }
+        })
 }
 
 const logout = () => {
@@ -312,11 +354,11 @@ const checkUser = () => {
                 body: JSON.stringify(likeJSON)
 
             })
-            .then(response => response.text())
-            .then(data => {
-                var liked_projects = data.split(",")
-                localStorage.liked_projects = liked_projects;
-            });
+                .then(response => response.text())
+                .then(data => {
+                    var liked_projects = data.split(",")
+                    localStorage.liked_projects = liked_projects;
+                });
         }
     }
 
@@ -326,33 +368,44 @@ const checkUser = () => {
 // Likes
 const like = (project_id) => {
     var user_type = localStorage.getItem("auth");
-    var user_id = localStorage.getItem("id");
-    
-    const likeJSON = {
-        ProjectID: project_id,
-        UserType: user_type,
-        UserID: user_id,
+
+    if (user_type != "false") {
+        var user_id = localStorage.getItem("id");
+
+        const likeJSON = {
+            ProjectID: project_id,
+            UserType: user_type,
+            UserID: user_id,
+        }
+
+        fetch(`/webapi/LikeProject`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": `/webapi/LikeProject`
+            },
+            body: JSON.stringify(likeJSON)
+        })
+            .then(response => {
+                if (response.ok) {
+                    var element = document.getElementById(project_id);
+                    element.classList.toggle("liked");
+                }
+            })
     }
-
-    fetch(`/webapi/LikeProject`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": `/webapi/LikeProject`
-        },
-        body: JSON.stringify(likeJSON)
-    })
-
-        .then(response => {
-            if (response.ok) {
-                var element = document.getElementById(project_id);
-                element.classList.toggle("liked");
-            }
-        });
+    else {
+        alert("You need to be logged in to like!");
+    }
 }
 
-function toggle_like() {
+const toggle_like = () => {
     document.getElementById("heart-icon").classList.toggle("fa-heart-o");
+}
+
+const check_like = (project_id) => {
+    if (localStorage.getItem("liked_projects").split(",").includes(project_id)) {
+        document.getElementById("heart-icon").classList.toggle("fa-heart-o");
+    }
 }
 
 
@@ -386,7 +439,7 @@ const loadProjectComments = (id) => {
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "/webapi/GetProjectComments"+id
+                "Access-Control-Allow-Origin": "/webapi/GetProjectComments" + id
             },
 
         }
@@ -400,20 +453,20 @@ const showProjectComments = (comment) => {
             "submitted-comments"
         ).innerHTML += `<p>No current comments, feel free to leave one above.</p>`;
     }
-    else{
-    comment.forEach(obj => {
-        if (auth == "admin"){
-            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+    else {
+        comment.forEach(obj => {
+            if (auth == "admin") {
+                var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
             <button type="button" class="btn right" name="deleteC" style="border-color: transparent;" onClick="deleteComment(${obj.id})">Delete</button>
             <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
-        }
-        else{
-            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+            }
+            else {
+                var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
         <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
-        }
-        document.getElementById(
-            "submitted-comments"
-        ).innerHTML += commentText;
+            }
+            document.getElementById(
+                "submitted-comments"
+            ).innerHTML += commentText;
         });
     }
 
@@ -421,13 +474,13 @@ const showProjectComments = (comment) => {
 
 const deleteComment = (id) => {
     const deleteComment = fetch(
-      "/webapi/DeleteComment/" + id,
-      {
-        method: "DELETE",
-        headers: {
-          "Access-Control-Allow-Origin": "/webapi/DeleteComment" + id
+        "/webapi/DeleteComment/" + id,
+        {
+            method: "DELETE",
+            headers: {
+                "Access-Control-Allow-Origin": "/webapi/DeleteComment" + id
+            }
         }
-      }
     ).then(response => {
         if (response.status == 204) {
             alert("Comment Deleted");
