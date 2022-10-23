@@ -47,7 +47,8 @@ const uploadImage = (id) => {
     }).then((data) => {  console.log("Image uploaded")})
 }
 
-const deleteProject = (id) => {
+const deleteProject = () => {
+  var id = document.getElementById("project_name_select").value;
   const deleteProject = fetch(
     "/webapi/DeleteProject/" + id,
     {
@@ -88,3 +89,24 @@ const registerUser = () => {
         .then(data => alert(data))
 }
 
+
+
+
+const getProjects = () => {
+  const fetchPromise = fetch(`/webapi/GetAllProjects`,
+      {
+          headers: {
+              "Accept": "application/json",
+              "Access-Control-Allow-Origin": "/webapi/GetAllProjects"
+          }
+      }
+  );const streamPromise = fetchPromise.then((response) => response.json());
+  streamPromise.then((data) => populateProjects(data));
+}
+const populateProjects = (projects) =>{
+  
+  projects.forEach(obj => {
+    console.log(obj);
+    document.getElementById("project_name_select").innerHTML += `<option value='${obj.id}'>${obj.projectName}</option>`;
+  })
+}
