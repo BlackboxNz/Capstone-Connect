@@ -404,8 +404,9 @@ const showProjectComments = (comment) => {
     comment.forEach(obj => {
         document.getElementById(
             "submitted-comments"
-        ).innerHTML += `<h4 style="padding-top: 5px; font-weight: bold;" id="comment-title">${obj.fullName}</h4>
-        <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>
+        ).innerHTML += `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+                        <button type="button" class="btn right" name="deleteC" style="border-color: transparent;">Delete</button>
+                        <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>
         `;
         });
     }
