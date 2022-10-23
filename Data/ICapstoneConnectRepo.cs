@@ -16,7 +16,7 @@ namespace Capstone_Connect.Data
         public void SaveChanges();
 
         //Project Functions
-        public void AwardProject(Project project, Tag tag);
+        public void AwardProject(Project project);
         public void DeleteProject(int id);
         public IEnumerable<Project> GetAllProjects();
         public Project GetProjectByID(int id);
@@ -55,10 +55,5 @@ namespace Capstone_Connect.Data
         public IEnumerable<Comment> GetAllCommentsByID(int projectID);
         public IEnumerable<Comment> GetComments();
         public Comment GetCommentByID(int id);
-
-        //Tag
-        public void AddTag(Tag tag);
-        public void DeleteTag(Tag tag);
-        public void TagProject(Project project, Tag tag);
     }
 }
