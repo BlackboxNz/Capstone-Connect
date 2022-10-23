@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using static System.Net.WebRequestMethods;
+using Microsoft.Extensions.FileProviders;
 
 namespace Capstone_Connect.Controllers
 {
@@ -153,8 +154,8 @@ namespace Capstone_Connect.Controllers
             }
             return PhysicalFile(fileName, respHeader);
         }
-        [HttpPost ("UploadImage")]
-        public async Task<IActionResult> UploadImage(IFormFile file)
+        [HttpPost ("UploadImage/{id}")]
+        public async Task<IActionResult> UploadImage(string id, IFormFile file)
         {
 
             
@@ -165,20 +166,18 @@ namespace Capstone_Connect.Controllers
 
             if (file.Length > 0)
             {
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                //Getting FileName
+                var fileName = Path.Combine(imgDir,id+".png");
+                using (Stream fileStream = new FileStream(fileName, FileMode.Create))
                 {
-                    await file.CopyToAsync(stream);
+                    await file.CopyToAsync(fileStream);
                 }
+
+                return Ok(file);
+
             }
 
-           //return StatusCode(200);
-
-
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
-
-
-            return Ok(new { imgDir, file });
+           return StatusCode(200);
         }
 
     }
