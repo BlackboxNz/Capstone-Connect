@@ -534,3 +534,8 @@ button.right {
     background-color: #fff;
     color: #000;
 }
+
+#activeTab{
+    background: #ff914dd7;
+    color: #171716;
+}

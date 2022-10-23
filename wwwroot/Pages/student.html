@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./studentAndAdminStyle.css">
 </head>
 
-<body onload="showStudentProfile()">
+<body onload="showStudentProfile(), checkUser();">
     <div class="nav2">
         <a href="#home">
             <img src="https://i.ibb.co/fnzBgyC/image.png" class="nav-img" alt="logo">
@@ -22,7 +22,8 @@
         <ul class="navbar1">
             <a href="../index.html"><li class="navitem" style="margin-left: 44%;">Home</li></a>
             <a href="./projects.html"><li class="navitem">Projects</li></a>
-            <li class="navitem" style="float:right">Student Page</li>
+            <a href="./projects.html"><li class="navitem" style="float:right" onclick="logout()">Logout</li></a>
+            <li id="activeTab" class="navitem" style="float:right">Student Page</li>
         </ul>
     </div>
 
