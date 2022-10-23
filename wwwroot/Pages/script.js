@@ -157,19 +157,25 @@ const showProject = (project) => {
                             <h1 style="font-weight: bold; font-size: 5em; ">${project.projectName}</h1>
                             <h3>By</h3>
                             <h2>${project.teamName}</h2>
-                    </div>      
-                    <div id="client-win" style="display: none">
-                        ClientWin
+                            
                     </div>
-                    <div id="client-two" style="display: none">
-                        ClientTwo
-                    </div>
-                    <div id="people-win" style="display: none">
-                        PeopleWin
-                    </div>
+
+                    <div id="people-win" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:orange;'><p style="font-size: 24px; font-family: Poppins">People's Choice</p></i>
+                    </div>  
+
                     <div id="people-two" style="display: none">
-                        PeopleTwo
+                        <i class='fas fa-medal' style='font-size:56px;color:#dc6604;'><p style="font-size: 24px; font-family: Poppins">People's Runner-Up</p></i>
                     </div>
+
+                    <div id="client-win" style="display: none">
+                        <i class='fas fa-medal' style='font-size:56px;color:#0098C3;'><p style="font-size: 24px; font-family: Poppins">Client's Choice</p></i>
+                    </div>
+
+                    <div id="client-two" style="display: none">
+                        <i class='fas fa-medal' style='font-size:56px;color:#0039A6;'><p style="font-size: 24px; font-family: Poppins">Client's Runner-Up</p></i>
+                    </div>
+
                     <!--body-->
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
