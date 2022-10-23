@@ -573,3 +573,9 @@ button.right {
     float: left;
     width: 80%;
 }
+
+.i {
+    font-family: Font Awesome\ 5 Free;
+    font-weight: bold;
+    font-style: normal;
+}
