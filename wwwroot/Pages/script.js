@@ -515,22 +515,71 @@ const showProjectComments = (comment) => {
     }
 
 }
+const deleteUser = () =>{
+    var level = getElementById("user_level_drop").value;
+    var email = getElementById(user-email).value;
+    if(level == "Admin"){
+        deleteAdmin(user-email);
+    }
+    else if(level == "Student"){
+        deleteStudent(user-email);
+    }
+    else{
+        deleteVisitor(user-email);
+    }
+}
 
-const deleteStudent = (id) => {
-    const deleteComment = fetch(
-        "/webapi/DeleteComment/" + id,
+const deleteStudent = (email) => {
+    const deleteStudentAccount = fetch(
+        "/webapi/DeleteStudent/" + email,
         {
             method: "DELETE",
             headers: {
-                "Access-Control-Allow-Origin": "/webapi/DeleteComment" + id
+                "Access-Control-Allow-Origin": "/webapi/DeleteStudent" + email
             }
         }
     ).then(response => {
         if (response.status == 204) {
-            alert("Comment Deleted");
+            alert("Student Deleted");
         }
         else {
-            alert("Unable to delete comment");
+            alert("Unable to delete student");
+        }
+    })
+}
+const deleteAdmin = (email) => {
+    const deleteAdminAccount = fetch(
+        "/webapi/DeleteAdmin/" + email,
+        {
+            method: "DELETE",
+            headers: {
+                "Access-Control-Allow-Origin": "/webapi/DeleteAdmin" + email
+            }
+        }
+    ).then(response => {
+        if (response.status == 204) {
+            alert("Admin Deleted");
+        }
+        else {
+            alert("Unable to delete Admin");
+        }
+    })
+}
+const deleteVisitor = (email) => {
+    const deleteVisitorAccount = fetch(
+        "/webapi/DeleteVisitor/" + email,
+        {
+            method: "DELETE",
+            headers: {
+                "Access-Control-Allow-Origin": "/webapi/DeleteVisitor" + email
+            }
+        }
+    ).then(response => {
+        if (response.status == 204) {
+            alert("Visitor Deleted");
+        }
+        else {
+            alert("Unable to delete Visitor");
         }
     })
 }
