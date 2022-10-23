@@ -83,6 +83,12 @@ button {
     height: auto;
 }
 
+.delete{
+    background-color: red;
+    border-style: solid;
+    border-color: red;
+}
+
 #project_name_select{
     color: #1b1b1b;
 }
@@ -93,4 +99,9 @@ button {
 
 #user_level_drop{
     color: #1b1b1b;
+}
+
+#project_name_select{
+    width: 100%;
+    font-size: large;
 }
