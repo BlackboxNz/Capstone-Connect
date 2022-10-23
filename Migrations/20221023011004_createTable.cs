@@ -39,19 +39,6 @@ namespace Capstone_Connect.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "TEXT", nullable: false),
-                    TagName = table.Column<string>(type: "TEXT", nullable: false),
-                    isAward = table.Column<bool>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Visitors",
                 columns: table => new
                 {
@@ -86,7 +73,6 @@ namespace Capstone_Connect.Migrations
                     Award4 = table.Column<bool>(type: "INTEGER", nullable: false),
                     Likes = table.Column<int>(type: "INTEGER", nullable: false),
                     AdminID = table.Column<int>(type: "INTEGER", nullable: true),
-                    TagID = table.Column<string>(type: "TEXT", nullable: true),
                     VisitorID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -96,11 +82,6 @@ namespace Capstone_Connect.Migrations
                         name: "FK_Projects_Admins_AdminID",
                         column: x => x.AdminID,
                         principalTable: "Admins",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_Projects_Tags_TagID",
-                        column: x => x.TagID,
-                        principalTable: "Tags",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Projects_Visitors_VisitorID",
@@ -165,11 +146,6 @@ namespace Capstone_Connect.Migrations
                 column: "AdminID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Projects_TagID",
-                table: "Projects",
-                column: "TagID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Projects_VisitorID",
                 table: "Projects",
                 column: "VisitorID");
@@ -196,9 +172,6 @@ namespace Capstone_Connect.Migrations
 
             migrationBuilder.DropTable(
                 name: "Admins");
-
-            migrationBuilder.DropTable(
-                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "Visitors");
