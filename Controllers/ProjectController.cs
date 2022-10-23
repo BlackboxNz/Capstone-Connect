@@ -173,35 +173,11 @@ namespace Capstone_Connect.Controllers
                     await file.CopyToAsync(fileStream);
                 }
 
-                //Assigning Unique Filename (Guid)
-                //var myUniqueFileName = Convert.ToString(Guid.NewGuid());
-
-                ////Getting file Extension
-                //var fileExtension = Path.GetExtension(fileName);
-
-                //// concatenating  FileName + FileExtension
-                //var newFileName = String.Concat(myUniqueFileName, fileExtension);
-
-                //// Combines two strings into a path.
-                //var filepath = new PhysicalFileProvider(Path.Combine(imgDir + $@"\{newFileName}";
-
-                //using (FileStream fs = System.IO.File.Create(filepath))
-                //{
-                //    file.CopyTo(fs);
-                //    fs.Flush();
-                //}
-                return Ok("success");
+                return Ok(file);
 
             }
 
            return StatusCode(200);
-
-
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
-
-
-            return Ok(new { imgDir, file });
         }
 
     }
