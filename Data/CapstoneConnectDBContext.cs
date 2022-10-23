@@ -18,6 +18,7 @@ namespace Capstone_Connect.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Code> Code { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source = Capstone_ConnectDB.sqlite");

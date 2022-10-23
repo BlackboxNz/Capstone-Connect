@@ -41,10 +41,12 @@ namespace Capstone_Connect.Data
 
         // Register 
         public Visitor GetVisitorByEmail(string email);
-        public Visitor RegisterVisitor(Visitor visitor);
+        public void RegisterVisitor(Visitor visitor);
 
         public Student GetStudentByEmail(string email);
-        public Student RegisterStudent(Student student);
+        public void RegisterStudent(Student student);
+        public string GetCode();
+        public void SetCode(string new_code);
 
         public Admin GetAdminByEmail(string email);
         public Admin AddAdmin(Admin user);

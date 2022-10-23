@@ -40,6 +40,21 @@ namespace Capstone_Connect.Migrations
                     b.ToTable("Admins");
                 });
 
+            modelBuilder.Entity("Capstone_Connect.Model.Code", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecretCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Code");
+                });
+
             modelBuilder.Entity("Capstone_Connect.Model.Comment", b =>
                 {
                     b.Property<int>("ID")

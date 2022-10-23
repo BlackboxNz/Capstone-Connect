@@ -24,6 +24,19 @@ namespace Capstone_Connect.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Code",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    SecretCode = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Code", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
@@ -158,6 +171,9 @@ namespace Capstone_Connect.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Code");
+
             migrationBuilder.DropTable(
                 name: "Comments");
 
