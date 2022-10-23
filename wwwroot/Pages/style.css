@@ -574,12 +574,6 @@ button.right {
     width: 80%;
 }
 
-.row label{
+.row label, .form-group label{
     font-size: 25pt;
-}
-
-.i {
-    font-family: Font Awesome\ 5 Free;
-    font-weight: bold;
-    font-style: normal;
 }
