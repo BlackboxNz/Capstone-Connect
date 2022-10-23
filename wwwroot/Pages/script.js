@@ -1,6 +1,7 @@
 async function test() {
     console.log("test");
 }
+var auth = localStorage.getItem("auth")
 
 projecttag("all")
 
@@ -122,6 +123,17 @@ const loadIndividualProject = (id) => {
 
 const showProject = (project) => {
     console.log(project);
+    if ((auth == "visitor") || (auth == "student") || (auth == "admin")){
+        var commentText = `<div class="commentfields flex-container">
+        <textarea id="comment-text" class="required textarea" name="comment" placeholder="Your comment"></textarea>
+    </div>
+    <div style="font-size: 1.2em;">
+        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
+    </div>`
+    }
+    else{
+        var commentText = `<h4>Please login to comment</h4>`
+    };
     document.getElementById("projectModal").style.display = "block";
     document.getElementById(
         "modal-text"
@@ -189,12 +201,7 @@ const showProject = (project) => {
 
                                 <div id="comment">
                                     <form id="commentForm">
-                                        <div class="commentfields flex-container">
-                                            <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
-                                        </div>
-                                        <div style="font-size: 1.2em;">
-                                            <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
-                                        </div>
+                                    ${commentText}
                                     </form>
                                 </div>
                                 <hr style="height: 3px;">
@@ -353,8 +360,7 @@ function toggle_like() {
 const submitComment = (id) => {
     if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
         const comment = document.getElementById('comment-text').value;
-
-        document.getElementById('comment').value = "";
+        document.getElementById('comment-text').value = "";
         FullName = localStorage.getItem("fullname");
         const commentJSON = {
             CommentText: comment,
@@ -392,7 +398,7 @@ const showProjectComments = (comment) => {
     if (comment.length == 0) {
         document.getElementById(
             "submitted-comments"
-        ).innerHTML += `<p>No current comments, feel free to leave one below.</p>`;
+        ).innerHTML += `<p>No current comments, feel free to leave one above.</p>`;
     }
     else{
     comment.forEach(obj => {
