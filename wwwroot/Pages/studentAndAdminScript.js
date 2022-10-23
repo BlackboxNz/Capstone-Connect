@@ -64,7 +64,7 @@ const deleteProject = () => {
     else{
       alert("Unable to delete project");
     }
-  })
+  });location.reload();
 }
 
 const registerUser = () => {
