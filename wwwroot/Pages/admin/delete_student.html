@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="../studentAndAdminStyle.css">
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../studentAndAdminStyle.css">
+
     <style>
         div {
             color: #fff;
@@ -33,31 +34,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Create User</h2>
+                <h2>Delete Student</h2>
                 <form id="project-form">
+                    
                     <div class="form-group">
-                        <label for="fullname">Full Name</label>
-                        <input type="text" class="form-control" name="fullname" id="fullname"
-                               placeholder="Full Name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" id="email"
-                               placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" name="pwd" id="pwd"
-                               placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="userlevel">User Level</label>
-                        <select name="userLevel" aria-label="User Level" id="userlevel">
-                            <option value="Visitor">Visitor</option>
-                            <option value="Student">Student</option>
-                            <option value="Admin">Admin</option>
-                          </select>
+                        <label for="student-email">Student Email</label>
+                        <input type="email" class="form-control" id="student-email" placeholder="Enter Student Email">
                     </div>
                 </form>
             </div>
@@ -67,7 +49,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a class="btn btn-primary btn-block" type="button" onClick="registerUser()">Register User</a>
+                <a class="btn btn-primary btn-block" type="button" onClick="deleteStudent()">Create Student</a>
             </div>
         </div>
     </div>
@@ -75,7 +57,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a href="../admin.html" class="btn btn-primary btn-block">Return to Admin Page</a>
+                <a href="../admin.html" class="btn btn-primary btn-block">Return to Account Page</a>
             </div>
         </div>
     </div>

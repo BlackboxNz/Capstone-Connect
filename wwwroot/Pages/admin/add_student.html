@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../studentAndAdminStyle.css">
-    <link rel="stylesheet" href="./style.css">
+
     <style>
         div {
             color: #fff;
@@ -24,21 +25,22 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a href="../admin.html" class="btn btn-primary btn-block">Return to Admin Page</a>
+                <a href="../admin.html" class="btn btn-primary btn-block">Return to Account Page</a>
             </div>
         </div>
     </div>
 
     <!-- form -->
     <div class="container">
-        <div clas="row">
+        <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h2>Add Student</h2>
-                <form id="student-form">
+                <form id="project-form">
                     <div class="form-group">
                         <label for="student-name">Student Name</label>
-                        <input type="text" class="form-control" id="student-name" placeholder="Enter Student Name">
+                        <input type="text" class="form-control" id="student-name" placeholder="Enter Student Name" />
                     </div>
+
                     <div class="form-group">
                         <label for="student-id">Student UID</label>
                         <input type="text" class="form-control" id="student-id" placeholder="Enter Student UID">
@@ -56,6 +58,7 @@
             </div>
         </div>
     </div>
+    <div id="toast" class="toast"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -63,7 +66,16 @@
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <!-- return button -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="../admin.html" class="btn btn-primary btn-block">Return to Account Page</a>
+            </div>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+    <script src="../studentAndAdminScript.js"></script>
 </body>
 
 </html>

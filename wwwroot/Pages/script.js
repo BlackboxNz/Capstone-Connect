@@ -152,22 +152,30 @@ const showProject = (project) => {
             <div class="modal-content2">
                 <div class="modal-body" style="padding: 0;">
                     <!--header-->
-                    <div class="header" style="border-radius: 15px; text-align: center;">                        
+                    <div class="header" style="border-radius: 15px; text-align: center; margin-bottom: 10px;">                        
                             <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
-                            <h1 style="font-weight: bold; font-size: 5em; ">${project.teamName}</h1>
-                    </div>      
-                    <div id="client-win" style="display: none">
-                        ClientWin
+                            <h1 style="font-weight: bold; font-size: 5em; ">${project.projectName}</h1>
+                            <h3>By</h3>
+                            <h2>${project.teamName}</h2>
+                            
                     </div>
-                    <div id="client-two" style="display: none">
-                        ClientTwo
+
+                    <div id="people-win" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:orange; display: inherit;'><p style="font-size: 24px; font-family: Poppins;  display: inherit; font-style: normal;">People's Choice</p></i>
+                    </div>  
+
+                    <div id="people-two" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:#dc6604; display: inherit'><p style="font-size: 24px; font-family: Poppins; display: inherit;">People's Runner-Up</p></i>
                     </div>
-                    <div id="people-win" style="display: none">
-                        PeopleWin
+
+                    <div id="client-win" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:#0098C3; display: inherit'><p style="font-size: 24px; font-family: Poppins; display: inherit;">Client's Choice</p></i>
                     </div>
-                    <div id="people-two" style="display: none">
-                        PeopleTwo
+
+                    <div id="client-two" style="display: none; padding: 20px;">
+                        <i class='fas fa-medal' style='font-size:56px;color:#0039A6; display: inherit'><p style="font-size: 24px; font-family: Poppins; display: inherit;">Client's Runner-Up</p></i>
                     </div>
+
                     <!--body-->
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
@@ -188,13 +196,11 @@ const showProject = (project) => {
                                     ${project.approach}
                                 </p>
                             </div>
-
                             <div style="min-width: 0;"">
                                 <div style="text-align: center;">
                                     <img style=" height: auto; width: 100%;" width="500" height="563" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
-
                             <div style="border-bottom-color: black;" class="lineup">
                                 <h2 style="font-weight: bold; font-size: 2em;">Future Plans</h2>
                                 <p></p>
@@ -202,16 +208,13 @@ const showProject = (project) => {
                                     ${project.finalThoughts}
                                 </p>
                             </div>
-
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
                                 <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id});" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
                             </div>
-
                             <!--comments section-->
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Comments</h2>
-
                                 <div id="comment">
                                     <form id="commentForm">
                                     ${commentText}
@@ -450,11 +453,11 @@ const submitComment = (id) => {
             },
             body: JSON.stringify(commentJSON),
         }); loadProjectComments(id);
-        return false;
+        
     }
     else {
         alert("You need to be logged in to comment!")
-    }
+    }return false;
 }
 
 const loadProjectComments = (id) => {
