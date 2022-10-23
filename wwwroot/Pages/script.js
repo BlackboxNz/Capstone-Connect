@@ -138,7 +138,7 @@ const showProject = (project) => {
         <textarea id="comment-text" class="required textarea" name="comment" placeholder="Your comment"></textarea>
     </div>
     <div style="font-size: 1.2em;">
-        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id}) runat="server" data-target="#PopUpModal"">Comment</button>
+        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
     </div>`
     }
     else {
@@ -244,7 +244,6 @@ const showProject = (project) => {
 }
 
 const checkAwards = (a,b,c,d) => {
-    alert("test");
     if (a == true) {
         document.getElementById("client-win").style.display = "inline";
     }
