@@ -194,13 +194,11 @@ const showProject = (project) => {
                                     ${project.approach}
                                 </p>
                             </div>
-
                             <div style="min-width: 0;"">
                                 <div style="text-align: center;">
                                     <img style=" height: auto; width: 100%;" width="500" height="563" id="showcaseimg" src="https://localhost:5000/webapi/GetProjectImage/${project.id}" alt="Showcase Poster" />
                                 </div>
                             </div>
-
                             <div style="border-bottom-color: black;" class="lineup">
                                 <h2 style="font-weight: bold; font-size: 2em;">Future Plans</h2>
                                 <p></p>
@@ -208,16 +206,13 @@ const showProject = (project) => {
                                     ${project.finalThoughts}
                                 </p>
                             </div>
-
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
                                 <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id});" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
                             </div>
-
                             <!--comments section-->
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Comments</h2>
-
                                 <div id="comment">
                                     <form id="commentForm">
                                     ${commentText}
@@ -456,11 +451,11 @@ const submitComment = (id) => {
             },
             body: JSON.stringify(commentJSON),
         }); loadProjectComments(id);
-        return false;
+        
     }
     else {
         alert("You need to be logged in to comment!")
-    }
+    }return false;
 }
 
 const loadProjectComments = (id) => {
