@@ -453,11 +453,13 @@ const submitComment = (id) => {
             },
             body: JSON.stringify(commentJSON),
         }); loadProjectComments(id);
+        alert("Comment Successful");
         
     }
     else {
         alert("You need to be logged in to comment!")
-    }return false;
+    } 
+
 }
 
 const loadProjectComments = (id) => {
