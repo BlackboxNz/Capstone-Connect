@@ -30,7 +30,7 @@ const createProject = () => {
             setTimeout(function () {
                 toast.className = toast.className.replace("show", "");
               }, 50000);
-            uploadImage(id);
+              if(project_image.value != ""){uploadImage(id);}
           })
 
     }
@@ -44,7 +44,7 @@ const uploadImage = (id) => {
       method: "POST",
       
       body: formData,
-    }).then((data) => {  console.log(data)})
+    }).then((data) => {  console.log("Image uploaded")})
 }
 
 const deleteProject = (id) => {
