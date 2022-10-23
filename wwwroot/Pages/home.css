@@ -1,23 +1,148 @@
 body{
     background-color: #171716;
+    font-family: 'Poppins';
 }
 
-mainContainer{
-    width: 100%;
+.mainContainer{
     background-color: #171716;
+    width: 100%;
 }
 
-centralContainer{
-    display: inline;
-    height: 20%;
-    width: auto;
+.buttonContainer{
+    text-align: center;
+    position: absolute;
+    width: inherit;
+    bottom: 40%;
+    animation: buttonslide 2s;
 }
 
-centralLogo{
-    animation: fadein 2s;
+.introButton{
+    opacity: 0.7;
+    animation: buttonfadein 2s;
+    margin: 2%;
+    width: 20%;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f1f1f1;
+    background-color: #171716;
+    font-size: 20px;
+    color: white;
+    transition: 0.2s;
+}
+
+.introButton:hover{
+    opacity: 1;
+    border-color: #f1f1f1;
+    background-color: #cf763e;
+    font-size: 20px;
+    color: #f1f1f1;
+    transition: 0.2s;
+}
+
+.centralContainer{
+    width: 100%;
+}
+
+.centralLogo{
+    animation: fadein 2s, ease-out 0.4s;
     -moz-animation: fadein 2s; /* Firefox */
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
+}
+
+.logoContainer{
+    position: absolute;
+    bottom: 55%;
+    text-align: center;
+    width: inherit;
+    animation: slide 2s;
+    -moz-animation: slide 2s; /* Firefox */
+    -webkit-animation: slide 2s; /* Safari and Chrome */
+    -o-animation: slide 3s; /* Opera */
+}
+
+
+/* Animation */
+
+/* Slide Up */
+@keyframes slide {
+    from{
+        bottom: 30%;
+    }
+    to{
+        bottom: 55%;
+    }
+}
+
+@keyframes buttonslide {
+    from{
+        bottom: 15%;
+    }
+    to{
+        bottom: 40%;
+    }
+}
+
+@-moz-keyframes slide { /* Firefox */
+    from{
+        bottom: 30%;
+    }
+    to{
+        bottom:50%;
+    }
+}
+@-webkit-keyframes slide { /* Safari and Chrome */
+    from{
+        bottom: 30%;
+    }
+    to{
+        bottom:50%;
+    }
+}
+@-o-keyframes slide { /* Opera */
+    from{
+        bottom: 30%;
+    }
+    to{
+        bottom:50%;
+    }
+}
+
+/* Fade Up */
+
+@keyframes buttonfadein {
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:0.7;
+    }
+}
+
+@-moz-keyframes buttonfadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.7;
+    }
+}
+@-webkit-keyframes buttonfadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.7;
+    }
+}
+@-o-keyframes buttonfadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 0.7;
+    }
 }
 
 @keyframes fadein {
@@ -51,3 +176,4 @@ centralLogo{
     to {
         opacity: 1;
     }
+}
