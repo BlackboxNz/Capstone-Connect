@@ -29,9 +29,9 @@ namespace Capstone_Connect.Controllers
         }
 
         [HttpPost("SetCode")]
-        public ActionResult SetCode(string new_code)
+        public ActionResult SetCode(CodeInDto new_code)
         {
-            _repository.SetCode(new_code);
+            _repository.SetCode(new_code.SecretCode);
             return Ok();
         }
     }

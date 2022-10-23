@@ -89,6 +89,65 @@ const registerUser = () => {
         .then(data => alert(data))
 }
 
+const getCode = () => {
+    fetch(`/webapi/GetCode`, {
+        method: "GET",
+        headers: {
+            "Access-Control-Allow-Origin": "/webapi/GetCode"
+        }
+    })
+    .then(response => response.text())
+    .then(data => alert(`The code is: ${data}`));
+}
+
+const setCode = () => {
+    var newCode = prompt("Enter the new code", "AAAAAA");
+    const codeJSON = {
+        SecretCode: newCode,
+    }
+    fetch(`/webapi/SetCode`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "/webapi/SetCode"
+        },
+        body: JSON.stringify(codeJSON)
+    })
+        .then(response => response.text())
+        .then(data => alert(`The new code is set to ${newCode}`))
+}
+
+const awardProject = () => {
+    const project_name = document.getElementById("project_name").value;
+    const client_win = document.getElementById("client-win-box").checked;
+    const client_two = document.getElementById("client-two-box").checked;
+    const people_win = document.getElementById("people-win-box").checked;
+    const people_two = document.getElementById("people-two-box").checked;
+
+    const awardJSON = {
+        ProjectName: project_name,
+        ClientWin: client_win,
+        ClientTwo: client_two,
+        PeopleWin: people_win,
+        PeopleTwo: people_two,
+    }
+    fetch(`/webapi/AwardProject`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "/webapi/SetCode"
+        },
+        body: JSON.stringify(awardJSON)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Awarded!")
+            }
+            else {
+                alert("There was an error. Perhaps a typo?")
+            }
+        })
+}
 
 
 
