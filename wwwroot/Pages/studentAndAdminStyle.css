@@ -82,3 +82,15 @@ button {
     width: 10%;
     height: auto;
 }
+
+#project_name_select{
+    color: #1b1b1b;
+}
+
+#userlevel{
+    color: #1b1b1b;
+}
+
+#user_level_drop{
+    color: #1b1b1b;
+}
