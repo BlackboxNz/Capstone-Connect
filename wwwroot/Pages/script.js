@@ -525,6 +525,7 @@ const deleteStudent = (email) => {
     ).then(response => {
         if (response.status == 204) {
             alert("Student Deleted");
+            location.reload();
         }
         else {
             alert("Unable to delete student");
@@ -543,6 +544,7 @@ const deleteAdmin = (email) => {
     ).then(response => {
         if (response.status == 204) {
             alert("Admin Deleted");
+            location.reload();
         }
         else {
             alert("Unable to delete Admin");
@@ -561,6 +563,7 @@ const deleteVisitor = (email) => {
     ).then(response => {
         if (response.status == 204) {
             alert("Visitor Deleted");
+            location.reload();
         }
         else {
             alert("Unable to delete Visitor");
