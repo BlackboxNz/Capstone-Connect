@@ -106,12 +106,10 @@ namespace Capstone_Connect.Data
             Visitor visitor = _dbContext.Visitors.FirstOrDefault(e => e.Email == email);
             return visitor;
         }
-        public Visitor RegisterVisitor(Visitor visitor)
+        public void RegisterVisitor(Visitor visitor)
         {
             EntityEntry<Visitor> e = _dbContext.Visitors.Add(visitor);
-            Visitor c = e.Entity;
             _dbContext.SaveChanges();
-            return c;
         }
 
         public Student GetStudentByEmail(string email)
@@ -119,13 +117,44 @@ namespace Capstone_Connect.Data
             Student student = _dbContext.Students.FirstOrDefault(e => e.Email == email);
             return student;
         }
-        public Student RegisterStudent(Student user)
+        public void RegisterStudent(Student user)
         {
             EntityEntry<Student> e = _dbContext.Students.Add(user);
-            Student c = e.Entity;
             _dbContext.SaveChanges();
-            return c;
         }
+
+        public string GetCode()
+        {
+            Code code = _dbContext.Code.FirstOrDefault();
+            if (code == null)
+            {
+                code = new Code();
+                string src = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                Random random = new Random();
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < 6; i++)
+                {
+                    sb.Append(src[random.Next(0, src.Length)]);
+                }
+
+                code.SecretCode = sb.ToString();
+                _dbContext.SaveChanges();
+            }
+
+            return code.SecretCode;
+        }
+        public void SetCode(string new_code)
+        {
+            Code code = _dbContext.Code.FirstOrDefault();
+            if (code == null)
+            {
+                code = new Code();
+            }
+            code.SecretCode = new_code;
+            _dbContext.SaveChanges();
+        }
+
 
         public Admin GetAdminByEmail(string email)
         {

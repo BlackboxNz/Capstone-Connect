@@ -192,7 +192,7 @@ const showProject = (project) => {
 
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart"></i></button>
+                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id}); toggle_like();" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
                             </div>
 
                             <!--comments section-->
@@ -222,6 +222,7 @@ const register = () => {
     const emailText = document.getElementById("email").value;
     const passwordText = document.getElementById("pwd").value;
     const repeatText = document.getElementById("pwd2").value;
+    const student_check = document.getElementById("student_check").checked;
 
     if (passwordText == repeatText) {
         const userJSON = {
@@ -229,16 +230,50 @@ const register = () => {
             Email: emailText,
             Password: passwordText
         }
-        fetch(`/webapi/RegisterVisitor`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "/webapi/RegisterVisitor"
-            },
-            body: JSON.stringify(userJSON)
-        })
-            .then(response => response.text())
-            .then(data => alert(data))
+
+        if (student_check == false) {
+            fetch(`/webapi/RegisterVisitor`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "/webapi/RegisterVisitor"
+                },
+                body: JSON.stringify(userJSON)
+            })
+                .then(response => response.text())
+                .then(data => alert(data))
+        }
+
+        else {
+            entered_code = prompt("Please enter the student code");
+            fetch(`/webapi/GetCode`, {
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": "/webapi/GetCode"
+                }
+            })
+                .then(response => response.text())
+                .then(data => {
+                    if (data == entered_code) {
+                        fetch(`/webapi/RegisterStudent`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Access-Control-Allow-Origin": "/webapi/RegisterStudent"
+                            },
+                            body: JSON.stringify(userJSON)
+                        })
+                            .then(response => response.text())
+                            .then(data => alert(data))
+                    }
+                    else {
+                        alert("Incorrect code!");
+                    }
+                });
+
+
+        }
+
     }
     else {
         alert("Passwords do not match!");
@@ -404,7 +439,7 @@ const loadProjectComments = (id) => {
         {
             headers: {
                 "Accept": "application/json",
-                "Access-Control-Allow-Origin": "/webapi/GetProjectComments"+id
+                "Access-Control-Allow-Origin": "/webapi/GetProjectComments" + id
             },
 
         }
@@ -418,20 +453,20 @@ const showProjectComments = (comment) => {
             "submitted-comments"
         ).innerHTML += `<p>No current comments, feel free to leave one above.</p>`;
     }
-    else{
-    comment.forEach(obj => {
-        if (auth == "admin"){
-            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+    else {
+        comment.forEach(obj => {
+            if (auth == "admin") {
+                var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
             <button type="button" class="btn right" name="deleteC" style="border-color: transparent;" onClick="deleteComment(${obj.id})">Delete</button>
             <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
-        }
-        else{
-            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+            }
+            else {
+                var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
         <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
-        }
-        document.getElementById(
-            "submitted-comments"
-        ).innerHTML += commentText;
+            }
+            document.getElementById(
+                "submitted-comments"
+            ).innerHTML += commentText;
         });
     }
 
