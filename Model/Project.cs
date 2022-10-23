@@ -20,12 +20,12 @@ namespace Capstone_Connect.Model
         public string? FinalThoughts { get; set; }
         public string? Img { get; set; } 
         public string? Video { get; set; }
-        public bool Award1 { get; set; }
-        public bool Award2 { get; set; }
-        public bool Award3 { get; set; }
-        public bool Award4 { get; set; }
+        public bool ClientWin { get; set; }
+        public bool ClientTwo { get; set; }
+        public bool PeopleWin { get; set; }
+        public bool PeopleTwo { get; set; }
         public int Likes { get; set; } = 0;
-        public ICollection<Student>? Team { get; set; }
+        public string? TeamMembers { get; set; }
         public ICollection<Comment>? Comments { get; set; }
     }
 }

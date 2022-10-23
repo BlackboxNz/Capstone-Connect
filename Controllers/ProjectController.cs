@@ -80,13 +80,13 @@ namespace Capstone_Connect.Controllers
                 return NotFound();
             else
             {
-                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Semester = project.Semester, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Comments = project.Comments };
+                ProjectOutDto c = new() { ID = project.ID, TeamName = project.TeamName, ProjectName = project.ProjectName, Semester = project.Semester, ProjectOverview = project.ProjectOverview, Approach = project.Approach, FinalThoughts = project.FinalThoughts, Img = project.Img, Video = project.Video, Likes = project.Likes, Comments = project.Comments, ClientWin = project.ClientWin, ClientTwo = project.ClientTwo, PeopleWin = project.PeopleWin, PeopleTwo = project.PeopleTwo };
                 return Ok(c);
             }
 
         }
 
-        // GET /webapi/GetItems
+        // GET /webapi/GetProjects/{name}
         [HttpGet("GetProjects/{name}")]
         public ActionResult<IEnumerable<ProjectOutDto>> GetProjects(string name)
         {

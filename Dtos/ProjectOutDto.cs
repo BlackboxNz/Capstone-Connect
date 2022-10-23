@@ -17,8 +17,10 @@ namespace Capstone_Connect.Dtos
         public string? FinalThoughts { get; set; }
         public string? Img { get; set; }
         public string? Video { get; set; }
-        public ICollection<Student>? TeamMembers { get; set; }
-        //public ICollection<User> LikedBy { get; set; }
+        public bool? ClientWin { get; set; }
+        public bool? ClientTwo { get; set; }
+        public bool? PeopleWin { get; set; }
+        public bool? PeopleTwo { get; set; }
         public ICollection<Comment>? Comments { get; set; }
         public int? Likes { get; set; }
         public ICollection<Student>? Teams { get; set; }
