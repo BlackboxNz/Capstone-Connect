@@ -382,6 +382,7 @@ body {
     padding: 15px;
 }
 
+
 /*Toast Elements*/
 #toast {
     visibility: hidden;
@@ -573,14 +574,6 @@ button.right {
     width: 80%;
 }
 
-.row label, .form-group label{
+.row label, .form-group label, .form-group input{
     font-size: 25pt;
 }
-
-
-.medal {
-    font-family: Font Awesome\ 5 Free;
-    font-weight: bold;
-    font-style: normal;
-}
-
