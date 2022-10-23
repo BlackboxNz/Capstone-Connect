@@ -71,4 +71,24 @@ const deleteProject = (id) => {
   })
 }
 
-
+const registerUser = () => {
+    const fullnameText = document.getElementById("fullname").value;
+    const emailText = document.getElementById("email").value;
+    const passwordText = document.getElementById("pwd").value;
+    const userLevel = document.getElementById("userlevel").value;
+    const userJSON = {
+        FullName: fullnameText,
+        Email: emailText,
+        Password: passwordText
+    }
+    fetch(`/webapi/Register` + userLevel, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "/webapi/Register" + userLevel
+        },
+        body: JSON.stringify(userJSON)
+    })
+        .then(response => response.text())
+        .then(data => alert(data))
+}
