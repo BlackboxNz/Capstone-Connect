@@ -16,6 +16,20 @@ body{
     animation: buttonslide 2s;
 }
 
+.textButtonContainer{
+    text-align: center;
+    position: absolute;
+    width: inherit;
+    bottom: 8%;
+    animation: textbuttonslide 2s;
+}
+
+
+.break{
+    display: block;
+    border-top: 2px solid #373433;
+}
+
 .introButton{
     opacity: 0.7;
     animation: buttonfadein 2s;
@@ -63,6 +77,35 @@ body{
 }
 
 
+.paraContainer{
+    padding-top: 10%;
+    padding-left: 15%;
+    padding-right: 15%;
+    position: absolute;
+    bottom: 20%;
+    text-align: left;
+    width: inherit;
+    font-size: 17px;
+    font-style: italic;
+    color: #ffffff;
+    animation: textslide 2s;
+    -moz-animation: textslide 2s; /* Firefox */
+    -webkit-animation: textslide 2s; /* Safari and Chrome */
+    -o-animation: textslide 3s; /* Opera */
+}
+
+#text{
+    animation: buttonfadein 2s;
+}
+
+
+.textTitle{
+    text-align: left;
+    color: #ff914dd7;
+    font-weight: bolder;
+    font-style: italic;
+}
+
 /* Animation */
 
 /* Slide Up */
@@ -81,6 +124,24 @@ body{
     }
     to{
         bottom: 40%;
+    }
+}
+
+@keyframes textbuttonslide {
+    from{
+        bottom: 0%;
+    }
+    to{
+        bottom: 8%;
+    }
+}
+
+@keyframes textslide {
+    from{
+        bottom: 0%;
+    }
+    to{
+        bottom: 20%;
     }
 }
 
@@ -116,7 +177,7 @@ body{
         opacity:0;
     }
     to{
-        opacity:0.7;
+        opacity:1;
     }
 }
 
