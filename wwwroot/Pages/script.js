@@ -1,6 +1,7 @@
 async function test() {
     console.log("test");
 }
+var auth = localStorage.getItem("auth")
 
 projecttag("all")
 
@@ -122,6 +123,17 @@ const loadIndividualProject = (id) => {
 
 const showProject = (project) => {
     console.log(project);
+    if ((auth == "visitor") || (auth == "student") || (auth == "admin")){
+        var commentText = `<div class="commentfields flex-container">
+        <textarea id="comment-text" class="required textarea" name="comment" placeholder="Your comment"></textarea>
+    </div>
+    <div style="font-size: 1.2em;">
+        <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
+    </div>`
+    }
+    else{
+        var commentText = `<h4>Please login to comment</h4>`
+    };
     document.getElementById("projectModal").style.display = "block";
     document.getElementById(
         "modal-text"
@@ -180,7 +192,7 @@ const showProject = (project) => {
 
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button id="likebtn" onclick="change()" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i class="fa fa-heart"></i></button>
+                                <button id="likebtn" onclick="like(); toggle_like()" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart"></i></button>
                             </div>
 
                             <!--comments section-->
@@ -189,12 +201,7 @@ const showProject = (project) => {
 
                                 <div id="comment">
                                     <form id="commentForm">
-                                        <div class="commentfields flex-container">
-                                            <textarea id="ccomment" class="required textarea" name="comment" placeholder="Your comment"></textarea>
-                                        </div>
-                                        <div style="font-size: 1.2em;">
-                                            <button class="btn right" id="commentButton" type="submit" name="submit" size="25" style=" border-radius: 8px; background-color: #0098C3; color: white;" onclick = "submitComment(${project.id})">Comment</button>
-                                        </div>
+                                    ${commentText}
                                     </form>
                                 </div>
                                 <hr style="height: 3px;">
@@ -344,14 +351,8 @@ const like = (project_id) => {
         });
 }
 
-function change() {
-    var btn = document.getElementById("likebtn");
-    if (btn.innerHTML == "Like <i class=\"fa fa - heart\"></i>") {
-        btn.innerHTML = "Liked";
-    }
-    else {
-        btn.innerHTML = "Like <i class=\"fa fa - heart\"></i>";
-    }
+function toggle_like() {
+    document.getElementById("heart-icon").classList.toggle("fa-heart-o");
 }
 
 
@@ -359,8 +360,7 @@ function change() {
 const submitComment = (id) => {
     if ((auth == "visitor") || (auth == "student") || (auth == "admin")) {
         const comment = document.getElementById('comment-text').value;
-
-        document.getElementById('comment').value = "";
+        document.getElementById('comment-text').value = "";
         FullName = localStorage.getItem("fullname");
         const commentJSON = {
             CommentText: comment,
@@ -398,15 +398,22 @@ const showProjectComments = (comment) => {
     if (comment.length == 0) {
         document.getElementById(
             "submitted-comments"
-        ).innerHTML += `<p>No current comments, feel free to leave one below.</p>`;
+        ).innerHTML += `<p>No current comments, feel free to leave one above.</p>`;
     }
     else{
     comment.forEach(obj => {
+        if (auth == "admin"){
+            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+            <button type="button" class="btn right" name="deleteC" style="border-color: transparent;" onClick="deleteComment(${obj.id})">Delete</button>
+            <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
+        }
+        else{
+            var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
+        <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
+        }
         document.getElementById(
             "submitted-comments"
-        ).innerHTML += `<h4 style="padding-top: 5px; font-weight: bold;" id="comment-title">${obj.fullName}</h4>
-        <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>
-        `;
+        ).innerHTML += commentText;
         });
     }
 

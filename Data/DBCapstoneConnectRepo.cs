@@ -61,7 +61,7 @@ namespace Capstone_Connect.Data
         }
 
         //Admin based project functions
-        public void AwardProject(Project project, Tag tag)
+        public void AwardProject(Project project)
         {
 
         }
@@ -297,42 +297,6 @@ namespace Capstone_Connect.Data
                 _dbContext.Visitors.Remove(userToDelete);
                 _dbContext.SaveChanges();
             }
-        }
-
-
-        // Tag functions
-        public void AddTag(Tag tag)
-        {
-            // Get existing tags
-            IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
-
-            // Check if tag already exists
-            if (tags.FirstOrDefault(e => e.ID == tag.ID) == null)
-            {
-                _dbContext.Tags.Add(tag);
-                _dbContext.SaveChanges();
-            }
-        }
-        public void DeleteTag(Tag tag)
-        {
-            // Get existing tags
-            IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
-
-            // Check if tag exists
-            if (tags.FirstOrDefault(e => e.ID == tag.ID) != null)
-            {
-                // Delete tag
-                _dbContext.Tags.Remove(tag);
-                _dbContext.SaveChanges();
-            }
-        }
-
-        public void TagProject(Project project, Tag tag)
-        {
-            // Get existing projects and tags
-            //IEnumerable<Project> projects = _dbContext.Projects.ToList<Project>();
-            //IEnumerable<Tag> tags = _dbContext.Tags.ToList<Tag>();
-
         }
 
         //Comment functions
