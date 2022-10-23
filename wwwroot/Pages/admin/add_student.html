@@ -34,42 +34,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Add Project</h2>
+                <h2>Add Student</h2>
                 <form id="project-form">
                     <div class="form-group">
-                        <label for="project_team">Team Name</label>
-                        <input type="text" class="form-control" name="team_name" id="team_name"
-                               placeholder="Team Name">
+                        <label for="student-name">Student Name</label>
+                        <input type="text" class="form-control" id="student-name" placeholder="Enter Student Name" />
                     </div>
 
                     <div class="form-group">
-                        <label for="project_name">Project Name</label>
-                        <input type="text" class="form-control" name="project_name" id="project_name"
-                               placeholder="Project Name">
+                        <label for="student-id">Student UID</label>
+                        <input type="text" class="form-control" id="student-id" placeholder="Enter Student UID">
                     </div>
                     <div class="form-group">
-                        <label for="project_overview">Project Overview</label>
-                        <textarea class="form-control" name="project_overview" id="project_overview"
-                                  placeholder="Project Overview" cols="30" rows="10"></textarea>
+                        <label for="student-email">Student Email</label>
+                        <input type="email" class="form-control" id="student-email" placeholder="Enter Student Email">
                     </div>
                     <div class="form-group">
-                        <label for="Approach">Approach</label>
-                        <textarea class="form-control" name="approach" id="approach"
-                                  placeholder="Approach" cols="20" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="final_thoughts">Future Plans</label>
-                        <textarea class="form-control" name="final_thoughts" id="final_thoughts"
-                                  placeholder="Final Thoughts" cols="20" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="project_image">Project Image</label>
-                        <input type="file" id="project_image" asp-controller="FileUpload" runat="server" asp-action="Index" enctype="multipart/form-data" name="project_image" accept="image/png, image/jpeg" >
-                    </div>
-                    <div class="form-group">
-                        <label for="project_video">Project Video</label>
-                        <input type="url" class="form-control" name="project_video" id="project_video"
-                               placeholder="Paste video URL here">
+                        <label for="student-password">Student Password</label>
+                        <input type="password" class="form-control" id="student-password"
+                               placeholder="Enter Student Password">
                     </div>
                 </form>
             </div>
@@ -79,7 +62,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <a class="btn btn-primary btn-block" type="button" onClick="createProject()">Create Project</a>
+                <a class="btn btn-primary btn-block" type="button" onClick="addStudent()">Create Student</a>
             </div>
         </div>
     </div>
