@@ -155,13 +155,7 @@ const showProject = (project) => {
                     <div class="header" style="border-radius: 15px; text-align: center;">                        
                             <button type="button" class="close" onclick="projectModal.style.display='none'" data-dismiss="modal" aria-hidden="true" style="font-size: 3.5em; color: white;" aria-label="Close">&times</button>
                             <h1 style="font-weight: bold; font-size: 5em; ">${project.teamName}</h1>
-                            <p style="padding: 15px;">By</p>
-                            <p></p>
-                            <h4>Users go here. </h4>
-                    </div>
-
-
-                        
+                    </div>      
                     <div id="client-win" style="display: none">
                         ClientWin
                     </div>
@@ -174,26 +168,19 @@ const showProject = (project) => {
                     <div id="people-two" style="display: none">
                         PeopleTwo
                     </div>
-
-
-
                     <!--body-->
-
                     <div>
                         <div class="flex-container" style="padding-left: 0px; padding-right: 0px;">
-
                             <div class="lineup">
-                                <h1 style="font-size: 2.7em; font-weight: bold;">Blurb</h1>
+                                <h1 style="font-size: 2.7em; font-weight: bold;">Brief</h1>
                                 <p></p>
                                 <p style="font-size: 1.5em;">
                                     ${project.projectOverview}
                                 </p>
                             </div>
-
                             <div class="flex-container centered-div" style="min-width: 0; width: 100%;">
                                 <iframe width="1000" height="563" src="${project.video}"></iframe>  
                             </div>
-
                             <div class="lineup">
                                 <h2 style="font-weight: bold; font-size: 2em;">Approach</h2>
                                 <p></p>
@@ -242,7 +229,6 @@ const showProject = (project) => {
     checkAwards(project.clientWin, project.clientTwo, project.peopleWin, project.peopleTwo);
     loadProjectComments(project.id);
 }
-
 const checkAwards = (a,b,c,d) => {
     if (a == true) {
         document.getElementById("client-win").style.display = "inline";
@@ -257,7 +243,6 @@ const checkAwards = (a,b,c,d) => {
         document.getElementById("people-two").style.display = "inline";
     }
 }
-
 //Login and register functions. 
 const register = () => {
     const fullnameText = document.getElementById("fullname").value;
@@ -265,7 +250,6 @@ const register = () => {
     const passwordText = document.getElementById("pwd").value;
     const repeatText = document.getElementById("pwd2").value;
     const student_check = document.getElementById("student_check").checked;
-
     if (passwordText == repeatText) {
         const userJSON = {
             FullName: fullnameText,
@@ -285,7 +269,6 @@ const register = () => {
                 .then(response => response.text())
                 .then(data => alert(data))
         }
-
         else {
             entered_code = prompt("Please enter the student code");
             fetch(`/webapi/GetCode`, {
@@ -312,10 +295,7 @@ const register = () => {
                         alert("Incorrect code!");
                     }
                 });
-
-
         }
-
     }
     else {
         alert("Passwords do not match!");
