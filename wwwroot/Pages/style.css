@@ -517,11 +517,11 @@ button.right {
     border-color: transparent;
 }
 
-#tag-checkbox input[type="checkbox"] {
+#award-checkbox input[type="checkbox"] {
     display: none;
 }
 
-#tag-checkbox span {
+#award-checkbox span {
     display: inline-block;
     padding: 10px;
     text-transform: uppercase;
@@ -530,9 +530,9 @@ button.right {
     border-radius: 3px;
 }
 
-#tag-checkbox input[type="checkbox"]:checked + span {
+#award-checkbox input[type="checkbox"]:checked + span {
     background-color: #fff;
-    color: #000;
+    color: gold;
 }
 
 #activeTab{
@@ -574,6 +574,6 @@ button.right {
     width: 80%;
 }
 
-.row label, .form-group label, .form-group input{
+.row label{
     font-size: 25pt;
 }

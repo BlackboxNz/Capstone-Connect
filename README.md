@@ -1,8 +1,6 @@
 # Capstone-connect #
 Jira: https://cs399team4.atlassian.net/jira/software/projects/CAPSHOW/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiMGM4NjY3MTAzYjk5NDBkYmE0ZWI2N2Q4ZjJkZjIzNGEiLCJwIjoiaiJ9
 
-Final Project Report:
-
 ---
 ## Project description: ##
 ---
@@ -42,16 +40,20 @@ where you can then access the various HTML files and their associated scripts. T
 ---
 ## Usage Examples ##
 ---
+![Home Page](README_IMAGES/home.png)
+![Projects Page](README_IMAGES/projects.png)
+![Student Utilities](README_IMAGES/student.png)
+![Student Add Project](README_IMAGES/add_project1.png)
+![](README_IMAGES/add_project2.png)
+![Admin Utilities](README_IMAGES/admin.png)
+![Awarding Projects](README_IMAGES/awarding.png)
+![Awards](README_IMAGES/award.png)
+![User Social Aspects](README_IMAGES/social.png)
 
-* Potential employers visiting the site to look at potential candidates for graduate/internship roles.
-* Future students visiting to see what current students have created.
-* Student wanting to see what other fellow computer science students have achieved in their projects.
-* Students wanting to update their project.
-* Students looking to upload their capstone projects to capstone connect to gain greater exposure.
-* Visitors, Students and Lecturers wanting to leave comments and likes to give feedback on a particular project and to give a particular project praise by liking projects.
-* Lecturers wanting to add and manage students' projects that have been previously showcased.
-* Admins giving out awards with badges to commemorate the People's Choice and Client's Choice awards.
-* Admins deleting comments. 
+* Gallery of COMPSCI 399 projects to view.
+* Abilitiy for students to upload their project details.
+* Ability for users to like and comment on projects.
+* Ability for administrators to give awards to projects and moderate website.
 
 ---
 ## Future insight: ##
