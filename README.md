@@ -41,20 +41,24 @@ Alternatively, open the folder in Visual Studio code and type "dotnet watch" in 
 ---
 ## Usage Examples ##
 ---
+* Gallery of COMPSCI 399 projects to view.
 ![Home Page](README_IMAGES/home.png)
 ![Projects Page](README_IMAGES/projects.png)
+
+* Abilitiy for students to upload their project details.
 ![Student Utilities](README_IMAGES/student.png)
 ![Student Add Project](README_IMAGES/add_project1.png)
 ![](README_IMAGES/add_project2.png)
+
+* Ability for administrators to give awards to projects and moderate website.
 ![Admin Utilities](README_IMAGES/admin.png)
 ![Awarding Projects](README_IMAGES/awarding.png)
 ![Awards](README_IMAGES/award.png)
+
+* Ability for users to like and comment on projects.
 ![User Social Aspects](README_IMAGES/social.png)
 
-* Gallery of COMPSCI 399 projects to view.
-* Abilitiy for students to upload their project details.
-* Ability for users to like and comment on projects.
-* Ability for administrators to give awards to projects and moderate website.
+
 
 ---
 ## Future insight: ##
