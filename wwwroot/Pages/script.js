@@ -232,7 +232,7 @@ const showProject = (project) => {
     checkAwards(project.clientWin, project.clientTwo, project.peopleWin, project.peopleTwo);
     loadProjectComments(project.id);
 }
-const checkAwards = (a,b,c,d) => {
+const checkAwards = (a, b, c, d) => {
     if (a == true) {
         document.getElementById("client-win").style.display = "inline";
     }
@@ -454,11 +454,11 @@ const submitComment = (id) => {
             body: JSON.stringify(commentJSON),
         }); loadProjectComments(id);
         alert("Comment Successful");
-        
+
     }
     else {
         alert("You need to be logged in to comment!")
-    } 
+    }
 
 }
 
@@ -499,16 +499,16 @@ const showProjectComments = (comment) => {
     }
 
 }
-const deleteUser = () =>{
+const deleteUser = () => {
     var level = getElementById("user_level_drop").value;
     var email = getElementById(user-email).value;
-    if(level == "Admin"){
+    if (level == "Admin") {
         deleteAdmin(user-email);
     }
-    else if(level == "Student"){
+    else if (level == "Student") {
         deleteStudent(user-email);
     }
-    else{
+    else {
         deleteVisitor(user-email);
     }
 }
@@ -571,3 +571,19 @@ const deleteVisitor = (email) => {
     })
 }
 
+const deleteComment = (id) => {
+    fetch(`/webapi/DeleteComment/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Access-Control-Allow-Origin": `/webapi/DeleteComment/${id}`,
+        }
+    }).then(response => {
+        if (response.status == 204) {
+            alert("Comment Deleted");
+            location.reload();
+        }
+        else {
+            alert("Unable to delete Comment");
+        }
+    })
+}
