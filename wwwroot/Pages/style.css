@@ -528,6 +528,7 @@ button.right {
     color: #fff;
     border: 2px solid #fff;
     border-radius: 3px;
+    font-size: 15pt;
 }
 
 #award-checkbox input[type="checkbox"]:checked + span {
@@ -575,5 +576,5 @@ button.right {
 }
 
 .row label{
-    font-size: 25pt;
+    font-size: 24pt;
 }

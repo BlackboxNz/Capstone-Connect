@@ -210,7 +210,7 @@ const showProject = (project) => {
                             </div>
                             <div class="flex-container lineup">
                                 <h2 style="font-weight: bold; width: 100%; font-size: 2em;">Like this Project</h2>
-                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id});" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart-icon" class="fa fa-heart fa-heart-o"></i></button>
+                                <button id="likebtn" onload="check_like(${project.id})" onclick="like(${project.id});toggle_like()" style="font-size: 24px; background-color: #ff0528; color: white; border-color: transparent; border-radius: 8px; text-align: center; width: 100px;">Like <i id="heart" class="far fa-heart"></i></button>
                             </div>
                             <!--comments section-->
                             <div class="flex-container lineup">
@@ -411,11 +411,11 @@ const like = (project_id) => {
             },
             body: JSON.stringify(likeJSON)
         })
-            .then(response => {
-                if (response.ok) {
-                    toggle_like();
-                }
-            })
+            //.then(response => {
+            //    if (response.ok) {
+            //        ;
+            //    }
+            //})
     }
     else {
         alert("You need to be logged in to like!");
@@ -423,12 +423,14 @@ const like = (project_id) => {
 }
 
 const toggle_like = () => {
-    document.getElementById("heart-icon").classList.toggle("fa-heart-o");
+    document.getElementById("heart").classList.toggle("far");
+    document.getElementById("heart").classList.toggle("fas");
 }
 
 const check_like = (project_id) => {
     if (localStorage.getItem("liked_projects").split(",").includes(project_id)) {
-        document.getElementById("heart-icon").classList.toggle("fa-heart-o");
+        document.getElementById("heart").classList.toggle("far");
+        document.getElementById("heart").classList.toggle("fas");
     }
 }
 
@@ -485,7 +487,7 @@ const showProjectComments = (comment) => {
         comment.forEach(obj => {
             if (auth == "admin") {
                 var commentText = `<h4 style="padding-top: 5px; font-weight: bold; width:" id="comment-title">${obj.fullName}</h4>
-            <button type="button" class="btn right" name="deleteC" style="border-color: transparent;" onClick="deleteComment(${obj.id})">Delete</button>
+            <button type="button" class="btn right" name="deleteC" style="border-color: transparent;" onclick="deleteComment(${obj.id})">Delete</button>
             <p style="padding-bottom: 5px;" id="comment-body">${obj.commentText}</p>`;
             }
             else {
