@@ -591,7 +591,11 @@ const deleteComment = (id) => {
 }
 
 const getProjects = (letters) => {
-    
+    if(letters == ""){
+        projectsContainer.innerHTML = "";
+        getAllProjects();
+    }
+    else{
     const fetchPromise = fetch(`/webapi/GetProjects/${letters}`,
         {
             headers: {
@@ -604,7 +608,6 @@ const getProjects = (letters) => {
     
     streamPromise.then((data) => {
         if (data == "") {
-            console.log(data);
             // If there is no results from the filter, inform user no results
             projectsContainer.innerHTML = `<div style="text-align: center; padding-top:50px;"><p>No results.</p></div>`;
           } else {
@@ -613,6 +616,7 @@ const getProjects = (letters) => {
             showAllProjects(data);
           }
         });
+    }
 }
 
 const getFilteredItems = () => {
