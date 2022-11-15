@@ -590,6 +590,31 @@ const deleteComment = (id) => {
     })
 }
 
+const getProjects = (letters) => {
+    
+    const fetchPromise = fetch(`/webapi/GetProjects/${letters}`,
+        {
+            headers: {
+                "Accept": "application/json",
+            },
+        }
+    );
+    
+    const streamPromise = fetchPromise.then((response) => response.json());
+    
+    streamPromise.then((data) => {
+        if (data == "") {
+            console.log(data);
+            // If there is no results from the filter, inform user no results
+            projectsContainer.innerHTML = `<div style="text-align: center; padding-top:50px;"><p>No results.</p></div>`;
+          } else {
+            // If there are matches in project names, show the filtered list
+            projectsContainer.innerHTML = "";
+            showAllProjects(data);
+          }
+        });
+}
+
 const getFilteredItems = () => {
     // Get the search filter input from user
     const filter = document.getElementById("search-input").value;
@@ -604,10 +629,10 @@ const getFilteredItems = () => {
       const streamItems = fetchItems.then((response) => response.json());
       streamItems.then((data) => {
         if (data == "") {
-          // If there is no results from the filter, inform user with no results image and text
-          shopContainer.innerHTML = `<div style="text-align: center; padding-top:50px;"><p>No results.</p></div>`;
+          // If there is no results from the filter, inform user no results
+          projectsContainer.innerHTML = `<div style="text-align: center; padding-top:50px;"><p>No results.</p></div>`;
         } else {
-          // If there are matches in product names, show the filtered list
+          // If there are matches in project names, show the filtered list
           projectsContainer.innerHTML = "";
           showAllProjects(data);
         }

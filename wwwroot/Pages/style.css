@@ -124,12 +124,8 @@ body {
         background-color: #ff7824;
     }
 
-/*Search Button and input fields*/
-#search-btn{
-  width: 20%;
-  min-width: 80px;
-  max-width: 150px;
-}
+/*Search input fields*/
+
 .search-container {
     margin: auto;
     text-align: center;

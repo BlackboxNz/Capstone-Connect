@@ -63,18 +63,9 @@
                   id="search-input"
                   type="search"
                   placeholder="Search"
-                  autocomplete="off"
                   name="search"
-                  onkeyup="getFilteredItems()"
+                  oninput="getProjects(this.value);"
                 />
-                <button
-                  id="search-btn"
-                  type="button"
-                  class="btn"
-                  onclick="getFilteredItems()"
-                >
-                  <i class="">Search</i>
-                </button>
               </div>
             <div id="projects"></div>
             <div style="height: 100px; width: 100%; clear: both"></div>
