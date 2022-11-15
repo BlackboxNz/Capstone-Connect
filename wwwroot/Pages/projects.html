@@ -58,6 +58,24 @@
     <div class="container_main">
         <div id="project" class="row">
             <h1 class="row" style="text-align: center">Projects</h1>
+            <div class="search-container row">
+                <input
+                  id="search-input"
+                  type="search"
+                  placeholder="Search"
+                  autocomplete="off"
+                  name="search"
+                  onkeyup="getFilteredItems()"
+                />
+                <button
+                  id="search-btn"
+                  type="button"
+                  class="btn"
+                  onclick="getFilteredItems()"
+                >
+                  <i class="">Search</i>
+                </button>
+              </div>
             <div id="projects"></div>
             <div style="height: 100px; width: 100%; clear: both"></div>
         </div>
@@ -138,7 +156,7 @@
             </div>
         </div>
     </div>
-
+    
     <div id="projectModal" class="modal" role="dialog" tabindex="-1" aria-labelledby="modallabel" aria-hidden="true">
         <div class="modal-content">
             <div class="modal-body">

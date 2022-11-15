@@ -57,7 +57,7 @@ namespace Capstone_Connect.Data
         //Admin based project functions
         public int AwardProject(AwardInDto award)
         {
-            Project p = _dbContext.Projects.FirstOrDefault(e => e.ProjectName == award.ProjectName);
+            Project p = _dbContext.Projects.FirstOrDefault(e => e.ID == award.ProjectID);
 
             if (p != null)
             {

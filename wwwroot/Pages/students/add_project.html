@@ -12,12 +12,7 @@
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../studentAndAdminStyle.css">
-    
-    <style>
-        div {
-            color: #fff;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -65,7 +60,6 @@
                     <div class="form-group">
                         <label for="project_image">Project Image</label>
                             <input type="file" id="project_image" asp-controller="FileUpload" runat="server" asp-action="Index" enctype="multipart/form-data" name="project_image" accept="image/png, image/jpeg" style="font-size:25px;">
-                        <!--<input id="student-submit" type="submit" value="Upload Image" onclick="return UploadFile();" /> -->
                     </div>
                     <div class="form-group">
                         <label for="project_video">Project Video</label>

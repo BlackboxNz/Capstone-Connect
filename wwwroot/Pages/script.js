@@ -589,3 +589,28 @@ const deleteComment = (id) => {
         }
     })
 }
+
+const getFilteredItems = () => {
+    // Get the search filter input from user
+    const filter = document.getElementById("search-input").value;
+    if (filter == "") {
+      // If the input is empty then display all projects
+      projectsContainer.innerHTML="";
+      getAllProjects();
+    } else {
+      const fetchItems = fetch(
+        "/webapi/projects/" + filter
+      );
+      const streamItems = fetchItems.then((response) => response.json());
+      streamItems.then((data) => {
+        if (data == "") {
+          // If there is no results from the filter, inform user with no results image and text
+          shopContainer.innerHTML = `<div style="text-align: center; padding-top:50px;"><p>No results.</p></div>`;
+        } else {
+          // If there are matches in product names, show the filtered list
+          projectsContainer.innerHTML = "";
+          showAllProjects(data);
+        }
+      });
+    }
+  };

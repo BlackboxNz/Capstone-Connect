@@ -13,11 +13,6 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../studentAndAdminStyle.css">
 
-    <style>
-        div {
-            color: #fff;
-        }
-    </style>
 </head>
 
 <body>
@@ -35,13 +30,14 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h2>Award Project</h2>
-                <form id="project-form">
+                <form id="project-form">                
 
                     <div class="form-group">
-                        <label for="project_name">Project Name</label>
-                        <input type="text" class="form-control" name="project_name" id="project_name"
-                               placeholder="Project Name">
+                        <label style="font-size: large;" for="project_name">Project Name</label><br>
+                        <!-- When the drop down button is clicked, the getProjects function is called from studentAndAdminScript.js file. -->
+                        <select id="project_name_select" title="project_name_select" onclick="getProjects()"><div id="project_name_drop"></div></select>
                     </div>
+                </form>
                     <div>
                         <label for="awards"> Awards</label>
                         <p id="award-checkbox">

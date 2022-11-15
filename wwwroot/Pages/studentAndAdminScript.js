@@ -1,7 +1,6 @@
 const toast = document.getElementById("toast");
 
 const createProject = () => {
-    console.log(project_name.value);
     if (project_name.value == "") {
       // Inform user their comment is empty
       toast.innerHTML = "No Project Name";
@@ -21,10 +20,6 @@ const createProject = () => {
           body: JSON.stringify(json),
         }).then((response) => response.json()).then((data) =>{
             // Inform user through toast of the successful creation
-            // potential for alert of innerhtml
-            //document.getElementById('projectAlert').innerHTML = `<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>` + "Item " + itemId + " bought!";
-            //document.getElementById('projectAlert').style.display = "block";
-            toast.innerHTML = `Project ${project_name.value} created`;
             toast.className = "show";
             var id = data.id;
             setTimeout(function () {
@@ -118,19 +113,20 @@ const setCode = () => {
 }
 
 const awardProject = () => {
-    const project_name = document.getElementById("project_name").value;
+    const project_id = document.getElementById("project_name_select").value;
     const client_win = document.getElementById("client-win-box").checked;
     const client_two = document.getElementById("client-two-box").checked;
     const people_win = document.getElementById("people-win-box").checked;
     const people_two = document.getElementById("people-two-box").checked;
-
+    
     const awardJSON = {
-        ProjectName: project_name,
+        ProjectID: project_id,
         ClientWin: client_win,
         ClientTwo: client_two,
         PeopleWin: people_win,
         PeopleTwo: people_two,
     }
+    console.log(awardJSON);
     fetch(`/webapi/AwardProject`, {
         method: "POST",
         headers: {
@@ -170,7 +166,6 @@ const getProjects = () => {
 const populateProjects = (projects) =>{
   
   projects.forEach(obj => {
-    console.log(obj);
     document.getElementById("project_name_select").innerHTML += `<option id="project_option" value='${obj.id}'>${obj.projectName}</option>`;
   })
 }
