@@ -411,11 +411,6 @@ const like = (project_id) => {
             },
             body: JSON.stringify(likeJSON)
         })
-            //.then(response => {
-            //    if (response.ok) {
-            //        ;
-            //    }
-            //})
     }
     else {
         alert("You need to be logged in to like!");
@@ -590,7 +585,7 @@ const deleteComment = (id) => {
     })
 }
 
-const getProjects = (letters) => {
+const getSomeProjects = (letters) => {
     if(letters == ""){
         projectsContainer.innerHTML = "";
         getAllProjects();
